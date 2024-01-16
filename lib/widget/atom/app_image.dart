@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import '../../app/theme/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 import '../../app/asset/app_assets.dart';
+import '../../app/theme/app_colors.dart';
 import '../../app/utility/console_log.dart';
 import 'app_progress_indicator.dart';
 
@@ -44,7 +44,7 @@ class AppImage extends StatefulWidget {
   final String appAssetsPackageName;
 
   const AppImage({
-    Key? key,
+    super.key,
     required this.image,
     this.allImages,
     this.imgProvider = ImgProvider.networkImage,
@@ -63,8 +63,8 @@ class AppImage extends StatefulWidget {
     // If want to load asset from origin app or other
     // set [isFromAppAssets] to false or set [appAssetsPackageName] to destination package name
     this.isFromAppAssets = true,
-    this.appAssetsPackageName = 'alvamind_library',
-  }) : super(key: key);
+    this.appAssetsPackageName = 'alvamind_three_library_frontend',
+  });
 
   @override
   State<AppImage> createState() => _AppImageState();
@@ -124,7 +124,7 @@ class _AppImageState extends State<AppImage> {
   }
 
   Widget networkImage() {
-    return OptimizedCacheImage(
+    return CachedNetworkImage(
       imageUrl: widget.image,
       fit: widget.fit ?? BoxFit.cover,
       fadeInDuration: const Duration(milliseconds: 200),
@@ -232,11 +232,15 @@ class _AppImageState extends State<AppImage> {
 class AppImageViewer extends StatefulWidget {
   final List<String> images;
   final ImgProvider imgProvider;
+  final bool isFromAppAssets;
+  final String appAssetsPackageName;
 
   const AppImageViewer({
     super.key,
     required this.images,
     this.imgProvider = ImgProvider.networkImage,
+    this.isFromAppAssets = true,
+    this.appAssetsPackageName = 'alvamind_three_library_frontend',
   });
 
   @override
@@ -244,13 +248,16 @@ class AppImageViewer extends StatefulWidget {
 }
 
 class _AppImageViewerState extends State<AppImageViewer> {
-  ImageProvider imageProvider(String img) {
+  ImageProvider imageProvider(String image) {
     if (widget.imgProvider == ImgProvider.fileImage) {
-      return FileImage(File(img));
+      return FileImage(File(image));
     } else if (widget.imgProvider == ImgProvider.assetImage) {
-      return AssetImage(img);
+      return AssetImage(
+        image,
+        package: widget.isFromAppAssets ? widget.appAssetsPackageName : null,
+      );
     } else {
-      return NetworkImage(img);
+      return NetworkImage(image);
     }
   }
 

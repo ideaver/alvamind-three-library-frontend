@@ -10,6 +10,7 @@ import '../../view/samples/divider_samples_view.dart';
 import '../../view/samples/dotted_border_sample_view.dart';
 import '../../view/samples/dropdown_samples_view.dart';
 import '../../view/samples/icon_button_samples_view.dart';
+import '../../view/samples/icons_samples_view.dart';
 import '../../view/samples/image_samples_view.dart';
 import '../../view/samples/input_field_samples_view.dart';
 import '../../view/samples/loading_samples_view.dart';
@@ -22,6 +23,7 @@ import '../../view/samples/steps_samples_view.dart';
 import '../../view/samples/table_navigation_samples_view.dart';
 import '../../view/samples/table_samples_view.dart';
 import '../../view/samples/tags_samples_view.dart';
+import '../../view/samples/text_samples_view.dart';
 import '../../view/samples/toggle_samples_view.dart';
 import '../../view/samples/tool_tip_menu_samples_view.dart';
 
@@ -33,6 +35,8 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     MainView.routeName: (context) => const MainView(),
+    TextSamplesView.routeName: (context) => const TextSamplesView(),
+    IconsSamplesView.routeName: (context) => const IconsSamplesView(),
     ButtonSamplesView.routeName: (context) => const ButtonSamplesView(),
     DialogSamplesView.routeName: (context) => const DialogSamplesView(),
     LoadingSamplesView.routeName: (context) => const LoadingSamplesView(),

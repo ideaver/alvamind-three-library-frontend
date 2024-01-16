@@ -52,13 +52,12 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
         selectedItem: _country.name,
         items: List.generate(
           countries.length,
-          (i) => DropDownModel(
-              text: countries[i].name, value: countries[i].countryCode),
+          (i) => DropDownModel(text: countries[i].name, value: countries[i].countryCode),
         ),
         itemsBuilder: (item) {
           return Text(
             item.text,
-            style: AppTextStyle.semibold(size: 12),
+            style: AppTextStyle.semiBold(size: 12),
           );
         },
       ),
@@ -77,13 +76,12 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
         selectedItem: _country.name,
         items: List.generate(
           countries.length,
-          (i) => DropDownModel(
-              text: countries[i].name, value: countries[i].countryCode),
+          (i) => DropDownModel(text: countries[i].name, value: countries[i].countryCode),
         ),
         itemsBuilder: (item) {
           return Text(
             item.text,
-            style: AppTextStyle.semibold(size: 12),
+            style: AppTextStyle.semiBold(size: 12),
           );
         },
       ),
@@ -102,13 +100,12 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
         selectedItem: _country.name,
         items: List.generate(
           countries.length,
-          (i) => DropDownModel(
-              text: countries[i].name, value: countries[i].countryCode),
+          (i) => DropDownModel(text: countries[i].name, value: countries[i].countryCode),
         ),
         itemsBuilder: (item) {
           return Text(
             item.text,
-            style: AppTextStyle.semibold(size: 12),
+            style: AppTextStyle.semiBold(size: 12),
           );
         },
       ),
@@ -128,13 +125,12 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
         suffixIcon: Icons.arrow_drop_down_circle,
         items: List.generate(
           countries.length,
-          (i) => DropDownModel(
-              text: countries[i].name, value: countries[i].countryCode),
+          (i) => DropDownModel(text: countries[i].name, value: countries[i].countryCode),
         ),
         itemsBuilder: (item) {
           return Text(
             item.text,
-            style: AppTextStyle.semibold(size: 12),
+            style: AppTextStyle.semiBold(size: 12),
           );
         },
       ),
@@ -153,8 +149,7 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
         itemsBackgroundColor: AppColors.black,
         items: List.generate(
           countries.length,
-          (i) => DropDownModel(
-              text: countries[i].name, value: countries[i].countryCode),
+          (i) => DropDownModel(text: countries[i].name, value: countries[i].countryCode),
         ),
         itemsBuilder: (item) {
           return Row(
@@ -163,7 +158,7 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
               const SizedBox(width: 6),
               Text(
                 item.text,
-                style: AppTextStyle.semibold(size: 12, color: AppColors.white),
+                style: AppTextStyle.semiBold(size: 12, color: AppColors.white),
               ),
             ],
           );
@@ -184,12 +179,11 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
         itemsBackgroundColor: AppColors.blueLv5,
         iconsColor: AppColors.primary,
         fillColor: AppColors.blueLv5,
-        hintStyle: AppTextStyle.semibold(size: 14, color: AppColors.primary),
-        textStyle: AppTextStyle.semibold(size: 14, color: AppColors.primary),
+        hintStyle: AppTextStyle.semiBold(size: 14, color: AppColors.primary),
+        textStyle: AppTextStyle.semiBold(size: 14, color: AppColors.primary),
         items: List.generate(
           countries.length,
-          (i) => DropDownModel(
-              text: countries[i].name, value: countries[i].countryCode),
+          (i) => DropDownModel(text: countries[i].name, value: countries[i].countryCode),
         ),
         itemsBuilder: (item) {
           return Row(
@@ -198,8 +192,7 @@ class _DropDownSamplesViewState extends State<DropDownSamplesView> {
               const SizedBox(width: 6),
               Text(
                 item.text,
-                style:
-                    AppTextStyle.semibold(size: 12, color: AppColors.primary),
+                style: AppTextStyle.semiBold(size: 12, color: AppColors.primary),
               ),
             ],
           );

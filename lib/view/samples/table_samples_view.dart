@@ -84,9 +84,9 @@ class _TableSamplesViewState extends State<TableSamplesView> {
             onChanged: (val) {},
           ),
         ),
-        TableModel(data: 'Data $index', color: AppColors.redLv7),
+        TableModel(data: 'Data $index', color: AppColors.redLv6),
         TableModel(data: 'Data $index'),
-        TableModel(data: 'Data $index', color: AppColors.redLv7),
+        TableModel(data: 'Data $index', color: AppColors.redLv6),
         TableModel(data: 'Data $index'),
       ],
     )

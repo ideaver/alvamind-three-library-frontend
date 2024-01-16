@@ -135,9 +135,9 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
         hintText: 'Hint text...',
         prefixIcon: Icons.person_2_rounded,
         suffixIcon: Icons.check_circle_rounded,
-        fillColor: AppColors.redLv7,
+        fillColor: AppColors.redLv6,
         iconsColor: AppColors.redLv1,
-        onFocusFillColor: AppColors.greenLv7,
+        onFocusFillColor: AppColors.greenLv6,
         onFocusIconsColor: AppColors.greenLv1,
         borderColor: AppColors.greenLv1,
         borderRadius: 8,
@@ -149,7 +149,7 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
           size: 14,
           color: AppColors.blackLv2,
         ),
-        hintStyle: AppTextStyle.semibold(
+        hintStyle: AppTextStyle.semiBold(
           size: 14,
           color: AppColors.blackLv4,
         ),
@@ -179,7 +179,7 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
           size: 14,
           color: AppColors.white,
         ),
-        hintStyle: AppTextStyle.semibold(
+        hintStyle: AppTextStyle.semiBold(
           size: 14,
           color: AppColors.blackLv6,
         ),

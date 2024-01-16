@@ -11,8 +11,7 @@ class ProgressLineSamplesView extends StatefulWidget {
   static const routeName = '/molecule-progress-line-samples';
 
   @override
-  State<ProgressLineSamplesView> createState() =>
-      _ProgressLineSamplesViewState();
+  State<ProgressLineSamplesView> createState() => _ProgressLineSamplesViewState();
 }
 
 class _ProgressLineSamplesViewState extends State<ProgressLineSamplesView> {
@@ -116,7 +115,7 @@ class _ProgressLineSamplesViewState extends State<ProgressLineSamplesView> {
         maxValue: 100,
         label: 'Labeling',
         lineColor: AppColors.redLv1,
-        lineBackgroundColor: AppColors.redLv7,
+        lineBackgroundColor: AppColors.redLv6,
         labelStyle: AppTextStyle.bold(size: 14, color: AppColors.primary),
         valueLabelStyle: AppTextStyle.bold(size: 14, color: AppColors.redLv1),
       ),

@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="alvamind_three_library_frontend"
+        android:label="Alvamind Library 3"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

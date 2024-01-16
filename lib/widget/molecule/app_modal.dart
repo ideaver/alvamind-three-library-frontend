@@ -91,7 +91,7 @@ class AppModal {
             rounded: true,
           ),
         ),
-        SizedBox(width: AppSizes.padding / 2),
+        const SizedBox(width: AppSizes.padding / 2),
         Expanded(
           child: AppButton(
             leftIcon: Icons.camera_alt_rounded,
@@ -167,32 +167,30 @@ class _AppModalWidgetState extends State<AppModalWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: AppSizes.padding * 4),
+      margin: const EdgeInsets.only(top: AppSizes.padding * 4),
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         borderRadius: widget.borderRadius ??
-            BorderRadius.only(
+            const BorderRadius.only(
               topLeft: Radius.circular(AppSizes.padding),
               topRight: Radius.circular(AppSizes.padding),
             ),
-        boxShadow: [
-          AppShadows.cardShadow4,
-        ],
+        boxShadow: [AppShadows.darkShadow4Reversed],
       ),
       child: Padding(
         padding: widget.padding ??
-            EdgeInsets.symmetric(
+            const EdgeInsets.symmetric(
               vertical: AppSizes.padding,
               horizontal: AppSizes.padding,
             ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppDivider(
+            const AppDivider(
               thickness: 4,
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: AppSizes.padding * 8),
             ),
-            SizedBox(height: AppSizes.padding),
+            const SizedBox(height: AppSizes.padding),
             widget.isScrolled == false
                 ? modalBody()
                 : Flexible(
@@ -225,9 +223,9 @@ class _AppModalWidgetState extends State<AppModalWidget> {
               ),
         widget.title == null
             ? const SizedBox.shrink()
-            : AppDivider(
+            : const AppDivider(
                 thickness: 1,
-                color: const Color(0xFFEEEEEE),
+                color: Color(0xFFEEEEEE),
                 padding: EdgeInsets.symmetric(
                   horizontal: AppSizes.padding / 3,
                   vertical: AppSizes.padding,
@@ -244,7 +242,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
               )
             : const SizedBox.shrink(),
         widget.miniTitle != null
-            ? SizedBox(
+            ? const SizedBox(
                 height: AppSizes.padding,
               )
             : const SizedBox.shrink(),
@@ -257,7 +255,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
             : const SizedBox.shrink(),
 
         widget.subtitle != null
-            ? SizedBox(
+            ? const SizedBox(
                 height: AppSizes.padding,
               )
             : const SizedBox.shrink(),
@@ -308,7 +306,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
               size: 18,
               color: AppColors.redLv1,
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSizes.padding / 2,
             ),
             Text(
@@ -319,7 +317,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: AppSizes.padding / 4,
         ),
         Text(
@@ -328,7 +326,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
             size: 12,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppSizes.padding,
         ),
       ],
@@ -347,7 +345,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
             color: AppColors.blackLv4,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppSizes.padding / 4,
         ),
         Row(

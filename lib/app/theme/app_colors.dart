@@ -37,36 +37,11 @@ class AppColors {
 
   // Named Colors
   static const Color primary = blueLv1;
-  static const Color secondary = yellowLv1;
-  static const Color success = greenLv1;
-  static const Color info = blueLv1;
-  static const Color warning = yellowLv1;
-  static const Color error = redLv1;
-  static const Color disabled = blackLv6;
-  static const Color disabledButton = darkBlueLv1;
-
-  // Blue
-  static const Color blueLv1 = Color(0xFF246BFD);
-  static const Color blueLv2 = Color(0xFF5089FD);
-  static const Color blueLv3 = Color(0xFF7CA6FE);
-  static const Color blueLv4 = Color(0xFFA7C4FE);
-  static const Color blueLv5 = Color(0xFFE9F0FF);
-
-  // Dark Blue
-  static const Color darkBlueLv1 = Color(0xFF3062C8);
-  static const Color darkBlueLv2 = Color(0xFF4C77CF);
-  static const Color darkBlueLv3 = Color(0xFF678CD7);
-  static const Color darkBlueLv4 = Color(0xFF83A1DE);
-  static const Color darkBlueLv5 = Color(0xFF9EB6E5);
-  static const Color darkBlueLv6 = Color(0xFFBACBED);
-  static const Color darkBlueLv7 = Color(0xFFD6E0F4);
-
-  // Yellow
-  static const Color yellowLv1 = Color(0xFFFFD300);
-  static const Color yellowLv2 = Color(0xFFFFDC33);
-  static const Color yellowLv3 = Color(0xFFFFE566);
-  static const Color yellowLv4 = Color(0xFFFFED99);
-  static const Color yellowLv5 = Color(0xFFFFFBE6);
+  static const Color secondary = darkBlueLv1;
+  static const Color success = greenLv2;
+  static const Color warning = yellowLv2;
+  static const Color error = redLv2;
+  static const Color disabled = blackLv5;
 
   // Black
   static const Color blackLv1 = Color(0xFF212121);
@@ -80,52 +55,59 @@ class AppColors {
   static const Color blackLv9 = Color(0xFFF5F5F5);
   static const Color blackLv10 = Color(0xFFFAFAFA);
 
+  // Blue
+  static const Color blueLv1 = Color(0xFF0056D2);
+  static const Color blueLv2 = Color(0xFF3886E3);
+  static const Color blueLv3 = Color(0xFF60A7F1);
+  static const Color blueLv4 = Color(0xFF96CBFA);
+  static const Color blueLv5 = Color(0xFFCAE7FC);
+  static const Color blueLv6 = Color(0xFFEDF5FF);
+
+  // Dark Blue
+  static const Color darkBlueLv1 = Color(0xFF0F172A);
+  static const Color darkBlueLv2 = Color(0xFF1E293B);
+  static const Color darkBlueLv3 = Color(0xFF334155);
+  static const Color darkBlueLv4 = Color(0xFF475569);
+  static const Color darkBlueLv5 = Color(0xFFCBD5E1);
+  static const Color darkBlueLv6 = Color(0xFFF1F5F9);
+
+  // Yellow
+  static const Color yellowLv1 = Color(0xFFD68B00);
+  static const Color yellowLv2 = Color(0xFFF9AA00);
+  static const Color yellowLv3 = Color(0xFFFFC341);
+  static const Color yellowLv4 = Color(0xFFFFD579);
+  static const Color yellowLv5 = Color(0xFFFFE6AF);
+  static const Color yellowLv6 = Color(0xFFFFF2D5);
+
   // Green
-  static const Color greenLv1 = Color(0xFF07BD74);
-  static const Color greenLv2 = Color(0xFF28C687);
-  static const Color greenLv3 = Color(0xFF49CF99);
-  static const Color greenLv4 = Color(0xFF6AD7AC);
-  static const Color greenLv5 = Color(0xFF8BE0BE);
-  static const Color greenLv6 = Color(0xFFACE9D1);
-  static const Color greenLv7 = Color(0xFFCDF2E3);
-  static const Color greenLv8 = Color(0xFFE0F6ED);
+  static const Color greenLv1 = Color(0xFF199226);
+  static const Color greenLv2 = Color(0xFF23AA26);
+  static const Color greenLv3 = Color(0xFF63C965);
+  static const Color greenLv4 = Color(0xFF92E193);
+  static const Color greenLv5 = Color(0xFFC5FBC6);
+  static const Color greenLv6 = Color(0xFFE4FFE5);
 
   // Red
-  static const Color redLv1 = Color(0xFFF75555);
-  static const Color redLv2 = Color(0xFFF86C6C);
-  static const Color redLv3 = Color(0xFFF98282);
-  static const Color redLv4 = Color(0xFFFA9999);
-  static const Color redLv5 = Color(0xFFFBB0B0);
-  static const Color redLv6 = Color(0xFFFCC6C6);
-  static const Color redLv7 = Color(0xFFFFF3F3);
+  static const Color redLv1 = Color(0xFFD12920);
+  static const Color redLv2 = Color(0xFFF4462C);
+  static const Color redLv3 = Color(0xFFF76F5A);
+  static const Color redLv4 = Color(0xFFFF9F90);
+  static const Color redLv5 = Color(0xFFFFC0B7);
+  static const Color redLv6 = Color(0xFFFFE0DB);
+
   // Orange
-  static const Color orangeLv1 = Color(0xFFFB9400);
-
-  // Amber
-  static const Color amberLv1 = Color(0xFFFFC02D);
-
-  // Pink
-  static const Color pinkLv1 = Color(0xFFEA1E61);
-
-  // Teal
-  static const Color tealLv1 = Color(0xFF009689);
-
-  // Indigo
-  static const Color indigoLv1 = Color(0xFF3F51B2);
-
-  // Lime
-  static const Color limeLv1 = Color(0xFFCDDC4C);
-
-  // Blue Gray
-  static const Color blueGrayLv1 = Color(0xFF607D8A);
+  static const Color orangeLv1 = Color(0xFFFF832A);
+  static const Color orangeLv2 = Color(0xFFFE964A);
+  static const Color orangeLv3 = Color(0xFFFFAD73);
+  static const Color orangeLv4 = Color(0xFFFFC8A0);
+  static const Color orangeLv5 = Color(0xFFFFDCC3);
+  static const Color orangeLv6 = Color(0xFFFFE8D8);
 
   // Purple
-  static const Color purpleLv1 = Color(0xFF9D28AC);
-  static const Color purpleLv2 = Color(0xFF7210FF);
-
-  // Cyan
-  static const Color cyanLv1 = Color(0xFF00BCD3);
-
-  // Brown
-  static const Color brownLv1 = Color(0xFF7A5548);
+  static const Color purpleLv1 = Color(0xFF6D3AF9);
+  static const Color purpleLv2 = Color(0xFF8C62FF);
+  static const Color purpleLv3 = Color(0xFFA383FC);
+  static const Color purpleLv4 = Color(0xFFBCA4FF);
+  static const Color purpleLv5 = Color(0xFFD1C1FF);
+  static const Color purpleLv6 = Color(0xFFE4DBFF);
 }

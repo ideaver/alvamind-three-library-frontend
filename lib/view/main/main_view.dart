@@ -5,7 +5,7 @@ import '../../widget/molecule/app_button.dart';
 import 'list_menu_view.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+  const MainView({super.key});
 
   static const routeName = '/main';
 
@@ -35,12 +35,12 @@ class _MainViewState extends State<MainView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'EksporYuk',
+                    'Alvamind Library 3',
                     style: AppTextStyle.heading4(),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'EksporYuk Design System',
+                    'Alvamind Library 3 Frontend Design System',
                     style: AppTextStyle.bodyMedium(
                       fontWeight: AppFontWeight.medium,
                     ),

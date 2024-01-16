@@ -18,6 +18,8 @@ class AppAvatar extends StatelessWidget {
   final Color disabledColor;
   final Color iconColor;
   final IconData? icon;
+  final bool isFromAppAssets;
+  final String appAssetsPackageName;
   final Function()? onTapIconButton;
 
   const AppAvatar({
@@ -36,6 +38,10 @@ class AppAvatar extends StatelessWidget {
     this.disabledColor = AppColors.disabled,
     this.iconColor = AppColors.white,
     this.icon,
+    // If want to load asset from origin app or other
+    // set [isFromAppAssets] to false or set [appAssetsPackageName] to destination package name
+    this.isFromAppAssets = true,
+    this.appAssetsPackageName = 'alvamind_three_library_frontend',
     this.onTapIconButton,
   });
 
@@ -52,6 +58,8 @@ class AppAvatar extends StatelessWidget {
           borderWidth: borderWidth,
           borderRadius: borderRadius,
           enableFullScreenView: enabled ? enableFullScreenView : false,
+          isFromAppAssets: isFromAppAssets,
+          appAssetsPackageName: appAssetsPackageName,
         ),
         showIconButton
             ? Positioned(

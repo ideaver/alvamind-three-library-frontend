@@ -21,11 +21,10 @@ class AppTextStyle {
   AppTextStyle._();
 
   // Default font family
-  static String defaultFontFamily = "Urbanist";
+  static String defaultFontFamily = "Manrope";
 
   // Default text color
-  static Color defaultTextColor =
-      AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white;
+  static Color defaultTextColor = AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white;
 
   // DEFAULT TEXT STYLES
   // Heading styles
@@ -224,7 +223,7 @@ class AppTextStyle {
     );
   }
 
-  static TextStyle semibold({
+  static TextStyle semiBold({
     required double size,
     Color? color,
     String? fontFamily,

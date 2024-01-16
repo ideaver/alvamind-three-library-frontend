@@ -11,16 +11,19 @@ class AppButton extends StatelessWidget {
   final double? borderWidth;
   final double? iconPadding;
   final double borderRadius;
+  final double loadingIndicatorSize;
   final EdgeInsets padding;
   final bool enable;
   final bool rounded;
   final bool showBoxShadow;
+  final bool isLoading;
   final List<BoxShadow>? boxShadow;
   final Color buttonColor;
   final Color disabledButtonColor;
   final Color disabledTextColor;
   final Color textColor;
   final Color borderColor;
+  final Color loadingIndicatorColor;
   final String text;
   final IconData? leftIcon;
   final IconData? rightIcon;
@@ -34,17 +37,20 @@ class AppButton extends StatelessWidget {
     this.fontSize,
     this.borderWidth,
     this.iconPadding,
-    this.borderRadius = 16,
+    this.borderRadius = 6,
+    this.loadingIndicatorSize = 22,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
     this.enable = true,
-    this.rounded = false,
+    this.rounded = true,
     this.showBoxShadow = false,
+    this.isLoading = false,
     this.boxShadow,
     this.buttonColor = AppColors.primary,
     this.disabledButtonColor = AppColors.disabled,
     this.disabledTextColor = AppColors.white,
     this.textColor = AppColors.white,
     this.borderColor = AppColors.blackLv7,
+    this.loadingIndicatorColor = AppColors.white,
     this.leftIcon,
     this.rightIcon,
     this.customText,
@@ -57,7 +63,7 @@ class AppButton extends StatelessWidget {
     return Material(
       borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
       child: InkWell(
-        onTap: enable ? onTap : null,
+        onTap: enable && !isLoading ? onTap : null,
         splashColor: AppColors.black.withOpacity(0.06),
         splashFactory: InkRipple.splashFactory,
         highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
@@ -75,17 +81,19 @@ class AppButton extends StatelessWidget {
                     color: borderColor,
                   )
                 : null,
-            boxShadow: showBoxShadow && enable ? boxShadow ?? [AppShadows.shadow1] : null,
+            boxShadow: showBoxShadow && enable ? boxShadow ?? [AppShadows.darkShadow1] : null,
           ),
           child: Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                leftIconWidget(),
-                buttonText(),
-                rightIconWidget(),
-              ],
-            ),
+            child: isLoading
+                ? loadingIndicatorWidget()
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      leftIconWidget(),
+                      buttonText(),
+                      rightIconWidget(),
+                    ],
+                  ),
           ),
         ),
       ),
@@ -94,11 +102,14 @@ class AppButton extends StatelessWidget {
 
   Widget buttonText() {
     return customText == null
-        ? Text(
-            text,
-            style: AppTextStyle.bold(
-              size: fontSize ?? 16,
-              color: enable ? textColor : disabledTextColor,
+        ? Flexible(
+            child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle.bold(
+                size: fontSize ?? 16,
+                color: enable ? textColor : disabledTextColor,
+              ),
             ),
           )
         : customText!;
@@ -130,6 +141,16 @@ class AppButton extends StatelessWidget {
         rightIcon,
         color: enable ? textColor : disabledTextColor,
         size: (fontSize ?? 16) + 2,
+      ),
+    );
+  }
+
+  Widget loadingIndicatorWidget() {
+    return SizedBox(
+      width: loadingIndicatorSize,
+      height: loadingIndicatorSize,
+      child: CircularProgressIndicator(
+        color: loadingIndicatorColor,
       ),
     );
   }

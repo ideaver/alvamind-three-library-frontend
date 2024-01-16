@@ -7,7 +7,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../model/country_model.dart';
 import '../atom/app_image.dart';
-import 'app_tool_tip.dart';
+import '../atom/app_tool_tip.dart';
 
 enum AppTextFieldType {
   text,
@@ -221,7 +221,7 @@ class _AppTextFieldState extends State<AppTextField> {
           filled: true,
           fillColor: widget.enabled
               ? widget.errorText != null
-                  ? AppColors.redLv7
+                  ? AppColors.redLv6
                   : _fillColor
               : widget.disabledColor,
           prefixIcon: widget.prefixIconWidget ?? prefixIconWidget(),
@@ -449,7 +449,7 @@ class _AppTextFieldState extends State<AppTextField> {
             const SizedBox(width: 4),
             Text(
               countries[i].phoneCode,
-              style: AppTextStyle.semibold(size: 12),
+              style: AppTextStyle.semiBold(size: 12),
             )
           ],
         );

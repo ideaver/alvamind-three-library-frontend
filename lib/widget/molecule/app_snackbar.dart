@@ -32,7 +32,7 @@ class AppSnackbar {
         behavior: SnackBarBehavior.floating,
         elevation: 0,
         padding: EdgeInsets.zero,
-        margin: margin ?? EdgeInsets.all(AppSizes.padding),
+        margin: margin ?? const EdgeInsets.all(AppSizes.padding),
         duration: displayDuration ?? const Duration(seconds: 5),
         content: AppSnackbarWidget(
           messenger: messenger,
@@ -93,7 +93,7 @@ class AppSnackbarWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(borderRadius),
-        boxShadow: [AppShadows.cardShadow2],
+        boxShadow: [AppShadows.darkShadow2],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -41,6 +41,7 @@ class AppTheme {
   // Light Theme
   static ThemeData lightTheme() {
     return ThemeData(
+      useMaterial3: false,
       scaffoldBackgroundColor: AppColors.white,
       hintColor: AppColors.blackLv4,
       disabledColor: AppColors.blackLv4,
@@ -48,12 +49,8 @@ class AppTheme {
       primaryColor: AppColors.primary,
       primarySwatch: AppColors.mainColor,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      iconTheme: const IconThemeData(
-        color: AppColors.blackLv1,
-      ),
-      primaryIconTheme: const IconThemeData(
-        color: AppColors.blackLv1,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.blackLv1),
+      primaryIconTheme: const IconThemeData(color: AppColors.blackLv1),
       dividerTheme: const DividerThemeData(
         color: AppColors.blackLv3,
         thickness: 0.5,
@@ -65,13 +62,11 @@ class AppTheme {
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
         ),
-        iconTheme: const IconThemeData(
-          color: AppColors.blackLv1,
-        ),
+        iconTheme: const IconThemeData(color: AppColors.blackLv1),
         backgroundColor: AppColors.white,
         elevation: 0.5,
         shadowColor: AppColors.blackLv3,
-        titleTextStyle: AppTextStyle.semibold(size: 18),
+        titleTextStyle: AppTextStyle.bold(size: 18),
         titleSpacing: 0,
       ),
     );
@@ -80,6 +75,7 @@ class AppTheme {
   // Dark Theme
   static ThemeData darkTheme() {
     return ThemeData(
+      useMaterial3: false,
       scaffoldBackgroundColor: AppColors.blackLv1,
       hintColor: AppColors.blackLv4,
       disabledColor: AppColors.blackLv4,
@@ -87,12 +83,8 @@ class AppTheme {
       primaryColor: AppColors.primary,
       primarySwatch: AppColors.mainColor,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      iconTheme: const IconThemeData(
-        color: AppColors.blackLv1,
-      ),
-      primaryIconTheme: const IconThemeData(
-        color: AppColors.blackLv1,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.blackLv1),
+      primaryIconTheme: const IconThemeData(color: AppColors.blackLv1),
       dividerTheme: const DividerThemeData(
         color: AppColors.blackLv3,
         thickness: 0.5,
@@ -104,13 +96,11 @@ class AppTheme {
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
         ),
-        iconTheme: const IconThemeData(
-          color: AppColors.blackLv1,
-        ),
+        iconTheme: const IconThemeData(color: AppColors.blackLv1),
         backgroundColor: AppColors.white,
         elevation: 0.5,
         shadowColor: AppColors.blackLv3,
-        titleTextStyle: AppTextStyle.semibold(size: 18),
+        titleTextStyle: AppTextStyle.bold(size: 18),
         titleSpacing: 0,
       ),
     );

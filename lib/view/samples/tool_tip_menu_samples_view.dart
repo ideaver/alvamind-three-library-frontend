@@ -5,11 +5,11 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../model/country_model.dart';
 import '../../widget/atom/app_image.dart';
-import '../../widget/molecule/app_tool_tip.dart';
+import '../../widget/atom/app_tool_tip.dart';
 import 'sample_wrapper.dart';
 
 class ToolTipMenuSamples extends StatefulWidget {
-  const ToolTipMenuSamples({Key? key}) : super(key: key);
+  const ToolTipMenuSamples({super.key});
 
   static const routeName = '/atom-tool-tip-menu-samples';
 
@@ -53,7 +53,7 @@ class _ToolTipMenuSamplesState extends State<ToolTipMenuSamples> {
         children: List.generate(countries.length, (i) {
           return Text(
             countries[i].name,
-            style: AppTextStyle.semibold(size: 12),
+            style: AppTextStyle.semiBold(size: 12),
           );
         }),
       ),
@@ -80,7 +80,7 @@ class _ToolTipMenuSamplesState extends State<ToolTipMenuSamples> {
         children: List.generate(countries.length, (i) {
           return Text(
             countries[i].name,
-            style: AppTextStyle.semibold(size: 12),
+            style: AppTextStyle.semiBold(size: 12),
           );
         }),
       ),
@@ -103,10 +103,12 @@ class _ToolTipMenuSamplesState extends State<ToolTipMenuSamples> {
               child: AppImage(
                 image: _country3.flag,
                 imgProvider: ImgProvider.assetImage,
+                // Remove this if the widget called from another project
+                isFromAppAssets: false,
               ),
             ),
             const SizedBox(width: 4),
-            Icon(
+            const Icon(
               Icons.keyboard_arrow_down_rounded,
               color: AppColors.blackLv1,
               size: 24,
@@ -129,12 +131,14 @@ class _ToolTipMenuSamplesState extends State<ToolTipMenuSamples> {
                 child: AppImage(
                   image: countries[i].flag,
                   imgProvider: ImgProvider.assetImage,
+                  // Remove this if the widget called from another project
+                  isFromAppAssets: false,
                 ),
               ),
               const SizedBox(width: 4),
               Text(
                 countries[i].phoneCode,
-                style: AppTextStyle.semibold(size: 12),
+                style: AppTextStyle.semiBold(size: 12),
               )
             ],
           );

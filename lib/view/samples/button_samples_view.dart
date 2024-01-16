@@ -5,7 +5,7 @@ import '../../widget/molecule/app_button.dart';
 import 'sample_wrapper.dart';
 
 class ButtonSamplesView extends StatefulWidget {
-  const ButtonSamplesView({Key? key}) : super(key: key);
+  const ButtonSamplesView({super.key});
 
   static const routeName = '/molecule-button-samples';
 
@@ -26,15 +26,16 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
             primaryButton(),
             primaryButtonDark(),
             primaryButtonDisabled(),
+            primaryButtonLoading(),
             primaryButtonWithIcon(),
             primaryButtonOutlined(),
-            roundedPrimaryButton(),
-            roundedPrimaryButtonDark(),
-            roundedPrimaryButtonDarkDisabled(),
-            roundedPrimaryButtonWithIcon(),
-            roundedPrimaryButtonOutlined(),
+            unRoundedPrimaryButton(),
+            unRoundedPrimaryButtonDark(),
+            unRoundedPrimaryButtonDarkDisabled(),
+            unRoundedPrimaryButtonWithIcon(),
+            unRoundedPrimaryButtonOutlined(),
             secondaryButton(),
-            secondaryRoundedButton(),
+            secondaryUnRoundedButton(),
             secondaryButtonWithIcon(),
           ],
         ),
@@ -47,7 +48,7 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Primary Button',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
       ),
     );
   }
@@ -57,7 +58,7 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Primary Button Dark',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         buttonColor: AppColors.blackLv1,
       ),
     );
@@ -68,8 +69,19 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Primary Button Disabled',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         enable: false,
+      ),
+    );
+  }
+
+  Widget primaryButtonLoading() {
+    return SampleWrapper(
+      title: 'Primary Button Loading',
+      widget: AppButton(
+        onTap: () {},
+        text: 'Label',
+        isLoading: true,
       ),
     );
   }
@@ -79,7 +91,7 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Primary Button Outlined',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         buttonColor: AppColors.white,
         textColor: AppColors.blackLv1,
         leftIcon: Icons.apple,
@@ -93,68 +105,68 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Primary Button With Icons',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         leftIcon: Icons.trolley,
         rightIcon: Icons.arrow_forward_ios_rounded,
       ),
     );
   }
 
-  Widget roundedPrimaryButton() {
+  Widget unRoundedPrimaryButton() {
     return SampleWrapper(
-      title: 'Rounded Primary Button',
+      title: 'Un-rounded Primary Button',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
-        rounded: true,
+        text: 'Label',
+        rounded: false,
       ),
     );
   }
 
-  Widget roundedPrimaryButtonDark() {
+  Widget unRoundedPrimaryButtonDark() {
     return SampleWrapper(
-      title: 'Rounded Primary Button Dark',
+      title: 'Un-rounded Primary Button Dark',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
-        rounded: true,
+        text: 'Label',
+        rounded: false,
         buttonColor: AppColors.blackLv1,
       ),
     );
   }
 
-  Widget roundedPrimaryButtonDarkDisabled() {
+  Widget unRoundedPrimaryButtonDarkDisabled() {
     return SampleWrapper(
-      title: 'Rounded Primary Button Disabled',
+      title: 'Un-rounded Primary Button Disabled',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
-        rounded: true,
+        text: 'Label',
+        rounded: false,
         enable: false,
       ),
     );
   }
 
-  Widget roundedPrimaryButtonWithIcon() {
+  Widget unRoundedPrimaryButtonWithIcon() {
     return SampleWrapper(
-      title: 'Rounded Primary Button With Icons',
+      title: 'Un-rounded Primary Button With Icons',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
-        rounded: true,
+        text: 'Label',
+        rounded: false,
         leftIcon: Icons.trolley,
         rightIcon: Icons.arrow_forward_ios_rounded,
       ),
     );
   }
 
-  Widget roundedPrimaryButtonOutlined() {
+  Widget unRoundedPrimaryButtonOutlined() {
     return SampleWrapper(
-      title: 'Rounded Primary Button Outlined',
+      title: 'Un-rounded Primary Button Outlined',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
-        rounded: true,
+        text: 'Label',
+        rounded: false,
         buttonColor: AppColors.white,
         textColor: AppColors.blackLv1,
         leftIcon: Icons.apple,
@@ -168,22 +180,22 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Secondary Button',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         textColor: AppColors.primary,
-        buttonColor: AppColors.blueLv5,
+        buttonColor: AppColors.blueLv6,
       ),
     );
   }
 
-  Widget secondaryRoundedButton() {
+  Widget secondaryUnRoundedButton() {
     return SampleWrapper(
-      title: 'Secondary Rounded Button',
+      title: 'Secondary Un-rounded Button',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         textColor: AppColors.primary,
-        buttonColor: AppColors.blueLv5,
-        rounded: true,
+        buttonColor: AppColors.blueLv6,
+        rounded: false,
       ),
     );
   }
@@ -193,9 +205,9 @@ class _ButtonSamplesViewState extends State<ButtonSamplesView> {
       title: 'Secondary Button With Icons',
       widget: AppButton(
         onTap: () {},
-        text: 'AppButton()',
+        text: 'Label',
         textColor: AppColors.primary,
-        buttonColor: AppColors.blueLv5,
+        buttonColor: AppColors.blueLv6,
         leftIcon: Icons.trolley,
         rightIcon: Icons.arrow_forward_ios_rounded,
       ),

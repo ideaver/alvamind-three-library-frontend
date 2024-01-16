@@ -5,7 +5,7 @@ import '../../widget/atom/app_image.dart';
 import 'sample_wrapper.dart';
 
 class ImageSamplesView extends StatefulWidget {
-  const ImageSamplesView({Key? key}) : super(key: key);
+  const ImageSamplesView({super.key});
 
   static const routeName = '/atom-image-samples';
 
@@ -36,6 +36,8 @@ class _ImageSamplesViewState extends State<ImageSamplesView> {
       title: 'Default Image',
       widget: AppImage(
         image: randomImage,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -51,6 +53,8 @@ class _ImageSamplesViewState extends State<ImageSamplesView> {
         borderRadius: 18,
         borderColor: AppColors.redLv1,
         backgroundColor: AppColors.redLv5,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }

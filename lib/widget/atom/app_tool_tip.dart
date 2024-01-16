@@ -29,7 +29,7 @@ class AppToolTipMenu extends StatelessWidget {
   final Function(int) onTapItem;
 
   const AppToolTipMenu({
-    Key? key,
+    super.key,
     this.enabled = true,
     this.child,
     this.title,
@@ -53,7 +53,7 @@ class AppToolTipMenu extends StatelessWidget {
     this.itemsConstraint,
     required this.children,
     required this.onTapItem,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +62,13 @@ class AppToolTipMenu extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: backgroundColor,
+        borderRadius: BorderRadius.circular(borderRadius),
         border: borderWidth != null
             ? Border.all(
                 width: borderWidth!,
                 color: borderColor,
               )
             : null,
-        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Theme(
         data: Theme.of(context).copyWith(
@@ -94,30 +94,20 @@ class AppToolTipMenu extends StatelessWidget {
                     color: borderColor,
                   )
                 : BorderSide.none,
-            borderRadius: BorderRadius.all(
-              Radius.circular(itemsBorderRadius),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(itemsBorderRadius)),
           ),
           child: child ??
               Row(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: width != null
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.start,
+                mainAxisAlignment: width != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
                 children: [
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.only(
-                        left: padding == EdgeInsets.zero ? 0 : 4.0,
-                      ),
+                      padding: EdgeInsets.only(left: padding == EdgeInsets.zero ? 0 : 4.0),
                       child: Text(
                         title ?? '',
                         overflow: TextOverflow.ellipsis,
-                        style: style ??
-                            AppTextStyle.bold(
-                              size: fontSize,
-                              color: titleColor,
-                            ),
+                        style: style ?? AppTextStyle.bold(size: fontSize, color: titleColor),
                       ),
                     ),
                   ),

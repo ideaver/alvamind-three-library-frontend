@@ -5,7 +5,7 @@ import '../../widget/atom/app_image.dart';
 import 'sample_wrapper.dart';
 
 class AvatarSamplesView extends StatefulWidget {
-  const AvatarSamplesView({Key? key}) : super(key: key);
+  const AvatarSamplesView({super.key});
 
   static const routeName = '/atom-avatar-samples';
 
@@ -40,7 +40,11 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
   Widget avatarOnly() {
     return const SampleWrapper(
       title: 'Avatar Only',
-      widget: AppAvatar(image: randomImage),
+      widget: AppAvatar(
+        image: randomImage,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
+      ),
     );
   }
 
@@ -50,6 +54,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
       widget: AppAvatar(
         image: randomImage,
         showIconButton: true,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -61,6 +67,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
         image: randomImage,
         showIconButton: true,
         enabled: false,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -72,6 +80,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
         image: randomImage,
         showIconButton: true,
         icon: Icons.add,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -82,6 +92,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
       widget: AppAvatar(
         image: randomImage,
         borderWidth: 2,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -93,6 +105,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
         image: randomImage,
         borderWidth: 2,
         enabled: false,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -105,6 +119,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
         showIconButton: true,
         icon: Icons.add,
         size: 200,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -118,6 +134,8 @@ class _AvatarSamplesViewState extends State<AvatarSamplesView> {
         icon: Icons.add,
         size: 200,
         borderRadius: 32,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }

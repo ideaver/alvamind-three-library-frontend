@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
-import 'app_tool_tip.dart';
+import '../atom/app_tool_tip.dart';
 import 'app_icon_button.dart';
 
 class AppTableNavigation extends StatelessWidget {

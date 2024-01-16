@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../model/drop_down_model.dart';
-import 'app_tool_tip.dart';
+import '../atom/app_tool_tip.dart';
 import 'app_text_field.dart';
 
 class AppDropDown extends StatefulWidget {

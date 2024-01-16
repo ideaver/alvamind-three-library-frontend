@@ -7,7 +7,7 @@ import '../../widget/atom/app_logo.dart';
 import 'sample_wrapper.dart';
 
 class LogoSamplesView extends StatefulWidget {
-  const LogoSamplesView({Key? key}) : super(key: key);
+  const LogoSamplesView({super.key});
 
   static const routeName = '/atom-logo-samples';
 
@@ -41,8 +41,10 @@ class _LogoSamplesViewState extends State<LogoSamplesView> {
     return const SampleWrapper(
       title: 'Default Logo',
       widget: AppLogo(
-        title: 'Reasa',
-        image: AppAssets.logo,
+        title: 'AppName',
+        image: AppAssets.user,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -51,9 +53,11 @@ class _LogoSamplesViewState extends State<LogoSamplesView> {
     return const SampleWrapper(
       title: 'Default Logo With Text',
       widget: AppLogo(
-        title: 'Reasa',
-        image: AppAssets.logo,
+        title: 'AppName',
+        image: AppAssets.user,
         withText: true,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -62,8 +66,10 @@ class _LogoSamplesViewState extends State<LogoSamplesView> {
     return const SampleWrapper(
       title: 'Circle Logo',
       widget: AppLogo(
-        title: 'Reasa',
-        image: AppAssets.logoCircle,
+        title: 'AppName',
+        image: AppAssets.user,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -72,9 +78,11 @@ class _LogoSamplesViewState extends State<LogoSamplesView> {
     return const SampleWrapper(
       title: 'Circle Logo With Text',
       widget: AppLogo(
-        title: 'Reasa',
-        image: AppAssets.logoCircle,
+        title: 'AppName',
+        image: AppAssets.user,
         withText: true,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -83,10 +91,12 @@ class _LogoSamplesViewState extends State<LogoSamplesView> {
     return const SampleWrapper(
       title: 'Circle Logo With Text Custom Size',
       widget: AppLogo(
-        title: 'Reasa',
-        image: AppAssets.logoCircle,
+        title: 'AppName',
+        image: AppAssets.user,
         withText: true,
         size: 30,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
@@ -95,14 +105,16 @@ class _LogoSamplesViewState extends State<LogoSamplesView> {
     return SampleWrapper(
       title: 'Circle Logo With Text Custom Style',
       widget: AppLogo(
-        title: 'Reasa',
-        image: AppAssets.logoCircle,
+        title: 'AppName',
+        image: AppAssets.user,
         withText: true,
         size: 30,
         titleStyle: AppTextStyle.bold(
           size: 16,
           color: AppColors.primary,
         ),
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }

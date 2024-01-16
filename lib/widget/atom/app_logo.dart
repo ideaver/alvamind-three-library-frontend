@@ -10,6 +10,8 @@ class AppLogo extends StatelessWidget {
   final ImgProvider imgProvider;
   final double size;
   final bool withText;
+  final bool isFromAppAssets;
+  final String appAssetsPackageName;
   final Function()? onTap;
 
   const AppLogo({
@@ -21,6 +23,10 @@ class AppLogo extends StatelessWidget {
     this.onTap,
     required this.title,
     required this.image,
+    // If want to load asset from origin app or other
+    // set [isFromAppAssets] to false or set [appAssetsPackageName] to destination package name
+    this.isFromAppAssets = true,
+    this.appAssetsPackageName = 'alvamind_three_library_frontend',
   });
 
   @override
@@ -33,6 +39,8 @@ class AppLogo extends StatelessWidget {
           imgProvider: imgProvider,
           width: withText ? null : size,
           height: size,
+          isFromAppAssets: isFromAppAssets,
+          appAssetsPackageName: appAssetsPackageName,
         ),
         withText
             ? Padding(
