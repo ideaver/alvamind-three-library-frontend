@@ -41,8 +41,6 @@ Future<void> main() async {
   // Set overlay style
   SystemChrome.setSystemUIOverlayStyle(AppTheme.lightOverlayStyle);
 
-
-
   // runApp()
   runApp(const MyApp());
 }

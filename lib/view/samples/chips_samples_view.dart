@@ -7,9 +7,9 @@ import '../../widget/molecule/app_chips.dart';
 import 'sample_wrapper.dart';
 
 class ChipsSamplesView extends StatefulWidget {
-  const ChipsSamplesView({Key? key}) : super(key: key);
+  const ChipsSamplesView({super.key});
 
-  static const routeName = '/molecule-chips-samples';
+  static const routeName = '/molecule-app-chips';
 
   @override
   State<ChipsSamplesView> createState() => _ChipsSamplesViewState();

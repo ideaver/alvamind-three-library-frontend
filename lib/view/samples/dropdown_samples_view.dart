@@ -9,9 +9,9 @@ import '../../widget/molecule/app_drop_down.dart';
 import 'sample_wrapper.dart';
 
 class DropDownSamplesView extends StatefulWidget {
-  const DropDownSamplesView({Key? key}) : super(key: key);
+  const DropDownSamplesView({super.key});
 
-  static const routeName = '/molecule-drop-down-samples';
+  static const routeName = '/molecule-app-drop-down';
 
   @override
   State<DropDownSamplesView> createState() => _DropDownSamplesViewState();

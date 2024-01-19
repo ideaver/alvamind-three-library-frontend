@@ -4,9 +4,9 @@ import '../../widget/molecule/app_table_navigation.dart';
 import 'sample_wrapper.dart';
 
 class TableNavigationSamplesView extends StatefulWidget {
-  const TableNavigationSamplesView({Key? key}) : super(key: key);
+  const TableNavigationSamplesView({super.key});
 
-  static const routeName = '/molecule-table-navigation-samples';
+  static const routeName = '/molecule-app-table-navigation';
 
   @override
   State<TableNavigationSamplesView> createState() => _TableNavigationSamplesViewState();

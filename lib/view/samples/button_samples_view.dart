@@ -7,7 +7,7 @@ import 'sample_wrapper.dart';
 class ButtonSamplesView extends StatefulWidget {
   const ButtonSamplesView({super.key});
 
-  static const routeName = '/molecule-button-samples';
+  static const routeName = '/molecule-app-button';
 
   @override
   State<ButtonSamplesView> createState() => _ButtonSamplesViewState();

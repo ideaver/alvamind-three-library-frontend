@@ -9,9 +9,10 @@ import 'app_text_field.dart';
 
 class AppDropDown extends StatefulWidget {
   final bool enabled;
+  final bool isHasError;
   final String? labelText;
   final String? hintText;
-  final String? errorText;
+  final String? infoText;
   final TextStyle? labelStyle;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
@@ -41,17 +42,15 @@ class AppDropDown extends StatefulWidget {
   const AppDropDown({
     super.key,
     this.enabled = true,
+    this.isHasError = false,
     this.labelText,
     this.hintText,
-    this.errorText,
+    this.infoText,
     this.labelStyle,
     this.textStyle,
     this.hintStyle,
     this.selectedItem,
-    this.contentPadding = const EdgeInsets.symmetric(
-      horizontal: 20,
-      vertical: 18,
-    ),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
     this.prefixIcon,
     this.suffixIcon,
     // this.prefixWidget,
@@ -60,8 +59,8 @@ class AppDropDown extends StatefulWidget {
     this.borderRadius = 16,
     this.itemsBackgroundColor = AppColors.white,
     this.shadowColor = AppColors.blackLv9,
-    this.fillColor = AppColors.blackLv9,
-    this.disabledFillColor = AppColors.blackLv7,
+    this.fillColor = AppColors.white,
+    this.disabledFillColor = AppColors.blackLv9,
     this.iconsColor = AppColors.blackLv5,
     this.iconsDisabledColor = AppColors.blackLv6,
     this.borderColor = AppColors.primary,
@@ -128,7 +127,8 @@ class _AppDropDownState extends State<AppDropDown> {
       onChanged: widget.onChanged,
       onEditingComplete: widget.onEditingComplete,
       enabled: false,
-      errorText: widget.errorText,
+      isHasError: widget.isHasError,
+      infoText: widget.infoText,
       contentPadding: widget.contentPadding,
       disabledColor: widget.enabled ? widget.fillColor : widget.disabledFillColor,
       hintText: widget.hintText,
@@ -136,9 +136,9 @@ class _AppDropDownState extends State<AppDropDown> {
       textStyle: widget.textStyle,
       prefixIcon: widget.prefixIcon,
       // prefixWidget: widget.prefixWidget,
-      suffixIcon: widget.suffixIcon ?? Icons.arrow_drop_down_rounded,
+      suffixIcon: widget.suffixIcon ?? Icons.keyboard_arrow_down_rounded,
       // suffixWidget: widget.suffixWidget,
-      iconsSize: widget.suffixIcon != null || widget.prefixIcon != null ? widget.iconsSize : 32,
+      iconsSize: widget.suffixIcon != null || widget.prefixIcon != null ? widget.iconsSize : 28,
       iconsColor: widget.enabled ? widget.iconsColor : widget.iconsDisabledColor,
       borderRadius: widget.borderRadius,
       fillColor: widget.fillColor,
@@ -170,61 +170,5 @@ class _AppDropDownState extends State<AppDropDown> {
         );
       },
     );
-
-    // return Container(
-    //   padding: padding,
-    //   decoration: BoxDecoration(
-    //     color: backgroundColor,
-    //     border: borderWidth != null
-    //         ? Border.all(
-    //             width: borderWidth!,
-    //             color: borderColor,
-    //           )
-    //         : null,
-    //     borderRadius: BorderRadius.circular(borderRadius),
-    //   ),
-    //   child: Theme(
-    //     data: Theme.of(context).copyWith(
-    //       highlightColor: Colors.transparent,
-    //       splashColor: Colors.transparent,
-    //     ),
-    //     child: PopupMenuButton(
-    //       elevation: elevation,
-    //       shadowColor: Colors.black54,
-    //       offset: Offset(
-    //         0 - padding.left,
-    //         (padding.top * 2) + (borderWidth ?? 1) + 2,
-    //       ),
-    //       position: PopupMenuPosition.under,
-    //       shape: RoundedRectangleBorder(
-    //         side: borderWidth != null
-    //             ? BorderSide(
-    //                 width: borderWidth!,
-    //                 color: borderColor,
-    //               )
-    //             : BorderSide.none,
-    //         borderRadius: const BorderRadius.all(
-    //           Radius.circular(6),
-    //         ),
-    //       ),
-    //       child: fieldWidget(),
-    //       itemBuilder: (context) {
-    //         return List.generate(
-    //           children.length,
-    //           (i) {
-    //             return PopupMenuItem(
-    //               padding: itemPadding,
-    //               height: 0,
-    //               onTap: () {
-    //                 onTapItem(i);
-    //               },
-    //               child: children[i],
-    //             );
-    //           },
-    //         );
-    //       },
-    //     ),
-    //   ),
-    // );
   }
 }

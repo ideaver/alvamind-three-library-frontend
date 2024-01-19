@@ -5,9 +5,9 @@ import '../../widget/atom/app_divider.dart';
 import 'sample_wrapper.dart';
 
 class DividerSamplesView extends StatefulWidget {
-  const DividerSamplesView({Key? key}) : super(key: key);
+  const DividerSamplesView({super.key});
 
-  static const routeName = '/atom-divider-samples';
+  static const routeName = '/atom-app-divider';
 
   @override
   State<DividerSamplesView> createState() => _DividerSamplesViewState();

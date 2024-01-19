@@ -6,9 +6,9 @@ import '../../widget/molecule/app_dialog.dart';
 import 'sample_wrapper.dart';
 
 class DialogSamplesView extends StatefulWidget {
-  const DialogSamplesView({Key? key}) : super(key: key);
+  const DialogSamplesView({super.key});
 
-  static const routeName = '/molecule-dialog-samples';
+  static const routeName = '/molecule-app-dialog';
 
   @override
   State<DialogSamplesView> createState() => _DialogSamplesViewState();

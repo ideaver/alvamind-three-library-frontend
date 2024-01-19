@@ -4,7 +4,7 @@ import 'app_colors.dart';
 import 'app_theme.dart';
 
 // App Currency Formatter
-// v.2.0.0
+// v.2.0.1
 // by Elriz Wiraswara
 
 // Custom font weight name
@@ -32,12 +32,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       48,
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -46,12 +48,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       40,
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -60,12 +64,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       32,
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -74,12 +80,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       24,
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -88,12 +96,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       20,
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -102,12 +112,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       18,
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -119,6 +131,7 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
     required AppFontWeight fontWeight,
   }) {
     return _textStyle(
@@ -126,6 +139,7 @@ class AppTextStyle {
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       fontWeight,
     );
   }
@@ -134,6 +148,7 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
     required AppFontWeight fontWeight,
   }) {
     return _textStyle(
@@ -141,6 +156,7 @@ class AppTextStyle {
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       fontWeight,
     );
   }
@@ -149,6 +165,7 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
     required AppFontWeight fontWeight,
   }) {
     return _textStyle(
@@ -156,6 +173,7 @@ class AppTextStyle {
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       fontWeight,
     );
   }
@@ -164,6 +182,7 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
     required AppFontWeight fontWeight,
   }) {
     return _textStyle(
@@ -171,6 +190,7 @@ class AppTextStyle {
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       fontWeight,
     );
   }
@@ -179,6 +199,7 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
     required AppFontWeight fontWeight,
   }) {
     return _textStyle(
@@ -186,6 +207,7 @@ class AppTextStyle {
       color ?? (AppTheme.isLightMode ? AppColors.blackLv1 : AppColors.white),
       fontFamily,
       textDecoration,
+      height,
       fontWeight,
     );
   }
@@ -198,12 +220,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       size,
       color,
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.regular,
     );
   }
@@ -213,12 +237,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       size,
       color,
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.medium,
     );
   }
@@ -228,12 +254,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       size,
       color,
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.semibold,
     );
   }
@@ -243,12 +271,14 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
   }) {
     return _textStyle(
       size,
       color,
       fontFamily,
       textDecoration,
+      height,
       AppFontWeight.bold,
     );
   }
@@ -260,14 +290,16 @@ class AppTextStyle {
     Color? color,
     String? fontFamily,
     TextDecoration? textDecoration,
+    double? height,
     AppFontWeight fontWeight,
   ) {
     return TextStyle(
       fontFamily: fontFamily ?? defaultFontFamily,
       color: color ?? defaultTextColor,
       fontSize: size,
-      fontWeight: fontWeightSelector(fontWeight),
       decoration: textDecoration,
+      height: height,
+      fontWeight: fontWeightSelector(fontWeight),
     );
   }
 
@@ -275,13 +307,13 @@ class AppTextStyle {
   static FontWeight fontWeightSelector(AppFontWeight weight) {
     switch (weight) {
       case AppFontWeight.bold:
-        return FontWeight.w700;
+        return FontWeight.w800;
       case AppFontWeight.semibold:
-        return FontWeight.w600;
+        return FontWeight.w700;
       case AppFontWeight.medium:
-        return FontWeight.w500;
+        return FontWeight.w600;
       case AppFontWeight.regular:
-        return FontWeight.w400;
+        return FontWeight.w500;
       default:
         return FontWeight.w500;
     }

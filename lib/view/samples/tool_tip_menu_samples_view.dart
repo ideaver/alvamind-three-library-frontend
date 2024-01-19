@@ -11,7 +11,7 @@ import 'sample_wrapper.dart';
 class ToolTipMenuSamples extends StatefulWidget {
   const ToolTipMenuSamples({super.key});
 
-  static const routeName = '/atom-tool-tip-menu-samples';
+  static const routeName = '/atom-app-tool-tip-menu';
 
   @override
   State<ToolTipMenuSamples> createState() => _ToolTipMenuSamplesState();

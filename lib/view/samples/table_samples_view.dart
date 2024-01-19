@@ -8,9 +8,9 @@ import '../../widget/molecule/app_table.dart';
 import 'sample_wrapper.dart';
 
 class TableSamplesView extends StatefulWidget {
-  const TableSamplesView({Key? key}) : super(key: key);
+  const TableSamplesView({super.key});
 
-  static const routeName = '/molecule-table-samples';
+  static const routeName = '/molecule-app-table';
 
   @override
   State<TableSamplesView> createState() => _TableSamplesViewState();

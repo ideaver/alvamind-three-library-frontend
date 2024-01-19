@@ -7,7 +7,7 @@ import 'sample_wrapper.dart';
 class AvatarSamplesView extends StatefulWidget {
   const AvatarSamplesView({super.key});
 
-  static const routeName = '/atom-avatar-samples';
+  static const routeName = '/atom-app-app-avatar';
 
   @override
   State<AvatarSamplesView> createState() => _AvatarSamplesViewState();

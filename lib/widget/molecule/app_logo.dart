@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_text_style.dart';
-import 'app_image.dart';
+import '../atom/app_image.dart';
 
 class AppLogo extends StatelessWidget {
   final String title;
   final String image;
   final TextStyle? titleStyle;
   final ImgProvider imgProvider;
-  final double size;
+  final double width;
+  final double height;
   final bool withText;
   final bool isFromAppAssets;
   final String appAssetsPackageName;
@@ -16,7 +17,8 @@ class AppLogo extends StatelessWidget {
 
   const AppLogo({
     super.key,
-    this.size = 52,
+    this.width = 52,
+    this.height = 52,
     this.titleStyle,
     this.imgProvider = ImgProvider.assetImage,
     this.withText = false,
@@ -37,17 +39,17 @@ class AppLogo extends StatelessWidget {
         AppImage(
           image: image,
           imgProvider: imgProvider,
-          width: withText ? null : size,
-          height: size,
+          width: width,
+          height: height,
           isFromAppAssets: isFromAppAssets,
           appAssetsPackageName: appAssetsPackageName,
         ),
         withText
             ? Padding(
-                padding: EdgeInsets.only(left: size / 4),
+                padding: EdgeInsets.only(left: width / 4),
                 child: Text(
                   title,
-                  style: titleStyle ?? AppTextStyle.bold(size: size / 1.2),
+                  style: titleStyle ?? AppTextStyle.bold(size: height / 1.2),
                 ),
               )
             : const SizedBox.shrink(),

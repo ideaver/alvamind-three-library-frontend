@@ -52,6 +52,7 @@ dependencies:
   dotted_border: ^2.0.0+3
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
+  google_maps_flutter: ^2.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -107,13 +108,13 @@ flutter:
     - family: Manrope
       fonts:
         - asset: lib/assets/fonts/Manrope-Regular.ttf
-          weight: 400
-        - asset: lib/assets/fonts/Manrope-Medium.ttf
           weight: 500
-        - asset: lib/assets/fonts/Manrope-SemiBold.ttf
+        - asset: lib/assets/fonts/Manrope-Medium.ttf
           weight: 600
-        - asset: lib/assets/fonts/Manrope-Bold.ttf
+        - asset: lib/assets/fonts/Manrope-SemiBold.ttf
           weight: 700
+        - asset: lib/assets/fonts/Manrope-Bold.ttf
+          weight: 800
     - family: AppIcons
       fonts:
         - asset: lib/assets/fonts/App-Icons.ttf

@@ -8,9 +8,9 @@ import '../../widget/molecule/app_modal.dart';
 import 'sample_wrapper.dart';
 
 class ModalPopupButtonSamplesView extends StatefulWidget {
-  const ModalPopupButtonSamplesView({Key? key}) : super(key: key);
+  const ModalPopupButtonSamplesView({super.key});
 
-  static const routeName = '/organism-modal-samples';
+  static const routeName = '/organism-modal';
 
   @override
   State<ModalPopupButtonSamplesView> createState() => _ModalPopupButtonSamplesViewState();

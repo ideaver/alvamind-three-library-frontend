@@ -6,7 +6,7 @@ import 'sample_wrapper.dart';
 class TextSamplesView extends StatefulWidget {
   const TextSamplesView({super.key});
 
-  static const routeName = '/atom-text-samples';
+  static const routeName = '/atom-app-text-styles';
 
   @override
   State<TextSamplesView> createState() => _TextSamplesViewState();
@@ -16,7 +16,7 @@ class _TextSamplesViewState extends State<TextSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Text Samples')),
+      appBar: AppBar(title: const Text('Text Styles Samples')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(18),
         child: Column(

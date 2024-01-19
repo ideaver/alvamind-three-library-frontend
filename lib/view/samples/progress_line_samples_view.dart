@@ -6,9 +6,9 @@ import '../../widget/molecule/app_progress_line.dart';
 import 'sample_wrapper.dart';
 
 class ProgressLineSamplesView extends StatefulWidget {
-  const ProgressLineSamplesView({Key? key}) : super(key: key);
+  const ProgressLineSamplesView({super.key});
 
-  static const routeName = '/molecule-progress-line-samples';
+  static const routeName = '/molecule-app-progress-line';
 
   @override
   State<ProgressLineSamplesView> createState() => _ProgressLineSamplesViewState();

@@ -4,9 +4,9 @@ import '../../widget/atom/app_progress_indicator.dart';
 import 'sample_wrapper.dart';
 
 class LoadingSamplesView extends StatefulWidget {
-  const LoadingSamplesView({Key? key}) : super(key: key);
+  const LoadingSamplesView({super.key});
 
-  static const routeName = '/atom-loading-samples';
+  static const routeName = '/atom-app-loading';
 
   @override
   State<LoadingSamplesView> createState() => _LoadingSamplesViewState();

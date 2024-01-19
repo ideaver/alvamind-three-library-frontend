@@ -5,7 +5,6 @@ class AppAssets {
 
   // Logo
   static const String logo = 'lib/assets/images/logo.png';
-  static const String logoCircle = 'lib/assets/images/logo_circle.png';
 
   // Placeholder
   static const String user = 'lib/assets/images/user.png';

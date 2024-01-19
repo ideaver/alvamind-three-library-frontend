@@ -1,7 +1,7 @@
-import '../../app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
 
 class AppIconButton extends StatelessWidget {
@@ -28,8 +28,8 @@ class AppIconButton extends StatelessWidget {
     this.borderWidth,
     this.padding = const EdgeInsets.all(12),
     this.enable = true,
-    this.buttonColor = AppColors.primary,
-    this.borderColor = AppColors.blackLv7,
+    this.buttonColor = AppColors.blueLv6,
+    this.borderColor = AppColors.transparent,
     this.borderRadius = 100,
     this.text,
     this.textStyle,
@@ -47,38 +47,103 @@ class AppIconButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Material(
-            borderRadius: BorderRadius.circular(4),
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: enable ? onTap : null,
-              splashColor: Colors.black.withOpacity(0.06),
-              splashFactory: InkRipple.splashFactory,
-              highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
+          text == null ? iconButton() : iconButtonWithText(),
+        ],
+      ),
+    );
+  }
+
+  Widget iconButton() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: boxShadow ?? [],
+      ),
+      child: Material(
+        borderRadius: BorderRadius.circular(4),
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: enable ? onTap : null,
+          splashColor: Colors.black.withOpacity(0.06),
+          splashFactory: InkRipple.splashFactory,
+          highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
+          borderRadius: BorderRadius.circular(borderRadius),
+          child: Ink(
+            width: width,
+            height: height,
+            padding: padding,
+            decoration: BoxDecoration(
+              color: buttonColor,
+              boxShadow: boxShadow ?? [],
+              gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
               borderRadius: BorderRadius.circular(borderRadius),
-              child: Ink(
-                width: width,
-                height: height,
-                padding: padding,
-                decoration: BoxDecoration(
-                  color: buttonColor,
-                  boxShadow: boxShadow ?? [],
-                  gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
-                  borderRadius: BorderRadius.circular(borderRadius),
-                  border: borderWidth != null
-                      ? Border.all(
-                          width: borderWidth!,
-                          color: borderColor,
-                        )
-                      : null,
-                ),
-                child: icon,
-              ),
+              border: borderWidth != null
+                  ? Border.all(
+                      width: borderWidth!,
+                      color: borderColor,
+                    )
+                  : null,
             ),
+            child: icon,
           ),
-          text != null
-              ? Padding(
-                  padding: paddingText ?? EdgeInsets.symmetric(vertical: AppSizes.padding / 2),
+        ),
+      ),
+    );
+  }
+
+  Widget iconButtonWithText() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: boxShadow ?? [],
+      ),
+      child: Material(
+        borderRadius: BorderRadius.circular(4),
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: enable ? onTap : null,
+          splashColor: Colors.black.withOpacity(0.06),
+          splashFactory: InkRipple.splashFactory,
+          highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
+          // borderRadius: BorderRadius.circular(borderRadius),
+          child: Container(
+            width: width,
+            height: height,
+            padding: padding,
+            decoration: BoxDecoration(
+              color: buttonColor,
+              boxShadow: boxShadow ?? [],
+              gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
+              borderRadius: BorderRadius.circular(borderRadius),
+              border: borderWidth != null
+                  ? Border.all(
+                      width: borderWidth!,
+                      color: borderColor,
+                    )
+                  : null,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: width,
+                  height: height,
+                  padding: padding,
+                  decoration: BoxDecoration(
+                    color: buttonColor,
+                    boxShadow: boxShadow ?? [],
+                    gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    border: borderWidth != null
+                        ? Border.all(
+                            width: borderWidth!,
+                            color: borderColor,
+                          )
+                        : null,
+                  ),
+                  child: icon,
+                ),
+                Padding(
+                  padding: paddingText ?? const EdgeInsets.symmetric(vertical: AppSizes.padding / 2),
                   child: Text(
                     text!,
                     textAlign: TextAlign.center,
@@ -87,8 +152,10 @@ class AppIconButton extends StatelessWidget {
                     style: textStyle ?? AppTextStyle.bodySmall(fontWeight: AppFontWeight.bold),
                   ),
                 )
-              : const SizedBox.shrink(),
-        ],
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

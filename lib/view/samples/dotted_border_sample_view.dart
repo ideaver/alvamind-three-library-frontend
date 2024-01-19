@@ -7,9 +7,9 @@ import '../../widget/atom/app_dotted_border.dart';
 import 'sample_wrapper.dart';
 
 class DottedBorderSamplesView extends StatefulWidget {
-  const DottedBorderSamplesView({Key? key}) : super(key: key);
+  const DottedBorderSamplesView({super.key});
 
-  static const routeName = '/atom-dotted-border-samples';
+  static const routeName = '/atom-app-dotted-border';
 
   @override
   State<DottedBorderSamplesView> createState() => _DottedBorderSamplesViewState();

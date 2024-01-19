@@ -5,9 +5,9 @@ import '../../widget/molecule/app_tags.dart';
 import 'sample_wrapper.dart';
 
 class TagsSamplesView extends StatefulWidget {
-  const TagsSamplesView({Key? key}) : super(key: key);
+  const TagsSamplesView({super.key});
 
-  static const routeName = '/molecule-tag-marker-samples';
+  static const routeName = '/molecule-app-tag-marker';
 
   @override
   State<TagsSamplesView> createState() => _TagsSamplesViewState();

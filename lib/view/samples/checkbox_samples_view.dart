@@ -6,9 +6,9 @@ import '../../widget/molecule/app_checkbox.dart';
 import 'sample_wrapper.dart';
 
 class CheckboxSamplesView extends StatefulWidget {
-  const CheckboxSamplesView({Key? key}) : super(key: key);
+  const CheckboxSamplesView({super.key});
 
-  static const routeName = '/molecule-checkbox-samples';
+  static const routeName = '/molecule-app-checkbox';
 
   @override
   State<CheckboxSamplesView> createState() => _CheckboxSamplesViewState();

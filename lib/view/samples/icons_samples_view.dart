@@ -7,7 +7,7 @@ import 'sample_wrapper.dart';
 class IconsSamplesView extends StatefulWidget {
   const IconsSamplesView({super.key});
 
-  static const routeName = '/atom-icons-samples';
+  static const routeName = '/atom-app-icons';
 
   @override
   State<IconsSamplesView> createState() => IconsSamplesViewState();

@@ -1,3 +1,4 @@
+import 'package:alvamind_three_library_frontend/app/extension/string_casing_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/route/app_routes.dart';
@@ -63,7 +64,7 @@ class ListMenuView extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  items.elementAt(index).key.substring(1).split('-').skip(1).join(' ').toUpperCase(),
+                  items.elementAt(index).key.substring(1).split('-').skip(1).join(' ').toTitleCase(),
                   style: AppTextStyle.bodyMedium(
                     fontWeight: AppFontWeight.bold,
                   ),
@@ -106,7 +107,7 @@ class ListMenuView extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  items.elementAt(index).key.substring(1).split('-').skip(1).join(' ').toUpperCase(),
+                  items.elementAt(index).key.substring(1).split('-').skip(1).join(' ').toTitleCase(),
                   style: AppTextStyle.bodyMedium(
                     fontWeight: AppFontWeight.bold,
                   ),
@@ -149,7 +150,7 @@ class ListMenuView extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  items.elementAt(index).key.substring(1).split('-').skip(1).join(' ').toUpperCase(),
+                  items.elementAt(index).key.substring(1).split('-').skip(1).join(' ').toTitleCase(),
                   style: AppTextStyle.bodyMedium(
                     fontWeight: AppFontWeight.bold,
                   ),

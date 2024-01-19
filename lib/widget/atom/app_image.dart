@@ -12,7 +12,7 @@ import '../../app/utility/console_log.dart';
 import 'app_progress_indicator.dart';
 
 // App Image Widget
-// v.2.0.1
+// v.2.0.2
 // by Elriz Wiraswara
 
 enum ImgProvider {

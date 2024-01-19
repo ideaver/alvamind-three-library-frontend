@@ -6,9 +6,9 @@ import '../../widget/molecule/app_toggle.dart';
 import 'sample_wrapper.dart';
 
 class ToggleSamplesView extends StatefulWidget {
-  const ToggleSamplesView({Key? key}) : super(key: key);
+  const ToggleSamplesView({super.key});
 
-  static const routeName = '/molecule-toggle-samples';
+  static const routeName = '/molecule-app-toggle';
 
   @override
   State<ToggleSamplesView> createState() => _ToggleSamplesViewState();

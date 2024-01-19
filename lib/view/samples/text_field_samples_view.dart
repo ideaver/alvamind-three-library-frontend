@@ -1,3 +1,4 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/const/countries.dart';
@@ -7,20 +8,20 @@ import '../../app/utility/console_log.dart';
 import '../../widget/molecule/app_text_field.dart';
 import 'sample_wrapper.dart';
 
-class InputFieldSamplesView extends StatefulWidget {
-  const InputFieldSamplesView({Key? key}) : super(key: key);
+class TextFieldSamplesView extends StatefulWidget {
+  const TextFieldSamplesView({super.key});
 
-  static const routeName = '/molecule-input-field-samples';
+  static const routeName = '/molecule-app-text-field';
 
   @override
-  State<InputFieldSamplesView> createState() => _InputFieldSamplesViewState();
+  State<TextFieldSamplesView> createState() => _TextFieldSamplesViewState();
 }
 
-class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
+class _TextFieldSamplesViewState extends State<TextFieldSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Input Field Samples')),
+      appBar: AppBar(title: const Text('Text Field Samples')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(18),
         child: Column(
@@ -30,10 +31,15 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
             defaultTextFieldDisabled(),
             defaultTextFieldLong(),
             defaultTextFieldWithLabel(),
+            defaultTextFieldWithLabelAndInfoText(),
+            defaultTextFieldWithCustomInfoText(),
             defaultTextFieldWithIcon(),
-            defaultPasswordTextField(),
-            defaultPhoneTextField(),
+            defaultPasswordField(),
+            defaultPasswordFieldWithStrengthMeter(),
+            defaultPhoneField(),
+            defaultPhoneFieldCompact(),
             defaultNumberTextField(),
+            defaultSearchField(),
             customTextField(),
             customTextFieldDark(),
           ],
@@ -81,17 +87,41 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
     );
   }
 
+  Widget defaultTextFieldWithLabelAndInfoText() {
+    return const SampleWrapper(
+      title: 'Default Text Field With Label & Info Text',
+      widget: AppTextField(
+        labelText: 'Text Field Label',
+        hintText: 'Hint text...',
+        infoText: 'Info Text',
+      ),
+    );
+  }
+
+  Widget defaultTextFieldWithCustomInfoText() {
+    return const SampleWrapper(
+      title: 'Default Text Field With Custom Info Text',
+      widget: AppTextField(
+        hintText: 'Hint text...',
+        infoText: 'Info Text',
+        infoIcon: Icons.warning,
+        infoColor: AppColors.yellowLv1,
+      ),
+    );
+  }
+
   Widget defaultTextFieldWithIcon() {
     return const SampleWrapper(
       title: 'Default Text Field With Icon',
       widget: AppTextField(
         hintText: 'Hint text...',
         prefixIcon: Icons.person_2_rounded,
+        suffixIcon: Icons.info_outline_rounded,
       ),
     );
   }
 
-  Widget defaultPasswordTextField() {
+  Widget defaultPasswordField() {
     return const SampleWrapper(
       title: 'Default Password Text Field ',
       widget: AppTextField(
@@ -102,14 +132,41 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
     );
   }
 
-  Widget defaultPhoneTextField() {
+  Widget defaultPasswordFieldWithStrengthMeter() {
+    return const SampleWrapper(
+      title: 'Default Password Field With Strength Meter',
+      widget: AppTextField(
+        hintText: 'Hint text...',
+        prefixIcon: Icons.lock,
+        type: AppTextFieldType.password,
+        showPasswordStrengthMeter: true,
+      ),
+    );
+  }
+
+  Widget defaultPhoneField() {
     return SampleWrapper(
-      title: 'Default Phone Text Field ',
+      title: 'Default Phone Field ',
       widget: AppTextField(
         hintText: 'Input phone number',
-        prefixIcon: Icons.lock,
         type: AppTextFieldType.phone,
         selectedCountry: countries.first,
+        onTapCountry: (country) {
+          cl(country.phoneCode);
+        },
+      ),
+    );
+  }
+
+  Widget defaultPhoneFieldCompact() {
+    return SampleWrapper(
+      title: 'Default Phone Field Compact',
+      widget: AppTextField(
+        hintText: 'Input phone number',
+        type: AppTextFieldType.phoneCompact,
+        selectedCountry: countries.first,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
         onTapCountry: (country) {
           cl(country.phoneCode);
         },
@@ -127,12 +184,27 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
     );
   }
 
+  Widget defaultSearchField() {
+    return const SampleWrapper(
+      title: 'Default Search Field ',
+      widget: AppTextField(
+        hintText: 'Input search',
+        type: AppTextFieldType.search,
+        rounded: false,
+        borderRadius: AppSizes.padding,
+      ),
+    );
+  }
+
   Widget customTextField() {
     return SampleWrapper(
       title: 'Custom Text Field ',
       widget: AppTextField(
         labelText: 'This Is A Label',
         hintText: 'Hint text...',
+        infoText: 'Info Text',
+        infoIcon: Icons.warning,
+        infoColor: AppColors.yellowLv1,
         prefixIcon: Icons.person_2_rounded,
         suffixIcon: Icons.check_circle_rounded,
         fillColor: AppColors.redLv6,
@@ -163,6 +235,10 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
       widget: AppTextField(
         labelText: 'This Is A Label',
         hintText: 'Hint text...',
+        infoText: 'Info Text',
+        infoIcon: Icons.warning,
+        infoColor: AppColors.black,
+        onFocusInfoColor: AppColors.black,
         prefixIcon: Icons.person_2_rounded,
         suffixIcon: Icons.check_circle_rounded,
         fillColor: AppColors.blackLv1,
@@ -170,6 +246,9 @@ class _InputFieldSamplesViewState extends State<InputFieldSamplesView> {
         onFocusFillColor: AppColors.blackLv1,
         onFocusIconsColor: AppColors.white,
         borderColor: AppColors.black,
+        onFocusBorderColor: AppColors.redLv1,
+        borderWidth: 3,
+        rounded: false,
         borderRadius: 8,
         labelStyle: AppTextStyle.bold(
           size: 12,

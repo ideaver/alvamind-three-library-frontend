@@ -9,9 +9,9 @@ import '../../widget/molecule/app_steps.dart';
 import 'sample_wrapper.dart';
 
 class StepsSamplesView extends StatefulWidget {
-  const StepsSamplesView({Key? key}) : super(key: key);
+  const StepsSamplesView({super.key});
 
-  static const routeName = '/molecule-steps-samples';
+  static const routeName = '/molecule-app-steps';
 
   @override
   State<StepsSamplesView> createState() => _StepsSamplesViewState();

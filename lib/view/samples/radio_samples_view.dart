@@ -6,9 +6,9 @@ import '../../widget/molecule/app_radio.dart';
 import 'sample_wrapper.dart';
 
 class RadioSamplesView extends StatefulWidget {
-  const RadioSamplesView({Key? key}) : super(key: key);
+  const RadioSamplesView({super.key});
 
-  static const routeName = '/molecule-radio-samples';
+  static const routeName = '/molecule-app-radio';
 
   @override
   State<RadioSamplesView> createState() => _RadioSamplesViewState();

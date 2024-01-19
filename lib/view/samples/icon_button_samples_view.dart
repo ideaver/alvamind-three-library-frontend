@@ -1,3 +1,4 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -6,9 +7,9 @@ import '../../widget/molecule/app_icon_button.dart';
 import 'sample_wrapper.dart';
 
 class IconButtonSamplesView extends StatefulWidget {
-  const IconButtonSamplesView({Key? key}) : super(key: key);
+  const IconButtonSamplesView({super.key});
 
-  static const routeName = '/molecule-icon-button-samples';
+  static const routeName = '/molecule-app-icon-button';
 
   @override
   State<IconButtonSamplesView> createState() => _IconButtonSamplesViewState();
@@ -27,7 +28,7 @@ class _IconButtonSamplesViewState extends State<IconButtonSamplesView> {
             defaultIconButton(),
             iconButtonOutlined(),
             iconButtonDark(),
-            iconButtonLight(),
+            iconButtonWithShadow(),
             defaultIconButtonWithText(),
           ],
         ),
@@ -42,7 +43,7 @@ class _IconButtonSamplesViewState extends State<IconButtonSamplesView> {
         onTap: () {},
         icon: const Icon(
           Icons.add,
-          color: AppColors.white,
+          color: AppColors.primary,
         ),
       ),
     );
@@ -55,11 +56,11 @@ class _IconButtonSamplesViewState extends State<IconButtonSamplesView> {
         onTap: () {},
         icon: const Icon(
           Icons.add,
-          color: AppColors.black,
+          color: AppColors.primary,
         ),
-        buttonColor: AppColors.white,
         borderRadius: 16,
         borderWidth: 1,
+        borderColor: AppColors.primary,
       ),
     );
   }
@@ -79,16 +80,18 @@ class _IconButtonSamplesViewState extends State<IconButtonSamplesView> {
     );
   }
 
-  Widget iconButtonLight() {
+  Widget iconButtonWithShadow() {
     return SampleWrapper(
-      title: 'Icon Button Light',
+      title: 'Icon Button With Shadow',
       widget: AppIconButton(
         onTap: () {},
         icon: const Icon(
           Icons.add,
           color: AppColors.white,
         ),
+        buttonColor: AppColors.primary,
         borderRadius: 16,
+        boxShadow: [AppShadows.primaryShadow5],
       ),
     );
   }
@@ -100,7 +103,7 @@ class _IconButtonSamplesViewState extends State<IconButtonSamplesView> {
         onTap: () {},
         icon: const Icon(
           Icons.add,
-          color: AppColors.white,
+          color: AppColors.primary,
           size: 40,
         ),
         text: 'Add',

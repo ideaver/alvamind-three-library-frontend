@@ -6,9 +6,9 @@ import '../../widget/molecule/app_snackbar.dart';
 import 'sample_wrapper.dart';
 
 class SnackbarSamplesView extends StatefulWidget {
-  const SnackbarSamplesView({Key? key}) : super(key: key);
+  const SnackbarSamplesView({super.key});
 
-  static const routeName = '/molecule-snackbar-samples';
+  static const routeName = '/molecule-app-snackbar';
 
   @override
   State<SnackbarSamplesView> createState() => _SnackbarSamplesViewState();
