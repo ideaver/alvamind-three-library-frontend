@@ -282,6 +282,24 @@ class AppTextStyle {
       AppFontWeight.bold,
     );
   }
+
+  static TextStyle custom({
+    required double size,
+    Color? color,
+    String? fontFamily,
+    TextDecoration? textDecoration,
+    double? height,
+    AppFontWeight? fontWeight,
+  }) {
+    return _textStyle(
+      size,
+      color,
+      fontFamily,
+      textDecoration,
+      height,
+      fontWeight ?? AppFontWeight.regular,
+    );
+  }
   // CUSTOM TEXT STYLE END
 
   // TextStyle params

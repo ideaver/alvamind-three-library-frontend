@@ -6,18 +6,18 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../app/utility/console_log.dart';
 import '../../widget/molecule/app_text_field.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class TextFieldSamplesView extends StatefulWidget {
-  const TextFieldSamplesView({super.key});
+class AppTextFieldSamplesView extends StatefulWidget {
+  const AppTextFieldSamplesView({super.key});
 
   static const routeName = '/molecule-app-text-field';
 
   @override
-  State<TextFieldSamplesView> createState() => _TextFieldSamplesViewState();
+  State<AppTextFieldSamplesView> createState() => _AppTextFieldSamplesViewState();
 }
 
-class _TextFieldSamplesViewState extends State<TextFieldSamplesView> {
+class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,18 +1,18 @@
 import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ColorsSamplesView extends StatefulWidget {
-  const ColorsSamplesView({super.key});
+class AppColorsSamplesView extends StatefulWidget {
+  const AppColorsSamplesView({super.key});
 
   static const routeName = '/atom-app-colors';
 
   @override
-  State<ColorsSamplesView> createState() => _ColorsSamplesViewState();
+  State<AppColorsSamplesView> createState() => _AppColorsSamplesViewState();
 }
 
-class _ColorsSamplesViewState extends State<ColorsSamplesView> {
+class _AppColorsSamplesViewState extends State<AppColorsSamplesView> {
   List primary = [
     AppColors.blueLv1,
     AppColors.blueLv2,
@@ -90,7 +90,7 @@ class _ColorsSamplesViewState extends State<ColorsSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Text Samples')),
+      appBar: AppBar(title: const Text('Colors Samples')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(18),
         child: Column(

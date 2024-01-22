@@ -1,18 +1,19 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class TextSamplesView extends StatefulWidget {
-  const TextSamplesView({super.key});
+class AppTextStylesSamplesView extends StatefulWidget {
+  const AppTextStylesSamplesView({super.key});
 
   static const routeName = '/atom-app-text-styles';
 
   @override
-  State<TextSamplesView> createState() => _TextSamplesViewState();
+  State<AppTextStylesSamplesView> createState() => _AppTextStylesSamplesViewState();
 }
 
-class _TextSamplesViewState extends State<TextSamplesView> {
+class _AppTextStylesSamplesViewState extends State<AppTextStylesSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +39,7 @@ class _TextSamplesViewState extends State<TextSamplesView> {
             bodyMedium(),
             bodyLarge(),
             bodyXLarge(),
+            custom(),
           ],
         ),
       ),
@@ -199,6 +201,23 @@ class _TextSamplesViewState extends State<TextSamplesView> {
       widget: Text(
         'Lorem ipsum dolor',
         style: AppTextStyle.bodyXLarge(fontWeight: AppFontWeight.regular),
+      ),
+    );
+  }
+
+  Widget custom() {
+    return SampleWrapper(
+      title: 'Custom',
+      widget: Text(
+        'Lorem ipsum dolor',
+        style: AppTextStyle.custom(
+          size: 16,
+          color: AppColors.redLv1,
+          fontFamily: 'Roboto',
+          fontWeight: AppFontWeight.bold,
+          height: 2,
+          textDecoration: TextDecoration.underline,
+        ),
       ),
     );
   }

@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/atom/app_dotted_border.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class DottedBorderSamplesView extends StatefulWidget {
-  const DottedBorderSamplesView({super.key});
+class AppDottedBorderSamplesView extends StatefulWidget {
+  const AppDottedBorderSamplesView({super.key});
 
   static const routeName = '/atom-app-dotted-border';
 
   @override
-  State<DottedBorderSamplesView> createState() => _DottedBorderSamplesViewState();
+  State<AppDottedBorderSamplesView> createState() => _AppDottedBorderSamplesViewState();
 }
 
-class _DottedBorderSamplesViewState extends State<DottedBorderSamplesView> {
+class _AppDottedBorderSamplesViewState extends State<AppDottedBorderSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

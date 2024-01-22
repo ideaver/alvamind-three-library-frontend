@@ -5,18 +5,18 @@ import '../../app/theme/app_text_style.dart';
 import '../../model/table_model.dart';
 import '../../widget/molecule/app_checkbox.dart';
 import '../../widget/molecule/app_table.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class TableSamplesView extends StatefulWidget {
-  const TableSamplesView({super.key});
+class AppTableSamplesView extends StatefulWidget {
+  const AppTableSamplesView({super.key});
 
   static const routeName = '/molecule-app-table';
 
   @override
-  State<TableSamplesView> createState() => _TableSamplesViewState();
+  State<AppTableSamplesView> createState() => _AppTableSamplesViewState();
 }
 
-class _TableSamplesViewState extends State<TableSamplesView> {
+class _AppTableSamplesViewState extends State<AppTableSamplesView> {
   List<TableModel> headerData = [
     TableModel(
       expanded: false,

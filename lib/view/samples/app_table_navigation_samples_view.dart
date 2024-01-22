@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../../widget/molecule/app_table_navigation.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class TableNavigationSamplesView extends StatefulWidget {
-  const TableNavigationSamplesView({super.key});
+class AppTableNavigationSamplesView extends StatefulWidget {
+  const AppTableNavigationSamplesView({super.key});
 
   static const routeName = '/molecule-app-table-navigation';
 
   @override
-  State<TableNavigationSamplesView> createState() => _TableNavigationSamplesViewState();
+  State<AppTableNavigationSamplesView> createState() => _AppTableNavigationSamplesViewState();
 }
 
-class _TableNavigationSamplesViewState extends State<TableNavigationSamplesView> {
+class _AppTableNavigationSamplesViewState extends State<AppTableNavigationSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

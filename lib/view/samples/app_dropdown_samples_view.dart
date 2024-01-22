@@ -6,18 +6,18 @@ import '../../app/theme/app_text_style.dart';
 import '../../model/country_model.dart';
 import '../../model/drop_down_model.dart';
 import '../../widget/molecule/app_drop_down.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class DropDownSamplesView extends StatefulWidget {
-  const DropDownSamplesView({super.key});
+class AppDropDownSamplesView extends StatefulWidget {
+  const AppDropDownSamplesView({super.key});
 
   static const routeName = '/molecule-app-drop-down';
 
   @override
-  State<DropDownSamplesView> createState() => _DropDownSamplesViewState();
+  State<AppDropDownSamplesView> createState() => _AppDropDownSamplesViewState();
 }
 
-class _DropDownSamplesViewState extends State<DropDownSamplesView> {
+class _AppDropDownSamplesViewState extends State<AppDropDownSamplesView> {
   CountryModel _country = countries.first;
 
   @override

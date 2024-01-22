@@ -2,18 +2,18 @@ import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/atom/app_maps.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class MapsSamplesView extends StatefulWidget {
-  const MapsSamplesView({super.key});
+class AppMapsSamplesView extends StatefulWidget {
+  const AppMapsSamplesView({super.key});
 
   static const routeName = '/atom-app-maps';
 
   @override
-  State<MapsSamplesView> createState() => _IllustrationsSamplesViewState();
+  State<AppMapsSamplesView> createState() => _IllustrationsSamplesViewState();
 }
 
-class _IllustrationsSamplesViewState extends State<MapsSamplesView> {
+class _IllustrationsSamplesViewState extends State<AppMapsSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

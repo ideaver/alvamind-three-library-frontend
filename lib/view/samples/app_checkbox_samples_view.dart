@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_checkbox.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class CheckboxSamplesView extends StatefulWidget {
-  const CheckboxSamplesView({super.key});
+class AppCheckboxSamplesView extends StatefulWidget {
+  const AppCheckboxSamplesView({super.key});
 
   static const routeName = '/molecule-app-checkbox';
 
   @override
-  State<CheckboxSamplesView> createState() => _CheckboxSamplesViewState();
+  State<AppCheckboxSamplesView> createState() => _AppCheckboxSamplesViewState();
 }
 
-class _CheckboxSamplesViewState extends State<CheckboxSamplesView> {
+class _AppCheckboxSamplesViewState extends State<AppCheckboxSamplesView> {
   bool? value1 = true;
   bool? value2 = true;
   bool? value3 = false;

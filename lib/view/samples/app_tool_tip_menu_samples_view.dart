@@ -6,18 +6,18 @@ import '../../app/theme/app_text_style.dart';
 import '../../model/country_model.dart';
 import '../../widget/atom/app_image.dart';
 import '../../widget/atom/app_tool_tip.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ToolTipMenuSamples extends StatefulWidget {
-  const ToolTipMenuSamples({super.key});
+class AppToolTipMenuSamples extends StatefulWidget {
+  const AppToolTipMenuSamples({super.key});
 
   static const routeName = '/atom-app-tool-tip-menu';
 
   @override
-  State<ToolTipMenuSamples> createState() => _ToolTipMenuSamplesState();
+  State<AppToolTipMenuSamples> createState() => _AppToolTipMenuSamplesState();
 }
 
-class _ToolTipMenuSamplesState extends State<ToolTipMenuSamples> {
+class _AppToolTipMenuSamplesState extends State<AppToolTipMenuSamples> {
   CountryModel _country = countries.first;
   CountryModel _country2 = countries.first;
   CountryModel _country3 = countries.first;

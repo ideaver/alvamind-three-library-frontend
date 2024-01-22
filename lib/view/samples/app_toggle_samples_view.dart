@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_toggle.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ToggleSamplesView extends StatefulWidget {
-  const ToggleSamplesView({super.key});
+class AppToggleSamplesView extends StatefulWidget {
+  const AppToggleSamplesView({super.key});
 
   static const routeName = '/molecule-app-toggle';
 
   @override
-  State<ToggleSamplesView> createState() => _ToggleSamplesViewState();
+  State<AppToggleSamplesView> createState() => _AppToggleSamplesViewState();
 }
 
-class _ToggleSamplesViewState extends State<ToggleSamplesView> {
+class _AppToggleSamplesViewState extends State<AppToggleSamplesView> {
   bool value1 = true;
   bool value2 = true;
   bool value3 = false;
@@ -33,6 +33,7 @@ class _ToggleSamplesViewState extends State<ToggleSamplesView> {
             defaultToggleWithTitle(),
             defaultToggleWithTitleDisabled(),
             defaultToggleWithTitleCustom(),
+            customToggle(),
           ],
         ),
       ),
@@ -92,6 +93,23 @@ class _ToggleSamplesViewState extends State<ToggleSamplesView> {
         },
         title: 'Toggle Sample',
         titleStyle: AppTextStyle.bold(size: 14, color: AppColors.redLv1),
+        activeColor: AppColors.blackLv1,
+        inactiveColor: AppColors.blackLv4,
+      ),
+    );
+  }
+
+  Widget customToggle() {
+    return SampleWrapper(
+      title: 'Custom Toggle',
+      widget: AppToggle(
+        value: value4,
+        onChanged: (val) {
+          value4 = val;
+          setState(() {});
+        },
+        title: 'Custom Toggle',
+        showInactiveIcon: true,
         activeColor: AppColors.blackLv1,
         inactiveColor: AppColors.blackLv4,
       ),

@@ -6,18 +6,18 @@ import '../../app/utility/date_formatter.dart';
 import '../../model/steps_model.dart';
 import '../../widget/atom/app_image.dart';
 import '../../widget/molecule/app_steps.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class StepsSamplesView extends StatefulWidget {
-  const StepsSamplesView({super.key});
+class AppStepsSamplesView extends StatefulWidget {
+  const AppStepsSamplesView({super.key});
 
   static const routeName = '/molecule-app-steps';
 
   @override
-  State<StepsSamplesView> createState() => _StepsSamplesViewState();
+  State<AppStepsSamplesView> createState() => _AppStepsSamplesViewState();
 }
 
-class _StepsSamplesViewState extends State<StepsSamplesView> {
+class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
   List<StepsModel> basicSteps = [
     ...List.generate(
       5,

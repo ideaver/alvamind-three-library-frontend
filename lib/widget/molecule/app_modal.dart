@@ -84,7 +84,7 @@ class AppModal {
         Expanded(
           child: AppButton(
             onTap: onTapGalleryButton,
-            leftIcon: Icons.folder,
+            prefixIcon: Icons.folder,
             text: 'Gallery',
             textColor: AppColors.primary,
             buttonColor: AppColors.blueLv5,
@@ -94,7 +94,7 @@ class AppModal {
         const SizedBox(width: AppSizes.padding / 2),
         Expanded(
           child: AppButton(
-            leftIcon: Icons.camera_alt_rounded,
+            prefixIcon: Icons.camera_alt_rounded,
             onTap: onTapCameraButton,
             text: 'Camera',
             rounded: true,

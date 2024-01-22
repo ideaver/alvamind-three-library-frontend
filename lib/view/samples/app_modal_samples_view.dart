@@ -5,18 +5,18 @@ import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_button.dart';
 import '../../widget/molecule/app_modal.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ModalPopupButtonSamplesView extends StatefulWidget {
-  const ModalPopupButtonSamplesView({super.key});
+class AppModalPopupButtonSamplesView extends StatefulWidget {
+  const AppModalPopupButtonSamplesView({super.key});
 
   static const routeName = '/organism-modal';
 
   @override
-  State<ModalPopupButtonSamplesView> createState() => _ModalPopupButtonSamplesViewState();
+  State<AppModalPopupButtonSamplesView> createState() => _AppModalPopupButtonSamplesViewState();
 }
 
-class _ModalPopupButtonSamplesViewState extends State<ModalPopupButtonSamplesView> {
+class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,7 +175,7 @@ class _ModalPopupButtonSamplesViewState extends State<ModalPopupButtonSamplesVie
                 onTap: () {},
                 text: '',
                 rounded: true,
-                customText: Expanded(
+                textWidget: Expanded(
                   child: Text(
                     'Pilih Lokasi dan Lanjut Isi Alamat',
                     style: AppTextStyle.bold(size: 16, color: AppColors.white),
@@ -195,7 +195,7 @@ class _ModalPopupButtonSamplesViewState extends State<ModalPopupButtonSamplesVie
                 textColor: AppColors.primary,
                 buttonColor: AppColors.blueLv5,
                 rounded: true,
-                customText: Expanded(
+                textWidget: Expanded(
                   child: Text(
                     'Tidak Ketemu? Isi Alamat Manual',
                     style: AppTextStyle.bold(size: 16, color: AppColors.primary),
@@ -258,7 +258,7 @@ class _ModalPopupButtonSamplesViewState extends State<ModalPopupButtonSamplesVie
               AppButton(
                 onTap: () {},
                 text: '',
-                customText: Expanded(
+                textWidget: Expanded(
                   child: Text(
                     'Pilih Lokasi dan Lanjut Isi Alamat',
                     style: AppTextStyle.bold(size: 16, color: AppColors.white),

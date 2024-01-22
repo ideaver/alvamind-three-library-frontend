@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../widget/molecule/app_tags.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class TagsSamplesView extends StatefulWidget {
-  const TagsSamplesView({super.key});
+class AppTagsSamplesView extends StatefulWidget {
+  const AppTagsSamplesView({super.key});
 
   static const routeName = '/molecule-app-tag-marker';
 
   @override
-  State<TagsSamplesView> createState() => _TagsSamplesViewState();
+  State<AppTagsSamplesView> createState() => _AppTagsSamplesViewState();
 }
 
-class _TagsSamplesViewState extends State<TagsSamplesView> {
+class _AppTagsSamplesViewState extends State<AppTagsSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

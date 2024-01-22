@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../widget/molecule/app_button.dart';
 import '../../widget/molecule/app_snackbar.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class SnackbarSamplesView extends StatefulWidget {
-  const SnackbarSamplesView({super.key});
+class AppSnackbarSamplesView extends StatefulWidget {
+  const AppSnackbarSamplesView({super.key});
 
   static const routeName = '/molecule-app-snackbar';
 
   @override
-  State<SnackbarSamplesView> createState() => _SnackbarSamplesViewState();
+  State<AppSnackbarSamplesView> createState() => _AppSnackbarSamplesViewState();
 }
 
-class _SnackbarSamplesViewState extends State<SnackbarSamplesView> {
+class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

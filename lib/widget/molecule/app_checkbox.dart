@@ -16,7 +16,7 @@ class AppCheckbox extends StatelessWidget {
   final Function(bool?) onChanged;
 
   const AppCheckbox({
-    Key? key,
+    super.key,
     this.enable = true,
     required this.value,
     this.title,
@@ -26,7 +26,7 @@ class AppCheckbox extends StatelessWidget {
     this.titleStyle,
     this.padding = EdgeInsets.zero,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class AppCheckbox extends StatelessWidget {
             ),
             errorText != null
                 ? Padding(
-                    padding: EdgeInsets.only(left: AppSizes.padding / 2),
+                    padding: const EdgeInsets.only(left: AppSizes.padding / 2),
                     child: Text(
                       errorText!,
                       style: AppTextStyle.regular(size: 11, color: AppColors.error),

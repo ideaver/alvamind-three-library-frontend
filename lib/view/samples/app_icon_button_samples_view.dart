@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_icon_button.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class IconButtonSamplesView extends StatefulWidget {
-  const IconButtonSamplesView({super.key});
+class AppIconButtonSamplesView extends StatefulWidget {
+  const AppIconButtonSamplesView({super.key});
 
   static const routeName = '/molecule-app-icon-button';
 
   @override
-  State<IconButtonSamplesView> createState() => _IconButtonSamplesViewState();
+  State<AppIconButtonSamplesView> createState() => _AppIconButtonSamplesViewState();
 }
 
-class _IconButtonSamplesViewState extends State<IconButtonSamplesView> {
+class _AppIconButtonSamplesViewState extends State<AppIconButtonSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

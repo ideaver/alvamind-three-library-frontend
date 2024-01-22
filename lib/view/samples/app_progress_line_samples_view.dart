@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_progress_line.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ProgressLineSamplesView extends StatefulWidget {
-  const ProgressLineSamplesView({super.key});
+class AppProgressLineSamplesView extends StatefulWidget {
+  const AppProgressLineSamplesView({super.key});
 
   static const routeName = '/molecule-app-progress-line';
 
   @override
-  State<ProgressLineSamplesView> createState() => _ProgressLineSamplesViewState();
+  State<AppProgressLineSamplesView> createState() => _AppProgressLineSamplesViewState();
 }
 
-class _ProgressLineSamplesViewState extends State<ProgressLineSamplesView> {
+class _AppProgressLineSamplesViewState extends State<AppProgressLineSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

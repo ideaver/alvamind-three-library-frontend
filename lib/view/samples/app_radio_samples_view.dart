@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_radio.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class RadioSamplesView extends StatefulWidget {
-  const RadioSamplesView({super.key});
+class AppRadioSamplesView extends StatefulWidget {
+  const AppRadioSamplesView({super.key});
 
   static const routeName = '/molecule-app-radio';
 
   @override
-  State<RadioSamplesView> createState() => _RadioSamplesViewState();
+  State<AppRadioSamplesView> createState() => _AppRadioSamplesViewState();
 }
 
-class _RadioSamplesViewState extends State<RadioSamplesView> {
+class _AppRadioSamplesViewState extends State<AppRadioSamplesView> {
   int groupValue = 1;
 
   @override

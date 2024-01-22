@@ -2,12 +2,12 @@ import 'package:alvamind_three_library_frontend/app/asset/app_icons.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
 class IconsSamplesView extends StatefulWidget {
   const IconsSamplesView({super.key});
 
-  static const routeName = '/atom-app-icons';
+  static const routeName = '/atom-icons';
 
   @override
   State<IconsSamplesView> createState() => IconsSamplesViewState();

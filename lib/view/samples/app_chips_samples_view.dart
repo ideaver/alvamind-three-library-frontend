@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../widget/molecule/app_chips.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ChipsSamplesView extends StatefulWidget {
-  const ChipsSamplesView({super.key});
+class AppChipsSamplesView extends StatefulWidget {
+  const AppChipsSamplesView({super.key});
 
   static const routeName = '/molecule-app-chips';
 
   @override
-  State<ChipsSamplesView> createState() => _ChipsSamplesViewState();
+  State<AppChipsSamplesView> createState() => _AppChipsSamplesViewState();
 }
 
-class _ChipsSamplesViewState extends State<ChipsSamplesView> {
+class _AppChipsSamplesViewState extends State<AppChipsSamplesView> {
   bool isChip1Selected = true;
   bool isChip2Selected = false;
   bool isChip3Selected = false;

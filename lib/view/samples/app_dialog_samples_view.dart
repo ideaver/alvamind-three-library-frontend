@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../widget/molecule/app_button.dart';
 import '../../widget/molecule/app_dialog.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class DialogSamplesView extends StatefulWidget {
-  const DialogSamplesView({super.key});
+class AppDialogSamplesView extends StatefulWidget {
+  const AppDialogSamplesView({super.key});
 
   static const routeName = '/molecule-app-dialog';
 
   @override
-  State<DialogSamplesView> createState() => _DialogSamplesViewState();
+  State<AppDialogSamplesView> createState() => _AppDialogSamplesViewState();
 }
 
-class _DialogSamplesViewState extends State<DialogSamplesView> {
+class _AppDialogSamplesViewState extends State<AppDialogSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

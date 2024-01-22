@@ -4,18 +4,18 @@ import '../../app/asset/app_assets.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_logo.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class LogoSamplesView extends StatefulWidget {
-  const LogoSamplesView({super.key});
+class AppLogoSamplesView extends StatefulWidget {
+  const AppLogoSamplesView({super.key});
 
   static const routeName = '/molecule-app-logo';
 
   @override
-  State<LogoSamplesView> createState() => _LogoSamplesViewState();
+  State<AppLogoSamplesView> createState() => _AppLogoSamplesViewState();
 }
 
-class _LogoSamplesViewState extends State<LogoSamplesView> {
+class _AppLogoSamplesViewState extends State<AppLogoSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

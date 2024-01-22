@@ -15,14 +15,13 @@ class AppAssets {
   static const String flagID = 'lib/assets/images/icons/flags/ID.png';
   static const String flagUS = 'lib/assets/images/icons/flags/US.png';
   static const String mastercard = 'lib/assets/images/icons/payments/mastercard-icon.png';
-  static const String visa = 'lib/assets/images/icons/payments/visa-icon.png';
   static const String paypal = 'lib/assets/images/icons/payments/paypal-icon.png';
-  static const String gpay = 'lib/assets/images/icons/payments/gpay-icon.png';
+  static const String gpay = 'lib/assets/images/icons/payments/googlepay-icon.png';
   static const String applepay = 'lib/assets/images/icons/payments/applepay-icon.png';
-  static const String bankBNI = 'lib/assets/images/icons/bank/bni.png';
-  static const String bankBCA = 'lib/assets/images/icons/bank/bca.png';
-  static const String bankMandiri = 'lib/assets/images/icons/bank/mandiri.png';
-  static const String bankBRI = 'lib/assets/images/icons/bank/bri.png';
+  static const String bankBNI = 'lib/assets/images/icons/banks/bni.png';
+  static const String bankBCA = 'lib/assets/images/icons/banks/bca.png';
+  static const String bankMandiri = 'lib/assets/images/icons/banks/mandiri.png';
+  static const String bankBRI = 'lib/assets/images/icons/banks/bri.png';
 
   // Illustrations
   static const String checklistLight = 'lib/assets/images/illustrations/light_checklist.png';

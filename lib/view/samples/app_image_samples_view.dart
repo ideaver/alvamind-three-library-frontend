@@ -3,23 +3,22 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../widget/atom/app_image.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class ImageSamplesView extends StatefulWidget {
-  const ImageSamplesView({super.key});
+class AppImageSamplesView extends StatefulWidget {
+  const AppImageSamplesView({super.key});
 
   static const routeName = '/atom-app-image';
 
   @override
-  State<ImageSamplesView> createState() => _ImageSamplesViewState();
+  State<AppImageSamplesView> createState() => _AppImageSamplesViewState();
 }
 
-class _ImageSamplesViewState extends State<ImageSamplesView> {
+class _AppImageSamplesViewState extends State<AppImageSamplesView> {
   List imageIconsList = [
     AppAssets.flagID,
     AppAssets.flagUS,
     AppAssets.mastercard,
-    AppAssets.visa,
     AppAssets.paypal,
     AppAssets.gpay,
     AppAssets.applepay,
@@ -62,12 +61,15 @@ class _ImageSamplesViewState extends State<ImageSamplesView> {
     return SampleWrapper(
       title: 'Image Icons',
       widget: Wrap(
+        spacing: 12,
+        runSpacing: 12,
         children: [
           ...List.generate(
             imageIconsList.length,
             (index) => AppImage(
               image: imageIconsList[index],
               imgProvider: ImgProvider.assetImage,
+              height: 26,
               // Remove this if the widget called from another project
               isFromAppAssets: false,
             ),

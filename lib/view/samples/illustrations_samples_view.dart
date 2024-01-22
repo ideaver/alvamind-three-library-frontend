@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../app/asset/app_assets.dart';
 import '../../widget/atom/app_image.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
 class IllustrationsSamplesView extends StatefulWidget {
   const IllustrationsSamplesView({super.key});
 
-  static const routeName = '/atom-app-illustrations';
+  static const routeName = '/atom-illustrations';
 
   @override
   State<IllustrationsSamplesView> createState() => _IllustrationsSamplesViewState();

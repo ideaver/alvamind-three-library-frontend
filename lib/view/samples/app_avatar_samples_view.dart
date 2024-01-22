@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../widget/atom/app_avatar.dart';
 import '../../widget/atom/app_image.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class AvatarSamplesView extends StatefulWidget {
-  const AvatarSamplesView({super.key});
+class AppAvatarSamplesView extends StatefulWidget {
+  const AppAvatarSamplesView({super.key});
 
-  static const routeName = '/atom-app-app-avatar';
+  static const routeName = '/atom-app-avatar';
 
   @override
-  State<AvatarSamplesView> createState() => _AvatarSamplesViewState();
+  State<AppAvatarSamplesView> createState() => _AppAvatarSamplesViewState();
 }
 
-class _AvatarSamplesViewState extends State<AvatarSamplesView> {
+class _AppAvatarSamplesViewState extends State<AppAvatarSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

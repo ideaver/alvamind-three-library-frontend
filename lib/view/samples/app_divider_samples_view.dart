@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../widget/atom/app_divider.dart';
-import 'sample_wrapper.dart';
+import '___sample_wrapper.dart';
 
-class DividerSamplesView extends StatefulWidget {
-  const DividerSamplesView({super.key});
+class AppDividerSamplesView extends StatefulWidget {
+  const AppDividerSamplesView({super.key});
 
   static const routeName = '/atom-app-divider';
 
   @override
-  State<DividerSamplesView> createState() => _DividerSamplesViewState();
+  State<AppDividerSamplesView> createState() => _AppDividerSamplesViewState();
 }
 
-class _DividerSamplesViewState extends State<DividerSamplesView> {
+class _AppDividerSamplesViewState extends State<AppDividerSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
