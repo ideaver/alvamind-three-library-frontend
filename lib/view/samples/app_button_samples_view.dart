@@ -297,7 +297,6 @@ class _AppButtonSamplesViewState extends State<AppButtonSamplesView> {
             padding: const EdgeInsets.symmetric(vertical: AppSizes.padding / 2, horizontal: AppSizes.padding),
             fontSize: 14,
             fontWeight: AppFontWeight.medium,
-            prefixIcon: Icons.aspect_ratio,
             prefixIconWidget: Container(
               padding: const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2, vertical: AppSizes.padding / 4),
               decoration: BoxDecoration(
@@ -310,6 +309,20 @@ class _AppButtonSamplesViewState extends State<AppButtonSamplesView> {
                 size: 14,
               ),
             ),
+          ),
+          AppButton(
+            onTap: () {},
+            text: 'Facebook',
+            center: false,
+            buttonColor: AppColors.white,
+            textColor: AppColors.black,
+            borderWidth: 1,
+            borderColor: AppColors.blueLv6,
+            padding: const EdgeInsets.symmetric(vertical: AppSizes.padding / 2, horizontal: AppSizes.padding),
+            fontSize: 14,
+            fontWeight: AppFontWeight.medium,
+            prefixIcon: AppIcons.facebook_logo,
+            prefixIconColor: AppColors.primary,
           ),
         ],
       ),

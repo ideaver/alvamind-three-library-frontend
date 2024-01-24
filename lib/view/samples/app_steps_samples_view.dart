@@ -161,6 +161,9 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
         direction: Axis.horizontal,
         titleFontSize: 14,
         subtitleFontSize: 10,
+        // leadingSize: AppSizes.screenSize.width / 12,
+        // leadingSizeFactor: AppSizes.screenSize.width / 6,
+        // leadingSizeFactor: AppSizes.screenSize.width / 6,
       ),
     );
   }
@@ -176,7 +179,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
           titleFontSize: 10,
           subtitleFontSize: 6,
           leadingSize: 24,
-          dashHeight: 1,
+          stepLineHeight: 1,
         ),
       ),
     );
@@ -230,9 +233,9 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
           steps: customSteps2,
           direction: Axis.vertical,
           titleActiveColor: AppColors.primary,
-          activeDashColor: AppColors.primary,
+          activeStepLineColor: AppColors.primary,
           dashFillRate: 1,
-          dashRadius: 0,
+          stepLineRadius: 0,
         ),
       ),
     );
@@ -246,7 +249,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
         direction: Axis.horizontal,
         titleActiveColor: AppColors.primary,
         subtitleActiveColor: AppColors.primary,
-        activeDashColor: AppColors.primary,
+        activeStepLineColor: AppColors.primary,
         titleFontSize: 12,
         subtitleFontSize: 8,
         showSubtitle: false,

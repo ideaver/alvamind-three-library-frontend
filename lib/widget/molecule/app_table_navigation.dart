@@ -18,7 +18,7 @@ class AppTableNavigation extends StatelessWidget {
   final Function()? onTapNextPage;
 
   const AppTableNavigation({
-    Key? key,
+    super.key,
     this.title,
     this.titleStyle,
     this.maxRows,
@@ -29,7 +29,7 @@ class AppTableNavigation extends StatelessWidget {
     this.onTapLastPage,
     this.onTapPrevPage,
     this.onTapNextPage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class AppTableNavigation extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8),
                 child: AppIconButton(
                   padding: const EdgeInsets.all(4),
-                  buttonColor: AppColors.transparent,
+                  iconButtonColor: AppColors.transparent,
                   icon: const Icon(
                     Icons.first_page,
                     color: AppColors.blackLv1,
@@ -125,7 +125,7 @@ class AppTableNavigation extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: AppIconButton(
                   padding: const EdgeInsets.all(8),
-                  buttonColor: AppColors.transparent,
+                  iconButtonColor: AppColors.transparent,
                   icon: const Icon(
                     Icons.arrow_back_ios_rounded,
                     color: AppColors.blackLv1,
@@ -140,7 +140,7 @@ class AppTableNavigation extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: AppIconButton(
                   padding: const EdgeInsets.all(8),
-                  buttonColor: AppColors.transparent,
+                  iconButtonColor: AppColors.transparent,
                   icon: const Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: AppColors.blackLv1,
@@ -155,7 +155,7 @@ class AppTableNavigation extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8),
                 child: AppIconButton(
                   padding: const EdgeInsets.all(4),
-                  buttonColor: AppColors.transparent,
+                  iconButtonColor: AppColors.transparent,
                   icon: const Icon(
                     Icons.last_page,
                     color: AppColors.blackLv1,

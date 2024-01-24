@@ -62,7 +62,7 @@ class _AppToggleSamplesViewState extends State<AppToggleSamplesView> {
           value2 = val;
           setState(() {});
         },
-        title: 'Toggle Sample',
+        label: 'Toggle Sample',
       ),
     );
   }
@@ -77,7 +77,7 @@ class _AppToggleSamplesViewState extends State<AppToggleSamplesView> {
           value3 = val;
           setState(() {});
         },
-        title: 'Toggle Sample',
+        label: 'Toggle Sample',
       ),
     );
   }
@@ -91,10 +91,8 @@ class _AppToggleSamplesViewState extends State<AppToggleSamplesView> {
           value4 = val;
           setState(() {});
         },
-        title: 'Toggle Sample',
-        titleStyle: AppTextStyle.bold(size: 14, color: AppColors.redLv1),
-        activeColor: AppColors.blackLv1,
-        inactiveColor: AppColors.blackLv4,
+        label: 'Toggle Sample',
+        labelStyle: AppTextStyle.bold(size: 14, color: AppColors.redLv1),
       ),
     );
   }
@@ -108,10 +106,19 @@ class _AppToggleSamplesViewState extends State<AppToggleSamplesView> {
           value4 = val;
           setState(() {});
         },
-        title: 'Custom Toggle',
+        label: 'Custom Toggle',
+        labelStyle: AppTextStyle.bold(size: 14, color: AppColors.redLv1),
         showInactiveIcon: true,
-        activeColor: AppColors.blackLv1,
-        inactiveColor: AppColors.blackLv4,
+        activeIcon: Icons.menu_rounded,
+        inactiveIcon: Icons.grid_view_outlined,
+        activeIconColor: AppColors.black,
+        inactiveIconColor: AppColors.blackLv5,
+        activeColor: AppColors.darkBlueLv6,
+        inactiveColor: AppColors.darkBlueLv6,
+        childWidth: 50,
+        childHeight: 50,
+        iconSize: 26,
+        toggleMargin: const EdgeInsets.only(right: 16),
       ),
     );
   }

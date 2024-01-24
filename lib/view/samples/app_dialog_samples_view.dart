@@ -1,6 +1,7 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/theme/app_colors.dart';
 import '../../widget/molecule/app_button.dart';
 import '../../widget/molecule/app_dialog.dart';
 import '___sample_wrapper.dart';
@@ -87,21 +88,28 @@ class _AppDialogSamplesViewState extends State<AppDialogSamplesView> {
           final navigator = Navigator.of(context);
           AppDialog.show(
             navigator,
-            padding: EdgeInsets.zero,
-            backgroundColor: Colors.transparent,
-            child: AppDialogCustomWidget(
-              backgroundColor: AppColors.white,
-              // image: AppAssets.info,
-              title: 'Dialog',
-              titleColor: AppColors.primary,
-              subtitle: 'Lorem ipsum dolor sit amet hua qui lori ipsum sit ghui amet poety amet',
-              subtitleColor: AppColors.black,
-              onTapButton: () {
-                // TODO
-              },
-              onTapSecondButton: () {
-                // TODO
-              },
+            child: Column(
+              children: [
+                Text(
+                  'Custom Dialog',
+                  style: AppTextStyle.heading4(),
+                ),
+                const SizedBox(height: AppSizes.padding / 2),
+                Text(
+                  'Lorem ipsum dolor sit amet set viatu',
+                  style: AppTextStyle.semiBold(size: 12),
+                ),
+                const SizedBox(height: AppSizes.padding),
+                AppButton(
+                  text: 'Button',
+                  onTap: () {},
+                ),
+                const SizedBox(height: AppSizes.padding / 2),
+                AppButton(
+                  text: 'Button',
+                  onTap: () {},
+                )
+              ],
             ),
           );
         },

@@ -1,4 +1,5 @@
 import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -26,10 +27,12 @@ class _AppIconButtonSamplesViewState extends State<AppIconButtonSamplesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             defaultIconButton(),
-            iconButtonOutlined(),
+            defaultIconButtonDisabled(),
+            defaulIconButtonOutlined(),
             iconButtonDark(),
             iconButtonWithShadow(),
-            defaultIconButtonWithText(),
+            iconButtonWithText(),
+            customIconButton(),
           ],
         ),
       ),
@@ -49,18 +52,31 @@ class _AppIconButtonSamplesViewState extends State<AppIconButtonSamplesView> {
     );
   }
 
-  Widget iconButtonOutlined() {
+  Widget defaultIconButtonDisabled() {
     return SampleWrapper(
-      title: 'Icon Button Outlined',
+      title: 'Default Icon Button Disabled',
       widget: AppIconButton(
         onTap: () {},
         icon: const Icon(
           Icons.add,
           color: AppColors.primary,
         ),
-        borderRadius: 16,
+        enable: false,
+      ),
+    );
+  }
+
+  Widget defaulIconButtonOutlined() {
+    return SampleWrapper(
+      title: 'Default Icon Button Outlined',
+      widget: AppIconButton(
+        onTap: () {},
+        icon: const Icon(
+          Icons.add,
+          color: AppColors.black,
+        ),
         borderWidth: 1,
-        borderColor: AppColors.primary,
+        iconButtonColor: AppColors.transparent,
       ),
     );
   }
@@ -74,8 +90,7 @@ class _AppIconButtonSamplesViewState extends State<AppIconButtonSamplesView> {
           Icons.add,
           color: AppColors.white,
         ),
-        buttonColor: AppColors.black,
-        borderRadius: 16,
+        iconButtonColor: AppColors.black,
       ),
     );
   }
@@ -89,27 +104,142 @@ class _AppIconButtonSamplesViewState extends State<AppIconButtonSamplesView> {
           Icons.add,
           color: AppColors.white,
         ),
-        buttonColor: AppColors.primary,
-        borderRadius: 16,
-        boxShadow: [AppShadows.primaryShadow5],
+        iconButtonColor: AppColors.primary,
+        iconBoxShadow: [AppShadows.primaryShadow5],
       ),
     );
   }
 
-  Widget defaultIconButtonWithText() {
+  Widget iconButtonWithText() {
     return SampleWrapper(
-      title: 'Icon Button With Text & Custom Size',
-      widget: AppIconButton(
-        onTap: () {},
-        icon: const Icon(
-          Icons.add,
-          color: AppColors.primary,
-          size: 40,
-        ),
-        text: 'Add',
-        textStyle: AppTextStyle.bodyLarge(
-          fontWeight: AppFontWeight.bold,
-        ),
+      title: 'Icon Button With Text',
+      widget: Column(
+        children: [
+          Wrap(
+            runSpacing: AppSizes.padding / 2,
+            spacing: AppSizes.padding / 2,
+            children: [
+              AppIconButton(
+                onTap: () {},
+                icon: const Icon(
+                  Icons.home_outlined,
+                  color: AppColors.blackLv4,
+                  size: 32,
+                ),
+                text: 'Beranda',
+                textStyle: AppTextStyle.bold(size: 12, color: AppColors.blackLv4),
+              ),
+              AppIconButton(
+                onTap: () {},
+                icon: Icon(
+                  Icons.home_outlined,
+                  color: AppColors.primary,
+                  size: 32,
+                  shadows: [AppShadows.primaryShadow6],
+                ),
+                text: 'Beranda',
+                textStyle: AppTextStyle.bold(size: 12, color: AppColors.primary),
+              ),
+              AppIconButton(
+                onTap: () {},
+                icon: const Icon(
+                  Icons.history,
+                  color: AppColors.primary,
+                  size: 32,
+                ),
+                text: 'Top Up',
+                textStyle: AppTextStyle.bold(size: 12),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSizes.padding / 2),
+          Wrap(
+            runSpacing: AppSizes.padding / 2,
+            spacing: AppSizes.padding / 2,
+            children: [
+              AppIconButton(
+                onTap: () {},
+                icon: const Icon(
+                  Icons.history,
+                  color: AppColors.primary,
+                  size: 32,
+                ),
+                text: 'Top Up',
+                textStyle: AppTextStyle.bold(size: 12),
+                iconButtonColor: AppColors.blueLv6,
+                iconPadding: const EdgeInsets.all(AppSizes.padding / 2),
+              ),
+              AppIconButton(
+                onTap: () {},
+                icon: const Icon(
+                  Icons.history,
+                  color: AppColors.white,
+                  size: 32,
+                ),
+                text: 'Top Up',
+                textStyle: AppTextStyle.bold(size: 12),
+                iconButtonColor: AppColors.primary,
+                iconPadding: const EdgeInsets.all(AppSizes.padding / 2),
+                iconBoxShadow: [AppShadows.primaryShadow5],
+              ),
+              AppIconButton(
+                onTap: () {},
+                icon: const Icon(
+                  Icons.history,
+                  color: AppColors.white,
+                  size: 32,
+                ),
+                text: 'Top Up',
+                textStyle: AppTextStyle.bold(size: 12),
+                iconButtonColor: AppColors.primary,
+                iconPadding: const EdgeInsets.all(AppSizes.padding / 2),
+                iconBoxShadow: [AppShadows.primaryShadow5],
+                iconBorderRadius: AppSizes.radius * 2,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget customIconButton() {
+    return SampleWrapper(
+      title: 'Custom Icon Button With Text',
+      widget: Wrap(
+        runSpacing: AppSizes.padding / 2,
+        spacing: AppSizes.padding / 2,
+        children: [
+          AppIconButton(
+            onTap: () {},
+            icon: const Icon(
+              Icons.history,
+              color: AppColors.black,
+              size: 32,
+            ),
+            text: 'Top Up',
+            textStyle: AppTextStyle.bold(size: 12),
+            buttonColor: AppColors.blackLv9,
+            padding: const EdgeInsets.symmetric(vertical: AppSizes.padding, horizontal: AppSizes.padding * 2),
+            borderRadius: AppSizes.radius * 2,
+          ),
+          AppIconButton(
+            onTap: () {},
+            icon: const Icon(
+              Icons.history,
+              color: AppColors.white,
+              size: 32,
+            ),
+            text: 'Top Up',
+            textStyle: AppTextStyle.bold(size: 12),
+            buttonColor: AppColors.white,
+            padding: const EdgeInsets.symmetric(vertical: AppSizes.padding, horizontal: AppSizes.padding * 2),
+            buttonBoxShadow: [AppShadows.darkShadow1],
+            borderRadius: AppSizes.radius * 2,
+            iconButtonColor: AppColors.primary,
+            iconPadding: const EdgeInsets.all(AppSizes.padding / 2),
+          ),
+        ],
       ),
     );
   }

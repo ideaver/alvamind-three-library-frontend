@@ -1,4 +1,5 @@
 import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -8,8 +9,9 @@ class AppToggle extends StatefulWidget {
   final bool enable;
   final bool value;
   final bool showInactiveIcon;
-  final String? title;
-  final TextStyle? titleStyle;
+  final String? label;
+  final TextStyle? labelStyle;
+  final EdgeInsets toggleMargin;
   final EdgeInsets padding;
   final Color activeColor;
   final Color inactiveColor;
@@ -22,28 +24,31 @@ class AppToggle extends StatefulWidget {
   final Widget? inactiveIconWidget;
   final double childWidth;
   final double childHeight;
+  final double iconSize;
   final double borderRadius;
   final Function(bool) onChanged;
 
   const AppToggle({
     super.key,
     this.enable = true,
-    this.showInactiveIcon = true,
+    this.showInactiveIcon = false,
     required this.value,
-    this.title,
+    this.label,
+    this.toggleMargin = const EdgeInsets.only(right: AppSizes.padding / 2),
     this.padding = const EdgeInsets.all(4),
-    this.titleStyle,
+    this.labelStyle,
     this.activeColor = AppColors.primary,
     this.inactiveColor = AppColors.blackLv2,
     this.activeIconColor = AppColors.primary,
     this.inactiveIconColor = AppColors.blackLv2,
     this.iconBackgroundColor = AppColors.white,
-    this.activeIcon,
-    this.inactiveIcon,
+    this.activeIcon = Icons.check,
+    this.inactiveIcon = Icons.remove,
     this.activeIconWidget,
     this.inactiveIconWidget,
     this.childWidth = 32,
     this.childHeight = 32,
+    this.iconSize = 20,
     this.borderRadius = 100,
     required this.onChanged,
   });
@@ -53,6 +58,22 @@ class AppToggle extends StatefulWidget {
 }
 
 class _AppToggleState extends State<AppToggle> {
+  bool value = false;
+
+  @override
+  void initState() {
+    value = widget.value;
+    super.initState();
+  }
+
+  void onChanged({bool? val}) {
+    if (widget.enable) {
+      value = val ?? !value;
+      setState(() {});
+      widget.onChanged(value);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Opacity(
@@ -60,27 +81,38 @@ class _AppToggleState extends State<AppToggle> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              onChanged();
+            },
+            onPanUpdate: (details) {
+              // Swiping in right direction.
+              if (details.delta.dx > 0) {
+                onChanged(val: true);
+              }
+
+              // Swiping in left direction.
+              if (details.delta.dx < 0) {
+                onChanged(val: false);
+              }
+            },
             child: Container(
               width: (widget.childWidth * 2) + (widget.padding.left + widget.padding.right),
+              margin: widget.toggleMargin,
               padding: widget.padding,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(widget.borderRadius),
-                color: AppColors.white,
+                color: value ? widget.activeColor : widget.inactiveColor,
               ),
               child: widget.showInactiveIcon ? showedInactiveIconChild() : child(),
             ),
           ),
-          widget.title != null
-              ? Padding(
-                  padding: const EdgeInsets.only(left: 6),
-                  child: Text(
-                    widget.title!,
-                    style: widget.titleStyle ??
-                        AppTextStyle.bodyMedium(
-                          fontWeight: AppFontWeight.semibold,
-                        ),
-                  ),
+          widget.label != null
+              ? Text(
+                  widget.label!,
+                  style: widget.labelStyle ??
+                      AppTextStyle.bodyMedium(
+                        fontWeight: AppFontWeight.semibold,
+                      ),
                 )
               : const SizedBox.shrink(),
         ],
@@ -94,7 +126,7 @@ class _AppToggleState extends State<AppToggle> {
         AnimatedAlign(
           duration: const Duration(milliseconds: 300),
           curve: Curves.decelerate,
-          alignment: Alignment.centerLeft,
+          alignment: value ? Alignment.centerRight : Alignment.centerLeft,
           child: Container(
             width: widget.childWidth,
             height: widget.childHeight,
@@ -110,19 +142,19 @@ class _AppToggleState extends State<AppToggle> {
             SizedBox(
               width: widget.childWidth,
               height: widget.childHeight,
-              child: const Icon(
-                Icons.check_rounded,
-                color: AppColors.primary,
-                size: 32 / 1.5,
+              child: Icon(
+                widget.inactiveIcon,
+                color: value ? widget.inactiveIconColor : widget.activeIconColor,
+                size: widget.iconSize,
               ),
             ),
             SizedBox(
               width: widget.childWidth,
               height: widget.childHeight,
-              child: const Icon(
-                Icons.check_rounded,
-                color: AppColors.primary,
-                size: 32 / 1.5,
+              child: Icon(
+                widget.activeIcon,
+                color: value ? widget.activeIconColor : widget.inactiveIconColor,
+                size: widget.iconSize,
               ),
             ),
           ],
@@ -135,7 +167,7 @@ class _AppToggleState extends State<AppToggle> {
     return AnimatedAlign(
       duration: const Duration(milliseconds: 300),
       curve: Curves.decelerate,
-      alignment: Alignment.centerLeft,
+      alignment: value ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         width: widget.childWidth,
         height: widget.childHeight,
@@ -144,10 +176,10 @@ class _AppToggleState extends State<AppToggle> {
           color: AppColors.white,
           boxShadow: [AppShadows.darkShadow5],
         ),
-        child: const Icon(
-          Icons.check_rounded,
-          color: AppColors.primary,
-          size: 32 / 1.5,
+        child: Icon(
+          value ? widget.activeIcon : widget.inactiveIcon,
+          color: value ? widget.activeIconColor : widget.inactiveIconColor,
+          size: widget.iconSize,
         ),
       ),
     );

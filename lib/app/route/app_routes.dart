@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../view/main/main_view.dart';
 import '../../view/samples/app_avatar_samples_view.dart';
 import '../../view/samples/app_button_samples_view.dart';
+import '../../view/samples/app_carousel_slider_samples_view.dart';
 import '../../view/samples/app_checkbox_samples_view.dart';
 import '../../view/samples/app_chips_samples_view.dart';
 import '../../view/samples/app_colors_samples_view.dart';
@@ -21,6 +22,7 @@ import '../../view/samples/app_radio_samples_view.dart';
 import '../../view/samples/app_segmented_tab_bar_samples_view.dart';
 import '../../view/samples/app_snackbar_samples_view.dart';
 import '../../view/samples/app_steps_samples_view.dart';
+import '../../view/samples/app_swipe_indicator_samples_view.dart';
 import '../../view/samples/app_table_navigation_samples_view.dart';
 import '../../view/samples/app_table_samples_view.dart';
 import '../../view/samples/app_tags_samples_view.dart';
@@ -39,9 +41,10 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     MainView.routeName: (context) => const MainView(),
+    IconsSamplesView.routeName: (context) => const IconsSamplesView(),
+    IllustrationsSamplesView.routeName: (context) => const IllustrationsSamplesView(),
     AppTextStylesSamplesView.routeName: (context) => const AppTextStylesSamplesView(),
     AppColorsSamplesView.routeName: (context) => const AppColorsSamplesView(),
-    IconsSamplesView.routeName: (context) => const IconsSamplesView(),
     AppButtonSamplesView.routeName: (context) => const AppButtonSamplesView(),
     AppDialogSamplesView.routeName: (context) => const AppDialogSamplesView(),
     AppProgressIndicatorSamplesView.routeName: (context) => const AppProgressIndicatorSamplesView(),
@@ -56,7 +59,6 @@ class AppRoutes {
     AppDividerSamplesView.routeName: (context) => const AppDividerSamplesView(),
     AppLogoSamplesView.routeName: (context) => const AppLogoSamplesView(),
     AppImageSamplesView.routeName: (context) => const AppImageSamplesView(),
-    IllustrationsSamplesView.routeName: (context) => const IllustrationsSamplesView(),
     AppProgressLineSamplesView.routeName: (context) => const AppProgressLineSamplesView(),
     AppDropDownSamplesView.routeName: (context) => const AppDropDownSamplesView(),
     AppToggleSamplesView.routeName: (context) => const AppToggleSamplesView(),
@@ -68,5 +70,7 @@ class AppRoutes {
     AppTableNavigationSamplesView.routeName: (context) => const AppTableNavigationSamplesView(),
     AppSnackbarSamplesView.routeName: (context) => const AppSnackbarSamplesView(),
     AppStepsSamplesView.routeName: (context) => const AppStepsSamplesView(),
+    AppSwipeIndicatorSamplesView.routeName: (context) => const AppSwipeIndicatorSamplesView(),
+    AppCarouselSliderSamplesView.routeName: (context) => const AppCarouselSliderSamplesView(),
   };
 }

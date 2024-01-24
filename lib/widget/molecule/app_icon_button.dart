@@ -9,15 +9,19 @@ class AppIconButton extends StatelessWidget {
   final double? height;
   final double? borderWidth;
   final double borderRadius;
+  final double iconBorderRadius;
   final EdgeInsets padding;
+  final EdgeInsets iconPadding;
+  final EdgeInsets textPadding;
   final bool enable;
   final Color? buttonColor;
+  final Color? iconButtonColor;
   final Color borderColor;
   final Widget icon;
   final String? text;
-  final EdgeInsetsGeometry? paddingText;
   final TextStyle? textStyle;
-  final List<BoxShadow>? boxShadow;
+  final List<BoxShadow>? buttonBoxShadow;
+  final List<BoxShadow>? iconBoxShadow;
   final List<Color>? gradient;
   final Function() onTap;
 
@@ -26,16 +30,20 @@ class AppIconButton extends StatelessWidget {
     this.width,
     this.height,
     this.borderWidth,
-    this.padding = const EdgeInsets.all(12),
+    this.padding = const EdgeInsets.all(AppSizes.padding / 2),
+    this.iconPadding = EdgeInsets.zero,
+    this.textPadding = const EdgeInsets.only(top: AppSizes.padding / 4),
     this.enable = true,
-    this.buttonColor = AppColors.blueLv6,
-    this.borderColor = AppColors.transparent,
-    this.borderRadius = 100,
+    this.buttonColor,
+    this.iconButtonColor,
+    this.borderColor = AppColors.blackLv7,
+    this.borderRadius = AppSizes.radius,
+    this.iconBorderRadius = 100,
     this.text,
     this.textStyle,
-    this.paddingText,
     this.gradient,
-    this.boxShadow,
+    this.buttonBoxShadow,
+    this.iconBoxShadow,
     required this.icon,
     required this.onTap,
   });
@@ -44,39 +52,33 @@ class AppIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: enable ? 1.0 : 0.5,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          text == null ? iconButton() : iconButtonWithText(),
-        ],
-      ),
+      child: text == null ? iconButton() : iconButtonWithText(),
     );
   }
 
   Widget iconButton() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
-        boxShadow: boxShadow ?? [],
+        borderRadius: BorderRadius.circular(iconBorderRadius),
+        boxShadow: iconBoxShadow ?? [],
       ),
       child: Material(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(iconBorderRadius),
         color: Colors.transparent,
         child: InkWell(
           onTap: enable ? onTap : null,
           splashColor: Colors.black.withOpacity(0.06),
           splashFactory: InkRipple.splashFactory,
           highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(iconBorderRadius),
           child: Ink(
             width: width,
             height: height,
             padding: padding,
             decoration: BoxDecoration(
-              color: buttonColor,
-              boxShadow: boxShadow ?? [],
+              color: iconButtonColor ?? AppColors.blueLv6,
               gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
-              borderRadius: BorderRadius.circular(borderRadius),
+              borderRadius: BorderRadius.circular(iconBorderRadius),
               border: borderWidth != null
                   ? Border.all(
                       width: borderWidth!,
@@ -95,24 +97,23 @@ class AppIconButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        boxShadow: boxShadow ?? [],
+        boxShadow: buttonBoxShadow ?? [],
       ),
       child: Material(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(borderRadius),
         color: Colors.transparent,
         child: InkWell(
           onTap: enable ? onTap : null,
           splashColor: Colors.black.withOpacity(0.06),
           splashFactory: InkRipple.splashFactory,
           highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
-          // borderRadius: BorderRadius.circular(borderRadius),
-          child: Container(
+          borderRadius: BorderRadius.circular(borderRadius),
+          child: Ink(
             width: width,
             height: height,
             padding: padding,
             decoration: BoxDecoration(
               color: buttonColor,
-              boxShadow: boxShadow ?? [],
               gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
               borderRadius: BorderRadius.circular(borderRadius),
               border: borderWidth != null
@@ -124,15 +125,15 @@ class AppIconButton extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Container(
+                Ink(
                   width: width,
                   height: height,
-                  padding: padding,
+                  padding: iconPadding,
                   decoration: BoxDecoration(
-                    color: buttonColor,
-                    boxShadow: boxShadow ?? [],
+                    color: iconButtonColor,
+                    boxShadow: iconBoxShadow ?? [],
                     gradient: gradient != null ? LinearGradient(colors: gradient!) : null,
-                    borderRadius: BorderRadius.circular(borderRadius),
+                    borderRadius: BorderRadius.circular(iconBorderRadius),
                     border: borderWidth != null
                         ? Border.all(
                             width: borderWidth!,
@@ -143,7 +144,7 @@ class AppIconButton extends StatelessWidget {
                   child: icon,
                 ),
                 Padding(
-                  padding: paddingText ?? const EdgeInsets.symmetric(vertical: AppSizes.padding / 2),
+                  padding: textPadding,
                   child: Text(
                     text!,
                     textAlign: TextAlign.center,

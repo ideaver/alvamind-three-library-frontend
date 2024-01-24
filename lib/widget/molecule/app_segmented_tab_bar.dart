@@ -93,6 +93,7 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
           color: widget.indicatorColor,
           borderRadius: BorderRadius.circular(widget.borderRadius - 4),
         ),
+        splashBorderRadius: BorderRadius.circular(widget.borderRadius - 4),
         padding: widget.padding,
         indicatorPadding: widget.indicatorPadding,
         tabs: [

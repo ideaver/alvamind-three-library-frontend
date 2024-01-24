@@ -118,6 +118,7 @@ class _AppSegmentedTabBarSamplesViewState extends State<AppSegmentedTabBarSample
         iconColor: AppColors.blackLv4,
         activeIconColor: AppColors.white,
         activeLabelColor: AppColors.white,
+        borderRadius: 100,
         onChangedTab: (index) {
           cl(index);
         },

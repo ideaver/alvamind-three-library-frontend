@@ -67,4 +67,10 @@ class AppShadows {
     offset: const Offset(0, 2),
     blurRadius: 8,
   );
+
+  static final primaryShadow6 = BoxShadow(
+    color: AppColors.primary.withOpacity(0.24),
+    offset: const Offset(0, 2),
+    blurRadius: 4,
+  );
 }

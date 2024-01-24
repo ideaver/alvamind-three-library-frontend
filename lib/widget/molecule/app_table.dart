@@ -16,19 +16,19 @@ class AppTable extends StatefulWidget {
   final double? width;
   final double? height;
   final double borderRadius;
-  final Color headerBackgroundColor;
-  final EdgeInsets? headerPadding;
   final double? headerBottomBorderWidth;
+  final double? bottomBorderWidth;
+  final double? tableBorderWidth;
+  final Color headerBackgroundColor;
   final Color headerBottomBorderColor;
   final Color backgroundColor;
-  final EdgeInsets? padding;
-  final double? bottomBorderWidth;
   final Color bottomBorderColor;
-  final double? tableBorderWidth;
   final Color tableBorderColor;
+  final EdgeInsets? headerPadding;
+  final EdgeInsets? padding;
 
   const AppTable({
-    Key? key,
+    super.key,
     this.headerData,
     required this.data,
     this.title,
@@ -39,17 +39,17 @@ class AppTable extends StatefulWidget {
     this.width,
     this.height,
     this.borderRadius = 0,
-    this.headerBackgroundColor = AppColors.blackLv8,
-    this.headerPadding,
     this.headerBottomBorderWidth,
+    this.bottomBorderWidth = 1,
+    this.tableBorderWidth,
+    this.headerBackgroundColor = AppColors.blackLv8,
     this.headerBottomBorderColor = AppColors.blackLv6,
     this.backgroundColor = AppColors.white,
-    this.padding,
-    this.bottomBorderWidth = 1,
     this.bottomBorderColor = AppColors.blackLv7,
-    this.tableBorderWidth,
     this.tableBorderColor = AppColors.blackLv7,
-  }) : super(key: key);
+    this.headerPadding,
+    this.padding,
+  });
 
   @override
   State<AppTable> createState() => _AppTableState();
@@ -93,15 +93,19 @@ class _AppTableState extends State<AppTable> {
             borderRadius: BorderRadius.circular(widget.borderRadius),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
               child: SizedBox(
                 width: widget.width ?? AppSizes.screenSize.width,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     widget.headerData != null ? header(widget.headerData!) : const SizedBox.shrink(),
                     SizedBox(
-                      height: widget.height ?? AppSizes.screenSize.height,
+                      height: widget.height,
                       child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             ...List.generate(widget.data.length, (i) {
                               return row(widget.data[i]);

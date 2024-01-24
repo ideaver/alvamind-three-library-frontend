@@ -15,6 +15,10 @@ import '../../model/country_model.dart';
 import '../atom/app_image.dart';
 import '../atom/app_tool_tip.dart';
 
+// AppTextField
+// v.3.0.0
+// by Elriz Wiraswara
+
 enum AppTextFieldType {
   text,
   password,
