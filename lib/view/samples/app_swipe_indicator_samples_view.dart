@@ -1,5 +1,5 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/molecule/app_swipe_indicator.dart';

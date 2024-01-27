@@ -1,3 +1,4 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -23,8 +24,31 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
       5,
       (i) => StepsModel(
         title: 'Title ${i + 1}',
-        subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+        subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
         isActive: i < 2 ? true : false,
+      ),
+    )
+  ];
+
+  List<StepsModel> customSteps0 = [
+    ...List.generate(
+      5,
+      (i) => StepsModel(
+        title: 'Title ${i + 1}',
+        subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
+        isActive: i < 2 ? true : false,
+        leading: Container(
+          padding: const EdgeInsets.all(2),
+          decoration: const BoxDecoration(
+            color: AppColors.primary,
+            shape: BoxShape.circle,
+          ),
+          child: const Icon(
+            Icons.check,
+            color: AppColors.white,
+            size: 16,
+          ),
+        ),
       ),
     )
   ];
@@ -34,7 +58,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
       5,
       (i) => StepsModel(
         title: 'Title ${i + 1}',
-        subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+        subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
         isActive: i < 2 ? true : false,
         leading: i == 0
             ? const Icon(
@@ -50,7 +74,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
   List<StepsModel> customSteps2 = [
     StepsModel(
       title: 'Title 1',
-      subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+      subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
       isActive: true,
       leading: const Icon(
         Icons.location_on,
@@ -60,7 +84,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
     ),
     StepsModel(
       title: 'Title 2',
-      subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+      subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
       isActive: true,
       leading: const Icon(
         Icons.person,
@@ -70,7 +94,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
     ),
     StepsModel(
       title: 'Title 3',
-      subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+      subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
       isActive: false,
       leading: const Icon(
         Icons.local_shipping,
@@ -80,7 +104,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
     ),
     StepsModel(
       title: 'Title 4',
-      subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+      subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
       isActive: false,
       leading: const Icon(
         Icons.house,
@@ -90,7 +114,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
     ),
     StepsModel(
       title: 'Title 5',
-      subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+      subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
       isActive: false,
       leading: const Icon(
         Icons.card_giftcard_rounded,
@@ -105,7 +129,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
       5,
       (i) => StepsModel(
         title: 'Title ${i + 1}',
-        subtitle: DateFormatter.slashDateShortedYearWithClock(DateTime.now().toIso8601String()),
+        subtitle: DateFormatter.slashDate(DateTime.now().toIso8601String()),
         isActive: i < 2 ? true : false,
         leading: AppImage(
           image: randomImage,
@@ -126,16 +150,104 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            defaultVerticalSteps(),
             defaultHorizontalSteps(),
-            defaultHorizontalStepsCustomWidth(),
-            defaultHorizontalStepsWithCounter(),
+            defaultHorizontalStepsWithSubtitle(),
+            defaultHorizontalStepsWithUncontinuousStepLine(),
+            defaultHorizontalStepsWithoutStepline(),
+            defaultHorizontalStepsCustomSize(),
+            defaultHorizontalStepsWithDashedLine(),
+            customHorizontalStepsLine(),
+            defaultVerticalSteps(),
             defaultVerticalStepsCustomFirstLeading(),
             verticalStepsCustomLeadings(),
             verticalStepsCustomLeadingsAndStyles(),
             horizontalStepsCustomLeadingsAndStyles(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget defaultHorizontalSteps() {
+    return SampleWrapper(
+      title: 'Default Horizontal Steps',
+      widget: AppSteps(
+        steps: basicSteps,
+        titleFontSize: 12,
+        showSubtitle: false,
+      ),
+    );
+  }
+
+  Widget defaultHorizontalStepsWithSubtitle() {
+    return SampleWrapper(
+      title: 'Default Horizontal Steps With Subtitle',
+      widget: AppSteps(
+        steps: basicSteps,
+        titleFontSize: 12,
+        subtitleFontSize: 8,
+      ),
+    );
+  }
+
+  Widget defaultHorizontalStepsWithUncontinuousStepLine() {
+    return SampleWrapper(
+      title: 'Default Horizontal Steps With Uncontinuous Step Line',
+      widget: AppSteps(
+        steps: basicSteps,
+        titleFontSize: 12,
+        subtitleFontSize: 8,
+        isStepLineContinuous: false,
+      ),
+    );
+  }
+
+  Widget defaultHorizontalStepsWithoutStepline() {
+    return SampleWrapper(
+      title: 'Default Horizontal Steps Without Step Line',
+      widget: AppSteps(
+        steps: basicSteps,
+        titleFontSize: 12,
+        subtitleFontSize: 8,
+        showStepLine: false,
+      ),
+    );
+  }
+
+  Widget defaultHorizontalStepsCustomSize() {
+    return SampleWrapper(
+      title: 'Default Horizontal Steps With Custom Size',
+      widget: AppSteps(
+        steps: basicSteps,
+        direction: Axis.horizontal,
+        titleFontSize: 10,
+        subtitleFontSize: 6,
+        leadingSize: 24,
+        stepLineHeight: 1,
+      ),
+    );
+  }
+
+  Widget defaultHorizontalStepsWithDashedLine() {
+    return SampleWrapper(
+      title: 'Default Horizontal Steps With Dashed Line',
+      widget: AppSteps(
+        steps: basicSteps,
+        titleFontSize: 12,
+        isStepLineDashed: true,
+        dashFillRate: 0.5,
+      ),
+    );
+  }
+
+  Widget customHorizontalStepsLine() {
+    return SampleWrapper(
+      title: 'Custom Horizontal Steps Line',
+      widget: AppSteps(
+        steps: customSteps0,
+        showSubtitle: false,
+        hideInactiveLeading: true,
+        titleStyle: AppTextStyle.bold(size: 12),
       ),
     );
   }
@@ -149,51 +261,6 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
           steps: basicSteps,
           direction: Axis.vertical,
         ),
-      ),
-    );
-  }
-
-  Widget defaultHorizontalSteps() {
-    return SampleWrapper(
-      title: 'Default Horizontal Steps',
-      widget: AppSteps(
-        steps: basicSteps,
-        direction: Axis.horizontal,
-        titleFontSize: 14,
-        subtitleFontSize: 10,
-        // leadingSize: AppSizes.screenSize.width / 12,
-        // leadingSizeFactor: AppSizes.screenSize.width / 6,
-        // leadingSizeFactor: AppSizes.screenSize.width / 6,
-      ),
-    );
-  }
-
-  Widget defaultHorizontalStepsCustomWidth() {
-    return SampleWrapper(
-      title: 'Default Horizontal Custom Size',
-      widget: SizedBox(
-        width: AppSizes.screenSize.width - 120,
-        child: AppSteps(
-          steps: basicSteps,
-          direction: Axis.horizontal,
-          titleFontSize: 10,
-          subtitleFontSize: 6,
-          leadingSize: 24,
-          stepLineHeight: 1,
-        ),
-      ),
-    );
-  }
-
-  Widget defaultHorizontalStepsWithCounter() {
-    return SampleWrapper(
-      title: 'Default Horizontal Steps With Counter',
-      widget: AppSteps(
-        steps: basicSteps,
-        direction: Axis.horizontal,
-        titleFontSize: 14,
-        subtitleFontSize: 10,
-        showCounter: true,
       ),
     );
   }
@@ -219,6 +286,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
         child: AppSteps(
           steps: customSteps2,
           direction: Axis.vertical,
+          isStepLineContinuous: false,
         ),
       ),
     );
@@ -236,6 +304,7 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
           activeStepLineColor: AppColors.primary,
           dashFillRate: 1,
           stepLineRadius: 0,
+          isStepLineContinuous: false,
         ),
       ),
     );

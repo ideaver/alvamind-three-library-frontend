@@ -25,7 +25,7 @@ import '../../view/samples/app_steps_samples_view.dart';
 import '../../view/samples/app_swipe_indicator_samples_view.dart';
 import '../../view/samples/app_table_navigation_samples_view.dart';
 import '../../view/samples/app_table_samples_view.dart';
-import '../../view/samples/app_tags_samples_view.dart';
+import '../../view/samples/app_tag_marker_samples_view.dart';
 import '../../view/samples/app_text_field_samples_view.dart';
 import '../../view/samples/app_text_styles_samples_view.dart';
 import '../../view/samples/app_toggle_samples_view.dart';
@@ -52,7 +52,7 @@ class AppRoutes {
     AppMapsSamplesView.routeName: (context) => const AppMapsSamplesView(),
     AppIconButtonSamplesView.routeName: (context) => const AppIconButtonSamplesView(),
     AppChipsSamplesView.routeName: (context) => const AppChipsSamplesView(),
-    AppTagsSamplesView.routeName: (context) => const AppTagsSamplesView(),
+    AppTagMarkerSamplesView.routeName: (context) => const AppTagMarkerSamplesView(),
     AppSegmentedTabBarSamplesView.routeName: (context) => const AppSegmentedTabBarSamplesView(),
     AppTextFieldSamplesView.routeName: (context) => const AppTextFieldSamplesView(),
     AppToolTipMenuSamples.routeName: (context) => const AppToolTipMenuSamples(),

@@ -1,3 +1,4 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -15,6 +16,7 @@ class AppSteps extends StatelessWidget {
   final bool showCounter;
   final bool showSubtitle;
   final bool showStepLine;
+  final bool hideInactiveLeading;
   final bool isStepLineDashed;
   final bool isStepLineContinuous;
   final Color activeColor;
@@ -43,7 +45,8 @@ class AppSteps extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.showCounter = true,
     this.showSubtitle = true,
-    this.isStepLineDashed = true,
+    this.hideInactiveLeading = false,
+    this.isStepLineDashed = false,
     this.showStepLine = true,
     this.isStepLineContinuous = true,
     this.activeColor = AppColors.primary,
@@ -61,7 +64,7 @@ class AppSteps extends StatelessWidget {
     this.titleStyle,
     this.subtitleStyle,
     this.stepLineHeight = 2,
-    this.stepLineWidth = 4,
+    this.stepLineWidth = 2,
     this.dashFillRate = 0.7,
     this.stepLineRadius = 100,
   });
@@ -400,7 +403,7 @@ class AppSteps extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4, top: 14),
+      padding: const EdgeInsets.only(bottom: 4, top: AppSizes.padding / 2),
       child: Text(
         step.title!,
         textAlign: TextAlign.center,
@@ -438,8 +441,9 @@ class AppSteps extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         leadingWidget(step, i),
-        step.title != null && step.subtitle != null
-            ? Padding(
+        step.title == null && step.subtitle == null
+            ? const SizedBox.shrink()
+            : Padding(
                 padding: const EdgeInsets.only(left: 14),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -448,8 +452,7 @@ class AppSteps extends StatelessWidget {
                     subtitleWidgetStepVertical(step),
                   ],
                 ),
-              )
-            : const SizedBox.shrink(),
+              ),
       ],
     );
   }
@@ -498,7 +501,24 @@ class AppSteps extends StatelessWidget {
           continuousStepLine(step, i),
           if (step.leading != null)
             // Custom leading
-            Center(child: step.leading)
+            Center(
+              child: hideInactiveLeading
+                  ? step.isActive
+                      ? step.leading
+                      : Container(
+                          width: leadingSize / 1.5,
+                          height: leadingSize / 1.5,
+                          decoration: BoxDecoration(
+                            color: inactiveColor,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              width: 4,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        )
+                  : step.leading,
+            )
           else
             // Default leading
             Container(

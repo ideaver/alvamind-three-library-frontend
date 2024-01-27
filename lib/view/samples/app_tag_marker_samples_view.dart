@@ -1,19 +1,20 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
-import '../../widget/molecule/app_tags.dart';
+import '../../widget/molecule/app_tag_marker.dart';
 import '___sample_wrapper.dart';
 
-class AppTagsSamplesView extends StatefulWidget {
-  const AppTagsSamplesView({super.key});
+class AppTagMarkerSamplesView extends StatefulWidget {
+  const AppTagMarkerSamplesView({super.key});
 
   static const routeName = '/molecule-app-tag-marker';
 
   @override
-  State<AppTagsSamplesView> createState() => _AppTagsSamplesViewState();
+  State<AppTagMarkerSamplesView> createState() => _AppTagMarkerSamplesViewState();
 }
 
-class _AppTagsSamplesViewState extends State<AppTagsSamplesView> {
+class _AppTagMarkerSamplesViewState extends State<AppTagMarkerSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class _AppTagsSamplesViewState extends State<AppTagsSamplesView> {
           children: [
             defaultTagMarker(),
             defaultOutlinedTagMarker(),
-            tagMarkerWithCustomStyle(),
+            customTagMarker(),
             tagsWithWrapper(),
           ],
         ),
@@ -55,17 +56,33 @@ class _AppTagsSamplesViewState extends State<AppTagsSamplesView> {
     );
   }
 
-  Widget tagMarkerWithCustomStyle() {
+  Widget customTagMarker() {
     return const SampleWrapper(
       title: 'Tag Marker With Custom Style',
-      widget: AppTags(
-        text: 'Tag Marker',
-        color: AppColors.redLv1,
-        leftIcon: Icons.star,
-        rightIcon: Icons.star,
-        fontSize: 24,
-        padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        borderRadius: 18,
+      widget: Wrap(
+        runSpacing: AppSizes.padding / 2,
+        spacing: AppSizes.padding / 2,
+        children: [
+          AppTags(
+            text: 'Waiting',
+            color: AppColors.blackLv7,
+            textColor: AppColors.black,
+          ),
+          AppTags(
+            text: 'Accepted',
+            color: AppColors.greenLv3,
+            textColor: AppColors.white,
+          ),
+          AppTags(
+            text: 'Tag Marker',
+            color: AppColors.redLv1,
+            prefixIcon: Icons.star,
+            suffixIcon: Icons.star,
+            fontSize: 24,
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            borderRadius: 18,
+          ),
+        ],
       ),
     );
   }
@@ -74,8 +91,8 @@ class _AppTagsSamplesViewState extends State<AppTagsSamplesView> {
     return SampleWrapper(
       title: 'Tag Markers With Wrapper',
       widget: Wrap(
-        runSpacing: 6,
-        spacing: 6,
+        runSpacing: AppSizes.padding / 2,
+        spacing: AppSizes.padding / 2,
         children: [
           ...List.generate(
             20,

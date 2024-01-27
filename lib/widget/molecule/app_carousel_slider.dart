@@ -1,4 +1,4 @@
-import 'package:alvamind_three_library_frontend/widget/molecule/app_swipe_indicator.dart';
+import 'app_swipe_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

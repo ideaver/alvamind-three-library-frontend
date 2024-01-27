@@ -1,8 +1,8 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
-import 'package:alvamind_three_library_frontend/app/utility/console_log.dart';
-import 'package:alvamind_three_library_frontend/model/drop_down_model.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_drop_down.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
+import '../../app/theme/app_sizes.dart';
+import '../../app/utility/console_log.dart';
+import '../../model/drop_down_model.dart';
+import 'app_drop_down.dart';
+import 'app_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

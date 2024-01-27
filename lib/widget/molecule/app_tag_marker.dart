@@ -13,23 +13,27 @@ class AppTags extends StatelessWidget {
   final Color iconsColor;
   final Color borderColor;
   final String text;
-  final IconData? leftIcon;
-  final IconData? rightIcon;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+  final Widget? prefixIconWidget;
+  final Widget? suffixIconWidget;
   final Function()? onTap;
 
   const AppTags({
     super.key,
     this.fontSize = 10,
     this.borderWidth,
-    this.borderRadius = 6,
+    this.borderRadius = 100,
     this.padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
     this.color = AppColors.primary,
     this.textColor = AppColors.white,
     this.iconsColor = AppColors.white,
     this.borderColor = AppColors.primary,
     required this.text,
-    this.leftIcon,
-    this.rightIcon,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.prefixIconWidget,
+    this.suffixIconWidget,
     this.onTap,
   });
 
@@ -58,9 +62,9 @@ class AppTags extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              leftIconWidget(),
+              prefixWidget(),
               textWidget(),
-              rightIconWidget(),
+              suffixWidget(),
             ],
           ),
         ),
@@ -78,30 +82,38 @@ class AppTags extends StatelessWidget {
     );
   }
 
-  Widget leftIconWidget() {
-    if (leftIcon == null) {
+  Widget prefixWidget() {
+    if (prefixIcon == null && prefixIconWidget == null) {
       return const SizedBox.shrink();
+    }
+
+    if (prefixIconWidget != null) {
+      return prefixIconWidget!;
     }
 
     return Padding(
       padding: const EdgeInsets.only(right: 6),
       child: Icon(
-        leftIcon,
+        prefixIcon,
         color: iconsColor,
         size: fontSize + 2,
       ),
     );
   }
 
-  Widget rightIconWidget() {
-    if (rightIcon == null) {
+  Widget suffixWidget() {
+    if (suffixIcon == null && suffixIconWidget == null) {
       return const SizedBox.shrink();
+    }
+
+    if (suffixIconWidget != null) {
+      return suffixIconWidget!;
     }
 
     return Padding(
       padding: const EdgeInsets.only(left: 6),
       child: Icon(
-        rightIcon,
+        suffixIcon,
         color: iconsColor,
         size: fontSize + 2,
       ),
