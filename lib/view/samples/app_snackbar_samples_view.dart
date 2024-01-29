@@ -28,6 +28,9 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
             defaultSnackbar(),
             alertSnackbar(),
             customSnackbar(),
+            defaultSnackbarWidget(),
+            alertSnackbarWidget(),
+            customSnackbarWidget(),
           ],
         ),
       ),
@@ -56,7 +59,7 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
           final navigator = Navigator.of(context);
           AppSnackbar.show(
             navigator,
-            icon: Icons.info,
+            icon: Icons.info_outline,
             title: 'Snackbar Alert',
             backgroundColor: AppColors.redLv1,
             showCloseButton: true,
@@ -83,6 +86,41 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
             showCloseButton: true,
           );
         },
+      ),
+    );
+  }
+
+  Widget defaultSnackbarWidget() {
+    return const SampleWrapper(
+      title: 'Default Snackbar Widget',
+      widget: AppSnackbarWidget(
+        title: 'Snackbar Title',
+      ),
+    );
+  }
+
+  Widget alertSnackbarWidget() {
+    return const SampleWrapper(
+      title: 'Alert Snackbar Widget',
+      widget: AppSnackbarWidget(
+        icon: Icons.info_outline,
+        title: 'Snackbar Title',
+        backgroundColor: AppColors.redLv1,
+        showCloseButton: true,
+      ),
+    );
+  }
+
+  Widget customSnackbarWidget() {
+    return const SampleWrapper(
+      title: 'Alert Snackbar Widget',
+      widget: AppSnackbarWidget(
+        icon: Icons.person_2_rounded,
+        iconSize: 32,
+        backgroundColor: AppColors.orangeLv1,
+        title: 'Snackbar Title',
+        subtitle: 'Snackbar Subtitle',
+        showCloseButton: true,
       ),
     );
   }

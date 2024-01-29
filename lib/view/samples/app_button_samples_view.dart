@@ -321,7 +321,7 @@ class _AppButtonSamplesViewState extends State<AppButtonSamplesView> {
             padding: const EdgeInsets.symmetric(vertical: AppSizes.padding / 2, horizontal: AppSizes.padding),
             fontSize: 14,
             fontWeight: AppFontWeight.medium,
-            prefixIcon: AppIcons.facebook_logo,
+            prefixIcon: AppIcons.facebook,
             prefixIconColor: AppColors.primary,
           ),
         ],

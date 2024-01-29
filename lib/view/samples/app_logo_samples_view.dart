@@ -1,8 +1,8 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/asset/app_assets.dart';
-import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_text_style.dart';
 import '../../widget/molecule/app_logo.dart';
 import '___sample_wrapper.dart';
 
@@ -26,11 +26,10 @@ class _AppLogoSamplesViewState extends State<AppLogoSamplesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             defaultLogo(),
-            defaultLogoWithText(),
-            circleLogo(),
-            circleLogoWithText(),
-            circleLogoWithTextCustomSize(),
-            circleLogoWithTextCustomStyle(),
+            defaultLogoWithTitle(),
+            defaultLogoWithTitleAndVerticalAlignment(),
+            defaultLogoWithTitleSubtitleAndVerticalAlignment(),
+            customLogo(),
           ],
         ),
       ),
@@ -49,9 +48,9 @@ class _AppLogoSamplesViewState extends State<AppLogoSamplesView> {
     );
   }
 
-  Widget defaultLogoWithText() {
+  Widget defaultLogoWithTitle() {
     return const SampleWrapper(
-      title: 'Default Logo With Text',
+      title: 'Default Logo With Title',
       widget: AppLogo(
         title: 'EksporYuk',
         image: AppAssets.logo,
@@ -62,59 +61,48 @@ class _AppLogoSamplesViewState extends State<AppLogoSamplesView> {
     );
   }
 
-  Widget circleLogo() {
+  Widget defaultLogoWithTitleAndVerticalAlignment() {
     return const SampleWrapper(
-      title: 'Circle Logo',
-      widget: AppLogo(
-        title: 'EksporYuk',
-        image: AppAssets.logo,
-        // Remove this if the widget called from another project
-        isFromAppAssets: false,
-      ),
-    );
-  }
-
-  Widget circleLogoWithText() {
-    return const SampleWrapper(
-      title: 'Circle Logo With Text',
+      title: 'Default Logo With Title & Vertical Alignment',
       widget: AppLogo(
         title: 'EksporYuk',
         image: AppAssets.logo,
         withText: true,
+        alignment: AppLogoAlignment.vertical,
         // Remove this if the widget called from another project
         isFromAppAssets: false,
       ),
     );
   }
 
-  Widget circleLogoWithTextCustomSize() {
+  Widget defaultLogoWithTitleSubtitleAndVerticalAlignment() {
     return const SampleWrapper(
-      title: 'Circle Logo With Text Custom Size',
+      title: 'Default Logo With Title, Subtitle & Vertical Alignment',
       widget: AppLogo(
         title: 'EksporYuk',
+        subtitle: 'Sukseskan Ekspormu!',
         image: AppAssets.logo,
         withText: true,
-        width: 30,
-        height: 30,
+        alignment: AppLogoAlignment.vertical,
         // Remove this if the widget called from another project
         isFromAppAssets: false,
       ),
     );
   }
 
-  Widget circleLogoWithTextCustomStyle() {
+  Widget customLogo() {
     return SampleWrapper(
-      title: 'Circle Logo With Text Custom Style',
+      title: 'Custom Logo ',
       widget: AppLogo(
         title: 'EksporYuk',
+        subtitle: 'Sukseskan Ekspormu!',
         image: AppAssets.logo,
         withText: true,
-        width: 30,
-        height: 30,
-        titleStyle: AppTextStyle.bold(
-          size: 16,
-          color: AppColors.primary,
-        ),
+        width: 90,
+        height: 56,
+        titleStyle: AppTextStyle.bold(size: 32, color: AppColors.primary),
+        subtitleStyle: AppTextStyle.regular(size: 14, color: AppColors.blackLv2),
+        alignment: AppLogoAlignment.vertical,
         // Remove this if the widget called from another project
         isFromAppAssets: false,
       ),

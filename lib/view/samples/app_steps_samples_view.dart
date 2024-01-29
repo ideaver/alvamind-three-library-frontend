@@ -157,11 +157,11 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
             defaultHorizontalStepsCustomSize(),
             defaultHorizontalStepsWithDashedLine(),
             customHorizontalStepsLine(),
+            customLeadingsAndStylesHorizontalStepsLineCustom(),
             defaultVerticalSteps(),
             defaultVerticalStepsCustomFirstLeading(),
             verticalStepsCustomLeadings(),
             verticalStepsCustomLeadingsAndStyles(),
-            horizontalStepsCustomLeadingsAndStyles(),
           ],
         ),
       ),
@@ -236,6 +236,8 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
         titleFontSize: 12,
         isStepLineDashed: true,
         dashFillRate: 0.5,
+        subtitleFontSize: 6,
+        leadingSizeFactor: 1.5,
       ),
     );
   }
@@ -248,6 +250,24 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
         showSubtitle: false,
         hideInactiveLeading: true,
         titleStyle: AppTextStyle.bold(size: 12),
+      ),
+    );
+  }
+
+  Widget customLeadingsAndStylesHorizontalStepsLineCustom() {
+    return SampleWrapper(
+      title: 'Custom Leadings & Styles Horizontal Steps',
+      widget: AppSteps(
+        steps: customSteps3,
+        direction: Axis.horizontal,
+        leadingSize: 40,
+        leadingSizeFactor: 1,
+        titleActiveColor: AppColors.primary,
+        subtitleActiveColor: AppColors.primary,
+        activeStepLineColor: AppColors.primary,
+        titleFontSize: 12,
+        subtitleFontSize: 8,
+        showSubtitle: false,
       ),
     );
   }
@@ -306,22 +326,6 @@ class _AppStepsSamplesViewState extends State<AppStepsSamplesView> {
           stepLineRadius: 0,
           isStepLineContinuous: false,
         ),
-      ),
-    );
-  }
-
-  Widget horizontalStepsCustomLeadingsAndStyles() {
-    return SampleWrapper(
-      title: 'Horizontal Steps Custom Leadings & Styles',
-      widget: AppSteps(
-        steps: customSteps3,
-        direction: Axis.horizontal,
-        titleActiveColor: AppColors.primary,
-        subtitleActiveColor: AppColors.primary,
-        activeStepLineColor: AppColors.primary,
-        titleFontSize: 12,
-        subtitleFontSize: 8,
-        showSubtitle: false,
       ),
     );
   }

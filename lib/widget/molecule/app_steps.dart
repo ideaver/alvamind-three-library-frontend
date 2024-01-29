@@ -504,7 +504,11 @@ class AppSteps extends StatelessWidget {
             Center(
               child: hideInactiveLeading
                   ? step.isActive
-                      ? step.leading
+                      ? SizedBox(
+                          width: leadingSize,
+                          height: leadingSize,
+                          child: step.leading,
+                        )
                       : Container(
                           width: leadingSize / 1.5,
                           height: leadingSize / 1.5,
@@ -517,7 +521,11 @@ class AppSteps extends StatelessWidget {
                             ),
                           ),
                         )
-                  : step.leading,
+                  : SizedBox(
+                      width: leadingSize,
+                      height: leadingSize,
+                      child: step.leading,
+                    ),
             )
           else
             // Default leading

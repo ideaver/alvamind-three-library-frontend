@@ -55,7 +55,7 @@ class AppSnackbar {
 }
 
 class AppSnackbarWidget extends StatelessWidget {
-  final ScaffoldMessengerState messenger;
+  final ScaffoldMessengerState? messenger;
   final IconData? icon;
   final Color backgroundColor;
   final Color textColor;
@@ -68,10 +68,11 @@ class AppSnackbarWidget extends StatelessWidget {
   final String? subtitle;
   final TextStyle? subtitleStyle;
   final bool? showCloseButton;
+  final Function()? onTapCloseButton;
 
   const AppSnackbarWidget({
     super.key,
-    required this.messenger,
+    this.messenger,
     this.icon,
     this.backgroundColor = AppColors.primary,
     this.textColor = AppColors.white,
@@ -84,6 +85,7 @@ class AppSnackbarWidget extends StatelessWidget {
     this.titleStyle,
     this.subtitleStyle,
     this.showCloseButton = false,
+    this.onTapCloseButton,
   });
 
   @override
@@ -126,7 +128,7 @@ class AppSnackbarWidget extends StatelessWidget {
                           subtitle!,
                           style: subtitleStyle ??
                               AppTextStyle.bodySmall(
-                                fontWeight: AppFontWeight.medium,
+                                fontWeight: AppFontWeight.regular,
                                 color: textColor,
                               ),
                         )
@@ -139,14 +141,16 @@ class AppSnackbarWidget extends StatelessWidget {
               ? AppIconButton(
                   padding: EdgeInsets.zero,
                   buttonColor: AppColors.transparent,
+                  iconButtonColor: AppColors.transparent,
                   icon: Icon(
-                    Icons.close_rounded,
+                    Icons.close,
                     size: iconSize,
                     color: iconColor,
                   ),
-                  onTap: () {
-                    messenger.hideCurrentSnackBar();
-                  },
+                  onTap: onTapCloseButton ??
+                      () {
+                        messenger?.hideCurrentSnackBar();
+                      },
                 )
               : const SizedBox.shrink(),
         ],

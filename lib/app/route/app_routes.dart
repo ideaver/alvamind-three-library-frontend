@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../view/main/main_view.dart';
+import '../../view/samples/app_appbar_samples_view.dart';
 import '../../view/samples/app_avatar_samples_view.dart';
+import '../../view/samples/app_bottom_navbar_samples_view.dart';
 import '../../view/samples/app_button_samples_view.dart';
 import '../../view/samples/app_carousel_slider_samples_view.dart';
 import '../../view/samples/app_checkbox_samples_view.dart';
@@ -72,5 +74,7 @@ class AppRoutes {
     AppStepsSamplesView.routeName: (context) => const AppStepsSamplesView(),
     AppSwipeIndicatorSamplesView.routeName: (context) => const AppSwipeIndicatorSamplesView(),
     AppCarouselSliderSamplesView.routeName: (context) => const AppCarouselSliderSamplesView(),
+    AppBottomNavbarSamplesView.routeName: (context) => const AppBottomNavbarSamplesView(),
+    AppAppbarSamplesView.routeName: (context) => const AppAppbarSamplesView(),
   };
 }
