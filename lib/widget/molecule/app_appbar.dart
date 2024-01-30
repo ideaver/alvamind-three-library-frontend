@@ -1,11 +1,12 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AppAppbar extends StatelessWidget {
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
+import '../../app/theme/app_text_style.dart';
+import 'app_icon_button.dart';
+
+class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final Widget? titleWidget;
   final List<Widget>? actions;
@@ -15,11 +16,10 @@ class AppAppbar extends StatelessWidget {
   final EdgeInsets padding;
   final EdgeInsets titlePadding;
   final double elevation;
-  final double? toolbarHeight;
-  final double bottomHeight;
-  final double? appBarHeight;
+  final double appBarHeight;
   final TextStyle? titleTextStyle;
   final TextStyle? subtitleTextStyle;
+  final Color? backgroundColor;
   final Color shadowColor;
   final SystemUiOverlayStyle? systemOverlayStyle;
   final bool automaticallyImplyLeading;
@@ -33,14 +33,13 @@ class AppAppbar extends StatelessWidget {
     this.bottom,
     this.title,
     this.subtitle,
-    this.padding = const EdgeInsets.all(AppSizes.padding / 1.5),
+    this.padding = const EdgeInsets.all(AppSizes.padding / 2),
     this.titlePadding = const EdgeInsets.symmetric(horizontal: AppSizes.padding / 1.5),
     this.elevation = 0.2,
-    this.toolbarHeight,
-    this.bottomHeight = kToolbarHeight,
-    this.appBarHeight,
+    this.appBarHeight = kToolbarHeight,
     this.titleTextStyle,
     this.subtitleTextStyle,
+    this.backgroundColor,
     this.shadowColor = AppColors.blackLv7,
     this.systemOverlayStyle,
     this.automaticallyImplyLeading = true,
@@ -48,61 +47,53 @@ class AppAppbar extends StatelessWidget {
   });
 
   @override
+  Size get preferredSize => Size.fromHeight(appBarHeight);
+
+  @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(appBarHeight ?? AppBar().preferredSize.height),
+    return SafeArea(
       child: AppBar(
-        title: _appBar(context),
+        flexibleSpace: appBar(context),
         automaticallyImplyLeading: false,
-        centerTitle: centerTitle,
         leadingWidth: 0,
         titleSpacing: 0,
         elevation: elevation,
-        toolbarHeight: appBarHeight,
         shadowColor: shadowColor,
         titleTextStyle: titleTextStyle ?? AppTextStyle.heading5(),
         systemOverlayStyle: systemOverlayStyle,
-        // bottom: bottom == null
-        //     ? null
-        //     : PreferredSize(
-        //         preferredSize: Size.fromHeight(bottomHeight),
-        //         child: bottom!,
-        //       ),
+        backgroundColor: backgroundColor,
       ),
     );
   }
 
-  Widget _leadingWidget(BuildContext context) {
-    if (!automaticallyImplyLeading) {
-      return const SizedBox.shrink();
-    }
-
+  Widget leadingWidget(BuildContext context) {
     if (leading != null) {
       return leading!;
     }
 
-    return AppIconButton(
-      icon: const Icon(Icons.keyboard_arrow_left_rounded),
-      iconButtonColor: AppColors.transparent,
-      borderColor: AppColors.blackLv9,
-      borderWidth: 1,
-      padding: const EdgeInsets.all(AppSizes.padding / 4),
-      onTap: () {
-        Navigator.pop(context);
-      },
-    );
+    if (!automaticallyImplyLeading) {
+      if (centerTitle) {
+        // Replacement widget for centering title widget
+        return Opacity(opacity: 0.0, child: backButton(context, enabled: false));
+      }
+
+      return const SizedBox.shrink();
+    }
+
+    return backButton(context);
   }
 
-  Widget _appBar(BuildContext context) {
+  Widget appBar(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: padding,
           child: Row(
             children: [
-              _leadingWidget(context),
-              Expanded(child: _titleWidget()),
-              _actionsWidget(),
+              leadingWidget(context),
+              Expanded(child: appBarTitleWidget()),
+              actionsWidget(context),
             ],
           ),
         ),
@@ -111,7 +102,7 @@ class AppAppbar extends StatelessWidget {
     );
   }
 
-  Widget _titleWidget() {
+  Widget appBarTitleWidget() {
     return Padding(
       padding: titlePadding,
       child: titleWidget != null
@@ -134,8 +125,13 @@ class AppAppbar extends StatelessWidget {
     );
   }
 
-  Widget _actionsWidget() {
+  Widget actionsWidget(BuildContext context) {
     if (actions == null) {
+      if (centerTitle) {
+        // Replacement widget for centering title widget
+        return Opacity(opacity: 0.0, child: backButton(context, enabled: false));
+      }
+
       return const SizedBox.shrink();
     }
 
@@ -143,6 +139,20 @@ class AppAppbar extends StatelessWidget {
       child: Row(
         children: actions!,
       ),
+    );
+  }
+
+  Widget backButton(BuildContext context, {bool enabled = true}) {
+    return AppIconButton(
+      icon: const Icon(Icons.keyboard_arrow_left_rounded),
+      iconButtonColor: AppColors.transparent,
+      borderColor: AppColors.blackLv9,
+      borderWidth: 1,
+      padding: const EdgeInsets.all(AppSizes.padding / 4),
+      enable: enabled,
+      onTap: () {
+        Navigator.pop(context);
+      },
     );
   }
 }

@@ -1,6 +1,6 @@
-import '../../app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/theme/app_colors.dart';
 import '___sample_wrapper.dart';
 
 class AppColorsSamplesView extends StatefulWidget {

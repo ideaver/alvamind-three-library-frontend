@@ -1,8 +1,10 @@
-import 'package:alvamind_three_library_frontend/model/tab_bar_model.dart';
-import 'package:alvamind_three_library_frontend/widget/atom/app_avatar.dart';
-import 'package:alvamind_three_library_frontend/widget/atom/app_image.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_segmented_tab_bar.dart';
+import '../../app/theme/app_text_style.dart';
+import '../../model/tab_bar_model.dart';
+import '../../widget/atom/app_avatar.dart';
+import '../../widget/atom/app_image.dart';
+import '../../widget/molecule/app_icon_button.dart';
+import '../../widget/molecule/app_segmented_tab_bar.dart';
+import '../../widget/molecule/app_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -33,6 +35,12 @@ class _AppAppbarSamplesViewState extends State<AppAppbarSamplesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             defaultAppbar(),
+            defaultAppbarCenterTitle(),
+            defaultAppbarCenterTitleWithActions(),
+            defaultAppbarCenterTitleWithCustomLeadingAndActions(),
+            customAppbarTitleWidget(),
+            customAppbarColor(),
+            customAppbarWithBottomWidget(),
           ],
         ),
       ),
@@ -40,8 +48,123 @@ class _AppAppbarSamplesViewState extends State<AppAppbarSamplesView> {
   }
 
   Widget defaultAppbar() {
-    return SampleWrapper(
+    return const SampleWrapper(
       title: 'Default Appbar',
+      widget: AppAppbar(
+        title: 'App Bar Title',
+        subtitle: 'App Bar Subtitle',
+      ),
+    );
+  }
+
+  Widget defaultAppbarCenterTitle() {
+    return const SampleWrapper(
+      title: 'Default Appbar Center Title',
+      widget: AppAppbar(
+        title: 'App Bar Title',
+        subtitle: 'App Bar Subtitle',
+        centerTitle: true,
+      ),
+    );
+  }
+
+  Widget defaultAppbarCenterTitleWithActions() {
+    return SampleWrapper(
+      title: 'Default Appbar Center Title With Actions',
+      widget: AppAppbar(
+        title: 'App Bar Title',
+        subtitle: 'App Bar Subtitle',
+        centerTitle: true,
+        actions: [
+          AppIconButton(
+            icon: const Icon(Icons.notifications_active_outlined),
+            iconButtonColor: AppColors.transparent,
+            borderColor: AppColors.blackLv9,
+            borderWidth: 1,
+            padding: const EdgeInsets.all(AppSizes.padding / 4),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget defaultAppbarCenterTitleWithCustomLeadingAndActions() {
+    return SampleWrapper(
+      title: 'Default Appbar Center Title With Custom Leading & Actions',
+      widget: AppAppbar(
+        title: 'App Bar Title',
+        subtitle: 'App Bar Subtitle',
+        centerTitle: true,
+        leading: const AppAvatar(
+          image: randomImage,
+          size: 34,
+        ),
+        actions: [
+          AppIconButton(
+            icon: const Icon(Icons.notifications_active_outlined),
+            iconButtonColor: AppColors.transparent,
+            borderColor: AppColors.blackLv9,
+            borderWidth: 1,
+            padding: const EdgeInsets.all(AppSizes.padding / 4),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget customAppbarTitleWidget() {
+    return const SampleWrapper(
+      title: 'Custom Appbar TitleWidget',
+      widget: AppAppbar(
+        titlePadding: EdgeInsets.only(left: AppSizes.padding),
+        titleWidget: AppTextField(
+          type: AppTextFieldType.search,
+          hintText: 'Search',
+          rounded: false,
+          borderRadius: AppSizes.padding,
+        ),
+      ),
+    );
+  }
+
+  Widget customAppbarColor() {
+    return SampleWrapper(
+      title: 'Custom Appbar Color',
+      widget: AppAppbar(
+        title: 'App Bar Title',
+        subtitle: 'App Bar Subtitle',
+        centerTitle: false,
+        backgroundColor: AppColors.black,
+        titleTextStyle: AppTextStyle.heading6(color: AppColors.white),
+        subtitleTextStyle: AppTextStyle.bodyXSmall(fontWeight: AppFontWeight.medium, color: AppColors.white),
+        leading: const AppAvatar(
+          image: randomImage,
+          size: 34,
+        ),
+        actions: [
+          AppIconButton(
+            icon: const Icon(Icons.person_2_outlined, color: AppColors.white),
+            iconButtonColor: AppColors.transparent,
+            padding: const EdgeInsets.all(AppSizes.padding / 4),
+            onTap: () {},
+          ),
+          const SizedBox(width: AppSizes.padding / 2),
+          AppIconButton(
+            icon: const Icon(Icons.notifications_active_outlined, color: AppColors.white),
+            iconButtonColor: AppColors.transparent,
+            padding: const EdgeInsets.all(AppSizes.padding / 4),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget customAppbarWithBottomWidget() {
+    return SampleWrapper(
+      title: 'Custom Appbar With Bottom Widget',
       widget: AppAppbar(
         title: 'App Bar Title',
         subtitle: 'App Bar Subtitle',
@@ -52,23 +175,29 @@ class _AppAppbarSamplesViewState extends State<AppAppbarSamplesView> {
         ),
         actions: [
           AppIconButton(
-            icon: const Icon(Icons.keyboard_arrow_left_rounded),
+            icon: const Icon(Icons.person_2_outlined),
+            iconButtonColor: AppColors.transparent,
+            borderColor: AppColors.blackLv9,
+            borderWidth: 1,
             padding: const EdgeInsets.all(AppSizes.padding / 4),
             onTap: () {},
           ),
+          const SizedBox(width: AppSizes.padding / 2),
           AppIconButton(
-            icon: const Icon(Icons.keyboard_arrow_left_rounded),
+            icon: const Icon(Icons.notifications_active_outlined),
+            iconButtonColor: AppColors.transparent,
+            borderColor: AppColors.blackLv9,
+            borderWidth: 1,
             padding: const EdgeInsets.all(AppSizes.padding / 4),
             onTap: () {},
           ),
         ],
-        appBarHeight: 120,
         bottom: AppSegmentedTabBar(
           margin: EdgeInsets.zero,
           borderRadius: 0,
           tabs: [
-            TabBarModel(label: 'asd'),
-            TabBarModel(label: 'asd'),
+            TabBarModel(label: 'Tab 1'),
+            TabBarModel(label: 'Tab 2'),
           ],
         ),
       ),

@@ -1,12 +1,12 @@
-import 'package:alvamind_three_library_frontend/app/asset/app_icons.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
-import 'package:alvamind_three_library_frontend/widget/atom/app_avatar.dart';
-import 'package:alvamind_three_library_frontend/widget/atom/app_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/asset/app_icons.dart';
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_shadows.dart';
+import '../../app/theme/app_sizes.dart';
 import '../../model/bottom_navbar_model.dart';
+import '../../widget/atom/app_avatar.dart';
+import '../../widget/atom/app_image.dart';
 import '../../widget/molecule/app_bottom_navbar.dart';
 import '___sample_wrapper.dart';
 

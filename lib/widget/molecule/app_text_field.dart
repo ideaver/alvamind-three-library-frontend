@@ -1,19 +1,19 @@
-import '../../app/theme/app_sizes.dart';
-import '../../app/utility/console_log.dart';
-import '../../model/drop_down_model.dart';
-import 'app_drop_down.dart';
-import 'app_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/const/countries.dart';
 import '../../app/locale/app_locale.dart';
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
+import '../../app/utility/console_log.dart';
 import '../../app/utility/validator.dart';
 import '../../model/country_model.dart';
+import '../../model/drop_down_model.dart';
 import '../atom/app_image.dart';
 import '../atom/app_tool_tip.dart';
+import 'app_drop_down.dart';
+import 'app_icon_button.dart';
 
 // AppTextField
 // v.3.0.0
@@ -425,7 +425,8 @@ class _AppTextFieldState extends State<AppTextField> {
         autofocus: widget.autofocus,
         obscureText: _obsecureText,
         minLines: widget.minLines,
-        maxLines: widget.type == AppTextFieldType.password ? 1 : widget.maxLines,
+        maxLines:
+            widget.type == AppTextFieldType.password || widget.type == AppTextFieldType.search ? 1 : widget.maxLines,
         maxLength: widget.maxLength,
         maxLengthEnforcement: MaxLengthEnforcement.enforced,
         keyboardType: keyboardType(),
@@ -603,14 +604,15 @@ class _AppTextFieldState extends State<AppTextField> {
         );
       } else {
         return Padding(
-          padding: const EdgeInsets.only(right: 8, top: 10),
+          padding: const EdgeInsets.fromLTRB(4, 8, 12, 8),
           child: AppIconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.close,
               color: AppColors.darkBlueLv2,
+              size: widget.iconsSize,
             ),
             buttonColor: AppColors.blackLv8,
-            padding: const EdgeInsets.all(AppSizes.padding / 4),
+            padding: EdgeInsets.zero,
             onTap: () {
               _controller.clear();
               setState(() {});

@@ -1,6 +1,6 @@
-import 'package:alvamind_three_library_frontend/app/extension/string_casing_extension.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/extension/string_casing_extension.dart';
 import '../../app/route/app_routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
