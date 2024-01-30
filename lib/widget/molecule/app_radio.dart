@@ -15,7 +15,7 @@ class AppRadio extends StatefulWidget {
   final Function(Object?) onChanged;
 
   const AppRadio({
-    Key? key,
+    super.key,
     this.enable = true,
     required this.value,
     required this.groupValue,
@@ -25,7 +25,7 @@ class AppRadio extends StatefulWidget {
     this.titleStyle,
     this.padding = EdgeInsets.zero,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<AppRadio> createState() => _AppRadioState();

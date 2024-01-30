@@ -39,6 +39,7 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
             defaultPhoneField(),
             defaultPhoneFieldCompact(),
             defaultNumberTextField(),
+            defaultCurrencyTextField(),
             defaultSearchField(),
             customTextField(),
             customTextFieldDark(),
@@ -180,6 +181,16 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
       widget: AppTextField(
         hintText: 'Input number',
         type: AppTextFieldType.number,
+      ),
+    );
+  }
+
+  Widget defaultCurrencyTextField() {
+    return const SampleWrapper(
+      title: 'Default Currency Text Field ',
+      widget: AppTextField(
+        hintText: 'Input number',
+        type: AppTextFieldType.currency,
       ),
     );
   }

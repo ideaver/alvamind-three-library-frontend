@@ -28,6 +28,7 @@ import '../../view/samples/app_swipe_indicator_samples_view.dart';
 import '../../view/samples/app_table_navigation_samples_view.dart';
 import '../../view/samples/app_table_samples_view.dart';
 import '../../view/samples/app_tag_marker_samples_view.dart';
+import '../../view/samples/app_text_button_samples_view.dart';
 import '../../view/samples/app_text_field_samples_view.dart';
 import '../../view/samples/app_text_styles_samples_view.dart';
 import '../../view/samples/app_toggle_samples_view.dart';
@@ -48,6 +49,7 @@ class AppRoutes {
     AppTextStylesSamplesView.routeName: (context) => const AppTextStylesSamplesView(),
     AppColorsSamplesView.routeName: (context) => const AppColorsSamplesView(),
     AppButtonSamplesView.routeName: (context) => const AppButtonSamplesView(),
+    AppTextButtonSamplesView.routeName: (context) => const AppTextButtonSamplesView(),
     AppDialogSamplesView.routeName: (context) => const AppDialogSamplesView(),
     AppProgressIndicatorSamplesView.routeName: (context) => const AppProgressIndicatorSamplesView(),
     AppAvatarSamplesView.routeName: (context) => const AppAvatarSamplesView(),
