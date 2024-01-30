@@ -5,7 +5,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 
 class AppTextButton extends StatelessWidget {
-  final double? fontSize;
+  final double fontSize;
   final EdgeInsets? padding;
   final bool enable;
   final Color disabledTextColor;
@@ -17,7 +17,7 @@ class AppTextButton extends StatelessWidget {
 
   const AppTextButton({
     super.key,
-    this.fontSize,
+    this.fontSize = 14,
     this.padding,
     this.enable = true,
     this.disabledTextColor = AppColors.blackLv4,
@@ -46,7 +46,7 @@ class AppTextButton extends StatelessWidget {
     return Text(
       text,
       style: AppTextStyle.bold(
-        size: fontSize ?? 14,
+        size: fontSize,
         color: enable ? textColor : disabledTextColor,
       ),
     );

@@ -112,7 +112,7 @@ class AppTextField extends StatefulWidget {
     this.infoIconSize = 14,
     this.borderWidth = 1,
     this.contentPadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-    this.labelTextColor = AppColors.blackLv1,
+    this.labelTextColor = AppColors.secondary,
     this.onFocusLabelTextColor = AppColors.primary,
     this.infoColor = AppColors.blackLv1,
     this.onFocusInfoColor = AppColors.primary,
@@ -324,7 +324,7 @@ class _AppTextFieldState extends State<AppTextField> {
         widget.labelText!,
         style: widget.labelStyle ??
             AppTextStyle.bodyMedium(
-              fontWeight: AppFontWeight.bold,
+              fontWeight: AppFontWeight.medium,
               color: _labelTextColor,
             ),
       ),

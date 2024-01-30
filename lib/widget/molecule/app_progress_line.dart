@@ -22,7 +22,7 @@ class AppProgressLine extends StatelessWidget {
   final EdgeInsets labelPadding;
 
   const AppProgressLine({
-    Key? key,
+    super.key,
     this.lineWidth,
     this.lineHeight = 14,
     required this.maxValue,
@@ -39,7 +39,7 @@ class AppProgressLine extends StatelessWidget {
     this.labelColor = AppColors.blackLv4,
     this.valueLabelColor = AppColors.blackLv4,
     this.labelPadding = const EdgeInsets.only(top: 8),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
