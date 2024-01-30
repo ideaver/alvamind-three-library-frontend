@@ -105,4 +105,11 @@ class AppTheme {
       ),
     );
   }
+
+  // Scroll behaviour overridden
+  static ScrollBehavior scrollBehavior(BuildContext context) {
+    return ScrollConfiguration.of(context).copyWith(
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+    );
+  }
 }

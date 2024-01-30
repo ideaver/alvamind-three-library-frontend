@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Alvamind Library 3',
         theme: AppTheme.themeSelector(),
+        scrollBehavior: AppTheme.scrollBehavior(context),
         debugShowCheckedModeBanner: true,
         initialRoute: MainView.routeName,
         routes: AppRoutes.routes,
