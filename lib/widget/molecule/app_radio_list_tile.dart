@@ -16,7 +16,7 @@ class AppRadioListTile extends StatefulWidget {
   final Object groupValue;
   final String? title;
   final String? subtitle;
-  final Color activeColor;
+  final Color radioActiveColor;
   final Color radioFillColor;
   final Color activeTileColor;
   final Color inactiveTileColor;
@@ -27,7 +27,10 @@ class AppRadioListTile extends StatefulWidget {
   final double borderWidth;
   final double borderRadius;
   final EdgeInsets padding;
+  final EdgeInsets leadingWidgetPadding;
   final Widget? leadingWidget;
+  final Widget? titleWidget;
+  final Widget? subtitleWidget;
   final RadioPosition radioPosition;
   final Function(Object?) onChanged;
 
@@ -38,7 +41,7 @@ class AppRadioListTile extends StatefulWidget {
     required this.groupValue,
     this.title,
     this.subtitle,
-    this.activeColor = AppColors.primary,
+    this.radioActiveColor = AppColors.primary,
     this.radioFillColor = AppColors.blackLv6,
     this.activeTileColor = AppColors.white,
     this.inactiveTileColor = AppColors.white,
@@ -49,7 +52,10 @@ class AppRadioListTile extends StatefulWidget {
     this.borderWidth = 1,
     this.borderRadius = AppSizes.radius * 2,
     this.padding = const EdgeInsets.all(AppSizes.padding),
+    this.leadingWidgetPadding = const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2),
     this.leadingWidget,
+    this.titleWidget,
+    this.subtitleWidget,
     this.radioPosition = RadioPosition.right,
     required this.onChanged,
   });
@@ -109,7 +115,7 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
       },
       fillColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return widget.activeColor;
+          return widget.radioActiveColor;
         }
 
         return widget.radioFillColor;
@@ -123,44 +129,69 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
     return Expanded(
       child: Row(
         children: [
-          widget.leadingWidget != null
-              ? Padding(
-                  padding: const EdgeInsets.only(left: AppSizes.padding / 2),
-                  child: widget.leadingWidget!,
-                )
-              : const SizedBox.shrink(),
-          widget.title != null
-              ? Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSizes.padding - 2),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.title!,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: widget.titleStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.medium),
-                        ),
-                        widget.subtitle != null
-                            ? Padding(
-                                padding: const EdgeInsets.only(top: 2),
-                                child: Text(
-                                  widget.subtitle!,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style:
-                                      widget.subtitleStyle ?? AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                      ],
-                    ),
-                  ),
-                )
-              : const SizedBox.shrink(),
+          leadingWidget(),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                titleWidget(),
+                subtitleWidget(),
+              ],
+            ),
+          )
         ],
       ),
     );
+  }
+
+  Widget leadingWidget() {
+    if (widget.leadingWidget == null) {
+      if (widget.radioPosition == RadioPosition.right) {
+        return const SizedBox.shrink();
+      }
+
+      return SizedBox(width: widget.leadingWidgetPadding.horizontal / 2);
+    }
+
+    return Padding(
+      padding: widget.leadingWidgetPadding,
+      child: widget.leadingWidget!,
+    );
+  }
+
+  Widget titleWidget() {
+    if (widget.titleWidget != null) {
+      return widget.titleWidget!;
+    }
+
+    return Text(
+      widget.title!,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: widget.titleStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.medium),
+    );
+  }
+
+  Widget subtitleWidget() {
+    if (widget.subtitleWidget != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: widget.subtitleWidget!,
+      );
+    }
+
+    if (widget.subtitle != null) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: Text(
+          widget.subtitle!,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: widget.subtitleStyle ?? AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
+        ),
+      );
+    }
+
+    return const SizedBox.shrink();
   }
 }

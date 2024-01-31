@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
-import '../../widget/molecule/app_radio_list_tile.dart';
-import 'package:flutter/material.dart';
-
 import '../../widget/atom/app_avatar.dart';
 import '../../widget/atom/app_image.dart';
+import '../../widget/molecule/app_radio_list_tile.dart';
 import '___sample_wrapper.dart';
 
 class AppRadioListTileSamplesView extends StatefulWidget {
@@ -33,6 +33,7 @@ class _AppRadioListTileSamplesViewState extends State<AppRadioListTileSamplesVie
             defaultRadioListTileWithSubtitle(),
             defaultRadioListTileWithLeftRadioPosition(),
             defaultRadioListTileWithLeadingWidget(),
+            defaultRadioListTileWithCustomSubtitleWidget(),
             customRadioListTile(),
           ],
         ),
@@ -97,10 +98,40 @@ class _AppRadioListTileSamplesViewState extends State<AppRadioListTileSamplesVie
         groupValue: groupValue,
         title: 'Title',
         subtitle: 'Subtitle',
+        radioPosition: RadioPosition.left,
         leadingWidget: const AppAvatar(
           image: randomImage,
           size: 34,
           enableFullScreenView: false,
+        ),
+        onChanged: (val) {
+          groupValue = val as int;
+          setState(() {});
+        },
+      ),
+    );
+  }
+
+  Widget defaultRadioListTileWithCustomSubtitleWidget() {
+    return SampleWrapper(
+      title: 'Default Radio List Tile With Custom Subtitle Widget',
+      widget: AppRadioListTile(
+        value: 4,
+        groupValue: groupValue,
+        title: 'Title',
+        subtitleWidget: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Subtitle',
+              style: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Subtitle',
+              style: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
+            ),
+          ],
         ),
         onChanged: (val) {
           groupValue = val as int;
