@@ -19,6 +19,7 @@ class AppTextFieldSamplesView extends StatefulWidget {
 
 class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
   bool isOtpFieldHasError = true;
+  String otpCodeValue = '1234';
 
   @override
   Widget build(BuildContext context) {
@@ -188,8 +189,6 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
         labelText: 'Kode Verifikasi',
         hintText: '0',
         textAlign: TextAlign.center,
-        // Remove this if the widget called from another project
-        isFromAppAssets: false,
       ),
     );
   }
@@ -198,22 +197,25 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
     return SampleWrapper(
       title: 'Default OTP Field With Error',
       widget: AppTextField(
-        otpCodeValue: '1234',
+        otpCodeValue: otpCodeValue,
         type: AppTextFieldType.otp,
         labelText: 'Kode Verifikasi',
         hintText: '0',
         textAlign: TextAlign.center,
-        isHasError: false,
+        isHasError: isOtpFieldHasError,
         infoText: 'Info Text',
         onChanged: (val) {
           cl(val);
+          otpCodeValue = val;
+
           if (val.isEmpty) {
-            isOtpFieldHasError = !isOtpFieldHasError;
-            setState(() {});
+            isOtpFieldHasError = false;
+          } else {
+            isOtpFieldHasError = true;
           }
+
+          setState(() {});
         },
-        // Remove this if the widget called from another project
-        isFromAppAssets: false,
       ),
     );
   }

@@ -278,19 +278,6 @@ class _AppTextFieldState extends State<AppTextField> {
       _focusNode = widget.focusNode ?? FocusNode();
     }
 
-    if (!widget.isHasError) {
-      _fillColor = widget.fillColor;
-      _labelTextColor = widget.labelTextColor;
-      _infoColor = widget.infoColor;
-      _iconsColor = widget.iconsColor;
-      _borderColor = widget.borderColor;
-    } else {
-      _labelTextColor = AppColors.error;
-      _infoColor = AppColors.error;
-      _iconsColor = AppColors.error;
-      _borderColor = AppColors.error;
-    }
-
     _obsecureText = widget.type == AppTextFieldType.password;
 
     _country = widget.selectedCountry ?? countries.first;
@@ -318,6 +305,19 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
+    if (!widget.isHasError) {
+      _fillColor = widget.fillColor;
+      _labelTextColor = widget.labelTextColor;
+      _infoColor = widget.infoColor;
+      _iconsColor = widget.iconsColor;
+      _borderColor = widget.borderColor;
+    } else {
+      _labelTextColor = AppColors.error;
+      _infoColor = AppColors.error;
+      _iconsColor = AppColors.error;
+      _borderColor = AppColors.error;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -634,7 +634,7 @@ class _AppTextFieldState extends State<AppTextField> {
         FocusScope.of(context).requestFocus(_focusNodeList[textFieldIndex + 1]);
       }
     } else {
-      otpCodeValue.trimRight();
+      otpCodeValue = otpCodeValue.substring(0, textFieldIndex);
 
       if (textFieldIndex == 0) {
         FocusScope.of(context).requestFocus(_focusNodeList[0]);
