@@ -39,7 +39,7 @@ class AppRadioListTile extends StatefulWidget {
     this.title,
     this.subtitle,
     this.activeColor = AppColors.primary,
-    this.radioFillColor = AppColors.primary,
+    this.radioFillColor = AppColors.blackLv6,
     this.activeTileColor = AppColors.white,
     this.inactiveTileColor = AppColors.white,
     this.activeBorderColor = AppColors.primary,
@@ -107,8 +107,13 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
           value = val;
         }
       },
-      activeColor: widget.activeColor,
-      fillColor: MaterialStateColor.resolveWith((states) => widget.radioFillColor),
+      fillColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return widget.activeColor;
+        }
+
+        return widget.radioFillColor;
+      }),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       visualDensity: VisualDensity.compact,
     );
@@ -141,7 +146,6 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
                             ? Padding(
                                 padding: const EdgeInsets.only(top: 2),
                                 child: Text(
-                                  
                                   widget.subtitle!,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,

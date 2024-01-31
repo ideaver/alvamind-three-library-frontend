@@ -63,8 +63,13 @@ class _AppRadioState extends State<AppRadio> {
                     value = val;
                   }
                 },
-                activeColor: widget.activeColor,
-                fillColor: MaterialStateColor.resolveWith((states) => widget.fillColor),
+                fillColor: MaterialStateColor.resolveWith((states) {
+                  if (states.contains(MaterialState.selected)) {
+                    return widget.activeColor;
+                  }
+
+                  return widget.fillColor;
+                }),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 visualDensity: VisualDensity.compact,
               ),
