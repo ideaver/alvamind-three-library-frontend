@@ -60,14 +60,16 @@ class AppCheckbox extends StatelessWidget {
                   side: const BorderSide(width: 1.5, color: AppColors.blackLv6),
                 ),
                 title != null
-                    ? Padding(
-                        padding: const EdgeInsets.only(left: 4),
-                        child: Text(
-                          title!,
-                          style: titleStyle ??
-                              AppTextStyle.bodyMedium(
-                                fontWeight: AppFontWeight.semibold,
-                              ),
+                    ? Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: Text(
+                            title!,
+                            style: titleStyle ??
+                                AppTextStyle.bodyMedium(
+                                  fontWeight: AppFontWeight.semibold,
+                                ),
+                          ),
                         ),
                       )
                     : const SizedBox.shrink(),

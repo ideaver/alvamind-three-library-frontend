@@ -25,6 +25,7 @@ enum AppTextFieldType {
   number,
   phone,
   phoneCompact,
+  otp,
   search,
   currency,
 }
@@ -60,6 +61,7 @@ class AppTextField extends StatefulWidget {
   final int? minLines;
   final int? maxLines;
   final int? maxLength;
+  final int otpDigitLength;
   final TextStyle? labelStyle;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
@@ -70,6 +72,7 @@ class AppTextField extends StatefulWidget {
   final String? hintText;
   final String? labelText;
   final String? infoText;
+  final String? otpCodeValue;
   // [DEPRECATED] USE INFO TEXT INSTEAD
   // final String? errorText;
   final IconData? prefixIcon;
@@ -126,6 +129,7 @@ class AppTextField extends StatefulWidget {
     this.minLines,
     this.maxLines,
     this.maxLength,
+    this.otpDigitLength = 4,
     this.labelStyle,
     this.textStyle,
     this.hintStyle,
@@ -136,6 +140,7 @@ class AppTextField extends StatefulWidget {
     this.hintText,
     this.labelText,
     this.infoText,
+    this.otpCodeValue,
     // this.errorText,
     this.prefixIcon,
     this.suffixIcon,
@@ -171,11 +176,17 @@ class _AppTextFieldState extends State<AppTextField> {
   TextEditingController _controller = TextEditingController();
   FocusNode _focusNode = FocusNode();
 
+  // OTP Field
+  List<TextEditingController> _controllerList = [];
+  List<FocusNode> _focusNodeList = [];
+  String otpCodeValue = '';
+
   // Styles
-  Color _fillColor = AppColors.blackLv9;
+  Color _fillColor = AppColors.white;
   Color _labelTextColor = AppColors.blackLv7;
   Color _infoColor = AppColors.blackLv7;
   Color _iconsColor = AppColors.blackLv5;
+  Color _borderColor = AppColors.blackLv7;
 
   // Password
   bool _obsecureText = false;
@@ -213,7 +224,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
   Color passwordStrengthColor() {
     if (passwordStrengthValue == 0) {
-      return AppColors.redLv1;
+      return AppColors.error;
     }
     if (passwordStrengthValue == 1) {
       return AppColors.yellowLv1;
@@ -247,19 +258,37 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   void initState() {
-    _controller = widget.controller ?? TextEditingController();
-    _focusNode = widget.focusNode ?? FocusNode();
+    if (widget.type == AppTextFieldType.otp) {
+      _controllerList = [
+        ...List.generate(widget.otpDigitLength, (index) => TextEditingController()),
+      ];
+      _focusNodeList = [
+        ...List.generate(widget.otpDigitLength, (index) => FocusNode()),
+      ];
+
+      if (widget.otpCodeValue != null) {
+        otpCodeValue = widget.otpCodeValue!;
+
+        for (int i = 0; i < _controllerList.length; i++) {
+          _controllerList[i].text = widget.otpCodeValue!.split('')[i];
+        }
+      }
+    } else {
+      _controller = widget.controller ?? TextEditingController();
+      _focusNode = widget.focusNode ?? FocusNode();
+    }
 
     if (!widget.isHasError) {
       _fillColor = widget.fillColor;
       _labelTextColor = widget.labelTextColor;
       _infoColor = widget.infoColor;
       _iconsColor = widget.iconsColor;
+      _borderColor = widget.borderColor;
     } else {
-      _fillColor = AppColors.redLv5;
-      _labelTextColor = AppColors.redLv1;
-      _infoColor = AppColors.redLv1;
-      _iconsColor = AppColors.redLv1;
+      _labelTextColor = AppColors.error;
+      _infoColor = AppColors.error;
+      _iconsColor = AppColors.error;
+      _borderColor = AppColors.error;
     }
 
     _obsecureText = widget.type == AppTextFieldType.password;
@@ -280,6 +309,7 @@ class _AppTextFieldState extends State<AppTextField> {
           _labelTextColor = widget.labelTextColor;
           _infoColor = widget.infoColor;
           _iconsColor = widget.iconsColor;
+          _borderColor = widget.borderColor;
         });
       }
     });
@@ -288,10 +318,6 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.type == AppTextFieldType.phone) {
-      return phoneField();
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -308,7 +334,7 @@ class _AppTextFieldState extends State<AppTextField> {
       children: [
         Expanded(child: phoneCodeDropDown()),
         const SizedBox(width: AppSizes.padding / 2),
-        Expanded(flex: 2, child: textFieldWidget()),
+        Expanded(flex: 2, child: textField()),
       ],
     );
   }
@@ -410,24 +436,82 @@ class _AppTextFieldState extends State<AppTextField> {
   }
 
   Widget textFieldWidget() {
+    if (widget.type == AppTextFieldType.phone) {
+      return phoneField();
+    }
+
+    if (widget.type == AppTextFieldType.otp) {
+      return otpField();
+    }
+
+    return textField();
+  }
+
+  FocusNode textFieldFocusNode(int i) {
+    if (widget.type == AppTextFieldType.otp) {
+      return _focusNodeList[i];
+    }
+
+    return _focusNode;
+  }
+
+  int? textFieldMaxLines() {
+    if (widget.type == AppTextFieldType.password ||
+        widget.type == AppTextFieldType.search ||
+        widget.type == AppTextFieldType.otp) {
+      return 1;
+    }
+
+    return widget.maxLines;
+  }
+
+  int? textFieldMaxLength() {
+    if (widget.type == AppTextFieldType.otp) {
+      return 1;
+    }
+
+    return widget.maxLength;
+  }
+
+  TextEditingController textFieldController(int i) {
+    if (widget.type == AppTextFieldType.otp) {
+      return _controllerList[i];
+    }
+
+    return _controller;
+  }
+
+  TextStyle textFieldTextStyle() {
+    if (widget.textStyle != null) {
+      return widget.textStyle!.copyWith(
+        color: widget.isHasError ? AppColors.error : null,
+      );
+    }
+
+    return AppTextStyle.bodyMedium(
+      fontWeight: AppFontWeight.semibold,
+      color: widget.isHasError ? AppColors.error : null,
+    );
+  }
+
+  Widget textField({int textFieldIndex = 0}) {
     return GestureDetector(
       onTap: widget.onTap,
       child: TextField(
-        focusNode: _focusNode,
-        controller: _controller,
-        onChanged: onChanged,
+        focusNode: textFieldFocusNode(textFieldIndex),
+        controller: textFieldController(textFieldIndex),
+        onChanged: (value) => onChanged(value, textFieldIndex: textFieldIndex),
         onEditingComplete: widget.onEditingComplete,
         onSubmitted: widget.onSubmitted,
         enabled: widget.enabled,
-        style: widget.textStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.semibold),
+        style: textFieldTextStyle(),
         cursorColor: AppColors.blackLv1,
         cursorWidth: 1.5,
         autofocus: widget.autofocus,
         obscureText: _obsecureText,
         minLines: widget.minLines,
-        maxLines:
-            widget.type == AppTextFieldType.password || widget.type == AppTextFieldType.search ? 1 : widget.maxLines,
-        maxLength: widget.maxLength,
+        maxLines: textFieldMaxLines(),
+        maxLength: textFieldMaxLength(),
         maxLengthEnforcement: MaxLengthEnforcement.enforced,
         keyboardType: keyboardType(),
         textInputAction: widget.textInputAction,
@@ -489,7 +573,7 @@ class _AppTextFieldState extends State<AppTextField> {
             ),
             borderSide: BorderSide(
               width: widget.borderWidth,
-              color: widget.borderColor,
+              color: _borderColor,
             ),
           ),
           disabledBorder: OutlineInputBorder(
@@ -498,7 +582,7 @@ class _AppTextFieldState extends State<AppTextField> {
             ),
             borderSide: BorderSide(
               width: widget.borderWidth,
-              color: widget.borderColor,
+              color: _borderColor,
             ),
           ),
         ),
@@ -506,16 +590,61 @@ class _AppTextFieldState extends State<AppTextField> {
     );
   }
 
-  void onChanged(String val) {
+  Widget otpField() {
+    return Row(
+      children: [
+        ...List.generate(
+          widget.otpDigitLength,
+          (i) => Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: AppSizes.padding / 2),
+              child: textField(
+                textFieldIndex: i,
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  void onChanged(String value, {int textFieldIndex = 0}) {
     if (widget.onChanged != null) {
-      widget.onChanged!(val);
+      widget.onChanged!(value);
     }
 
     if (widget.type == AppTextFieldType.password) {
       passwordValidator();
     }
 
+    if (widget.type == AppTextFieldType.otp) {
+      otpOnChanged(textFieldIndex);
+    }
+
     setState(() {});
+  }
+
+  void otpOnChanged(int textFieldIndex) {
+    if (_controllerList[textFieldIndex].text.isNotEmpty) {
+      otpCodeValue += _controllerList[textFieldIndex].text;
+
+      if (textFieldIndex == widget.otpDigitLength - 1) {
+        FocusScope.of(context).unfocus();
+      } else {
+        FocusScope.of(context).requestFocus(_focusNodeList[textFieldIndex + 1]);
+      }
+    } else {
+      otpCodeValue.trimRight();
+
+      if (textFieldIndex == 0) {
+        FocusScope.of(context).requestFocus(_focusNodeList[0]);
+      } else {
+        FocusScope.of(context).requestFocus(_focusNodeList[textFieldIndex - 1]);
+      }
+    }
+
+    // Returning otp code value
+    widget.onChanged!(otpCodeValue);
   }
 
   TextInputType? keyboardType() {
@@ -527,7 +656,9 @@ class _AppTextFieldState extends State<AppTextField> {
       return TextInputType.phone;
     }
 
-    if (widget.type == AppTextFieldType.number || widget.type == AppTextFieldType.currency) {
+    if (widget.type == AppTextFieldType.number ||
+        widget.type == AppTextFieldType.currency ||
+        widget.type == AppTextFieldType.otp) {
       return TextInputType.number;
     }
 

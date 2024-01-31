@@ -18,6 +18,8 @@ class AppTextFieldSamplesView extends StatefulWidget {
 }
 
 class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
+  bool isOtpFieldHasError = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,8 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
             defaultPasswordFieldWithStrengthMeter(),
             defaultPhoneField(),
             defaultPhoneFieldCompact(),
+            defaultOtpField(),
+            defaultOtpFieldWithError(),
             defaultNumberTextField(),
             defaultCurrencyTextField(),
             defaultSearchField(),
@@ -149,6 +153,7 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
     return SampleWrapper(
       title: 'Default Phone Field ',
       widget: AppTextField(
+        labelText: 'Phone Number',
         hintText: 'Input phone number',
         type: AppTextFieldType.phone,
         selectedCountry: countries.first,
@@ -171,6 +176,44 @@ class _AppTextFieldSamplesViewState extends State<AppTextFieldSamplesView> {
         onTapCountry: (country) {
           cl(country.phoneCode);
         },
+      ),
+    );
+  }
+
+  Widget defaultOtpField() {
+    return const SampleWrapper(
+      title: 'Default OTP Field',
+      widget: AppTextField(
+        type: AppTextFieldType.otp,
+        labelText: 'Kode Verifikasi',
+        hintText: '0',
+        textAlign: TextAlign.center,
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
+      ),
+    );
+  }
+
+  Widget defaultOtpFieldWithError() {
+    return SampleWrapper(
+      title: 'Default OTP Field With Error',
+      widget: AppTextField(
+        otpCodeValue: '1234',
+        type: AppTextFieldType.otp,
+        labelText: 'Kode Verifikasi',
+        hintText: '0',
+        textAlign: TextAlign.center,
+        isHasError: false,
+        infoText: 'Info Text',
+        onChanged: (val) {
+          cl(val);
+          if (val.isEmpty) {
+            isOtpFieldHasError = !isOtpFieldHasError;
+            setState(() {});
+          }
+        },
+        // Remove this if the widget called from another project
+        isFromAppAssets: false,
       ),
     );
   }
