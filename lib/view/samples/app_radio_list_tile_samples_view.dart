@@ -1,7 +1,7 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_radio_list_tile.dart';
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
+import '../../app/theme/app_text_style.dart';
+import '../../widget/molecule/app_radio_list_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/atom/app_avatar.dart';

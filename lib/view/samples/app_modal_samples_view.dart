@@ -1,5 +1,5 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
-import 'package:alvamind_three_library_frontend/view/samples/___sample_wrapper.dart';
+import '../../app/theme/app_sizes.dart';
+import '___sample_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';

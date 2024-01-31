@@ -1,15 +1,15 @@
-import '../../app/theme/app_text_style.dart';
-import '../../model/tab_bar_model.dart';
-import '../../widget/atom/app_avatar.dart';
-import '../../widget/atom/app_image.dart';
-import '../../widget/molecule/app_icon_button.dart';
-import '../../widget/molecule/app_segmented_tab_bar.dart';
-import '../../widget/molecule/app_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
+import '../../app/theme/app_text_style.dart';
+import '../../model/tab_bar_model.dart';
+import '../../widget/atom/app_avatar.dart';
+import '../../widget/atom/app_image.dart';
 import '../../widget/molecule/app_appbar.dart';
+import '../../widget/molecule/app_icon_button.dart';
+import '../../widget/molecule/app_segmented_tab_bar.dart';
+import '../../widget/molecule/app_text_field.dart';
 import '___sample_wrapper.dart';
 
 class AppAppbarSamplesView extends StatefulWidget {
