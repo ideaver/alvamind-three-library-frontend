@@ -20,6 +20,7 @@ import '../../view/samples/app_maps_samples_view.dart';
 import '../../view/samples/app_modal_samples_view.dart';
 import '../../view/samples/app_progress_indicator_samples_view.dart';
 import '../../view/samples/app_progress_line_samples_view.dart';
+import '../../view/samples/app_radio_list_tile_samples_view.dart';
 import '../../view/samples/app_radio_samples_view.dart';
 import '../../view/samples/app_segmented_tab_bar_samples_view.dart';
 import '../../view/samples/app_snackbar_samples_view.dart';
@@ -70,6 +71,7 @@ class AppRoutes {
     AppDottedBorderSamplesView.routeName: (context) => const AppDottedBorderSamplesView(),
     AppCheckboxSamplesView.routeName: (context) => const AppCheckboxSamplesView(),
     AppRadioSamplesView.routeName: (context) => const AppRadioSamplesView(),
+    AppRadioListTileSamplesView.routeName: (context) => const AppRadioListTileSamplesView(),
     AppTableSamplesView.routeName: (context) => const AppTableSamplesView(),
     AppTableNavigationSamplesView.routeName: (context) => const AppTableNavigationSamplesView(),
     AppSnackbarSamplesView.routeName: (context) => const AppSnackbarSamplesView(),

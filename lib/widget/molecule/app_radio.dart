@@ -55,7 +55,7 @@ class _AppRadioState extends State<AppRadio> {
           child: Row(
             children: [
               Radio(
-                value: widget.value,
+                value: value,
                 groupValue: widget.groupValue,
                 onChanged: (val) {
                   if (widget.enable) {

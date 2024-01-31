@@ -55,6 +55,7 @@ class AppAvatar extends StatelessWidget {
           width: size,
           height: size,
           backgroundColor: backgroundColor,
+          borderColor: enabled ? enabledColor : disabledColor,
           borderWidth: borderWidth,
           borderRadius: borderRadius,
           enableFullScreenView: enabled ? enableFullScreenView : false,

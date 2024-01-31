@@ -33,7 +33,7 @@ class AppButton extends StatelessWidget {
   final Color? prefixIconColor;
   final Color? suffixIconColor;
   final Color loadingIndicatorColor;
-  final String text;
+  final String? text;
   final AppFontWeight? fontWeight;
   final String? fontFamily;
   final IconData? prefixIcon;
@@ -68,7 +68,7 @@ class AppButton extends StatelessWidget {
     this.prefixIconColor,
     this.suffixIconColor,
     this.loadingIndicatorColor = AppColors.white,
-    required this.text,
+    this.text,
     this.fontWeight = AppFontWeight.bold,
     this.fontFamily,
     this.prefixIcon,
@@ -135,21 +135,23 @@ class AppButton extends StatelessWidget {
 
   Widget buttonText() {
     return textWidget == null
-        ? Flexible(
-            child: Padding(
-              padding: textPadding,
-              child: Text(
-                text,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyle.custom(
-                  size: fontSize ?? 16,
-                  color: enable ? textColor : disabledTextColor,
-                  fontWeight: fontWeight,
-                  fontFamily: fontFamily,
+        ? text != null
+            ? Flexible(
+                child: Padding(
+                  padding: textPadding,
+                  child: Text(
+                    text!,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.custom(
+                      size: fontSize ?? 16,
+                      color: enable ? textColor : disabledTextColor,
+                      fontWeight: fontWeight,
+                      fontFamily: fontFamily,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
+              )
+            : const SizedBox.shrink()
         : textWidget!;
   }
 
