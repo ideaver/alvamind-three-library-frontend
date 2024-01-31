@@ -24,7 +24,9 @@ class _AppDividerSamplesViewState extends State<AppDividerSamplesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             defaultDivider(),
+            defaultDividerDashed(),
             verticalDivider(),
+            verticalDividerDashed(),
             horizontalDividerCustomStyle(),
           ],
         ),
@@ -39,14 +41,32 @@ class _AppDividerSamplesViewState extends State<AppDividerSamplesView> {
     );
   }
 
+  Widget defaultDividerDashed() {
+    return const SampleWrapper(
+      title: 'Default Divider Dashed',
+      widget: AppDivider(
+        type: DividerType.dashed,
+      ),
+    );
+  }
+
   Widget verticalDivider() {
     return const SampleWrapper(
       title: 'Vertical Divider',
-      widget: SizedBox(
+      widget: AppDivider(
         height: 100,
-        child: AppDivider(
-          isVertical: true,
-        ),
+        direction: Axis.vertical,
+      ),
+    );
+  }
+
+  Widget verticalDividerDashed() {
+    return const SampleWrapper(
+      title: 'Vertical Divider Dashed',
+      widget: AppDivider(
+        height: 100,
+        type: DividerType.dashed,
+        direction: Axis.vertical,
       ),
     );
   }

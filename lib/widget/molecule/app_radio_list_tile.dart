@@ -128,10 +128,12 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
   Widget textWidget() {
     return Expanded(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           leadingWidget(),
           Flexible(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 titleWidget(),

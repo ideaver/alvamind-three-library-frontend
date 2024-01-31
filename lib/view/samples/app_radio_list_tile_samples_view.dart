@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../app/asset/app_assets.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../widget/atom/app_avatar.dart';
+import '../../widget/atom/app_divider.dart';
 import '../../widget/atom/app_image.dart';
 import '../../widget/molecule/app_radio_list_tile.dart';
 import '___sample_wrapper.dart';
@@ -98,11 +100,23 @@ class _AppRadioListTileSamplesViewState extends State<AppRadioListTileSamplesVie
         groupValue: groupValue,
         title: 'Title',
         subtitle: 'Subtitle',
-        radioPosition: RadioPosition.left,
-        leadingWidget: const AppAvatar(
-          image: randomImage,
-          size: 34,
-          enableFullScreenView: false,
+        leadingWidget: const Row(
+          children: [
+            AppImage(
+              image: AppAssets.bankBCA,
+              imgProvider: ImgProvider.assetImage,
+              enableFullScreenView: false,
+              height: 36,
+              // Remove this
+              isFromAppAssets: false,
+            ),
+            AppDivider(
+              type: DividerType.dashed,
+              direction: Axis.vertical,
+              height: AppSizes.padding * 2,
+              padding: EdgeInsets.only(left: AppSizes.padding, right: AppSizes.padding / 2),
+            ),
+          ],
         ),
         onChanged: (val) {
           groupValue = val as int;
