@@ -43,6 +43,9 @@ class AppCheckbox extends StatelessWidget {
               children: [
                 Checkbox(
                   value: value,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppSizes.radius / 1.5),
+                  ),
                   onChanged: (val) {
                     if (enable) {
                       onChanged(val);
@@ -54,6 +57,7 @@ class AppCheckbox extends StatelessWidget {
                           ? MaterialStateColor.resolveWith((states) => fillColor!)
                           : null,
                   activeColor: activeColor,
+                  side: const BorderSide(width: 1.5, color: AppColors.blackLv6),
                 ),
                 title != null
                     ? Padding(
