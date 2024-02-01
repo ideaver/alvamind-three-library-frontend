@@ -113,7 +113,7 @@ class AppTextField extends StatefulWidget {
     this.fontSize = 14,
     this.iconsSize,
     this.borderRadius = 6,
-    this.infoIconSize = 14,
+    this.infoIconSize = 12,
     this.borderWidth = 1,
     this.contentPadding = const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
     this.labelTextColor = AppColors.secondary,
@@ -412,10 +412,11 @@ class _AppTextFieldState extends State<AppTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           widget.showInfoIcon
               ? Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
+                  padding: const EdgeInsets.only(right: 6.0, top: 2.0),
                   child: Icon(
                     widget.infoIcon,
                     color: _infoColor,
@@ -423,13 +424,15 @@ class _AppTextFieldState extends State<AppTextField> {
                   ),
                 )
               : const SizedBox.shrink(),
-          Text(
-            widget.infoText!,
-            style: widget.infoStyle ??
-                AppTextStyle.bodySmall(
-                  fontWeight: AppFontWeight.bold,
-                  color: _infoColor,
-                ),
+          Flexible(
+            child: Text(
+              widget.infoText!,
+              style: widget.infoStyle ??
+                  AppTextStyle.bodyXSmall(
+                    fontWeight: AppFontWeight.regular,
+                    color: _infoColor,
+                  ),
+            ),
           ),
         ],
       ),
