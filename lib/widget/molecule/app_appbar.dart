@@ -51,18 +51,16 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: AppBar(
-        flexibleSpace: appBar(context),
-        automaticallyImplyLeading: false,
-        leadingWidth: 0,
-        titleSpacing: 0,
-        elevation: elevation,
-        shadowColor: shadowColor,
-        titleTextStyle: titleTextStyle ?? AppTextStyle.heading5(),
-        systemOverlayStyle: systemOverlayStyle,
-        backgroundColor: backgroundColor,
-      ),
+    return AppBar(
+      flexibleSpace: appBar(context),
+      automaticallyImplyLeading: false,
+      leadingWidth: 0,
+      titleSpacing: 0,
+      elevation: elevation,
+      shadowColor: shadowColor,
+      titleTextStyle: titleTextStyle ?? AppTextStyle.heading5(),
+      systemOverlayStyle: systemOverlayStyle,
+      backgroundColor: backgroundColor,
     );
   }
 
@@ -84,21 +82,23 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget appBar(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: padding,
-          child: Row(
-            children: [
-              leadingWidget(context),
-              Expanded(child: appBarTitleWidget()),
-              actionsWidget(context),
-            ],
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: padding,
+            child: Row(
+              children: [
+                leadingWidget(context),
+                Expanded(child: appBarTitleWidget()),
+                actionsWidget(context),
+              ],
+            ),
           ),
-        ),
-        bottom == null ? const SizedBox.shrink() : bottom!,
-      ],
+          bottom == null ? const SizedBox.shrink() : bottom!,
+        ],
+      ),
     );
   }
 
