@@ -602,7 +602,7 @@ class _AppTextFieldState extends State<AppTextField> {
           widget.otpDigitLength,
           (i) => Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(left: AppSizes.padding / 2),
+              padding: EdgeInsets.only(left: i == 0 ? 0 : AppSizes.padding / 2),
               child: textField(
                 textFieldIndex: i,
               ),
