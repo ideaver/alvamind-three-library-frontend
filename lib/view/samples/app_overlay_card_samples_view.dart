@@ -29,6 +29,7 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             defaultOverlayCard(),
+            overlayCardWithCustomSize(),
             customOverlayCard(),
           ],
         ),
@@ -39,29 +40,19 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
   Widget defaultOverlayCard() {
     return SampleWrapper(
       title: 'Default Overlay Card',
+      widget: AppOverlayCard(onTap: () {}, isFromAppAssets: false, child: childSample1()),
+    );
+  }
+
+  Widget overlayCardWithCustomSize() {
+    return SampleWrapper(
+      title: 'Overlay Card with custom size',
       widget: AppOverlayCard(
         onTap: () {},
+        width: 200,
+        height: 260,
         isFromAppAssets: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Child Here',
-              style: AppTextStyle.heading2(
-                color: AppColors.white,
-              ),
-            ),
-            Text(
-              'Lorem ipsum dolor sit amet',
-              style: AppTextStyle.heading6(
-                color: AppColors.white,
-              ),
-            ),
-            const SizedBox(height: AppSizes.padding),
-            AppButton(onTap: () {}, text: 'Button'),
-          ],
-        ),
+        child: childSample2(),
       ),
     );
   }
@@ -73,45 +64,77 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
         onTap: () {},
         width: 200,
         height: 260,
+        borderRadius: const BorderRadius.all(Radius.circular(AppSizes.radius)),
+        overlayGradientBegin: Alignment.topLeft,
+        overlayGradientEnd: Alignment.bottomRight,
+        overlayGradientColors: [AppColors.yellowLv1.withOpacity(0.01), AppColors.yellowLv1],
+        shadowColor: AppColors.blackLv5,
         isFromAppAssets: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Align(
-                alignment: Alignment.topRight,
-                child: AppIconButton(
-                  icon: const Icon(
-                    AppIcons.share,
-                    color: AppColors.white,
-                  ),
-                  iconButtonColor: AppColors.transparent,
-                  padding: EdgeInsets.zero,
-                  onTap: () {},
-                ),
-              ),
-            ),
-            Text(
-              'Child Here',
-              style: AppTextStyle.heading4(
-                color: AppColors.white,
-              ),
-            ),
-            Text(
-              'Lorem ipsum dolor sit amet',
-              style: AppTextStyle.regular(
-                size: 12,
-                color: AppColors.white,
-              ),
-            ),
-            const SizedBox(height: AppSizes.padding),
-            AppButton(
-              onTap: () {},
-              text: 'Button',
-            ),
-          ],
-        ),
+        child: childSample2(),
       ),
+    );
+  }
+
+  Widget childSample1() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Child Here',
+          style: AppTextStyle.heading2(
+            color: AppColors.white,
+          ),
+        ),
+        Text(
+          'Lorem ipsum dolor sit amet',
+          style: AppTextStyle.heading6(
+            color: AppColors.white,
+          ),
+        ),
+        const SizedBox(height: AppSizes.padding),
+        AppButton(onTap: () {}, text: 'Button'),
+      ],
+    );
+  }
+
+  Widget childSample2() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Align(
+            alignment: Alignment.topRight,
+            child: AppIconButton(
+              icon: const Icon(
+                AppIcons.share,
+                color: AppColors.white,
+              ),
+              iconButtonColor: AppColors.transparent,
+              padding: EdgeInsets.zero,
+              onTap: () {},
+            ),
+          ),
+        ),
+        Text(
+          'Child Here',
+          style: AppTextStyle.heading4(
+            color: AppColors.white,
+          ),
+        ),
+        Text(
+          'Lorem ipsum dolor sit amet',
+          style: AppTextStyle.regular(
+            size: 12,
+            color: AppColors.white,
+          ),
+        ),
+        const SizedBox(height: AppSizes.padding),
+        AppButton(
+          onTap: () {},
+          text: 'Button',
+        ),
+      ],
     );
   }
 }
