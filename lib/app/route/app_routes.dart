@@ -24,6 +24,7 @@ import '../../view/samples/app_radio_list_tile_samples_view.dart';
 import '../../view/samples/app_radio_samples_view.dart';
 import '../../view/samples/app_segmented_tab_bar_samples_view.dart';
 import '../../view/samples/app_snackbar_samples_view.dart';
+import '../../view/samples/app_statistic_square_samples_view.dart';
 import '../../view/samples/app_steps_samples_view.dart';
 import '../../view/samples/app_swipe_indicator_samples_view.dart';
 import '../../view/samples/app_table_navigation_samples_view.dart';
@@ -36,6 +37,7 @@ import '../../view/samples/app_toggle_samples_view.dart';
 import '../../view/samples/app_tool_tip_menu_samples_view.dart';
 import '../../view/samples/icons_samples_view.dart';
 import '../../view/samples/illustrations_samples_view.dart';
+import '../../view/samples/statistic_squares_grid_samples_view.dart';
 
 // App routes
 class AppRoutes {
@@ -80,5 +82,7 @@ class AppRoutes {
     AppCarouselSliderSamplesView.routeName: (context) => const AppCarouselSliderSamplesView(),
     AppBottomNavbarSamplesView.routeName: (context) => const AppBottomNavbarSamplesView(),
     AppAppbarSamplesView.routeName: (context) => const AppAppbarSamplesView(),
+    AppStatisticSquareamplesView.routeName: (context) => const AppStatisticSquareamplesView(),
+    StatisticSquaresGridamplesView.routeName: (context) => const StatisticSquaresGridamplesView(),
   };
 }

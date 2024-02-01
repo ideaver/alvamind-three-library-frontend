@@ -81,8 +81,8 @@ class AppColors {
 
   // Green
   static const Color greenLv1 = Color(0xFF199226);
-  static const Color greenLv2 = Color(0xFF23AA26);
-  static const Color greenLv3 = Color(0xFF63C965);
+  static const Color greenLv2 = Color(0xFF48C54A);
+  static const Color greenLv3 = Color(0xFF6DD16E);
   static const Color greenLv4 = Color(0xFF92E193);
   static const Color greenLv5 = Color(0xFFC5FBC6);
   static const Color greenLv6 = Color(0xFFE4FFE5);
