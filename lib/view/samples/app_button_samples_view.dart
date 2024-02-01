@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+
 import '../../app/asset/app_icons.dart';
+import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
 import '../../app/utility/currency_formatter.dart';
-import 'package:flutter/material.dart';
-
-import '../../app/theme/app_colors.dart';
 import '../../widget/molecule/app_button.dart';
 import '___sample_wrapper.dart';
 
@@ -42,6 +42,7 @@ class _AppButtonSamplesViewState extends State<AppButtonSamplesView> {
             secondaryUnRoundedButton(),
             secondaryButtonWithIcon(),
             minWidthButton(),
+            customTitleWidgetButton(),
             customButtons(),
             customButtonsWithVerticalAlignment(),
           ],
@@ -232,6 +233,27 @@ class _AppButtonSamplesViewState extends State<AppButtonSamplesView> {
         textColor: AppColors.primary,
         buttonColor: AppColors.blueLv6,
         prefixIcon: Icons.trolley,
+        suffixIcon: Icons.arrow_forward_ios_rounded,
+      ),
+    );
+  }
+
+  Widget customTitleWidgetButton() {
+    return SampleWrapper(
+      title: 'Custom Title Widget Button',
+      widget: AppButton(
+        onTap: () {},
+        textWidget: Expanded(
+          child: Text(
+            'Label',
+            style: AppTextStyle.bold(size: 14),
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: AppSizes.padding / 1.5, horizontal: AppSizes.padding),
+        borderWidth: 1,
+        buttonColor: AppColors.blackLv10,
+        borderColor: AppColors.blackLv8,
+        suffixIconColor: AppColors.black,
         suffixIcon: Icons.arrow_forward_ios_rounded,
       ),
     );

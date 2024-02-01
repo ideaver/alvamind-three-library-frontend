@@ -52,6 +52,8 @@ class AppSegmentedTabBar extends StatefulWidget {
 class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProviderStateMixin {
   late TabController tabController;
 
+  late List<Widget> tabs;
+
   @override
   void initState() {
     if (widget.tabController == null) {
@@ -66,6 +68,11 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
     } else {
       tabController = widget.tabController!;
     }
+
+    tabs = List.generate(widget.tabs.length, (i) {
+      return Tab(child: tabWidget(i));
+    });
+
     super.initState();
   }
 
@@ -74,6 +81,12 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
       widget.onChangedTab!(tabController.index);
     }
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -88,49 +101,46 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
       ),
       child: TabBar(
         controller: tabController,
-        physics: const NeverScrollableScrollPhysics(),
         indicator: BoxDecoration(
           color: widget.indicatorColor,
           borderRadius: BorderRadius.circular(widget.borderRadius - 4),
         ),
-        splashBorderRadius: BorderRadius.circular(widget.borderRadius - 4),
+        splashFactory: NoSplash.splashFactory,
         padding: widget.padding,
         indicatorPadding: widget.indicatorPadding,
-        tabs: [
-          ...List.generate(widget.tabs.length, (i) {
-            return Tab(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  widget.tabs[i].icon != null
-                      ? Padding(
-                          padding: const EdgeInsets.only(right: AppSizes.padding / 3),
-                          child: Icon(
-                            widget.tabs[i].icon,
-                            size: widget.iconSize,
-                            color: tabController.index == i ? widget.activeLabelColor : widget.iconColor,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  widget.tabs[i].label != null
-                      ? Flexible(
-                          child: Text(
-                            widget.tabs[i].label ?? '',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyle.bold(
-                              size: widget.labelFontSize,
-                              color: tabController.index == i ? widget.activeLabelColor : widget.labelColor,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ],
-              ),
-            );
-          }),
-        ],
+        tabs: tabs,
       ),
+    );
+  }
+
+  Widget tabWidget(int i) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        widget.tabs[i].icon != null
+            ? Padding(
+                padding: const EdgeInsets.only(right: AppSizes.padding / 3),
+                child: Icon(
+                  widget.tabs[i].icon,
+                  size: widget.iconSize,
+                  color: tabController.index == i ? widget.activeLabelColor : widget.iconColor,
+                ),
+              )
+            : const SizedBox.shrink(),
+        widget.tabs[i].label != null
+            ? Flexible(
+                child: Text(
+                  widget.tabs[i].label ?? '',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyle.bold(
+                    size: widget.labelFontSize,
+                    color: tabController.index == i ? widget.activeLabelColor : widget.labelColor,
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+      ],
     );
   }
 }

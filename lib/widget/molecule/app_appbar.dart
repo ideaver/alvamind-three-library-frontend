@@ -35,7 +35,7 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.subtitle,
     this.padding = const EdgeInsets.all(AppSizes.padding / 2),
     this.titlePadding = const EdgeInsets.symmetric(horizontal: AppSizes.padding / 1.5),
-    this.elevation = 0.2,
+    this.elevation = 0,
     this.appBarHeight = kToolbarHeight,
     this.titleTextStyle,
     this.subtitleTextStyle,
