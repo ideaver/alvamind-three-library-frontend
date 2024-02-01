@@ -111,7 +111,7 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: centerTitle ? CrossAxisAlignment.center : CrossAxisAlignment.start,
               children: [
                 Text(
-                  title!,
+                  title ?? '',
                   style: titleTextStyle ?? AppTextStyle.heading6(),
                 ),
                 subtitle != null
