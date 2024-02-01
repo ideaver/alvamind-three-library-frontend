@@ -274,10 +274,10 @@ class _AppTextFieldState extends State<AppTextField> {
           _controllerList[i].text = widget.otpCodeValue!.split('')[i];
         }
       }
-    } else {
-      _controller = widget.controller ?? TextEditingController();
-      _focusNode = widget.focusNode ?? FocusNode();
     }
+
+    _controller = widget.controller ?? TextEditingController();
+    _focusNode = widget.focusNode ?? FocusNode();
 
     _obsecureText = widget.type == AppTextFieldType.password;
 
