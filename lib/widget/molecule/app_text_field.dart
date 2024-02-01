@@ -651,6 +651,9 @@ class _AppTextFieldState extends State<AppTextField> {
       }
     }
 
+    // Setting otp code value to text field
+    _controller.text = otpCodeValue;
+
     // Returning otp code value
     widget.onChanged!(otpCodeValue);
   }
