@@ -1,7 +1,9 @@
+import 'package:alvamind_three_library_frontend/app/asset/app_assets.dart';
 import 'package:alvamind_three_library_frontend/app/asset/app_icons.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
+import 'package:alvamind_three_library_frontend/widget/atom/app_image.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_overlay_card.dart';
@@ -31,6 +33,8 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
             defaultOverlayCard(),
             overlayCardWithCustomSize(),
             customOverlayCard(),
+            customOverlayCardWithOverlayWidget(),
+            customOverlayCardWithOverlayWidgetAndGradients(),
           ],
         ),
       ),
@@ -40,7 +44,12 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
   Widget defaultOverlayCard() {
     return SampleWrapper(
       title: 'Default Overlay Card',
-      widget: AppOverlayCard(onTap: () {}, isFromAppAssets: false, child: childSample1()),
+      widget: AppOverlayCard(
+        onTap: () {},
+        backgroundImage: randomImage,
+        isFromAppAssets: false,
+        child: childSample1(),
+      ),
     );
   }
 
@@ -51,6 +60,7 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
         onTap: () {},
         width: 200,
         height: 260,
+        backgroundImage: randomImage,
         isFromAppAssets: false,
         child: childSample2(),
       ),
@@ -69,8 +79,63 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
         overlayGradientEnd: Alignment.bottomRight,
         overlayGradientColors: [AppColors.yellowLv1.withOpacity(0.01), AppColors.yellowLv1],
         shadowColor: AppColors.blackLv5,
+        backgroundImage: randomImage,
         isFromAppAssets: false,
         child: childSample2(),
+      ),
+    );
+  }
+
+  Widget customOverlayCardWithOverlayWidget() {
+    return SampleWrapper(
+      title: 'Custom Overlay Card With Overlay Widget',
+      widget: AppOverlayCard(
+        onTap: () {},
+        width: double.maxFinite,
+        height: 112,
+        overlayGradientColors: null,
+        backgroundColor: AppColors.blackLv8,
+        isFromAppAssets: false,
+        childAlignment: Alignment.centerLeft,
+        overlayChild: const Positioned(
+          right: AppSizes.padding,
+          child: AppImage(
+            image: AppAssets.applepay,
+            width: 70,
+            height: 70,
+            imgProvider: ImgProvider.assetImage,
+            isFromAppAssets: false,
+          ),
+        ),
+        child: childSample3(),
+      ),
+    );
+  }
+
+  Widget customOverlayCardWithOverlayWidgetAndGradients() {
+    return SampleWrapper(
+      title: 'Custom Overlay Card With Overlay Widget & Gradients',
+      widget: AppOverlayCard(
+        onTap: () {},
+        width: double.maxFinite,
+        height: 112,
+        backgroundColor: AppColors.blueLv6,
+        overlayGradientColors: [AppColors.yellowLv5.withOpacity(0.01), AppColors.yellowLv5],
+        overlayGradientBegin: Alignment.topLeft,
+        overlayGradientEnd: Alignment.bottomRight,
+        isFromAppAssets: false,
+        childAlignment: Alignment.centerLeft,
+        overlayChild: const Positioned(
+          right: AppSizes.padding,
+          child: AppImage(
+            image: AppAssets.applepay,
+            width: 70,
+            height: 70,
+            imgProvider: ImgProvider.assetImage,
+            isFromAppAssets: false,
+          ),
+        ),
+        child: childSample3(),
       ),
     );
   }
@@ -133,6 +198,25 @@ class _AppOverlayCardSamplesViewState extends State<AppOverlayCardSamplesView> {
         AppButton(
           onTap: () {},
           text: 'Button',
+        ),
+      ],
+    );
+  }
+
+  Widget childSample3() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Lorem ipsum',
+          style: AppTextStyle.heading4(),
+        ),
+        const SizedBox(height: AppSizes.padding / 4),
+        Text(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec ligula diam. Sed sit amet mollis est, quis ultricies ipsum. Etiam eu hendrerit sapien. Nam quis ligula odio. Vestibulum ac ante in ante porta iaculis ac et arcu.',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextStyle.regular(size: 12, color: AppColors.blackLv5),
         ),
       ],
     );

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../app/theme/app_sizes.dart';
 import '../molecule/app_statistic_square.dart';
 
-class StatisticSquaresGrid extends StatelessWidget {
+class PopularMemberCard extends StatelessWidget {
   final List<AppStatisticSquare> statisticSquares;
   final double childAspectRatio;
   final double maxCrossAxisExtent;
   final double mainAxisSpacing;
   final double crossAxisSpacing;
 
-  const StatisticSquaresGrid({
+  const PopularMemberCard({
     super.key,
     required this.statisticSquares,
     this.childAspectRatio = 1,

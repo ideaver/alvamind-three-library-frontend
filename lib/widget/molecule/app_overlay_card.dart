@@ -7,6 +7,7 @@ import '../../app/asset/app_assets.dart';
 
 class AppOverlayCard extends StatelessWidget {
   final Widget child;
+  final Widget? overlayChild;
   final double? width;
   final double? height;
   final double? aspectRatio;
@@ -14,11 +15,12 @@ class AppOverlayCard extends StatelessWidget {
   final BorderRadius borderRadius;
   final Color backgroundColor;
   final Color? shadowColor;
-  final List<Color> overlayGradientColors;
+  final List<Color>? overlayGradientColors;
   final Alignment overlayGradientBegin;
   final Alignment overlayGradientEnd;
   final Alignment childAlignment;
-  final String backgroundImage;
+  final Alignment overlayChildAlignment;
+  final String? backgroundImage;
   final ImgProvider imgProvider;
   final bool isFromAppAssets;
   final String appAssetsPackageName;
@@ -28,6 +30,7 @@ class AppOverlayCard extends StatelessWidget {
     super.key,
     this.onTap,
     required this.child,
+    this.overlayChild,
     this.width,
     this.height,
     this.aspectRatio,
@@ -39,7 +42,8 @@ class AppOverlayCard extends StatelessWidget {
     this.overlayGradientBegin = Alignment.topCenter,
     this.overlayGradientEnd = Alignment.bottomCenter,
     this.childAlignment = Alignment.bottomCenter,
-    this.backgroundImage = randomImage,
+    this.overlayChildAlignment = Alignment.center,
+    this.backgroundImage,
     this.imgProvider = ImgProvider.networkImage,
     this.isFromAppAssets = true,
     this.appAssetsPackageName = AppAssets.appAssetsPackageName,
@@ -61,13 +65,15 @@ class AppOverlayCard extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: borderRadius,
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor ?? overlayGradientColors.last.withOpacity(0.32),
-            offset: const Offset(0, 6),
-            blurRadius: 12,
-          ),
-        ],
+        boxShadow: shadowColor == null && overlayGradientColors == null
+            ? []
+            : [
+                BoxShadow(
+                  color: shadowColor ?? overlayGradientColors!.last.withOpacity(0.32),
+                  offset: const Offset(0, 6),
+                  blurRadius: 12,
+                ),
+              ],
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
@@ -90,17 +96,19 @@ class AppOverlayCard extends StatelessWidget {
         color: backgroundColor,
         borderRadius: borderRadius,
       ),
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: AppImage(
-          image: backgroundImage,
-          imgProvider: imgProvider,
-          isFromAppAssets: isFromAppAssets,
-          appAssetsPackageName: appAssetsPackageName,
-          width: width,
-          height: height,
-        ),
-      ),
+      child: backgroundImage != null
+          ? ClipRRect(
+              borderRadius: borderRadius,
+              child: AppImage(
+                image: backgroundImage!,
+                imgProvider: imgProvider,
+                isFromAppAssets: isFromAppAssets,
+                appAssetsPackageName: appAssetsPackageName,
+                width: width,
+                height: height,
+              ),
+            )
+          : const SizedBox.shrink(),
     );
   }
 
@@ -113,15 +121,22 @@ class AppOverlayCard extends StatelessWidget {
         child: Ink(
           width: width,
           height: height,
-          padding: padding,
           decoration: BoxDecoration(
             borderRadius: borderRadius,
-            gradient: LinearGradient(
-              colors: overlayGradientColors,
-              begin: overlayGradientBegin,
-              end: overlayGradientEnd,
-            ),
+            gradient: overlayGradientColors == null
+                ? null
+                : LinearGradient(
+                    colors: overlayGradientColors!,
+                    begin: overlayGradientBegin,
+                    end: overlayGradientEnd,
+                  ),
           ),
+          child: overlayChild != null
+              ? Stack(
+                  alignment: overlayChildAlignment,
+                  children: [overlayChild!],
+                )
+              : null,
         ),
       ),
     );
