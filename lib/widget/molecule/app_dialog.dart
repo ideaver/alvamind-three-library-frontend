@@ -224,7 +224,10 @@ class AppDialogWidget extends StatelessWidget {
                           text: leftButtonText!,
                           buttonColor: backgroundColor,
                           textColor: enableRightButton ? leftButtonTextColor : AppColors.blackLv1,
-                          padding: const EdgeInsets.all(AppSizes.padding),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: AppSizes.padding,
+                            horizontal: AppSizes.padding / 2,
+                          ),
                           onTap: () async {
                             if (enableLeftButton) {
                               if (onTapLeftButton != null) {
@@ -253,7 +256,10 @@ class AppDialogWidget extends StatelessWidget {
                           text: rightButtonText!,
                           buttonColor: backgroundColor,
                           textColor: enableRightButton ? rightButtonTextColor : AppColors.blackLv1,
-                          padding: const EdgeInsets.all(AppSizes.padding),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: AppSizes.padding,
+                            horizontal: AppSizes.padding / 2,
+                          ),
                           onTap: () async {
                             if (enableRightButton) {
                               if (onTapRightButton != null) {
