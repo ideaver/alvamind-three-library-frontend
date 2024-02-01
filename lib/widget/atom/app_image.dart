@@ -63,7 +63,7 @@ class AppImage extends StatefulWidget {
     // If want to load asset from origin app or other
     // set [isFromAppAssets] to false or set [appAssetsPackageName] to destination package name
     this.isFromAppAssets = true,
-    this.appAssetsPackageName = 'alvamind_three_library_frontend',
+    this.appAssetsPackageName = AppAssets.appAssetsPackageName,
   });
 
   @override
@@ -240,7 +240,7 @@ class AppImageViewer extends StatefulWidget {
     required this.images,
     this.imgProvider = ImgProvider.networkImage,
     this.isFromAppAssets = true,
-    this.appAssetsPackageName = 'alvamind_three_library_frontend',
+    this.appAssetsPackageName = AppAssets.appAssetsPackageName,
   });
 
   @override

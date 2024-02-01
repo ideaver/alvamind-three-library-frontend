@@ -3,6 +3,10 @@ class AppAssets {
   // prevents instantiation and extension.
   AppAssets._();
 
+  // AppAssets package name
+  // Must be same with this package name so you can load assetss from another package/project
+  static const String appAssetsPackageName = 'alvamind_three_library_frontend';
+
   // Logo
   static const String logo = 'lib/assets/images/logo.png';
 

@@ -18,6 +18,7 @@ import '../../view/samples/app_image_samples_view.dart';
 import '../../view/samples/app_logo_samples_view.dart';
 import '../../view/samples/app_maps_samples_view.dart';
 import '../../view/samples/app_modal_samples_view.dart';
+import '../../view/samples/app_overlay_card_samples_view.dart';
 import '../../view/samples/app_progress_indicator_samples_view.dart';
 import '../../view/samples/app_progress_line_samples_view.dart';
 import '../../view/samples/app_radio_list_tile_samples_view.dart';
@@ -84,5 +85,6 @@ class AppRoutes {
     AppAppbarSamplesView.routeName: (context) => const AppAppbarSamplesView(),
     AppStatisticSquareamplesView.routeName: (context) => const AppStatisticSquareamplesView(),
     StatisticSquaresGridamplesView.routeName: (context) => const StatisticSquaresGridamplesView(),
+    AppOverlayCardSamplesView.routeName: (context) => const AppOverlayCardSamplesView(),
   };
 }

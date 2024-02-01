@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../app/asset/app_assets.dart';
 import '../../app/const/countries.dart';
 import '../../app/locale/app_locale.dart';
 import '../../app/theme/app_colors.dart';
@@ -156,7 +157,7 @@ class AppTextField extends StatefulWidget {
     // If want to load asset from origin app or other
     // set [isFromAppAssets] to false or set [appAssetsPackageName] to destination package name
     this.isFromAppAssets = true,
-    this.appAssetsPackageName = 'alvamind_three_library_frontend',
+    this.appAssetsPackageName = AppAssets.appAssetsPackageName,
     this.onTap,
     this.onChanged,
     this.onEditingComplete,
