@@ -458,8 +458,11 @@ class _AppTextFieldState extends State<AppTextField> {
   int? textFieldMaxLines() {
     if (widget.type == AppTextFieldType.password ||
         widget.type == AppTextFieldType.search ||
-        widget.type == AppTextFieldType.otp ||
-        widget.rounded) {
+        widget.type == AppTextFieldType.otp) {
+      return 1;
+    }
+
+    if (widget.rounded && (widget.minLines ?? 0) <= 1) {
       return 1;
     }
 
