@@ -7,8 +7,8 @@ import '../../app/theme/app_text_style.dart';
 import 'app_icon_button.dart';
 
 class AppSnackbar {
-  static Future<void> show({
-    required BuildContext context,
+  static Future<void> show(
+    BuildContext context, {
     IconData? icon,
     Color? backgroundColor,
     Color? textColor,
