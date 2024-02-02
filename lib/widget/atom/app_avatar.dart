@@ -10,6 +10,7 @@ class AppAvatar extends StatelessWidget {
   final double size;
   final double? borderWidth;
   final double borderRadius;
+  final double? iconButtonBorderRadius;
   final double? iconSize;
   final bool showIconButton;
   final bool enabled;
@@ -30,6 +31,7 @@ class AppAvatar extends StatelessWidget {
     this.size = 60,
     this.borderWidth,
     this.borderRadius = 100,
+    this.iconButtonBorderRadius,
     this.iconSize,
     this.showIconButton = false,
     this.enabled = true,
@@ -78,7 +80,7 @@ class AppAvatar extends StatelessWidget {
                         width: size / 18,
                         color: AppColors.white,
                       ),
-                      borderRadius: icon == null ? null : BorderRadius.circular(size / 10),
+                      borderRadius: icon == null ? null : BorderRadius.circular(iconButtonBorderRadius ?? (size / 10)),
                     ),
                     child: icon != null
                         ? Icon(
