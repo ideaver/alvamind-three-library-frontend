@@ -19,7 +19,7 @@ class AppSegmentedTabBar extends StatefulWidget {
   final double labelFontSize;
   final double borderRadius;
   final EdgeInsets margin;
-  final EdgeInsets? padding;
+  final EdgeInsets padding;
   final EdgeInsets indicatorPadding;
   final int? selectedTabIndex;
   final Function(int)? onChangedTab;
@@ -39,7 +39,7 @@ class AppSegmentedTabBar extends StatefulWidget {
     this.labelFontSize = 14,
     this.borderRadius = AppSizes.radius,
     this.margin = const EdgeInsets.only(top: AppSizes.padding, bottom: AppSizes.padding * 1.5),
-    this.padding,
+    this.padding = const EdgeInsets.all(4),
     this.indicatorPadding = EdgeInsets.zero,
     this.selectedTabIndex,
     this.onChangedTab,
@@ -51,8 +51,6 @@ class AppSegmentedTabBar extends StatefulWidget {
 
 class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProviderStateMixin {
   late TabController tabController;
-
-  late List<Widget> tabs;
 
   @override
   void initState() {
@@ -68,10 +66,6 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
     } else {
       tabController = widget.tabController!;
     }
-
-    tabs = List.generate(widget.tabs.length, (i) {
-      return Tab(child: tabWidget(i));
-    });
 
     super.initState();
   }
@@ -93,7 +87,6 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
   Widget build(BuildContext context) {
     return Container(
       margin: widget.margin,
-      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         borderRadius: BorderRadius.circular(widget.borderRadius),
@@ -108,7 +101,9 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
         splashFactory: NoSplash.splashFactory,
         padding: widget.padding,
         indicatorPadding: widget.indicatorPadding,
-        tabs: tabs,
+        tabs: List.generate(widget.tabs.length, (i) {
+          return Tab(child: tabWidget(i));
+        }),
       ),
     );
   }
