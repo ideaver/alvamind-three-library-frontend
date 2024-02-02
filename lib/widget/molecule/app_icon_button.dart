@@ -36,7 +36,7 @@ class AppIconButton extends StatelessWidget {
     this.enable = true,
     this.buttonColor,
     this.iconButtonColor,
-    this.borderColor = AppColors.blackLv7,
+    this.borderColor = AppColors.blackLv8,
     this.borderRadius = AppSizes.radius,
     this.iconBorderRadius = 100,
     this.text,

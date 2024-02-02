@@ -146,7 +146,6 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppIconButton(
       icon: const Icon(Icons.keyboard_arrow_left_rounded),
       iconButtonColor: AppColors.transparent,
-      borderColor: AppColors.blackLv9,
       borderWidth: 1,
       padding: const EdgeInsets.all(AppSizes.padding / 4),
       enable: enabled,
