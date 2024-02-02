@@ -1,3 +1,4 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/asset/app_assets.dart';
@@ -80,6 +81,7 @@ class AppAvatar extends StatelessWidget {
                         width: size / 18,
                         color: AppColors.white,
                       ),
+                      boxShadow: [AppShadows.darkShadow5],
                       borderRadius: icon == null ? null : BorderRadius.circular(iconButtonBorderRadius ?? (size / 10)),
                     ),
                     child: icon != null
