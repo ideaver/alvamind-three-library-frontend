@@ -15,6 +15,7 @@ class AppOverlayCard extends StatelessWidget {
   final BorderRadius borderRadius;
   final Color backgroundColor;
   final Color? shadowColor;
+  final List<BoxShadow>? customBoxShadow;
   final List<Color>? overlayGradientColors;
   final Alignment overlayGradientBegin;
   final Alignment overlayGradientEnd;
@@ -38,6 +39,7 @@ class AppOverlayCard extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(AppSizes.radius * 2)),
     this.backgroundColor = AppColors.white,
     this.shadowColor,
+    this.customBoxShadow,
     this.overlayGradientColors = const [Colors.black12, Colors.black87],
     this.overlayGradientBegin = Alignment.topCenter,
     this.overlayGradientEnd = Alignment.bottomCenter,
@@ -67,13 +69,14 @@ class AppOverlayCard extends StatelessWidget {
         borderRadius: borderRadius,
         boxShadow: shadowColor == null && overlayGradientColors == null
             ? []
-            : [
-                BoxShadow(
-                  color: shadowColor ?? overlayGradientColors!.last.withOpacity(0.32),
-                  offset: const Offset(0, 6),
-                  blurRadius: 12,
-                ),
-              ],
+            : customBoxShadow ??
+                [
+                  BoxShadow(
+                    color: shadowColor ?? overlayGradientColors!.last.withOpacity(0.32),
+                    offset: const Offset(0, 6),
+                    blurRadius: 12,
+                  ),
+                ],
       ),
       child: ClipRRect(
         borderRadius: borderRadius,
