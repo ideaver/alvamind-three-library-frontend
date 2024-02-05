@@ -10,7 +10,7 @@ class AppInkwell extends StatelessWidget {
   final BorderRadius? borderRadius;
   final EdgeInsets? margin;
   final EdgeInsets padding;
-  final Color? color;
+  final Color color;
   final Color borderColor;
   final List<BoxShadow>? boxShadow;
   final Widget? child;
