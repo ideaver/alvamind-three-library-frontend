@@ -26,6 +26,14 @@ class AppAssets {
   static const String bankBCA = 'lib/assets/images/icons/banks/bca.png';
   static const String bankMandiri = 'lib/assets/images/icons/banks/mandiri.png';
   static const String bankBRI = 'lib/assets/images/icons/banks/bri.png';
+  static const String performance = 'lib/assets/images/icons/menus/performance.png';
+  static const String product = 'lib/assets/images/icons/menus/product.png';
+  static const String feeds = 'lib/assets/images/icons/menus/feeds.png';
+  static const String history = 'lib/assets/images/icons/menus/history.png';
+  static const String urlShortener = 'lib/assets/images/icons/menus/url_shortener.png';
+  static const String competitor = 'lib/assets/images/icons/menus/competitor.png';
+  static const String activity = 'lib/assets/images/icons/menus/activity.png';
+  static const String faq = 'lib/assets/images/icons/menus/faq.png';
 
   // Illustrations
   static const String checklistLight = 'lib/assets/images/illustrations/light_checklist.png';

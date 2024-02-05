@@ -1,7 +1,7 @@
-import '../../app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
 
 class AppTextButton extends StatelessWidget {
@@ -45,10 +45,11 @@ class AppTextButton extends StatelessWidget {
   Widget buttonText() {
     return Text(
       text,
-      style: AppTextStyle.bold(
-        size: fontSize,
-        color: enable ? textColor : disabledTextColor,
-      ),
+      style: textStyle ??
+          AppTextStyle.bold(
+            size: fontSize,
+            color: enable ? textColor : disabledTextColor,
+          ),
     );
   }
 }
