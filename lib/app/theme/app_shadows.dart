@@ -37,6 +37,11 @@ class AppShadows {
     offset: const Offset(0, 1),
     blurRadius: 4,
   );
+  static final darkShadow5Reversed = BoxShadow(
+    color: AppColors.black.withOpacity(0.08),
+    offset: const Offset(0, -1),
+    blurRadius: 4,
+  );
 
   static final primaryShadow1 = BoxShadow(
     color: AppColors.primary.withOpacity(0.25),

@@ -24,8 +24,8 @@ class AppInkwell extends StatelessWidget {
     this.borderWidth = 1,
     this.borderRadius,
     this.padding = const EdgeInsets.all(AppSizes.padding),
-    this.margin = const EdgeInsets.all(AppSizes.padding),
-    this.color,
+    this.margin,
+    this.color = AppColors.white,
     this.borderColor = AppColors.blackLv8,
     this.boxShadow,
     this.child,
@@ -55,11 +55,7 @@ class AppInkwell extends StatelessWidget {
             padding: padding,
             decoration: BoxDecoration(
               color: color,
-              border: customBorder ??
-                  Border.all(
-                    width: borderWidth,
-                    color: borderColor,
-                  ),
+              border: customBorder,
               borderRadius: borderRadius ?? BorderRadius.circular(AppSizes.radius),
             ),
             child: child,
