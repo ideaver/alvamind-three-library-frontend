@@ -13,7 +13,6 @@ import 'view/main/main_view.dart';
 Future<void> main() async {
   // Initialize binding
   WidgetsFlutterBinding.ensureInitialized();
-
   // Initialize date formatting
   initializeDateFormatting();
 

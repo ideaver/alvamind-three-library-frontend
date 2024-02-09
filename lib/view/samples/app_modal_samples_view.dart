@@ -1,5 +1,5 @@
+import 'package:alvamind_three_library_frontend/widget/molecule/app_modal_referral.dart';
 import 'package:flutter/material.dart';
-
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../widget/molecule/app_button.dart';
@@ -13,10 +13,12 @@ class AppModalPopupButtonSamplesView extends StatefulWidget {
   static const routeName = '/molecule-app-modal';
 
   @override
-  State<AppModalPopupButtonSamplesView> createState() => _AppModalPopupButtonSamplesViewState();
+  State<AppModalPopupButtonSamplesView> createState() =>
+      _AppModalPopupButtonSamplesViewState();
 }
 
-class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamplesView> {
+class _AppModalPopupButtonSamplesViewState
+    extends State<AppModalPopupButtonSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +34,36 @@ class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamp
             customModal(),
             customModalWithCloseButton(),
             defaultPickImageDialog(),
+            referralModal()
           ],
         ),
+      ),
+    );
+  }
+
+  String selectedOption = "6 Bulan";
+
+  Widget referralModal() {
+    return SampleWrapper(
+      title: 'Referral Modal',
+      widget: AppButton(
+        text: 'Show Referral Modal',
+        onTap: () {
+          showModalBottomSheet(
+            backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+            context: context,
+            builder: (BuildContext context) {
+              return AppModalReferral(
+                selectedOption: selectedOption,
+                onSelect: (value) {
+                  setState(() {
+                    selectedOption = value;
+                  });
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }
