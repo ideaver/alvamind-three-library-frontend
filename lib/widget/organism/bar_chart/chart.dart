@@ -1,7 +1,6 @@
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
 import '../../../app/theme/app_colors.dart';
 
 class Chart extends StatelessWidget {

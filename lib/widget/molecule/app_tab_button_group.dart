@@ -46,6 +46,7 @@ class _AppTabButtonGroupState extends State<AppTabButtonGroup> {
       child: Column(
         children: [
           Container(
+            height: widget.height ?? 64,
             decoration: BoxDecoration(
                 color: AppColors.greyScale50,
                 borderRadius: BorderRadius.circular(
@@ -53,6 +54,7 @@ class _AppTabButtonGroupState extends State<AppTabButtonGroup> {
             child: Padding(
               padding: widget.padding,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   widget.options.length,
@@ -61,6 +63,7 @@ class _AppTabButtonGroupState extends State<AppTabButtonGroup> {
                       disableColor: AppColors.greyScale50,
                       enabledColor: AppColors.secondary,
                       width: widget.width ?? screenWidth,
+                      height: widget.height ?? 40,
                       text: widget.options[index],
                       isSelected: index == selectedOptionIndex,
                       onTap: () {

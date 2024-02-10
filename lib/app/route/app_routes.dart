@@ -111,6 +111,9 @@ class AppRoutes {
     AppOverlayCardSamplesView.routeName: (context) =>
         const AppOverlayCardSamplesView(),
     BarChartSamplesView.routeName: (context) => const BarChartSamplesView(),
-    AppTabButton.routeName: (context) => const AppTabButton(),
+    AppTabButtonSamplesView.routeName: (context) =>
+        const AppTabButtonSamplesView(),
+    AppFieldContainerSamplesView.routeName: (context) =>
+        AppFieldContainerSamplesView()
   };
 }
