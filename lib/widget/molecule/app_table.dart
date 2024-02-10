@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../app/theme/app_text_style.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
@@ -99,7 +98,9 @@ class _AppTableState extends State<AppTable> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    widget.headerData != null ? header(widget.headerData!) : const SizedBox.shrink(),
+                    widget.headerData != null
+                        ? header(widget.headerData!)
+                        : const SizedBox.shrink(),
                     SizedBox(
                       height: widget.height,
                       child: SingleChildScrollView(
@@ -143,7 +144,9 @@ class _AppTableState extends State<AppTable> {
             return rowData[i].expanded
                 ? Expanded(
                     flex: rowData[i].flex,
-                    child: rowData[i].child != null ? rowData[i].child! : child(rowData[i]),
+                    child: rowData[i].child != null
+                        ? rowData[i].child!
+                        : child(rowData[i]),
                   )
                 : rowData[i].child != null
                     ? rowData[i].child!
@@ -173,7 +176,9 @@ class _AppTableState extends State<AppTable> {
             return rowData[i].expanded
                 ? Expanded(
                     flex: rowData[i].flex,
-                    child: rowData[i].child != null ? rowData[i].child! : child(rowData[i]),
+                    child: rowData[i].child != null
+                        ? rowData[i].child!
+                        : child(rowData[i]),
                   )
                 : rowData[i].child != null
                     ? rowData[i].child!
@@ -193,7 +198,9 @@ class _AppTableState extends State<AppTable> {
         data.data ?? '',
         textAlign: widget.textAlign,
         overflow: TextOverflow.ellipsis,
-        style: data.textStyle ?? widget.textStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.semibold),
+        style: data.textStyle ??
+            widget.textStyle ??
+            AppTextStyle.bodyMedium(fontWeight: AppFontWeight.semibold),
       ),
     );
   }

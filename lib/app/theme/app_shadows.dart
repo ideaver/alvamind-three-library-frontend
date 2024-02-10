@@ -8,6 +8,36 @@ class AppShadows {
   // prevents instantiation and extension.
   AppShadows._();
 
+  static final cardShadow1 = BoxShadow(
+    color: AppColors.black.withOpacity(0.08),
+    offset: const Offset(0, 4),
+    blurRadius: 60,
+  );
+
+  static final cardShadow2 = BoxShadow(
+    color: AppColors.black.withOpacity(0.05),
+    offset: const Offset(0, 4),
+    blurRadius: 60,
+  );
+
+  static final cardShadow3 = BoxShadow(
+    color: AppColors.black.withOpacity(0.08),
+    offset: const Offset(0, 20),
+    blurRadius: 100,
+  );
+
+  static final cardShadow4 = BoxShadow(
+    color: AppColors.black.withOpacity(0.08),
+    offset: const Offset(0, -6),
+    blurRadius: 32,
+  );
+
+  static final cardShadow5 = BoxShadow(
+    color: AppColors.black.withOpacity(0.08),
+    offset: const Offset(0, 1),
+    blurRadius: 4,
+  );
+
   static final darkShadow1 = BoxShadow(
     color: AppColors.black.withOpacity(0.08),
     offset: const Offset(0, 4),
@@ -50,7 +80,7 @@ class AppShadows {
     blurRadius: 4,
   );
 
-    static final darkShadow6 = BoxShadow(
+  static final darkShadow6 = BoxShadow(
     color: AppColors.black.withOpacity(0.32),
     offset: const Offset(0, 1),
     blurRadius: 4,
