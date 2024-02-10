@@ -1,4 +1,3 @@
-import 'package:alvamind_three_library_frontend/view/samples/app_field_container_samples_view.dart';
 import 'package:alvamind_three_library_frontend/view/samples/app_tab_button_samples_view.dart';
 import 'package:flutter/material.dart';
 
