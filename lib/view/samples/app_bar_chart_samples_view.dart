@@ -1,5 +1,6 @@
 import 'package:alvamind_three_library_frontend/view/samples/___sample_wrapper.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_leadearboard_list.dart';
+import 'package:alvamind_three_library_frontend/widget/molecule/app_modal_referral.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_tab_button_group.dart';
 import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
@@ -38,11 +39,16 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
   }
 
   int tagSelected = 0;
+  String selectedOptionDate = '6 bulan';
 
   Widget barChartRiwayat() {
     return SampleWrapper(
       title: 'Bar Chart Riwayat',
       widget: BarChart(
+        selectedOptionDate: selectedOptionDate,
+        onTapDate: () {
+          dateModalBottomSheet(context);
+        },
         textTypeChart: 'Riwayat',
         textDateRange: '1 Jan 2023 - 31 Juli 2023',
         countTotal: '1.000 Transaksi',
@@ -165,5 +171,23 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
         titleText: 'John Doe',
         subtitleText: 'Sent on 26 Jan 2023',
         typeText: type);
+  }
+
+  void dateModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+      context: context,
+      builder: (BuildContext context) {
+        return AppModalReferral(
+          height: MediaQuery.of(context).size.height,
+          selectedOption: selectedOptionDate,
+          onSelect: (value) {
+            setState(() {
+              selectedOptionDate = value;
+            });
+          },
+        );
+      },
+    );
   }
 }

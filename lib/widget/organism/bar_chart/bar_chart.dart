@@ -1,5 +1,4 @@
 import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_modal_referral.dart';
 import '../../../app/asset/app_assets.dart';
 import 'package:flutter/material.dart';
 import '../../../app/theme/app_text_style.dart';
@@ -9,6 +8,8 @@ import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
 
 class BarChart extends StatefulWidget {
+  final String selectedOptionDate;
+  final Function() onTapDate;
   final String textTypeChart;
   final String? textDateRange;
   final String? countTotal;
@@ -20,6 +21,8 @@ class BarChart extends StatefulWidget {
 
   const BarChart({
     super.key,
+    required this.selectedOptionDate,
+    required this.onTapDate,
     required this.textTypeChart,
     required this.barChart,
     required this.tagBar,
@@ -35,6 +38,14 @@ class BarChart extends StatefulWidget {
 }
 
 class _BarChartState extends State<BarChart> {
+  late String selectedOptionDate;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedOptionDate = widget.selectedOptionDate;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -83,15 +94,13 @@ class _BarChartState extends State<BarChart> {
                   borderColor: AppColors.blackLv5,
                   textColor: AppColors.blackLv5,
                   textWidget: Text(
-                    selectedOption,
+                    widget.selectedOptionDate,
                     style: AppTextStyle.bodySmall(
                         fontWeight: AppFontWeight.semibold,
                         color: AppColors.blackLv5),
                   ),
                   borderWidth: 1,
-                  onTap: () {
-                    _showDateFilterBottomSheet(context);
-                  }),
+                  onTap: widget.onTapDate)
             ],
           ),
           const SizedBox(height: AppSizes.padding),
@@ -121,25 +130,6 @@ class _BarChartState extends State<BarChart> {
           widget.tagBar,
         ],
       ),
-    );
-  }
-
-  String selectedOption = "6 Bulan";
-
-  void _showDateFilterBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-      context: context,
-      builder: (BuildContext context) {
-        return AppModalReferral(
-          selectedOption: selectedOption,
-          onSelect: (value) {
-            setState(() {
-              selectedOption = value;
-            });
-          },
-        );
-      },
     );
   }
 }

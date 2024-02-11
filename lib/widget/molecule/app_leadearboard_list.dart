@@ -4,10 +4,11 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
 
 class AppLeaderboardList extends StatelessWidget {
+  final Widget? leading;
   final double? width;
   final double? height;
   final double? borderRadius;
-  final String image;
+  final String? image;
   final bool? radius;
   final EdgeInsets padding;
   final Color color;
@@ -17,12 +18,13 @@ class AppLeaderboardList extends StatelessWidget {
 
   const AppLeaderboardList({
     super.key,
+    this.leading,
     this.width,
     this.height,
     this.borderRadius,
     this.radius = true,
     this.padding = const EdgeInsets.all(5),
-    required this.image,
+    this.image,
     required this.color,
     required this.titleText,
     required this.subtitleText,
@@ -32,10 +34,11 @@ class AppLeaderboardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: AppAvatar(
-        image: image,
-        size: 40,
-      ),
+      leading: leading ??
+          AppAvatar(
+            image: image!,
+            size: 40,
+          ),
       title: Text(
         titleText,
         style: AppTextStyle.bodyMedium(fontWeight: AppFontWeight.bold),
