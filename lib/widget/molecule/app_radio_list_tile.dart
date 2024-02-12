@@ -165,13 +165,16 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
     if (widget.titleWidget != null) {
       return widget.titleWidget!;
     }
+    if (widget.title != null) {
+      return Text(
+        widget.title!,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: widget.titleStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.medium),
+      );
+    }
 
-    return Text(
-      widget.title!,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: widget.titleStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.medium),
-    );
+    return const SizedBox.shrink();
   }
 
   Widget subtitleWidget() {

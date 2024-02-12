@@ -1,10 +1,11 @@
-import 'app_button.dart';
-import 'app_icon_button.dart';
 import 'package:flutter/material.dart';
+
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
 import '../../../app/theme/app_text_style.dart';
 import '../../app/theme/app_shadows.dart';
+import 'app_button.dart';
+import 'app_icon_button.dart';
 
 class AppModal {
   static Future<void> show({
@@ -23,18 +24,26 @@ class AppModal {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      useRootNavigator: true,
       backgroundColor: AppColors.transparent,
       builder: (context) {
-        return AppModalWidget(
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius,
-          iconWidget: iconWidget,
-          padding: padding,
-          subtitle: subtitle,
-          showCloseButton: showCloseButton,
-          title: title,
-          body: body,
-          crossAxisAlignment: crossAxisAlignment,
+        return Scaffold(
+          extendBody: false,
+          backgroundColor: AppColors.transparent,
+          body: Align(
+            alignment: Alignment.bottomCenter,
+            child: AppModalWidget(
+              backgroundColor: backgroundColor,
+              borderRadius: borderRadius,
+              iconWidget: iconWidget,
+              padding: padding,
+              subtitle: subtitle,
+              showCloseButton: showCloseButton,
+              title: title,
+              body: body,
+              crossAxisAlignment: crossAxisAlignment,
+            ),
+          ),
         );
       },
     );
@@ -175,8 +184,7 @@ class _AppModalWidgetState extends State<AppModalWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -186,49 +194,38 @@ class _AppModalWidgetState extends State<AppModalWidget> {
               color: widget.backgroundColor ?? AppColors.white,
               boxShadow: [AppShadows.darkShadow4Reversed],
               borderRadius: BorderRadius.only(
-                topLeft:
-                    Radius.circular(widget.borderRadius ?? AppSizes.radius * 2),
-                topRight:
-                    Radius.circular(widget.borderRadius ?? AppSizes.radius * 2),
+                topLeft: Radius.circular(widget.borderRadius ?? AppSizes.radius * 2),
+                topRight: Radius.circular(widget.borderRadius ?? AppSizes.radius * 2),
               ),
             ),
             child: Padding(
               padding: widget.padding ?? const EdgeInsets.all(AppSizes.padding),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment:
-                    widget.crossAxisAlignment ?? CrossAxisAlignment.start,
+                crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.start,
                 children: [
-                  widget.iconWidget != null
-                      ? widget.iconWidget!
-                      : const SizedBox.shrink(),
+                  widget.iconWidget != null ? widget.iconWidget! : const SizedBox.shrink(),
                   widget.title != null
                       ? Padding(
-                          padding:
-                              const EdgeInsets.only(top: AppSizes.padding / 2),
+                          padding: const EdgeInsets.only(top: AppSizes.padding / 2),
                           child: Text(
                             widget.title!,
-                            style: AppTextStyle.heading5(
-                                color: AppColors.secondary),
+                            style: AppTextStyle.heading5(color: AppColors.secondary),
                           ),
                         )
                       : const SizedBox.shrink(),
                   widget.subtitle != null
                       ? Padding(
-                          padding:
-                              const EdgeInsets.only(top: AppSizes.padding / 4),
+                          padding: const EdgeInsets.only(top: AppSizes.padding / 4),
                           child: Text(
                             widget.subtitle!,
-                            style: AppTextStyle.medium(
-                                size: 12, color: AppColors.blackLv5),
+                            style: AppTextStyle.medium(size: 12, color: AppColors.blackLv5),
                           ),
                         )
                       : const SizedBox.shrink(),
                   Padding(
                     padding: const EdgeInsets.only(top: AppSizes.padding),
-                    child: widget.body != null
-                        ? widget.body!
-                        : const SizedBox.shrink(),
+                    child: widget.body != null ? widget.body! : const SizedBox.shrink(),
                   ),
                 ],
               ),
