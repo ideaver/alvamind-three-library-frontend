@@ -1,7 +1,5 @@
 import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
-
 import '../../../app/asset/app_assets.dart';
-import '../../molecule/app_card_container.dart';
 import 'package:flutter/material.dart';
 import '../../../app/theme/app_text_style.dart';
 import '../../molecule/app_icon_button.dart';
@@ -9,10 +7,9 @@ import '../../molecule/app_long_card.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
 
-class BarChart extends StatefulWidget {
+class BarChartRiwayat extends StatefulWidget {
   final String selectedOptionDate;
   final Function() onTapDate;
-
   final String textTypeChart;
   final String? textDateRange;
   final String? countTotal;
@@ -22,29 +19,36 @@ class BarChart extends StatefulWidget {
   final Widget barChart;
   final dynamic Function(dynamic) onTapItem;
 
-  const BarChart({
+  const BarChartRiwayat({
     super.key,
+    required this.selectedOptionDate,
+    required this.onTapDate,
     required this.textTypeChart,
     required this.barChart,
     required this.tagBar,
-    required this.onTapItem,
-    required this.onTapDate,
-    required this.selectedOptionDate,
     this.countTotal,
     this.countTransaction,
     this.textDateRange,
     this.countTotalColor,
+    required this.onTapItem,
   });
 
   @override
-  State<BarChart> createState() => _BarChartState();
+  State<BarChartRiwayat> createState() => _BarChartRiwayatState();
 }
 
-class _BarChartState extends State<BarChart> {
+class _BarChartRiwayatState extends State<BarChartRiwayat> {
+  late String selectedOptionDate;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedOptionDate = widget.selectedOptionDate;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AppCardContainer(
-      // boxShadow: [
+    return SizedBox(
       //   BoxShadow(
       //     color: AppColors.blackLv7.withOpacity(0.5),
       //     offset: const Offset(0, 4),
@@ -107,20 +111,23 @@ class _BarChartState extends State<BarChart> {
                   style: AppTextStyle.regular(
                       size: 14, color: AppColors.blackLv4)),
               const SizedBox(height: AppSizes.padding / 2),
-              Text(widget.countTotal ?? 'Rp 687.375.337',
-                  style: AppTextStyle.bold(
-                      size: 24,
-                      color: widget.countTotalColor ?? AppColors.black)),
+              Text(
+                widget.countTotal ?? '1.000 Transaksi',
+                style: AppTextStyle.heading4(color: AppColors.primary),
+              ),
               const SizedBox(height: AppSizes.padding / 2),
-              Text('${widget.countTransaction} Transaksi',
+              Text('Total Penjualan Link dan Kupon',
                   style: AppTextStyle.regular(
                       size: 14, color: AppColors.blackLv4)),
             ],
           ),
           const SizedBox(height: AppSizes.padding),
-          widget.tagBar,
-          const SizedBox(height: AppSizes.padding),
           widget.barChart,
+          const SizedBox(
+            height: AppSizes.padding * 2,
+          ),
+          const SizedBox(height: AppSizes.padding),
+          widget.tagBar,
         ],
       ),
     );
