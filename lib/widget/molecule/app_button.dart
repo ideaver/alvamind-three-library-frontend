@@ -152,7 +152,7 @@ class AppButton extends StatelessWidget {
                 ),
               )
             : const SizedBox.shrink()
-        : textWidget!;
+        : Padding(padding: textPadding, child: textWidget!);
   }
 
   Widget leftWidget() {
