@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../view/main/main_view.dart';
 import '../../view/samples/app_appbar_samples_view.dart';
 import '../../view/samples/app_avatar_samples_view.dart';
-import '../../view/samples/_____app_bar_chart_samples_view.dart';
 import '../../view/samples/app_bottom_navbar_samples_view.dart';
 import '../../view/samples/app_button_samples_view.dart';
 import '../../view/samples/app_carousel_slider_samples_view.dart';
@@ -29,7 +28,6 @@ import '../../view/samples/app_snackbar_samples_view.dart';
 import '../../view/samples/app_statistic_square_samples_view.dart';
 import '../../view/samples/app_steps_samples_view.dart';
 import '../../view/samples/app_swipe_indicator_samples_view.dart';
-import '../../view/samples/_____app_tab_button_samples_view.dart';
 import '../../view/samples/app_table_navigation_samples_view.dart';
 import '../../view/samples/app_table_samples_view.dart';
 import '../../view/samples/app_tag_marker_samples_view.dart';
@@ -88,7 +86,5 @@ class AppRoutes {
     AppStatisticSquareamplesView.routeName: (context) => const AppStatisticSquareamplesView(),
     StatisticSquaresGridamplesView.routeName: (context) => const StatisticSquaresGridamplesView(),
     AppOverlayCardSamplesView.routeName: (context) => const AppOverlayCardSamplesView(),
-    BarChartSamplesView.routeName: (context) => const BarChartSamplesView(),
-    AppTabButtonSamplesView.routeName: (context) => const AppTabButtonSamplesView(),
   };
 }
