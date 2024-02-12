@@ -56,15 +56,16 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
   void initState() {
     if (widget.tabController == null) {
       tabController = TabController(length: widget.tabs.length, vsync: this);
-      tabController.addListener(tabListener);
-
-      if (widget.selectedTabIndex != null) {
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          tabController.animateTo(widget.selectedTabIndex!);
-        });
-      }
     } else {
       tabController = widget.tabController!;
+    }
+
+    tabController.addListener(tabListener);
+
+    if (widget.selectedTabIndex != null) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        tabController.animateTo(widget.selectedTabIndex!);
+      });
     }
 
     super.initState();
