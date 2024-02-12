@@ -1,4 +1,3 @@
-import 'package:alvamind_three_library_frontend/_____core.dart';
 import 'package:alvamind_three_library_frontend/state_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
