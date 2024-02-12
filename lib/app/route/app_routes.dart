@@ -1,4 +1,3 @@
-import 'package:alvamind_three_library_frontend/view/samples/app_tab_button_samples_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../view/main/main_view.dart';
@@ -15,7 +14,6 @@ import '../../view/samples/app_dialog_samples_view.dart';
 import '../../view/samples/app_divider_samples_view.dart';
 import '../../view/samples/app_dotted_border_sample_view.dart';
 import '../../view/samples/app_dropdown_samples_view.dart';
-import '../../view/samples/_____app_field_container_samples_view.dart';
 import '../../view/samples/app_icon_button_samples_view.dart';
 import '../../view/samples/app_image_samples_view.dart';
 import '../../view/samples/app_logo_samples_view.dart';
@@ -31,6 +29,7 @@ import '../../view/samples/app_snackbar_samples_view.dart';
 import '../../view/samples/app_statistic_square_samples_view.dart';
 import '../../view/samples/app_steps_samples_view.dart';
 import '../../view/samples/app_swipe_indicator_samples_view.dart';
+import '../../view/samples/app_tab_button_samples_view.dart';
 import '../../view/samples/app_table_navigation_samples_view.dart';
 import '../../view/samples/app_table_samples_view.dart';
 import '../../view/samples/app_tag_marker_samples_view.dart';
@@ -91,6 +90,5 @@ class AppRoutes {
     AppOverlayCardSamplesView.routeName: (context) => const AppOverlayCardSamplesView(),
     BarChartSamplesView.routeName: (context) => const BarChartSamplesView(),
     AppTabButtonSamplesView.routeName: (context) => const AppTabButtonSamplesView(),
-    AppFieldContainerSamplesView.routeName: (context) => const AppFieldContainerSamplesView()
   };
 }
