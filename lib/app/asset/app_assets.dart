@@ -44,6 +44,14 @@ class AppAssets {
       'lib/assets/images/icons/menus/competitor.png';
   static const String activity = 'lib/assets/images/icons/menus/activity.png';
   static const String faq = 'lib/assets/images/icons/menus/faq.png';
+  static const String instagram =
+      'lib/assets/images/icons/socials/instagram.png';
+  static const String facebook = 'lib/assets/images/icons/socials/facebook.png';
+  static const String line = 'lib/assets/images/icons/socials/line.png';
+  static const String telegram = 'lib/assets/images/icons/socials/telegram.png';
+  static const String tiktok = 'lib/assets/images/icons/socials/tiktok.png';
+  static const String gmail = 'lib/assets/images/icons/socials/gmail.png';
+  static const String whatsapp = 'lib/assets/images/icons/socials/whatsapp.png';
 
   // Illustrations
   static const String checklistLight =
