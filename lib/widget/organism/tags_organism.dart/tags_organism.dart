@@ -1,7 +1,7 @@
-import '../../../app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_colors.dart';
+import '../../../app/theme/app_sizes.dart';
 import '../../molecule/app_chips.dart';
 
 // ignore: must_be_immutable

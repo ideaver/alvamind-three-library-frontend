@@ -1,8 +1,8 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/asset/app_assets.dart';
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_shadows.dart';
 import 'app_image.dart';
 
 class AppAvatar extends StatelessWidget {

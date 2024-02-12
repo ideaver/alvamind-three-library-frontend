@@ -1,4 +1,4 @@
-import 'package:alvamind_three_library_frontend/widget/molecule/app_modal_referral.dart';
+import '../../widget/molecule/app_modal_referral.dart';
 import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';

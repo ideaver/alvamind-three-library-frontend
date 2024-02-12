@@ -1,7 +1,7 @@
-import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
 import '../../widget/molecule/app_swipe_indicator.dart';
 import '___sample_wrapper.dart';
 
