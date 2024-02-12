@@ -38,25 +38,23 @@ class _AppModalReferralState extends State<AppModalReferral> {
   }
 
   Widget body() {
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: widget.height ?? 600,
-        width: widget.width,
-        child: Column(
-          children: [
-            AppIconButton(
-                icon: const Icon(
-                  Icons.close,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                }),
-            const SizedBox(
-              height: 20.0,
-            ),
-            content(),
-          ],
-        ),
+    return SizedBox(
+      height: widget.height ?? 600,
+      width: widget.width,
+      child: Column(
+        children: [
+          AppIconButton(
+              icon: const Icon(
+                Icons.close,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              }),
+          const SizedBox(
+            height: 20.0,
+          ),
+          content(),
+        ],
       ),
     );
   }

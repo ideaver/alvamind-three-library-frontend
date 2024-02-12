@@ -2,13 +2,17 @@ import 'package:alvamind_three_library_frontend/view/samples/___sample_wrapper.d
 import 'package:alvamind_three_library_frontend/widget/molecule/app_leadearboard_list.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_modal_referral.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_tab_button_group.dart';
+import 'package:alvamind_three_library_frontend/widget/organism/bar_chart/bar_chart.dart';
+import 'package:alvamind_three_library_frontend/widget/organism/bar_chart/bar_chart_group_data.dart';
+import 'package:alvamind_three_library_frontend/widget/organism/bar_chart/chart.dart';
+import 'package:alvamind_three_library_frontend/widget/organism/tags_organism.dart/tags_organism.dart';
 import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../widget/atom/app_image.dart';
-import '../../widget/organism/bar_chart/bar_chart.dart';
-import '../../widget/organism/bar_chart/bar_chart_group_data.dart';
-import '../../widget/organism/bar_chart/chart.dart';
+import '../../widget/organism/bar_chart_riwayat_transaksi/bar_chart_riwayat.dart';
+import '../../widget/organism/bar_chart_riwayat_transaksi/bar_chart_group_data_riwayat.dart';
+import '../../widget/organism/bar_chart_riwayat_transaksi/chart_riwayat.dart';
 
 class BarChartSamplesView extends StatefulWidget {
   const BarChartSamplesView({Key? key}) : super(key: key);
@@ -33,7 +37,7 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
       padding: const EdgeInsets.all(AppSizes.padding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [barChartRiwayat()],
+        children: [barChartRiwayat(), barChartLaba(), barChartOmzet()],
       ),
     );
   }
@@ -44,7 +48,7 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
   Widget barChartRiwayat() {
     return SampleWrapper(
       title: 'Bar Chart Riwayat',
-      widget: BarChart(
+      widget: BarChartRiwayat(
         selectedOptionDate: selectedOptionDate,
         onTapDate: () {
           dateModalBottomSheet(context);
@@ -72,7 +76,7 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
               generateListTiles('Cupon'),
             ]),
         barChart: tagSelected == 0
-            ? Chart(
+            ? ChartRiwayat(
                 tagSelected: tagSelected,
                 listValueChart: [
                   generateGroupDataSemuaRiwayat(1, 5, 5),
@@ -84,7 +88,7 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
                 ],
               )
             : tagSelected == 1
-                ? Chart(
+                ? ChartRiwayat(
                     tagSelected: tagSelected,
                     listValueChart: [
                       generateGroupDataLinkRiwayat(
@@ -113,7 +117,7 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
                       ),
                     ],
                   )
-                : Chart(
+                : ChartRiwayat(
                     tagSelected: tagSelected,
                     listValueChart: [
                       generateGroupDataCuponRiwayat(
@@ -175,11 +179,10 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
 
   void dateModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+      backgroundColor: AppColors.white,
       context: context,
       builder: (BuildContext context) {
         return AppModalReferral(
-          height: MediaQuery.of(context).size.height,
           selectedOption: selectedOptionDate,
           onSelect: (value) {
             setState(() {
@@ -188,6 +191,139 @@ class _BarChartSamplesViewState extends State<BarChartSamplesView> {
           },
         );
       },
+    );
+  }
+
+  Widget barChartOmzet() {
+    return SampleWrapper(
+      title: 'Bar Chart Omzet',
+      widget: BarChart(
+          selectedOptionDate: selectedOptionDate,
+          onTapDate: () {
+            dateModalBottomSheet(context);
+          },
+          textTypeChart: 'Omzet',
+          textDateRange: '1 Jan 2023 - 31 Juli 2023',
+          countTotal: 'Rp. 687.375.337',
+          countTransaction: '1000',
+          onTapItem: (value) {},
+          tagBar: TagsOrganism(
+            listChips: const [
+              'Kategori 1',
+              'Kategori 2',
+              'Kategori 3',
+              'Kategori 4',
+            ],
+            selected: -1,
+            onTap: (value) {
+              // TODO
+              setState(() {
+                tagSelected = value;
+              });
+            },
+          ),
+          barChart: tagSelected == 0
+              ? Chart(
+                  tagSelected: tagSelected,
+                  listValueChart: [
+                    generateGroupDataOmzet(0, 1, 2, 2, 2),
+                    generateGroupDataOmzet(1, 2, 1, 1.2, 2),
+                    generateGroupDataOmzet(2, 1, 2, 1.2, 2),
+                    generateGroupDataOmzet(3, 2, 2, 1.1, 2),
+                    generateGroupDataOmzet(4, 2, 1, 1.4, 2),
+                    generateGroupDataOmzet(5, 2, 2, 1.4, 2),
+                  ],
+                )
+              : tagSelected == 1
+                  ? Chart(
+                      tagSelected: tagSelected,
+                      listValueChart: [
+                        generateGroupDataOmzet(0, 1, 2, 2, 2),
+                        generateGroupDataOmzet(1, 2, 1, 1.2, 2),
+                        generateGroupDataOmzet(2, 2, 2, 1.4, 2),
+                        generateGroupDataOmzet(3, 1, 2, 1.2, 2),
+                        generateGroupDataOmzet(4, 2, 1, 1.4, 2),
+                        generateGroupDataOmzet(5, 2, 2, 1.1, 2),
+                      ],
+                    )
+                  : tagSelected == 2
+                      ? Chart(
+                          tagSelected: tagSelected,
+                          listValueChart: [
+                            generateGroupDataOmzet(0, 2, 1, 1.2, 2),
+                            generateGroupDataOmzet(1, 1, 2, 2, 2),
+                            generateGroupDataOmzet(2, 2, 2, 1.1, 2),
+                            generateGroupDataOmzet(3, 2, 2, 1.4, 2),
+                            generateGroupDataOmzet(4, 1, 2, 1.2, 2),
+                            generateGroupDataOmzet(5, 2, 1, 1.4, 2),
+                          ],
+                        )
+                      : Chart(
+                          tagSelected: tagSelected,
+                          listValueChart: [
+                            generateGroupDataOmzet(0, 2, 1, 1.2, 2),
+                            generateGroupDataOmzet(1, 2, 1, 1.4, 2),
+                            generateGroupDataOmzet(2, 1, 2, 1.2, 2),
+                            generateGroupDataOmzet(3, 1, 2, 2, 2),
+                            generateGroupDataOmzet(4, 2, 2, 1.1, 2),
+                            generateGroupDataOmzet(5, 2, 2, 1.4, 2),
+                          ],
+                        )),
+    );
+  }
+
+  int tagSelected2 = 0;
+  int tagSelected3 = 0;
+  Widget barChartLaba() {
+    return SampleWrapper(
+      title: 'Bar Chart Laba',
+      widget: BarChart(
+        selectedOptionDate: selectedOptionDate,
+        onTapDate: () {
+          dateModalBottomSheet(context);
+        },
+        textTypeChart: 'Laba Rugi',
+        textDateRange: '1 Jan 2023 - 31 Juli 2023',
+        countTotal: '- Rp687.375.337',
+        countTotalColor: AppColors.redLv1,
+        countTransaction: '1000',
+        onTapItem: (value) {},
+        tagBar: TagsOrganism(
+          listChips: const [
+            'Pemasukan',
+            'Pengeluaran',
+          ],
+          onTap: (value) {
+            // TODO
+            setState(() {
+              tagSelected3 = value;
+            });
+          },
+        ),
+        barChart: tagSelected3 == 0
+            ? Chart(
+                tagSelected: tagSelected,
+                listValueChart: [
+                  generateGroupDataProfit(0, 4, 5),
+                  generateGroupDataProfit(1, 4, 2),
+                  generateGroupDataProfit(4, 2, 2),
+                  generateGroupDataProfit(2, 2, 1),
+                  generateGroupDataProfit(3, 1, 2),
+                  generateGroupDataProfit(5, 2, 1),
+                ],
+              )
+            : Chart(
+                tagSelected: tagSelected,
+                listValueChart: [
+                  generateGroupDataProfit(0, 4, 5),
+                  generateGroupDataProfit(1, 1, 2),
+                  generateGroupDataProfit(2, 2, 1),
+                  generateGroupDataProfit(3, 2, 2),
+                  generateGroupDataProfit(4, 2, 2),
+                  generateGroupDataProfit(5, 2, 1),
+                ],
+              ),
+      ),
     );
   }
 }

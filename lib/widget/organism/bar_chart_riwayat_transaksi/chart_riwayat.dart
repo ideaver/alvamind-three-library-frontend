@@ -1,19 +1,17 @@
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
 import '../../../app/theme/app_colors.dart';
 
-class Chart extends StatelessWidget {
+class ChartRiwayat extends StatelessWidget {
+  final List<BarChartGroupData> listValueChart;
   final int tagSelected;
 
-  final List<BarChartGroupData> listValueChart;
-
-  const Chart({
-    super.key,
+  const ChartRiwayat({
+    Key? key,
     required this.listValueChart,
     required this.tagSelected,
-  });
+  }) : super(key: key);
 
   Widget leftTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 10);
@@ -107,71 +105,70 @@ class Chart extends StatelessWidget {
                 ),
               ),
               barTouchData: BarTouchData(
-                enabled: true,
                 touchTooltipData: BarTouchTooltipData(
-                    tooltipBgColor: AppColors.white,
-                    tooltipRoundedRadius: 10,
-                    tooltipBorder: const BorderSide(
-                      width: 1,
-                      color: AppColors.primary,
-                    ),
-                    getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                      String month = '';
-                      switch (groupIndex) {
-                        case 0:
-                          month = 'Januari';
-                          break;
-                        case 1:
-                          month = 'Februari';
-                          break;
-                        case 2:
-                          month = 'Maret';
-                          break;
-                        case 3:
-                          month = 'April';
-                          break;
-                        case 4:
-                          month = 'Mei';
-                          break;
-                        case 5:
-                          month = 'Juni';
-                          break;
-                        case 6:
-                          month = 'Juli';
-                          break;
-                      }
-                      String type;
-                      String value = rod.toY.toString();
+                  tooltipBgColor: AppColors.white,
+                  tooltipRoundedRadius: 10,
+                  tooltipBorder: const BorderSide(
+                    width: 1,
+                    color: AppColors.primary,
+                  ),
+                  getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                    String month = '';
+                    switch (groupIndex) {
+                      case 0:
+                        month = 'Januari';
+                        break;
+                      case 1:
+                        month = 'Februari';
+                        break;
+                      case 2:
+                        month = 'Maret';
+                        break;
+                      case 3:
+                        month = 'April';
+                        break;
+                      case 4:
+                        month = 'Mei';
+                        break;
+                      case 5:
+                        month = 'Juni';
+                        break;
+                      case 6:
+                        month = 'Juli';
+                        break;
+                    }
+                    String type;
+                    String value = rod.toY.toString();
 
-                      if (tagSelected == 0) {
-                        type = rodIndex == 0 ? 'Link' : 'Cupon';
-                      } else if (tagSelected == 1) {
-                        type = 'Link';
-                      } else {
-                        type = 'Cupon';
-                      }
-                      return BarTooltipItem(
-                        '',
-                        AppTextStyle.bodyXSmall(
-                          fontWeight: AppFontWeight.semibold,
-                          color: type == 'Link' ? Colors.blue : Colors.red,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '$month\n',
-                              style: AppTextStyle.bodyXSmall(
+                    if (tagSelected == 0) {
+                      type = rodIndex == 0 ? 'Link' : 'Cupon';
+                    } else if (tagSelected == 1) {
+                      type = 'Link';
+                    } else {
+                      type = 'Cupon';
+                    }
+                    return BarTooltipItem(
+                      '',
+                      AppTextStyle.bodyXSmall(
+                        fontWeight: AppFontWeight.semibold,
+                        color: type == 'Link' ? Colors.blue : Colors.red,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: '$month\n',
+                            style: AppTextStyle.bodyXSmall(
+                              fontWeight: AppFontWeight.semibold,
+                              color: type == 'Link' ? Colors.blue : Colors.red,
+                            )),
+                        TextSpan(
+                            text: '• $value - $type\n',
+                            style: AppTextStyle.bodyXSmall(
                                 fontWeight: AppFontWeight.semibold,
-                                color:
-                                    type == 'Link' ? Colors.blue : Colors.red,
-                              )),
-                          TextSpan(
-                              text: '• $value - $type\n',
-                              style: AppTextStyle.bodyXSmall(
-                                  fontWeight: AppFontWeight.semibold,
-                                  color: AppColors.blackLv5)),
-                        ],
-                      );
-                    }),
+                                color: AppColors.blackLv5)),
+                      ],
+                    );
+                  },
+                ),
               ),
               borderData: FlBorderData(show: false),
               gridData: const FlGridData(show: false),

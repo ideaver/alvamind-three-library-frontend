@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_shadows.dart';
 import '../../app/theme/app_sizes.dart';
@@ -52,8 +51,10 @@ class AppButton extends StatelessWidget {
     this.borderWidth,
     this.borderRadius = 6,
     this.loadingIndicatorSize = 22,
-    this.padding = const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
-    this.textPadding = const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2),
+    this.padding = const EdgeInsets.symmetric(
+        horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+    this.textPadding =
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2),
     this.enable = true,
     this.rounded = true,
     this.showBoxShadow = false,
@@ -88,7 +89,8 @@ class AppButton extends StatelessWidget {
         onTap: enable && !isLoading ? onTap : null,
         splashColor: AppColors.black.withOpacity(0.06),
         splashFactory: InkRipple.splashFactory,
-        highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
+        highlightColor:
+            enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
         borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
         child: Ink(
           width: width,
@@ -103,7 +105,9 @@ class AppButton extends StatelessWidget {
                     color: borderColor,
                   )
                 : null,
-            boxShadow: showBoxShadow && enable ? boxShadow ?? [AppShadows.darkShadow1] : null,
+            boxShadow: showBoxShadow && enable
+                ? boxShadow ?? [AppShadows.darkShadow1]
+                : null,
           ),
           child: center ? Center(child: child()) : child(),
         ),
