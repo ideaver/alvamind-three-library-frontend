@@ -1,14 +1,14 @@
-import 'package:alvamind_three_library_frontend/app/asset/app_assets.dart';
-import 'package:alvamind_three_library_frontend/app/asset/app_icons.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
-import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
-import 'package:alvamind_three_library_frontend/widget/atom/app_image.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_overlay_card.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/asset/app_assets.dart';
+import '../../app/asset/app_icons.dart';
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_sizes.dart';
+import '../../app/theme/app_text_style.dart';
+import '../../widget/atom/app_image.dart';
+import '../../widget/molecule/app_button.dart';
+import '../../widget/molecule/app_icon_button.dart';
+import '../../widget/molecule/app_overlay_card.dart';
 import '___sample_wrapper.dart';
 
 class AppOverlayCardSamplesView extends StatefulWidget {

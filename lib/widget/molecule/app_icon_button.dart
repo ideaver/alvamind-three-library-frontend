@@ -7,9 +7,12 @@ import '../../app/theme/app_text_style.dart';
 class AppIconButton extends StatelessWidget {
   final double? width;
   final double? height;
+  final double? iconButtonWidth;
+  final double? iconButtonHeight;
   final double? borderWidth;
   final double borderRadius;
   final double iconBorderRadius;
+  final int maxLines;
   final EdgeInsets padding;
   final EdgeInsets iconPadding;
   final EdgeInsets textPadding;
@@ -29,6 +32,8 @@ class AppIconButton extends StatelessWidget {
     super.key,
     this.width,
     this.height,
+    this.iconButtonWidth,
+    this.iconButtonHeight,
     this.borderWidth,
     this.padding = const EdgeInsets.all(AppSizes.padding / 2),
     this.iconPadding = EdgeInsets.zero,
@@ -39,6 +44,7 @@ class AppIconButton extends StatelessWidget {
     this.borderColor = AppColors.blackLv8,
     this.borderRadius = AppSizes.radius,
     this.iconBorderRadius = 100,
+    this.maxLines = 2,
     this.text,
     this.textStyle,
     this.gradient,
@@ -72,8 +78,8 @@ class AppIconButton extends StatelessWidget {
           highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
           borderRadius: BorderRadius.circular(iconBorderRadius),
           child: Ink(
-            width: width,
-            height: height,
+            width: iconButtonWidth,
+            height: iconButtonHeight,
             padding: padding,
             decoration: BoxDecoration(
               color: iconButtonColor ?? AppColors.blueLv6,
@@ -126,8 +132,8 @@ class AppIconButton extends StatelessWidget {
             child: Column(
               children: [
                 Ink(
-                  width: width,
-                  height: height,
+                  width: iconButtonWidth,
+                  height: iconButtonHeight,
                   padding: iconPadding,
                   decoration: BoxDecoration(
                     color: iconButtonColor,
@@ -148,7 +154,7 @@ class AppIconButton extends StatelessWidget {
                   child: Text(
                     text!,
                     textAlign: TextAlign.center,
-                    maxLines: 2,
+                    maxLines: maxLines,
                     overflow: TextOverflow.ellipsis,
                     style: textStyle ?? AppTextStyle.bodySmall(fontWeight: AppFontWeight.bold),
                   ),

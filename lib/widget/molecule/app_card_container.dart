@@ -1,4 +1,4 @@
-import 'package:alvamind_three_library_frontend/app/asset/app_assets.dart';
+import '../../app/asset/app_assets.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';

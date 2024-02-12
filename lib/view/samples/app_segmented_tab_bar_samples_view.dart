@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../app/theme/app_colors.dart';
 import '../../app/utility/console_log.dart';
 import '../../model/tab_bar_model.dart';
 import '../../widget/molecule/app_segmented_tab_bar.dart';
-import 'package:flutter/material.dart';
-
 import '___sample_wrapper.dart';
 
 class AppSegmentedTabBarSamplesView extends StatefulWidget {

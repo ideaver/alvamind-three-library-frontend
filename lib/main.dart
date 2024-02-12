@@ -1,5 +1,3 @@
-import 'package:alvamind_three_library_frontend/core.dart';
-import 'package:alvamind_three_library_frontend/state_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -59,7 +57,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Alvamind Library 3',
-        navigatorKey: Get.navigatorKey,
         theme: AppTheme.themeSelector(),
         scrollBehavior: AppTheme.scrollBehavior(context),
         debugShowCheckedModeBanner: true,

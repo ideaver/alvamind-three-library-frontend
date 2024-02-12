@@ -1,5 +1,5 @@
-import 'package:alvamind_three_library_frontend/app/asset/app_icons.dart';
-import 'package:alvamind_three_library_frontend/widget/molecule/app_statistic_square.dart';
+import '../../app/asset/app_icons.dart';
+import '../../widget/molecule/app_statistic_square.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
