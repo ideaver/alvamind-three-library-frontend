@@ -43,6 +43,10 @@ class AppButton extends StatelessWidget {
   final Widget? suffixIconWidget;
   final AppButtonAlignment alignment;
   final Function() onTap;
+  final List<Color>? colorGradient;
+  final bool? isGradient;
+  final AlignmentGeometry? begin;
+  final AlignmentGeometry? end;
 
   const AppButton({
     super.key,
@@ -52,8 +56,10 @@ class AppButton extends StatelessWidget {
     this.borderWidth,
     this.borderRadius = 6,
     this.loadingIndicatorSize = 22,
-    this.padding = const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
-    this.textPadding = const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2),
+    this.padding = const EdgeInsets.symmetric(
+        horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+    this.textPadding =
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2),
     this.enable = true,
     this.rounded = true,
     this.showBoxShadow = false,
@@ -78,6 +84,10 @@ class AppButton extends StatelessWidget {
     this.suffixIconWidget,
     this.alignment = AppButtonAlignment.horizontal,
     required this.onTap,
+    this.isGradient = false,
+    this.begin,
+    this.end,
+    this.colorGradient,
   });
 
   @override
@@ -88,13 +98,21 @@ class AppButton extends StatelessWidget {
         onTap: enable && !isLoading ? onTap : null,
         splashColor: AppColors.black.withOpacity(0.06),
         splashFactory: InkRipple.splashFactory,
-        highlightColor: enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
+        highlightColor:
+            enable ? AppColors.black.withOpacity(0.12) : Colors.transparent,
         borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
         child: Ink(
           width: width,
           height: height,
           padding: padding,
           decoration: BoxDecoration(
+            gradient: isGradient == true
+                ? LinearGradient(
+                    colors: colorGradient ??
+                        [AppColors.blueLv1, AppColors.darkBlueLv5],
+                    begin: begin ?? Alignment.centerLeft,
+                    end: Alignment.centerRight)
+                : null,
             color: enable ? buttonColor : disabledButtonColor,
             borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
             border: borderWidth != null
@@ -103,7 +121,9 @@ class AppButton extends StatelessWidget {
                     color: borderColor,
                   )
                 : null,
-            boxShadow: showBoxShadow && enable ? boxShadow ?? [AppShadows.darkShadow1] : null,
+            boxShadow: showBoxShadow && enable
+                ? boxShadow ?? [AppShadows.darkShadow1]
+                : null,
           ),
           child: center ? Center(child: child()) : child(),
         ),
