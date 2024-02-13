@@ -1,4 +1,6 @@
+import 'package:alvamind_three_library_frontend/app/theme/app_shadows.dart';
 import 'package:flutter/material.dart';
+
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
@@ -7,8 +9,8 @@ class AppSortingButton extends StatelessWidget {
   final Function() onTapFirst;
   final Function() onTapSecond;
   final double? width;
-  final double? height;
-  final Color? backgroundColor;
+  final double height;
+  final Color backgroundColor;
   final bool rounded;
   final double borderRadius;
   final String firstText;
@@ -21,9 +23,9 @@ class AppSortingButton extends StatelessWidget {
 
   const AppSortingButton({
     super.key,
-    this.height,
-    this.width,
-    this.backgroundColor,
+    this.height = 44,
+    this.width = 212,
+    this.backgroundColor = AppColors.secondary,
     this.rounded = true,
     this.borderRadius = 100,
     this.padding,
@@ -39,24 +41,26 @@ class AppSortingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return Container(
-      width: screenSize.width,
-      height: height ?? 44,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
-        color: backgroundColor ?? AppColors.secondary,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
+        boxShadow: [AppShadows.darkShadow6],
       ),
-      child: Padding(
-        padding: padding ?? const EdgeInsets.all(AppSizes.padding / 3),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InkWell(
+      child: Row(
+        children: [
+          Flexible(
+            flex: 1,
+            child: InkWell(
               onTap: onTapFirst,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(rounded ? 100 : borderRadius),
+                bottomLeft: Radius.circular(rounded ? 100 : borderRadius),
+              ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     firstIcon,
@@ -75,14 +79,22 @@ class AppSortingButton extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: screenSize.height,
-              width: 1,
-              color: AppColors.blackLv9,
-            ),
-            InkWell(
+          ),
+          Container(
+            height: height / 2.5,
+            width: 1,
+            color: AppColors.blackLv4,
+          ),
+          Flexible(
+            flex: 1,
+            child: InkWell(
               onTap: onTapSecond,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(rounded ? 100 : borderRadius),
+                bottomRight: Radius.circular(rounded ? 100 : borderRadius),
+              ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     secondIcon,
@@ -101,8 +113,8 @@ class AppSortingButton extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
