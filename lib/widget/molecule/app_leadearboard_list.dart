@@ -1,7 +1,8 @@
-import '../atom/app_avatar.dart';
 import 'package:flutter/material.dart';
+
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
+import '../atom/app_avatar.dart';
 
 class AppLeaderboardList extends StatelessWidget {
   final Widget? leading;
@@ -45,8 +46,7 @@ class AppLeaderboardList extends StatelessWidget {
       ),
       subtitle: Text(
         subtitleText,
-        style: AppTextStyle.bodyMedium(
-            fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
+        style: AppTextStyle.bodyMedium(fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
       ),
       trailing: Container(
         width: width ?? 52,
@@ -60,8 +60,7 @@ class AppLeaderboardList extends StatelessWidget {
           child: Text(
             textAlign: TextAlign.center,
             typeText,
-            style: AppTextStyle.bodyXSmall(
-                fontWeight: AppFontWeight.medium, color: AppColors.white),
+            style: AppTextStyle.bodyXSmall(fontWeight: AppFontWeight.medium, color: AppColors.white),
           ),
         ),
       ),

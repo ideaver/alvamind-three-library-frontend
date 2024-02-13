@@ -1,4 +1,4 @@
-import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
+import '../../molecule/app_button.dart';
 import '../../../app/asset/app_assets.dart';
 import 'package:flutter/material.dart';
 import '../../../app/theme/app_text_style.dart';

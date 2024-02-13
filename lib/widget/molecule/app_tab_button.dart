@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 enum AppButtonAlignment {
   horizontal,
@@ -21,7 +21,7 @@ class AppTabButton extends StatelessWidget {
   final Function() onTap;
 
   const AppTabButton({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     required this.enabledColor,
@@ -32,7 +32,7 @@ class AppTabButton extends StatelessWidget {
     required this.text,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +51,7 @@ class AppTabButton extends StatelessWidget {
           textAlign: TextAlign.center,
           text,
           style: AppTextStyle.bodySmall(
-              fontWeight: AppFontWeight.semibold,
-              color: isSelected ? AppColors.greyScale50 : AppColors.secondary),
+              fontWeight: AppFontWeight.semibold, color: isSelected ? AppColors.greyScale50 : AppColors.secondary),
         ),
       ),
     );

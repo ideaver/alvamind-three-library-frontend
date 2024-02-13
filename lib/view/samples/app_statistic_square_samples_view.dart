@@ -1,8 +1,8 @@
-import '../../app/asset/app_icons.dart';
-import '../../widget/molecule/app_statistic_square.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/asset/app_icons.dart';
 import '../../app/theme/app_colors.dart';
+import '../../widget/molecule/app_statistic_square.dart';
 import '___sample_wrapper.dart';
 
 class AppStatisticSquareamplesView extends StatefulWidget {

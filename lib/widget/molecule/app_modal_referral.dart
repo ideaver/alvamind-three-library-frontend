@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
+import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../app/theme/app_text_style.dart';
 import 'app_button.dart';
 import 'app_icon_button.dart';
-import 'package:flutter/material.dart';
-import '../../app/theme/app_colors.dart';
 import 'app_radio_list_tile.dart';
 
 class AppModalReferral extends StatefulWidget {
@@ -12,7 +13,8 @@ class AppModalReferral extends StatefulWidget {
   final String selectedOption;
   final Function(String) onSelect;
 
-  AppModalReferral({
+  const AppModalReferral({
+    super.key,
     this.height,
     this.width,
     required this.selectedOption,
@@ -88,8 +90,7 @@ class _AppModalReferralState extends State<AppModalReferral> {
               title: "Hari Ini",
               subtitle: '6 Jan 2024',
               value: "Hari Ini",
-              subtitleStyle: AppTextStyle.bodySmall(
-                  fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
+              subtitleStyle: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
               groupValue: selectedOption,
               onChanged: (value) {
                 setState(() {
@@ -103,10 +104,8 @@ class _AppModalReferralState extends State<AppModalReferral> {
             AppRadioListTile(
               title: "7 Hari Terakhir",
               subtitle: '30 Des 2023 - 6 Jan 2024',
-              titleStyle:
-                  AppTextStyle.bodyMedium(fontWeight: AppFontWeight.bold),
-              subtitleStyle: AppTextStyle.bodySmall(
-                  fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
+              titleStyle: AppTextStyle.bodyMedium(fontWeight: AppFontWeight.bold),
+              subtitleStyle: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
               value: "7 Hari",
               groupValue: selectedOption,
               onChanged: (value) {
@@ -123,8 +122,7 @@ class _AppModalReferralState extends State<AppModalReferral> {
               subtitle: '6 Des 2023 - 6 Jan 2023',
               value: "6 Bulan",
               groupValue: selectedOption,
-              subtitleStyle: AppTextStyle.bodySmall(
-                  fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
+              subtitleStyle: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
               onChanged: (value) {
                 setState(() {
                   selectedOption = value.toString();

@@ -1,8 +1,8 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_colors.dart';
+import '../../../app/theme/app_text_style.dart';
 
 class Chart extends StatelessWidget {
   final int tagSelected;
@@ -161,14 +161,12 @@ class Chart extends StatelessWidget {
                               text: '$month\n',
                               style: AppTextStyle.bodyXSmall(
                                 fontWeight: AppFontWeight.semibold,
-                                color:
-                                    type == 'Link' ? Colors.blue : Colors.red,
+                                color: type == 'Link' ? Colors.blue : Colors.red,
                               )),
                           TextSpan(
                               text: '• $value - $type\n',
                               style: AppTextStyle.bodyXSmall(
-                                  fontWeight: AppFontWeight.semibold,
-                                  color: AppColors.blackLv5)),
+                                  fontWeight: AppFontWeight.semibold, color: AppColors.blackLv5)),
                         ],
                       );
                     }),

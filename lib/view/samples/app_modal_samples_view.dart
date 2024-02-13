@@ -1,9 +1,10 @@
-import '../../widget/molecule/app_modal_referral.dart';
 import 'package:flutter/material.dart';
+
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../widget/molecule/app_button.dart';
 import '../../widget/molecule/app_modal.dart';
+import '../../widget/molecule/app_modal_referral.dart';
 import '../../widget/molecule/app_text_field.dart';
 import '___sample_wrapper.dart';
 

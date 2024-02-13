@@ -1,7 +1,7 @@
-import '../../../app/theme/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_colors.dart';
+import '../../../app/theme/app_sizes.dart';
 import '../../molecule/app_chips.dart';
 
 // ignore: must_be_immutable
@@ -23,6 +23,7 @@ class TagsOrganism extends StatefulWidget {
     required this.onTap,
     this.padding,
     this.fontSize,
+    
     this.runSpacing,
     this.leftIcon,
     this.isSelected,
@@ -50,12 +51,10 @@ class _TagsOrganismState extends State<TagsOrganism> {
             return Padding(
               padding: index == widget.listChips.length - 1
                   ? EdgeInsets.zero
-                  : EdgeInsets.only(
-                      right: widget.runSpacing ?? AppSizes.padding / 2),
+                  : EdgeInsets.only(right: widget.runSpacing ?? AppSizes.padding / 2),
               child: AppChips(
                 leftIcon: widget.leftIcon,
-                selectedColor:
-                    widget.selectedColor?[index] ?? AppColors.primary,
+                selectedColor: widget.selectedColor?[index] ?? AppColors.primary,
                 fontSize: widget.fontSize ?? 16,
                 padding: widget.padding ??
                     const EdgeInsets.symmetric(

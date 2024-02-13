@@ -1,17 +1,18 @@
-import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+
 import '../../../app/theme/app_colors.dart';
+import '../../../app/theme/app_text_style.dart';
 
 class ChartRiwayat extends StatelessWidget {
   final List<BarChartGroupData> listValueChart;
   final int tagSelected;
 
   const ChartRiwayat({
-    Key? key,
+    super.key,
     required this.listValueChart,
     required this.tagSelected,
-  }) : super(key: key);
+  });
 
   Widget leftTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 10);
@@ -162,9 +163,8 @@ class ChartRiwayat extends StatelessWidget {
                             )),
                         TextSpan(
                             text: '• $value - $type\n',
-                            style: AppTextStyle.bodyXSmall(
-                                fontWeight: AppFontWeight.semibold,
-                                color: AppColors.blackLv5)),
+                            style:
+                                AppTextStyle.bodyXSmall(fontWeight: AppFontWeight.semibold, color: AppColors.blackLv5)),
                       ],
                     );
                   },

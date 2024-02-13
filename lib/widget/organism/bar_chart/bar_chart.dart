@@ -1,13 +1,13 @@
-import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
+import 'package:flutter/material.dart';
 
 import '../../../app/asset/app_assets.dart';
-import '../../molecule/app_card_container.dart';
-import 'package:flutter/material.dart';
-import '../../../app/theme/app_text_style.dart';
-import '../../molecule/app_icon_button.dart';
-import '../../molecule/app_long_card.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
+import '../../../app/theme/app_text_style.dart';
+import '../../molecule/app_button.dart';
+import '../../molecule/app_card_container.dart';
+import '../../molecule/app_icon_button.dart';
+import '../../molecule/app_long_card.dart';
 
 class BarChart extends StatefulWidget {
   final String selectedOptionDate;
@@ -91,9 +91,7 @@ class _BarChartState extends State<BarChart> {
                   textColor: AppColors.blackLv5,
                   textWidget: Text(
                     widget.selectedOptionDate,
-                    style: AppTextStyle.bodySmall(
-                        fontWeight: AppFontWeight.semibold,
-                        color: AppColors.blackLv5),
+                    style: AppTextStyle.bodySmall(fontWeight: AppFontWeight.semibold, color: AppColors.blackLv5),
                   ),
                   borderWidth: 1,
                   onTap: widget.onTapDate)
@@ -104,17 +102,13 @@ class _BarChartState extends State<BarChart> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(widget.textDateRange ?? '1 Jan 2023 - 31 Juli 2023',
-                  style: AppTextStyle.regular(
-                      size: 14, color: AppColors.blackLv4)),
+                  style: AppTextStyle.regular(size: 14, color: AppColors.blackLv4)),
               const SizedBox(height: AppSizes.padding / 2),
               Text(widget.countTotal ?? 'Rp 687.375.337',
-                  style: AppTextStyle.bold(
-                      size: 24,
-                      color: widget.countTotalColor ?? AppColors.black)),
+                  style: AppTextStyle.bold(size: 24, color: widget.countTotalColor ?? AppColors.black)),
               const SizedBox(height: AppSizes.padding / 2),
               Text('${widget.countTransaction} Transaksi',
-                  style: AppTextStyle.regular(
-                      size: 14, color: AppColors.blackLv4)),
+                  style: AppTextStyle.regular(size: 14, color: AppColors.blackLv4)),
             ],
           ),
           const SizedBox(height: AppSizes.padding),
