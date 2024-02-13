@@ -8,6 +8,7 @@
 //   final Widget? leading;
 //   final String? title;
 //   final String? subtitle;
+//   final Widget? widgetSubtitle;
 //   final Widget? trailing;
 //   final TextStyle? titleStyle;
 //   final TextStyle? subtitleStyle;
@@ -25,6 +26,7 @@
 //     this.leading,
 //     this.title,
 //     this.subtitle,
+//     this.widgetSubtitle,
 //     this.trailing,
 //     this.titleStyle,
 //     this.subtitleStyle,
@@ -88,6 +90,7 @@
 //                               fontWeight: AppFontWeight.regular,
 //                               color: AppColors.blackLv5),
 //                     ),
+//                   if (widgetSubtitle != null) widgetSubtitle!
 //                 ],
 //               ),
 //               const Spacer(),
