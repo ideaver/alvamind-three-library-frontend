@@ -92,6 +92,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
+      color: buttonColor,
       child: InkWell(
         onTap: enable && !isLoading ? onTap : null,
         splashColor: AppColors.black.withOpacity(0.06),
@@ -107,7 +108,8 @@ class AppButton extends StatelessWidget {
                 ? LinearGradient(
                     colors: colorGradient ?? [AppColors.blueLv1, AppColors.darkBlueLv5],
                     begin: begin ?? Alignment.centerLeft,
-                    end: Alignment.centerRight)
+                    end: end ?? Alignment.centerRight,
+                  )
                 : null,
             color: enable ? buttonColor : disabledButtonColor,
             borderRadius: BorderRadius.circular(rounded ? 100 : borderRadius),
