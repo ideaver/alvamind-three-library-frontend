@@ -87,20 +87,19 @@ class _BarChartRiwayatState extends State<BarChartRiwayat> {
                 ),
               ),
               AppButton(
-                  padding: const EdgeInsets.all(AppSizes.padding / 2),
-                  suffixIcon: Icons.keyboard_arrow_down,
-                  buttonColor: AppColors.white,
-                  suffixIconColor: AppColors.blackLv5,
-                  borderColor: AppColors.blackLv5,
-                  textColor: AppColors.blackLv5,
-                  textWidget: Text(
-                    widget.selectedOptionDate,
-                    style: AppTextStyle.bodySmall(
-                        fontWeight: AppFontWeight.semibold,
-                        color: AppColors.blackLv5),
-                  ),
-                  borderWidth: 1,
-                  onTap: widget.onTapDate)
+                padding: const EdgeInsets.all(AppSizes.padding / 2),
+                suffixIcon: Icons.keyboard_arrow_down,
+                buttonColor: AppColors.white,
+                suffixIconColor: AppColors.blackLv5,
+                borderColor: AppColors.blackLv5,
+                textColor: AppColors.blackLv5,
+                textWidget: Text(
+                  widget.selectedOptionDate,
+                  style: AppTextStyle.bodySmall(fontWeight: AppFontWeight.semibold, color: AppColors.blackLv5),
+                ),
+                borderWidth: 1,
+                onTap: widget.onTapDate,
+              )
             ],
           ),
           const SizedBox(height: AppSizes.padding),
@@ -108,17 +107,14 @@ class _BarChartRiwayatState extends State<BarChartRiwayat> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(widget.textDateRange ?? '1 Jan 2023 - 31 Juli 2023',
-                  style: AppTextStyle.regular(
-                      size: 14, color: AppColors.blackLv4)),
+                  style: AppTextStyle.regular(size: 14, color: AppColors.blackLv4)),
               const SizedBox(height: AppSizes.padding / 2),
               Text(
                 widget.countTotal ?? '1.000 Transaksi',
                 style: AppTextStyle.heading4(color: AppColors.primary),
               ),
               const SizedBox(height: AppSizes.padding / 2),
-              Text('Total Penjualan Link dan Kupon',
-                  style: AppTextStyle.regular(
-                      size: 14, color: AppColors.blackLv4)),
+              Text('Total Penjualan Link dan Kupon', style: AppTextStyle.regular(size: 14, color: AppColors.blackLv4)),
             ],
           ),
           const SizedBox(height: AppSizes.padding),
