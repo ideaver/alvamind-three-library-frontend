@@ -30,8 +30,7 @@ class AppBottomNavbar extends StatelessWidget {
     this.fontSize = 12,
     this.iconSize = 20,
     this.borderRadius = AppSizes.radius * 2,
-    this.padding = const EdgeInsets.symmetric(
-        horizontal: AppSizes.padding / 2, vertical: AppSizes.padding),
+    this.padding = const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2, vertical: AppSizes.padding),
     this.backgroundColor = AppColors.white,
     this.activeColor = AppColors.primary,
     this.inactiveColor = AppColors.blackLv6,
@@ -43,6 +42,7 @@ class AppBottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pageList[selectedIndex],
+      extendBody: true,
       bottomNavigationBar: SizedBox(
         // height: barHeight,
         child: Stack(
@@ -79,16 +79,14 @@ class AppBottomNavbar extends StatelessWidget {
                             selectedIndex == i
                                 ? buttonList[i].activeIconButton ??
                                     Icon(
-                                      buttonList[i].activeIcon ??
-                                          buttonList[i].inactiveIcon,
+                                      buttonList[i].activeIcon ?? buttonList[i].inactiveIcon,
                                       color: activeColor,
                                       size: iconSize,
                                     )
                                 : buttonList[i].inactiveIconButton ??
                                     buttonList[i].activeIconButton ??
                                     Icon(
-                                      buttonList[i].inactiveIcon ??
-                                          buttonList[i].activeIcon,
+                                      buttonList[i].inactiveIcon ?? buttonList[i].activeIcon,
                                       color: inactiveColor,
                                       size: iconSize,
                                     ),
@@ -100,12 +98,8 @@ class AppBottomNavbar extends StatelessWidget {
                                     maxLines: 1,
                                     style: AppTextStyle.custom(
                                       size: fontSize,
-                                      fontWeight: selectedIndex == i
-                                          ? AppFontWeight.bold
-                                          : AppFontWeight.medium,
-                                      color: selectedIndex == i
-                                          ? activeColor
-                                          : inactiveColor,
+                                      fontWeight: selectedIndex == i ? AppFontWeight.bold : AppFontWeight.medium,
+                                      color: selectedIndex == i ? activeColor : inactiveColor,
                                     ),
                                   )
                                 : const SizedBox.shrink()

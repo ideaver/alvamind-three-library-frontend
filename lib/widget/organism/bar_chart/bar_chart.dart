@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/asset/app_assets.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
 import '../../../app/theme/app_text_style.dart';
@@ -64,7 +63,7 @@ class _BarChartState extends State<BarChart> {
                     AppIconButton(
                       buttonColor: AppColors.blueLv5,
                       icon: const Icon(
-                        CustomIcon.chartBoldIcon,
+                        Icons.bar_chart_rounded,
                         color: AppColors.primary,
                       ),
                       onTap: () {},

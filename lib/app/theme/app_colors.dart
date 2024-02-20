@@ -111,9 +111,6 @@ class AppColors {
   static const Color purpleLv5 = Color(0xFFD1C1FF);
   static const Color purpleLv6 = Color(0xFFE4DBFF);
 
-  // Grey
-  static const Color greyScale50 = Color(0xFFF9F9F9);
-
   // Cyan
   static const Color cyanLv1 = Color(0xff00BCD3);
 }

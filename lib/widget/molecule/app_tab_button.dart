@@ -51,7 +51,9 @@ class AppTabButton extends StatelessWidget {
           textAlign: TextAlign.center,
           text,
           style: AppTextStyle.bodySmall(
-              fontWeight: AppFontWeight.semibold, color: isSelected ? AppColors.greyScale50 : AppColors.secondary),
+            fontWeight: AppFontWeight.semibold,
+            color: isSelected ? AppColors.blackLv8 : AppColors.secondary,
+          ),
         ),
       ),
     );

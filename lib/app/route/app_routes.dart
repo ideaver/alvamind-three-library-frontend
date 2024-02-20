@@ -24,6 +24,7 @@ import '../../view/samples/app_progress_indicator_samples_view.dart';
 import '../../view/samples/app_progress_line_samples_view.dart';
 import '../../view/samples/app_radio_list_tile_samples_view.dart';
 import '../../view/samples/app_radio_samples_view.dart';
+import '../../view/samples/app_segmented_button_samples_view.dart';
 import '../../view/samples/app_segmented_tab_bar_samples_view.dart';
 import '../../view/samples/app_snackbar_samples_view.dart';
 import '../../view/samples/app_statistic_square_samples_view.dart';
@@ -87,5 +88,6 @@ class AppRoutes {
     AppStatisticSquareamplesView.routeName: (context) => const AppStatisticSquareamplesView(),
     StatisticSquaresGridamplesView.routeName: (context) => const StatisticSquaresGridamplesView(),
     AppOverlayCardSamplesView.routeName: (context) => const AppOverlayCardSamplesView(),
+    AppSegmentedButtonSamplesView.routeName: (context) => const AppSegmentedButtonSamplesView(),
   };
 }

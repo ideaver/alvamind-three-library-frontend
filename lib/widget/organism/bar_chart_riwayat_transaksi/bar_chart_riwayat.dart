@@ -1,11 +1,11 @@
-import '../../molecule/app_button.dart';
-import '../../../app/asset/app_assets.dart';
 import 'package:flutter/material.dart';
-import '../../../app/theme/app_text_style.dart';
-import '../../molecule/app_icon_button.dart';
-import '../../molecule/app_long_card.dart';
+
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
+import '../../../app/theme/app_text_style.dart';
+import '../../molecule/app_button.dart';
+import '../../molecule/app_icon_button.dart';
+import '../../molecule/app_long_card.dart';
 
 class BarChartRiwayat extends StatefulWidget {
   final String selectedOptionDate;
@@ -68,7 +68,7 @@ class _BarChartRiwayatState extends State<BarChartRiwayat> {
                     AppIconButton(
                       buttonColor: AppColors.blueLv5,
                       icon: const Icon(
-                        CustomIcon.chartBoldIcon,
+                        Icons.bar_chart_rounded,
                         color: AppColors.primary,
                       ),
                       onTap: () {},
