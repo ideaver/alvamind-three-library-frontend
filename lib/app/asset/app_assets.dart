@@ -16,6 +16,7 @@ class AppAssets {
   static const String user = 'lib/assets/images/user.png';
   static const String loadingGif = 'lib/assets/images/loading.gif';
   static const String emptyPlaceholder = 'lib/assets/images/empty_placeholder.png';
+  static const String coverImg = 'lib/assets/images/cover.jpg';
 
   // Image Icons
   static const String flagID = 'lib/assets/images/icons/flags/ID.png';
