@@ -58,6 +58,7 @@ class AppAssets {
   static const String nodataDark = 'lib/assets/images/illustrations/dark_nodata.png';
   static const String referralDark = 'lib/assets/images/illustrations/dark_referral.png';
   static const String successDark = 'lib/assets/images/illustrations/dark_success.png';
+  static const String upgradeMembershipBanner = 'lib/assets/images/illustrations/upgrade_membership_banner.png';
 
   // Onboarding
   static const String ob1Light = 'lib/assets/images/illustrations/onboarding/light_ob1.png';
