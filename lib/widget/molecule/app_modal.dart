@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
@@ -61,8 +62,8 @@ class AppModal {
   static void pickImageModal({
     required BuildContext context,
     String? title = 'Ambil Foto',
-    required Function() onTapGalleryButton,
-    required Function() onTapCameraButton,
+    Function(String?)? onTapGalleryButton,
+    Function(String?)? onTapCameraButton,
     Function()? onTapDeleteButton,
   }) {
     AppModal.show(
@@ -72,56 +73,74 @@ class AppModal {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AppButton(
-            width: double.maxFinite,
-            text: 'Pilih Foto',
-            buttonColor: AppColors.white,
-            textColor: AppColors.secondary,
-            borderWidth: 1,
-            center: false,
-            rounded: false,
-            borderRadius: AppSizes.radius * 2,
-            padding: const EdgeInsets.all(AppSizes.padding),
-            fontWeight: AppFontWeight.medium,
-            prefixIconWidget: Container(
-              padding: const EdgeInsets.all(AppSizes.padding / 2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(width: 1, color: AppColors.blackLv8),
+          Visibility(
+            visible: onTapGalleryButton != null,
+            child: AppButton(
+              width: double.maxFinite,
+              text: 'Pilih Foto',
+              buttonColor: AppColors.white,
+              textColor: AppColors.secondary,
+              borderWidth: 1,
+              center: false,
+              rounded: false,
+              borderRadius: AppSizes.radius * 2,
+              padding: const EdgeInsets.all(AppSizes.padding),
+              fontWeight: AppFontWeight.medium,
+              prefixIconWidget: Container(
+                padding: const EdgeInsets.all(AppSizes.padding / 2),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 1, color: AppColors.blackLv8),
+                ),
+                child: const Icon(
+                  Icons.photo_size_select_actual_outlined,
+                  size: 18,
+                  color: AppColors.secondary,
+                ),
               ),
-              child: const Icon(
-                Icons.photo_size_select_actual_outlined,
-                size: 18,
-                color: AppColors.secondary,
-              ),
+              onTap: () async {
+                final ImagePicker picker = ImagePicker();
+                final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+                return onTapGalleryButton!(image?.path);
+              },
             ),
-            onTap: onTapGalleryButton,
           ),
-          const SizedBox(height: AppSizes.padding),
-          AppButton(
-            width: double.maxFinite,
-            text: 'Ambil Foto',
-            buttonColor: AppColors.white,
-            textColor: AppColors.secondary,
-            borderWidth: 1,
-            center: false,
-            rounded: false,
-            borderRadius: AppSizes.radius * 2,
-            padding: const EdgeInsets.all(AppSizes.padding),
-            fontWeight: AppFontWeight.medium,
-            prefixIconWidget: Container(
-              padding: const EdgeInsets.all(AppSizes.padding / 2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(width: 1, color: AppColors.blackLv8),
-              ),
-              child: const Icon(
-                Icons.camera_alt_outlined,
-                size: 18,
-                color: AppColors.secondary,
+          Visibility(
+            visible: onTapCameraButton != null,
+            child: Padding(
+              padding: const EdgeInsets.only(top: AppSizes.padding),
+              child: AppButton(
+                width: double.maxFinite,
+                text: 'Ambil Foto',
+                buttonColor: AppColors.white,
+                textColor: AppColors.secondary,
+                borderWidth: 1,
+                center: false,
+                rounded: false,
+                borderRadius: AppSizes.radius * 2,
+                padding: const EdgeInsets.all(AppSizes.padding),
+                fontWeight: AppFontWeight.medium,
+                prefixIconWidget: Container(
+                  padding: const EdgeInsets.all(AppSizes.padding / 2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 1, color: AppColors.blackLv8),
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt_outlined,
+                    size: 18,
+                    color: AppColors.secondary,
+                  ),
+                ),
+                onTap: () async {
+                  final ImagePicker picker = ImagePicker();
+                  final XFile? image = await picker.pickImage(source: ImageSource.camera);
+
+                  return onTapCameraButton!(image?.path);
+                },
               ),
             ),
-            onTap: onTapCameraButton,
           ),
           Visibility(
             visible: onTapDeleteButton != null,
@@ -150,7 +169,7 @@ class AppModal {
                     color: AppColors.error,
                   ),
                 ),
-                onTap: onTapCameraButton,
+                onTap: onTapDeleteButton ?? () {},
               ),
             ),
           ),
