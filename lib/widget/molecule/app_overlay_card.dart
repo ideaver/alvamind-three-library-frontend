@@ -53,7 +53,7 @@ class AppOverlayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return aspectRatio != null || width == null && height == null
+    return aspectRatio != null || (width == null && height == null)
         ? AspectRatio(
             aspectRatio: aspectRatio ?? 1,
             child: card(),
