@@ -14,12 +14,10 @@ class AppModalPopupButtonSamplesView extends StatefulWidget {
   static const routeName = '/molecule-app-modal';
 
   @override
-  State<AppModalPopupButtonSamplesView> createState() =>
-      _AppModalPopupButtonSamplesViewState();
+  State<AppModalPopupButtonSamplesView> createState() => _AppModalPopupButtonSamplesViewState();
 }
 
-class _AppModalPopupButtonSamplesViewState
-    extends State<AppModalPopupButtonSamplesView> {
+class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamplesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -248,8 +246,8 @@ class _AppModalPopupButtonSamplesViewState
           AppModal.pickImageModal(
             context: context,
             title: 'Edit Foto Profil',
-            onTapCameraButton: () {},
-            onTapGalleryButton: () {},
+            onTapCameraButton: (path) {},
+            onTapGalleryButton: (path) {},
             // Optional
             onTapDeleteButton: () {},
           );
