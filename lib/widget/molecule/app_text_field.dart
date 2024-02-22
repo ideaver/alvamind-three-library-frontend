@@ -320,6 +320,7 @@ class _AppTextFieldState extends State<AppTextField> {
     }
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         labelWidget(),
