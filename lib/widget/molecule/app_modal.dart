@@ -63,7 +63,7 @@ class AppModal {
     String? title = 'Ambil Foto',
     required Function() onTapGalleryButton,
     required Function() onTapCameraButton,
-    required Function()? onTapDeleteButton,
+    Function()? onTapDeleteButton,
   }) {
     AppModal.show(
       context: context,
