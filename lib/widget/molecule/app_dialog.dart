@@ -8,7 +8,7 @@ import '../atom/app_progress_indicator.dart';
 import 'app_button.dart';
 
 class AppDialog {
-  static Future<void> show(
+  static Future<dynamic> show(
     NavigatorState navigator, {
     String? title,
     Widget? child,
@@ -27,7 +27,7 @@ class AppDialog {
     Color? rightButtonTextColor,
     double? elevation,
   }) async {
-    showDialog(
+    return showDialog(
       context: navigator.context,
       builder: (context) {
         return AppDialogWidget(

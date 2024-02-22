@@ -9,7 +9,7 @@ import 'app_button.dart';
 import 'app_icon_button.dart';
 
 class AppModal {
-  static Future<void> show({
+  static Future<dynamic> show({
     required BuildContext context,
     Widget? iconWidget,
     String? title,
@@ -23,7 +23,7 @@ class AppModal {
     Widget? body,
     CrossAxisAlignment? crossAxisAlignment,
   }) async {
-    showModalBottomSheet(
+    return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       useRootNavigator: true,
