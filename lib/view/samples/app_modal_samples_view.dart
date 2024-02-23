@@ -33,6 +33,8 @@ class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamp
             customModal(),
             customModalWithCloseButton(),
             defaultPickImageDialog(),
+            defaultPickAttachmentDialog(),
+            defaultPickDateSortingDialog(),
             referralModal()
           ],
         ),
@@ -246,10 +248,44 @@ class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamp
           AppModal.pickImageModal(
             context: context,
             title: 'Edit Foto Profil',
-            onTapCameraButton: (path) {},
-            onTapGalleryButton: (path) {},
+            onTapCamera: (path) {},
+            onTapGallery: (path) {},
             // Optional
-            onTapDeleteButton: () {},
+            onTapDelete: () {},
+          );
+        },
+      ),
+    );
+  }
+
+  Widget defaultPickAttachmentDialog() {
+    return SampleWrapper(
+      title: 'Default Pick Attachment Dialog',
+      widget: AppButton(
+        text: 'Show Default Pick Attachment Dialog',
+        onTap: () {
+          AppModal.pickAttachmentModal(
+            context: context,
+            onTapCamera: (attach) {},
+            onTapGallery: (attach) {},
+            onTapDocument: (attach) {},
+            onTapLocation: (attach) {},
+          );
+        },
+      ),
+    );
+  }
+
+  Widget defaultPickDateSortingDialog() {
+    return SampleWrapper(
+      title: 'Default Pick Date Sorting Dialog',
+      widget: AppButton(
+        text: 'Show Default Pick Date Sorting Dialog',
+        onTap: () {
+          AppModal.pickDateSortingModal(
+            context: context,
+            enableCustomDateRange: true,
+            onTapApply: (dates) {},
           );
         },
       ),

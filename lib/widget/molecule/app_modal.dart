@@ -1,12 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-import '../../../app/theme/app_colors.dart';
-import '../../../app/theme/app_sizes.dart';
-import '../../../app/theme/app_text_style.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
+import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
+import 'package:flutter/material.dart';
+
 import '../../app/theme/app_shadows.dart';
-import 'app_button.dart';
-import 'app_icon_button.dart';
+import '../../model/attachment_model.dart';
+import '../../model/date_sorting_model.dart';
+import '../organism/modal_body/pick_attachment_modal_body.dart';
+import '../organism/modal_body/pick_date_sorting_modal_body.dart';
+import '../organism/modal_body/pick_image_modal_body.dart';
 
 class AppModal {
   static Future<dynamic> show({
@@ -61,119 +66,67 @@ class AppModal {
 
   static void pickImageModal({
     required BuildContext context,
-    String? title = 'Ambil Foto',
-    Function(String?)? onTapGalleryButton,
-    Function(String?)? onTapCameraButton,
-    Function()? onTapDeleteButton,
+    String? title,
+    Function(File)? onTapGallery,
+    Function(File)? onTapCamera,
+    Function()? onTapDelete,
   }) {
     AppModal.show(
       context: context,
       title: title,
       showCloseButton: true,
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Visibility(
-            visible: onTapGalleryButton != null,
-            child: AppButton(
-              width: double.maxFinite,
-              text: 'Pilih Foto',
-              buttonColor: AppColors.white,
-              textColor: AppColors.secondary,
-              borderWidth: 1,
-              center: false,
-              rounded: false,
-              borderRadius: AppSizes.radius * 2,
-              padding: const EdgeInsets.all(AppSizes.padding),
-              fontWeight: AppFontWeight.medium,
-              prefixIconWidget: Container(
-                padding: const EdgeInsets.all(AppSizes.padding / 2),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(width: 1, color: AppColors.blackLv8),
-                ),
-                child: const Icon(
-                  Icons.photo_size_select_actual_outlined,
-                  size: 18,
-                  color: AppColors.secondary,
-                ),
-              ),
-              onTap: () async {
-                final ImagePicker picker = ImagePicker();
-                final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      body: PickImageModalBody(
+        title: title,
+        onTapGallery: onTapGallery,
+        onTapCamera: onTapCamera,
+        onTapDelete: onTapDelete,
+      ),
+    );
+  }
 
-                return onTapGalleryButton!(image?.path);
-              },
-            ),
-          ),
-          Visibility(
-            visible: onTapCameraButton != null,
-            child: Padding(
-              padding: const EdgeInsets.only(top: AppSizes.padding),
-              child: AppButton(
-                width: double.maxFinite,
-                text: 'Ambil Foto',
-                buttonColor: AppColors.white,
-                textColor: AppColors.secondary,
-                borderWidth: 1,
-                center: false,
-                rounded: false,
-                borderRadius: AppSizes.radius * 2,
-                padding: const EdgeInsets.all(AppSizes.padding),
-                fontWeight: AppFontWeight.medium,
-                prefixIconWidget: Container(
-                  padding: const EdgeInsets.all(AppSizes.padding / 2),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(width: 1, color: AppColors.blackLv8),
-                  ),
-                  child: const Icon(
-                    Icons.camera_alt_outlined,
-                    size: 18,
-                    color: AppColors.secondary,
-                  ),
-                ),
-                onTap: () async {
-                  final ImagePicker picker = ImagePicker();
-                  final XFile? image = await picker.pickImage(source: ImageSource.camera);
+  static void pickAttachmentModal({
+    required BuildContext context,
+    String? title,
+    String? subtitle,
+    Function(AttachmentModel)? onTapCamera,
+    Function(AttachmentModel)? onTapGallery,
+    Function(AttachmentModel)? onTapDocument,
+    Function(AttachmentModel)? onTapLocation,
+  }) {
+    AppModal.show(
+      context: context,
+      title: title,
+      showCloseButton: true,
+      body: PickAttachmentModalBody(
+        title: title,
+        subtitle: subtitle,
+        onTapCamera: onTapCamera,
+        onTapGallery: onTapGallery,
+        onTapDocument: onTapDocument,
+        onTapLocation: onTapLocation,
+      ),
+    );
+  }
 
-                  return onTapCameraButton!(image?.path);
-                },
-              ),
-            ),
-          ),
-          Visibility(
-            visible: onTapDeleteButton != null,
-            child: Padding(
-              padding: const EdgeInsets.only(top: AppSizes.padding),
-              child: AppButton(
-                width: double.maxFinite,
-                text: 'Hapus Foto',
-                buttonColor: AppColors.white,
-                textColor: AppColors.error,
-                borderWidth: 1,
-                center: false,
-                rounded: false,
-                borderRadius: AppSizes.radius * 2,
-                padding: const EdgeInsets.all(AppSizes.padding),
-                fontWeight: AppFontWeight.medium,
-                prefixIconWidget: Container(
-                  padding: const EdgeInsets.all(AppSizes.padding / 2),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(width: 1, color: AppColors.blackLv8),
-                  ),
-                  child: const Icon(
-                    Icons.delete_outline_rounded,
-                    size: 18,
-                    color: AppColors.error,
-                  ),
-                ),
-                onTap: onTapDeleteButton ?? () {},
-              ),
-            ),
-          ),
-        ],
+  static void pickDateSortingModal({
+    required BuildContext context,
+    String? title,
+    List<DateSortingModel> specifiedDateRanges = const [
+      DateSortingModel(days: 1, title: 'Hari Ini'),
+      DateSortingModel(days: 7, title: '7  Hari Terakhir'),
+      DateSortingModel(days: 30, title: '30  Hari Terakhir'),
+    ],
+    bool enableCustomDateRange = false,
+    required Function(List<DateTime>) onTapApply,
+  }) {
+    AppModal.show(
+      context: context,
+      title: title,
+      showCloseButton: true,
+      body: PickDateSortingModalBody(
+        specifiedDateRanges: specifiedDateRanges,
+        enableCustomDateRange: enableCustomDateRange,
+        onTapApply: onTapApply,
       ),
     );
   }
