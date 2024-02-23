@@ -53,6 +53,7 @@ class _AppRadioState extends State<AppRadio> {
         child: Padding(
           padding: widget.padding,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Radio(
                 value: value,
