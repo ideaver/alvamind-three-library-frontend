@@ -16,6 +16,17 @@ class AppYoutubePlayer extends StatefulWidget {
     this.onTapFullScreen,
   });
 
+  // Utility
+  // Convert url to video id
+  static String? converUrlToId(String url) {
+    return YoutubePlayer.convertUrlToId(url);
+  }
+
+  // Get video thumbnail
+  static String getThumbnail(String videoId) {
+    return YoutubePlayer.getThumbnail(videoId: videoId);
+  }
+
   @override
   AppYoutubePlayerState createState() => AppYoutubePlayerState();
 }
