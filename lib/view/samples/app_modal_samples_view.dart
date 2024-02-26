@@ -4,7 +4,6 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_sizes.dart';
 import '../../widget/molecule/app_button.dart';
 import '../../widget/molecule/app_modal.dart';
-import '../../widget/molecule/app_modal_referral.dart';
 import '../../widget/molecule/app_text_field.dart';
 import '___sample_wrapper.dart';
 
@@ -35,36 +34,8 @@ class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamp
             defaultPickImageDialog(),
             defaultPickAttachmentDialog(),
             defaultPickDateSortingDialog(),
-            referralModal()
           ],
         ),
-      ),
-    );
-  }
-
-  String selectedOption = "6 Bulan";
-
-  Widget referralModal() {
-    return SampleWrapper(
-      title: 'Referral Modal',
-      widget: AppButton(
-        text: 'Show Referral Modal',
-        onTap: () {
-          showModalBottomSheet(
-            backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-            context: context,
-            builder: (BuildContext context) {
-              return AppModalReferral(
-                selectedOption: selectedOption,
-                onSelect: (value) {
-                  setState(() {
-                    selectedOption = value;
-                  });
-                },
-              );
-            },
-          );
-        },
       ),
     );
   }

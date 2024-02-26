@@ -78,11 +78,11 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
     setState(() {});
   }
 
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   tabController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

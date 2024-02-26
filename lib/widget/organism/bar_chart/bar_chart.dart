@@ -4,7 +4,6 @@ import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_sizes.dart';
 import '../../../app/theme/app_text_style.dart';
 import '../../molecule/app_button.dart';
-import '../../molecule/app_card_container.dart';
 import '../../molecule/app_icon_button.dart';
 import '../../molecule/app_long_card.dart';
 
@@ -42,15 +41,11 @@ class BarChart extends StatefulWidget {
 class _BarChartState extends State<BarChart> {
   @override
   Widget build(BuildContext context) {
-    return AppCardContainer(
-      // boxShadow: [
-      //   BoxShadow(
-      //     color: AppColors.blackLv7.withOpacity(0.5),
-      //     offset: const Offset(0, 4),
-      //     blurRadius: 60,
-      //     spreadRadius: 0,
-      //   ),
-      // ],
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(AppSizes.radius * 2),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

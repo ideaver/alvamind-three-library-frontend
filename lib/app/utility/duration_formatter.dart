@@ -31,4 +31,25 @@ class DurationFormatter {
                     ? '${from.difference(time).inDays} hari'
                     : '${(from.difference(time).inDays / 365.25).floor()} tahun';
   }
+
+  static String formatDurationFromMilliSec(int milliseconds) {
+    Duration duration = Duration(milliseconds: milliseconds);
+
+    // Extract hours, minutes, and seconds from the duration
+    int hours = duration.inHours;
+    int minutes = duration.inMinutes.remainder(60);
+    int seconds = duration.inSeconds.remainder(60);
+
+    // Construct the formatted string
+    String formattedDuration = '';
+    if (hours > 0) {
+      formattedDuration += '${hours}h ';
+    }
+    if (minutes > 0) {
+      formattedDuration += '${minutes}m ';
+    }
+    formattedDuration += '${seconds}s';
+
+    return formattedDuration;
+  }
 }
