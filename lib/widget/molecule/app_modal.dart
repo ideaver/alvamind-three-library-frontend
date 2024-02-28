@@ -27,8 +27,10 @@ class AppModal {
     bool isDismissible = true,
     Widget? body,
     CrossAxisAlignment? crossAxisAlignment,
+    Color barrierColor = Colors.black54,
   }) async {
     return showModalBottomSheet(
+      barrierColor: barrierColor,
       context: context,
       isScrollControlled: true,
       useRootNavigator: true,
