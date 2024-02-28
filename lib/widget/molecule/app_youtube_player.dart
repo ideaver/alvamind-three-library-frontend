@@ -266,6 +266,7 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
             return GestureDetector(
               onTap: () {
                 /// TODO NOT WORKING ACCURATELY
+                /// 
                 // var second =
                 //     controller.value.position.inSeconds / controller.metadata.duration.inSeconds * constraints.maxWidth;
                 // cl(second.toInt());
