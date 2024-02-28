@@ -70,11 +70,14 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
 
         setState(() {});
       }
-    } else {
+    }
+
+    if (controller.value.playerState == PlayerState.ended) {
       // prevent screen off enabled
       WakelockPlus.enable();
 
       controller.play();
+      // controller.seekTo(Duration.zero);
 
       // auto unvisible controller in 3 seconds
       _timer = Timer(const Duration(seconds: 3), () {
@@ -84,6 +87,19 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
 
       setState(() {});
     }
+
+    // prevent screen off enabled
+    WakelockPlus.enable();
+
+    controller.play();
+
+    // auto unvisible controller in 3 seconds
+    _timer = Timer(const Duration(seconds: 3), () {
+      controllerVisibility = false;
+      setState(() {});
+    });
+
+    setState(() {});
   }
 
   @override
@@ -191,7 +207,7 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
-        playPlayPauseOverlay(),
+        playPauseOverlay(),
         videoControllers(),
       ],
     );
@@ -246,17 +262,28 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
 
   Widget videoSeekLine() {
     return controller.value.isReady
-        ? Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: AppProgressLine(
-              maxValue: maxValue,
-              value: value,
-              lineHeight: 2,
-              borderRadius: 100,
-              showLabel: false,
-            ),
-          )
-        : Container();
+        ? LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+            return GestureDetector(
+              onTap: () {
+                /// TODO NOT WORKING ACCURATELY
+                // var second =
+                //     controller.value.position.inSeconds / controller.metadata.duration.inSeconds * constraints.maxWidth;
+                // cl(second.toInt());
+                // controller.seekTo(Duration(seconds: second.toInt()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: AppProgressLine(
+                  maxValue: maxValue,
+                  value: value,
+                  lineHeight: 3,
+                  borderRadius: 100,
+                  showLabel: false,
+                ),
+              ),
+            );
+          })
+        : const SizedBox.shrink();
   }
 
   Widget playPauseIconButton() {
@@ -267,8 +294,10 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
       child: Container(
         margin: const EdgeInsets.only(top: 6, bottom: 8),
         child: Icon(
-          controller.value.isPlaying && controller.value.position != controller.value.metaData.duration
-              ? Icons.pause
+          controller.value.isPlaying
+              ? controller.value.playerState == PlayerState.ended
+                  ? Icons.replay_rounded
+                  : Icons.pause
               : Icons.play_arrow,
           color: Colors.white,
           size: 28,
@@ -330,7 +359,7 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
     );
   }
 
-  Widget playPlayPauseOverlay() {
+  Widget playPauseOverlay() {
     return Stack(
       children: <Widget>[
         AnimatedSwitcher(
@@ -338,12 +367,12 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
           reverseDuration: const Duration(milliseconds: 200),
           child: controller.value.isReady
               ? controller.value.isPlaying
-                  ? controller.value.position == controller.value.metaData.duration
+                  ? controller.value.playerState == PlayerState.ended
                       ? Container(
                           color: Colors.black26,
                           child: const Center(
                             child: Icon(
-                              Icons.replay,
+                              Icons.replay_rounded,
                               color: Colors.white,
                               size: 75.0,
                             ),
