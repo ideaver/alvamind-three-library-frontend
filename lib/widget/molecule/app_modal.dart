@@ -27,8 +27,10 @@ class AppModal {
     bool isDismissible = true,
     Widget? body,
     CrossAxisAlignment? crossAxisAlignment,
+    Color barrierColor = Colors.black54,
   }) async {
     return showModalBottomSheet(
+      barrierColor: barrierColor,
       context: context,
       isScrollControlled: true,
       useRootNavigator: true,
@@ -167,7 +169,9 @@ class _AppModalWidgetState extends State<AppModalWidget> {
       behavior: const ScrollBehavior().copyWith(overscroll: false),
       child: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, top: AppBar().preferredSize.height),
+        padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            top: AppBar().preferredSize.height),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -177,38 +181,50 @@ class _AppModalWidgetState extends State<AppModalWidget> {
                 color: widget.backgroundColor ?? AppColors.white,
                 boxShadow: [AppShadows.darkShadow4Reversed],
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(widget.borderRadius ?? AppSizes.radius * 2),
-                  topRight: Radius.circular(widget.borderRadius ?? AppSizes.radius * 2),
+                  topLeft: Radius.circular(
+                      widget.borderRadius ?? AppSizes.radius * 2),
+                  topRight: Radius.circular(
+                      widget.borderRadius ?? AppSizes.radius * 2),
                 ),
               ),
               child: Padding(
-                padding: widget.padding ?? const EdgeInsets.all(AppSizes.padding),
+                padding:
+                    widget.padding ?? const EdgeInsets.all(AppSizes.padding),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.start,
+                  crossAxisAlignment:
+                      widget.crossAxisAlignment ?? CrossAxisAlignment.start,
                   children: [
-                    widget.iconWidget != null ? widget.iconWidget! : const SizedBox.shrink(),
+                    widget.iconWidget != null
+                        ? widget.iconWidget!
+                        : const SizedBox.shrink(),
                     widget.title != null
                         ? Padding(
-                            padding: const EdgeInsets.only(top: AppSizes.padding / 2),
+                            padding: const EdgeInsets.only(
+                                top: AppSizes.padding / 2),
                             child: Text(
                               widget.title!,
-                              style: AppTextStyle.heading5(color: AppColors.secondary),
+                              style: AppTextStyle.heading5(
+                                  color: AppColors.secondary),
                             ),
                           )
                         : const SizedBox.shrink(),
                     widget.subtitle != null
                         ? Padding(
-                            padding: const EdgeInsets.only(top: AppSizes.padding / 4),
+                            padding: const EdgeInsets.only(
+                                top: AppSizes.padding / 4),
                             child: Text(
                               widget.subtitle!,
-                              style: AppTextStyle.medium(size: 12, color: AppColors.blackLv5),
+                              style: AppTextStyle.medium(
+                                  size: 12, color: AppColors.blackLv5),
                             ),
                           )
                         : const SizedBox.shrink(),
                     Padding(
                       padding: const EdgeInsets.only(top: AppSizes.padding),
-                      child: widget.body != null ? widget.body! : const SizedBox.shrink(),
+                      child: widget.body != null
+                          ? widget.body!
+                          : const SizedBox.shrink(),
                     ),
                   ],
                 ),
