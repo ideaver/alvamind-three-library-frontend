@@ -24,6 +24,8 @@ class AppRadioListTile extends StatefulWidget {
   final Color inactiveBorderColor;
   final TextStyle? titleStyle;
   final TextStyle? subtitleStyle;
+  final int? titleMaxLines;
+  final int? subtitleMaxLines;
   final double borderWidth;
   final double borderRadius;
   final EdgeInsets padding;
@@ -49,6 +51,8 @@ class AppRadioListTile extends StatefulWidget {
     this.inactiveBorderColor = AppColors.blackLv7,
     this.titleStyle,
     this.subtitleStyle,
+    this.titleMaxLines = 1,
+    this.subtitleMaxLines = 2,
     this.borderWidth = 1,
     this.borderRadius = AppSizes.radius * 2,
     this.padding = const EdgeInsets.all(AppSizes.padding),
@@ -168,7 +172,7 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
     if (widget.title != null) {
       return Text(
         widget.title!,
-        maxLines: 1,
+        maxLines: widget.titleMaxLines,
         overflow: TextOverflow.ellipsis,
         style: widget.titleStyle ?? AppTextStyle.bodyMedium(fontWeight: AppFontWeight.medium),
       );
@@ -190,7 +194,7 @@ class _AppRadioListTileState extends State<AppRadioListTile> {
         padding: const EdgeInsets.only(top: 4),
         child: Text(
           widget.subtitle!,
-          maxLines: 2,
+          maxLines: widget.subtitleMaxLines,
           overflow: TextOverflow.ellipsis,
           style: widget.subtitleStyle ?? AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
         ),
