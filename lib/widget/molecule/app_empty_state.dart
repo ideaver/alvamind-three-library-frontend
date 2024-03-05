@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 class AppEmptyState extends StatelessWidget {
   final bool? showRefreshButton;
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final String? backButtonText;
   final dynamic Function()? onBackButtonTap;
   final dynamic Function()? onRefreshButtonTap;
@@ -20,7 +20,7 @@ class AppEmptyState extends StatelessWidget {
     super.key,
     this.showRefreshButton = false,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     this.backButtonText = "Kembali",
     this.onBackButtonTap,
     this.onRefreshButtonTap,
@@ -47,14 +47,17 @@ class AppEmptyState extends StatelessWidget {
               title,
               style: AppTextStyle.heading4(),
             ),
-            const SizedBox(height: AppSizes.padding / 4),
-            Text(
-              subtitle,
-              style: AppTextStyle.bodyMedium(
-                fontWeight: AppFontWeight.regular,
-                color: AppColors.blackLv5,
+            if (subtitle != null)
+              Padding(
+                padding: const EdgeInsets.only(top: AppSizes.padding),
+                child: Text(
+                  subtitle ?? '',
+                  style: AppTextStyle.bodyMedium(
+                    fontWeight: AppFontWeight.regular,
+                    color: AppColors.blackLv5,
+                  ),
+                ),
               ),
-            ),
             if (showRefreshButton!)
               Padding(
                 padding: const EdgeInsets.only(top: AppSizes.padding),

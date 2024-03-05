@@ -758,6 +758,9 @@ class _AppTextFieldState extends State<AppTextField> {
             padding: EdgeInsets.zero,
             onTap: () {
               _controller.clear();
+              if (widget.onChanged != null) {
+                widget.onChanged!('');
+              }
               setState(() {});
             },
           ),
