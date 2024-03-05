@@ -25,7 +25,7 @@ class PickDateSortingModalBody extends StatefulWidget {
 }
 
 class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
-  int selectedOption = 0;
+  int selectedOption = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +109,10 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
       text: 'Terapkan',
       onTap: () async {
         if (widget.onTapApply == null) {
+          return;
+        }
+
+        if (selectedOption == -1) {
           return;
         }
 

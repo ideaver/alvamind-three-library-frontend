@@ -11,7 +11,7 @@ class AppEmptyState extends StatelessWidget {
   final String title;
   final String subtitle;
   final String? backButtonText;
-  final dynamic Function() onBackButtonTap;
+  final dynamic Function()? onBackButtonTap;
   final dynamic Function()? onRefreshButtonTap;
   final String? refreshButtonText;
   final String? imgPath;
@@ -22,7 +22,7 @@ class AppEmptyState extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.backButtonText = "Kembali",
-    required this.onBackButtonTap,
+    this.onBackButtonTap,
     this.onRefreshButtonTap,
     this.refreshButtonText = "Refresh",
     this.imgPath = AppAssets.nodataLight,
@@ -42,16 +42,12 @@ class AppEmptyState extends StatelessWidget {
               width: 100,
               height: 100,
             ),
-            const SizedBox(
-              height: AppSizes.padding,
-            ),
+            const SizedBox(height: AppSizes.padding),
             Text(
               title,
               style: AppTextStyle.heading4(),
             ),
-            const SizedBox(
-              height: AppSizes.padding / 4,
-            ),
+            const SizedBox(height: AppSizes.padding / 4),
             Text(
               subtitle,
               style: AppTextStyle.bodyMedium(
@@ -60,27 +56,24 @@ class AppEmptyState extends StatelessWidget {
               ),
             ),
             if (showRefreshButton!)
-              Column(
-                children: [
-                  const SizedBox(
-                    height: AppSizes.padding,
-                  ),
-                  AppButton(
-                    width: 240,
-                    buttonColor: AppColors.secondary,
-                    onTap: onRefreshButtonTap!,
-                    text: refreshButtonText,
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: AppSizes.padding),
+                child: AppButton(
+                  width: 240,
+                  buttonColor: AppColors.secondary,
+                  onTap: onRefreshButtonTap!,
+                  text: refreshButtonText,
+                ),
               ),
-            const SizedBox(
-              height: AppSizes.padding / 2,
-            ),
-            AppButton(
-              width: 240,
-              onTap: onBackButtonTap,
-              text: backButtonText,
-            ),
+            if (onBackButtonTap != null)
+              Padding(
+                padding: const EdgeInsets.only(top: AppSizes.padding),
+                child: AppButton(
+                  width: 240,
+                  onTap: onBackButtonTap!,
+                  text: backButtonText,
+                ),
+              ),
           ],
         ),
       ),
