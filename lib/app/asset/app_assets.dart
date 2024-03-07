@@ -44,6 +44,14 @@ class AppAssets {
   static const String whatsapp = 'lib/assets/images/icons/social_medias/whatsapp.png';
   static const String x = 'lib/assets/images/icons/social_medias/x.png';
   static const String notifCheck = 'lib/assets/images/icons/other/notif_check.png';
+  static const String news = 'lib/assets/images/icons/other/news.png';
+  static const String buyer = 'lib/assets/images/icons/other/buyer.png';
+  static const String eya = 'lib/assets/images/icons/other/eya.png';
+  static const String exporter = 'lib/assets/images/icons/other/exporter.png';
+  static const String forwarder = 'lib/assets/images/icons/other/forwarder.png';
+  static const String shippingRate = 'lib/assets/images/icons/other/shipping_rate.png';
+  static const String itpc = 'lib/assets/images/icons/other/itpc.png';
+  static const String more = 'lib/assets/images/icons/other/more.png';
 
   // Illustrations
   static const String checklistLight = 'lib/assets/images/illustrations/light_checklist.png';

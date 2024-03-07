@@ -70,9 +70,7 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
 
         setState(() {});
       }
-    }
-
-    if (controller.value.playerState == PlayerState.ended) {
+    } else if (controller.value.playerState == PlayerState.ended) {
       // prevent screen off enabled
       WakelockPlus.enable();
 
@@ -86,20 +84,20 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
       });
 
       setState(() {});
-    }
+    } else {
+      // prevent screen off enabled
+      WakelockPlus.enable();
 
-    // prevent screen off enabled
-    WakelockPlus.enable();
+      controller.play();
 
-    controller.play();
+      // auto unvisible controller in 3 seconds
+      _timer = Timer(const Duration(seconds: 3), () {
+        controllerVisibility = false;
+        setState(() {});
+      });
 
-    // auto unvisible controller in 3 seconds
-    _timer = Timer(const Duration(seconds: 3), () {
-      controllerVisibility = false;
       setState(() {});
-    });
-
-    setState(() {});
+    }
   }
 
   @override
