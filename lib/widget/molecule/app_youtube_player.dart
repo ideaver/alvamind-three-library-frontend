@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_progress_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -168,27 +167,24 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
   }
 
   Widget body() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppSizes.radius * 2),
-      child: AspectRatio(
-        aspectRatio: 16 / 9,
-        child: Scaffold(
-          backgroundColor: Colors.black,
-          body: Stack(
-            children: [
-              YoutubePlayer(
-                controller: controller,
-                showVideoProgressIndicator: true,
-                progressIndicatorColor: Colors.amber,
-                progressColors: const ProgressBarColors(
-                  playedColor: Colors.amber,
-                  handleColor: Colors.amberAccent,
-                ),
-                onReady: onReady,
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: [
+            YoutubePlayer(
+              controller: controller,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: Colors.amber,
+              progressColors: const ProgressBarColors(
+                playedColor: Colors.amber,
+                handleColor: Colors.amberAccent,
               ),
-              playerController(),
-            ],
-          ),
+              onReady: onReady,
+            ),
+            playerController(),
+          ],
         ),
       ),
     );
