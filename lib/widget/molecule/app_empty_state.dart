@@ -31,7 +31,7 @@ class AppEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppSizes.padding),
+      padding: const EdgeInsets.all(AppSizes.padding * 2),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,19 +39,21 @@ class AppEmptyState extends StatelessWidget {
             AppImage(
               image: imgPath!,
               imgProvider: ImgProvider.assetImage,
-              width: 100,
-              height: 100,
+              width: 120,
+              height: 120,
             ),
             const SizedBox(height: AppSizes.padding),
             Text(
               title,
+              textAlign: TextAlign.center,
               style: AppTextStyle.heading4(),
             ),
             if (subtitle != null)
               Padding(
-                padding: const EdgeInsets.only(top: AppSizes.padding),
+                padding: const EdgeInsets.symmetric(vertical: AppSizes.padding),
                 child: Text(
                   subtitle ?? '',
+                  textAlign: TextAlign.center,
                   style: AppTextStyle.bodyMedium(
                     fontWeight: AppFontWeight.regular,
                     color: AppColors.blackLv5,
@@ -63,7 +65,6 @@ class AppEmptyState extends StatelessWidget {
                 padding: const EdgeInsets.only(top: AppSizes.padding),
                 child: AppButton(
                   width: 240,
-                  buttonColor: AppColors.secondary,
                   onTap: onRefreshButtonTap!,
                   text: refreshButtonText,
                 ),

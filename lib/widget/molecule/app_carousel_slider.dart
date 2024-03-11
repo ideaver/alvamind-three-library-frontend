@@ -66,10 +66,16 @@ class _AppCarouselSliderState extends State<AppCarouselSlider> {
         ? Stack(
             children: [
               carousel(),
-              indicator(),
+              Positioned(
+                right: 0,
+                left: 0,
+                bottom: widget.indicatorDistance,
+                child: indicator(),
+              ),
             ],
           )
         : Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               carousel(),
               SizedBox(height: widget.indicatorDistance),
@@ -102,21 +108,16 @@ class _AppCarouselSliderState extends State<AppCarouselSlider> {
 
   Widget indicator() {
     return widget.showSwipeIndicator
-        ? Positioned(
-            right: 0,
-            left: 0,
-            bottom: widget.indicatorDistance,
-            child: AppSwipeIndicator(
-              currentIndex: _current,
-              length: widget.contentList.length,
-              indicatorWidth: widget.indicatorWidth,
-              indicatorHeight: widget.indicatorHeight,
-              borderRadius: widget.indicatorBorderRadius,
-              indicatorSpacing: widget.indicatorSpacing,
-              padding: widget.indicatorPadding,
-              activeIndicatorColor: widget.activeIndicatorColor,
-              inactiveIndicatorColor: widget.inactiveIndicatorColor,
-            ),
+        ? AppSwipeIndicator(
+            currentIndex: _current,
+            length: widget.contentList.length,
+            indicatorWidth: widget.indicatorWidth,
+            indicatorHeight: widget.indicatorHeight,
+            borderRadius: widget.indicatorBorderRadius,
+            indicatorSpacing: widget.indicatorSpacing,
+            padding: widget.indicatorPadding,
+            activeIndicatorColor: widget.activeIndicatorColor,
+            inactiveIndicatorColor: widget.inactiveIndicatorColor,
           )
         : const SizedBox.shrink();
   }

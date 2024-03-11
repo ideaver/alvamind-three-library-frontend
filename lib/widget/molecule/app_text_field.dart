@@ -368,6 +368,10 @@ class _AppTextFieldState extends State<AppTextField> {
       return const SizedBox.shrink();
     }
 
+    if (_controller.text.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
