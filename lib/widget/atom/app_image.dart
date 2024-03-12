@@ -8,7 +8,6 @@ import 'package:photo_view/photo_view_gallery.dart';
 
 import '../../app/asset/app_assets.dart';
 import '../../app/theme/app_colors.dart';
-import '../../app/utility/console_log.dart';
 import 'app_progress_indicator.dart';
 
 // App Image Widget
@@ -137,12 +136,11 @@ class _AppImageState extends State<AppImage> {
       errorWidget: (context, object, stack) {
         if (_imgErrorAttempt <= _maxAttempt) {
           _imgErrorAttempt += 1;
-          cl('IMAGE LOAD ERROR, ATTEMP = $_imgErrorAttempt');
-          cl('IMAGE LOAD ERROR = $object');
 
           WidgetsBinding.instance.addPostFrameCallback((_) {
             setState(() {});
           });
+
           return Container();
         }
         return widget.errorWidget ??
