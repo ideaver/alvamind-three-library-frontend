@@ -12,8 +12,8 @@ enum RadioPosition {
 
 class AppRadioListTile extends StatefulWidget {
   final bool enable;
-  final Object value;
-  final Object groupValue;
+  final Object? value;
+  final Object? groupValue;
   final String? title;
   final String? subtitle;
   final Color radioActiveColor;
