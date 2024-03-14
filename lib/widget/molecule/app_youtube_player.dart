@@ -1,21 +1,36 @@
 import 'dart:async';
 
-import 'package:alvamind_three_library_frontend/widget/molecule/app_progress_line.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
+import 'package:alvamind_three_library_frontend/app/utility/console_log.dart';
+import 'package:alvamind_three_library_frontend/widget/atom/app_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
+// import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class AppYoutubePlayer extends StatefulWidget {
+  final YoutubePlayerController? controller;
   final String videoId;
   final bool fullScreen;
   final Duration? currentPosition;
+  final Function()? onTapPlayPauseFunc;
+  final Function()? onTapNext;
+  final Function()? onTapPrev;
+  final Function()? onTapFullScreen;
+  final Function()? onReady;
 
   const AppYoutubePlayer({
     super.key,
+    this.controller,
     required this.videoId,
     this.fullScreen = false,
     this.currentPosition,
+    this.onTapPlayPauseFunc,
+    this.onTapNext,
+    this.onTapPrev,
+    this.onTapFullScreen,
+    this.onReady,
   });
 
   // Utility
@@ -39,18 +54,12 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
   bool controllerVisibility = true;
   Timer? _timer;
 
-  String videoPosition = '';
-  String videoDuration = '';
-  double maxValue = 100;
-  double value = 0;
-
   void playPauseFunc() {
-    if (controller.value.isPlaying) {
+    if (controller.value.playerState == PlayerState.playing) {
       if (controllerVisibility == false) {
         // visible controller
-        setState(() {
-          controllerVisibility = true;
-        });
+        controllerVisibility = true;
+        setState(() {});
 
         // auto unvisible controller in 3 seconds
         _timer = Timer(const Duration(seconds: 3), () {
@@ -59,45 +68,50 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
         });
       } else {
         // prevent screen off disabled
-        WakelockPlus.disable();
+        // WakelockPlus.disable();
 
         controller.pause();
+        setState(() {});
 
         _timer?.cancel();
-        setState(() {
-          controllerVisibility = true;
-        });
-
-        setState(() {});
+        controllerVisibility = true;
       }
-    } else if (controller.value.playerState == PlayerState.ended) {
-      // prevent screen off enabled
-      WakelockPlus.enable();
-
-      controller.play();
-      // controller.seekTo(Duration.zero);
-
-      // auto unvisible controller in 3 seconds
-      _timer = Timer(const Duration(seconds: 3), () {
-        controllerVisibility = false;
-        setState(() {});
-      });
-
-      setState(() {});
     } else {
-      // prevent screen off enabled
-      WakelockPlus.enable();
+      if (controller.value.playerState == PlayerState.ended) {
+        // prevent screen off enabled
+        // WakelockPlus.enable();
 
-      controller.play();
+        cl(controller.value.playerState.name);
 
-      // auto unvisible controller in 3 seconds
-      _timer = Timer(const Duration(seconds: 3), () {
-        controllerVisibility = false;
+        controller.play();
+        controller.seekTo(Duration.zero);
         setState(() {});
-      });
 
-      setState(() {});
+        // auto unvisible controller in 3 seconds
+        _timer = Timer(const Duration(seconds: 3), () {
+          controllerVisibility = false;
+          setState(() {});
+        });
+      } else {
+        // prevent screen off enabled
+        // WakelockPlus.enable();
+
+        controller.play();
+        setState(() {});
+
+        // auto unvisible controller in 3 seconds
+        _timer = Timer(const Duration(seconds: 3), () {
+          controllerVisibility = false;
+          setState(() {});
+        });
+      }
     }
+
+    if (widget.onTapPlayPauseFunc != null) {
+      widget.onTapPlayPauseFunc!();
+    }
+
+    setState(() {});
   }
 
   @override
@@ -110,47 +124,35 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
 
   @override
   void initState() {
-    controller = YoutubePlayerController(
-      initialVideoId: widget.videoId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        mute: false,
-        hideControls: true,
-        controlsVisibleAtStart: false,
-      ),
-    );
+    controller = widget.controller ??
+        YoutubePlayerController(
+          initialVideoId: widget.videoId,
+          flags: YoutubePlayerFlags(
+            autoPlay: true,
+            enableCaption: true,
+            captionLanguage: 'id',
+            hideControls: true,
+            hideThumbnail: true,
+            startAt: widget.currentPosition?.inSeconds ?? 0,
+          ),
+        );
 
-    // init video controller
     controller.addListener(videoControllerListener);
 
     super.initState();
   }
 
   void videoControllerListener() {
-    videoPosition =
-        '${controller.value.position.inHours.remainder(60) == 0 ? '' : '${controller.value.position.inHours.remainder(6)}:'}${controller.value.position.inMinutes.remainder(60) == 0 ? '' : '${controller.value.position.inMinutes.remainder(60)}:'}${controller.value.position.inSeconds.remainder(60) == 0 ? '0' : controller.value.position.inSeconds.remainder(60).toString()}';
-
-    value = controller.value.position.inSeconds.toDouble();
-
-    videoDuration =
-        '${controller.metadata.duration.inHours.remainder(60) == 0 ? '' : '${controller.metadata.duration.inHours.remainder(60)}:'}${controller.metadata.duration.inMinutes.remainder(60) == 0 ? '' : '${controller.value.metaData.duration.inMinutes.remainder(60)}:'}${controller.value.metaData.duration.inSeconds.remainder(60) == 0 ? '0' : controller.value.metaData.duration.inSeconds.remainder(60).toString()}';
-
-    maxValue =
-        controller.metadata.duration.inSeconds.toDouble() > 0 ? controller.metadata.duration.inSeconds.toDouble() : 100;
-
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   void onReady() async {
-    videoDuration =
-        '${controller.metadata.duration.inHours.remainder(60) == 0 ? '' : '${controller.metadata.duration.inHours.remainder(60)}:'}${controller.metadata.duration.inMinutes.remainder(60) == 0 ? '' : '${controller.value.metaData.duration.inMinutes.remainder(60)}:'}${controller.value.metaData.duration.inSeconds.remainder(60) == 0 ? '0' : controller.value.metaData.duration.inSeconds.remainder(60).toString()}';
-
-    maxValue =
-        controller.metadata.duration.inSeconds.toDouble() > 0 ? controller.metadata.duration.inSeconds.toDouble() : 100;
-
     if (widget.currentPosition != null) {
-      controller.play();
       controller.seekTo(widget.currentPosition!);
+      controller.play();
+      setState(() {});
 
       _timer = Timer(const Duration(seconds: 3), () {
         controllerVisibility = false;
@@ -158,7 +160,35 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
       });
     }
 
-    setState(() {});
+    if (widget.onReady != null) {
+      widget.onReady!();
+    }
+  }
+
+  /// Formats duration in milliseconds to xx:xx:xx format.
+  String durationFormatter(int milliSeconds) {
+    var seconds = milliSeconds ~/ 1000;
+    final hours = seconds ~/ 3600;
+    seconds = seconds % 3600;
+    var minutes = seconds ~/ 60;
+    seconds = seconds % 60;
+    final hoursString = hours >= 10
+        ? '$hours'
+        : hours == 0
+            ? '00'
+            : '0$hours';
+    final minutesString = minutes >= 10
+        ? '$minutes'
+        : minutes == 0
+            ? '00'
+            : '0$minutes';
+    final secondsString = seconds >= 10
+        ? '$seconds'
+        : seconds == 0
+            ? '00'
+            : '0$seconds';
+    final formattedTime = '${hoursString == '00' ? '' : '$hoursString:'}$minutesString:$secondsString';
+    return formattedTime;
   }
 
   @override
@@ -178,25 +208,14 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
               showVideoProgressIndicator: true,
               progressIndicatorColor: Colors.amber,
               progressColors: const ProgressBarColors(
-                playedColor: Colors.amber,
-                handleColor: Colors.amberAccent,
+                playedColor: AppColors.primary,
+                handleColor: AppColors.blueLv2,
               ),
               onReady: onReady,
             ),
             playerController(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget controllerWidget() {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: Stack(
-        children: [
-          playerController(),
-        ],
       ),
     );
   }
@@ -259,29 +278,41 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
   }
 
   Widget videoSeekLine() {
-    return controller.value.isReady
-        ? LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-            return GestureDetector(
-              onTap: () {
-                // TODO NOT WORKING ACCURATELY
-                // var second =
-                //     controller.value.position.inSeconds / controller.metadata.duration.inSeconds * constraints.maxWidth;
-                // cl(second.toInt());
-                // controller.seekTo(Duration(seconds: second.toInt()));
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: AppProgressLine(
-                  maxValue: maxValue,
-                  value: value,
-                  lineHeight: 3,
-                  borderRadius: 100,
-                  showLabel: false,
-                ),
-              ),
-            );
-          })
-        : const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      child: ProgressBar(
+        controller: controller,
+        colors: const ProgressBarColors(
+          playedColor: AppColors.blueLv2,
+          handleColor: AppColors.blueLv3,
+          backgroundColor: Colors.white30,
+          bufferedColor: Colors.white54,
+        ),
+      ),
+    );
+    // return controller.value.isReady
+    //     ? LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+    //         return GestureDetector(
+    //           onTap: () {
+    //             // TODO NOT WORKING ACCURATELY
+    //             // var second =
+    //             //     controller.value.position.inSeconds / controller.metadata.duration.inSeconds * constraints.maxWidth;
+    //             // cl(second.toInt());
+    //             // controller.seekTo(Duration(seconds: second.toInt()));
+    //           },
+    //           child: Container(
+    //             margin: const EdgeInsets.symmetric(horizontal: 10),
+    //             child: AppProgressLine(
+    //               maxValue: maxValue,
+    //               value: value,
+    //               lineHeight: 3,
+    //               borderRadius: 100,
+    //               showLabel: false,
+    //             ),
+    //           ),
+    //         );
+    //       })
+    //     : const SizedBox.shrink();
   }
 
   Widget playPauseIconButton() {
@@ -292,11 +323,13 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
       child: Container(
         margin: const EdgeInsets.only(top: 6, bottom: 8),
         child: Icon(
-          controller.value.isPlaying
-              ? controller.value.playerState == PlayerState.ended
-                  ? Icons.replay_rounded
-                  : Icons.pause
-              : Icons.play_arrow,
+          controller.value.playerState == PlayerState.playing
+              ? Icons.pause
+              : controller.value.playerState == PlayerState.paused
+                  ? Icons.play_arrow
+                  : controller.value.playerState == PlayerState.ended
+                      ? Icons.replay_rounded
+                      : Icons.pause,
           color: Colors.white,
           size: 28,
         ),
@@ -307,45 +340,61 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
   Widget videoDurationWidget() {
     return Container(
       margin: const EdgeInsets.only(left: 6),
-      child: Text(
-        '${videoPosition != '' ? '$videoPosition/' : ''}$videoDuration',
-        style: const TextStyle(
-          color: Colors.white,
-        ),
+      child: Row(
+        children: [
+          CurrentPosition(controller: controller),
+          Text(
+            ' / ${durationFormatter(controller.metadata.duration.inMilliseconds)}',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12.0,
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget fullScreenIconButton() {
     return GestureDetector(
-      onTap: () async {
-        if (!widget.fullScreen) {
-          controller.pause();
+      onTap: widget.onTapFullScreen != null
+          ? () {
+              widget.onTapFullScreen!();
+              setState(() {});
+            }
+          : () async {
+              if (!widget.fullScreen) {
+                controller.pause();
 
-          var curr = await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AppYoutubePlayerFullScreen(
-                controller: controller,
-                child: AppYoutubePlayer(
-                  videoId: widget.videoId,
-                  fullScreen: true,
-                  currentPosition: controller.value.position,
-                ),
-              ),
-            ),
-          );
+                var curr = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AppYoutubePlayerFullScreen(
+                      controller: controller,
+                      child: AppYoutubePlayer(
+                        // controller: controller,
+                        currentPosition: controller.value.position,
+                        videoId: widget.videoId,
+                        fullScreen: true,
+                        onTapNext: widget.onTapNext,
+                        onTapPrev: widget.onTapPrev,
+                        onTapPlayPauseFunc: widget.onTapPlayPauseFunc,
+                      ),
+                    ),
+                  ),
+                );
 
-          if (curr != null) {
-            controller.play();
-            controller.seekTo(curr!);
-          }
-          SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-        } else {
-          Navigator.pop(context, controller.value.position);
-        }
-      },
+                if (curr != null) {
+                  controller.play();
+                  controller.seekTo(curr!);
+
+                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+                  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+                }
+              } else {
+                Navigator.pop(context, controller.value.position);
+              }
+            },
       child: Container(
         margin: const EdgeInsets.only(top: 6, bottom: 8),
         child: const Icon(
@@ -360,39 +409,75 @@ class AppYoutubePlayerState extends State<AppYoutubePlayer> {
   Widget playPauseOverlay() {
     return Stack(
       children: <Widget>[
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 50),
-          reverseDuration: const Duration(milliseconds: 200),
-          child: controller.value.isReady
-              ? controller.value.isPlaying
-                  ? controller.value.playerState == PlayerState.ended
-                      ? Container(
-                          color: Colors.black26,
-                          child: const Center(
-                            child: Icon(
-                              Icons.replay_rounded,
-                              color: Colors.white,
-                              size: 75.0,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink()
-                  : Container(
-                      color: Colors.black26,
-                      child: const Center(
-                        child: Icon(
-                          Icons.play_arrow,
-                          color: Colors.white,
-                          size: 75.0,
-                        ),
-                      ),
-                    )
-              : const Center(child: CircularProgressIndicator(color: Colors.white)),
-        ),
         GestureDetector(
           onTap: () {
             playPauseFunc();
           },
+        ),
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 50),
+          reverseDuration: const Duration(milliseconds: 200),
+          child: controller.value.playerState != PlayerState.buffering
+              ? controller.value.playerState == PlayerState.paused || controller.value.playerState == PlayerState.ended
+                  ? Container(
+                      color: Colors.black26,
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: widget.onTapPrev,
+                            child: Container(
+                              padding: const EdgeInsets.all(AppSizes.padding),
+                              color: Colors.transparent,
+                              child: Icon(
+                                Icons.skip_previous_rounded,
+                                color: widget.onTapPrev == null ? Colors.transparent : Colors.white,
+                                size: 45,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: AppSizes.padding),
+                          GestureDetector(
+                            onTap: () {
+                              playPauseFunc();
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(AppSizes.padding),
+                              color: Colors.transparent,
+                              child: Icon(
+                                controller.value.playerState == PlayerState.ended
+                                    ? Icons.replay_rounded
+                                    : Icons.play_arrow_rounded,
+                                color: Colors.white,
+                                size: 75,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: AppSizes.padding),
+                          GestureDetector(
+                            onTap: widget.onTapNext,
+                            child: Container(
+                              padding: const EdgeInsets.all(AppSizes.padding),
+                              color: Colors.transparent,
+                              child: Icon(
+                                Icons.skip_next_rounded,
+                                color: widget.onTapNext == null ? Colors.transparent : Colors.white,
+                                size: 45,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink()
+              : const Center(
+                  child: AppProgressIndicator(
+                    color: AppColors.white,
+                    showMessage: false,
+                  ),
+                ),
         ),
       ],
     );
