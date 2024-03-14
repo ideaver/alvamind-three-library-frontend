@@ -98,6 +98,7 @@ flutter:
     - lib/assets/images/icons/payments/
     - lib/assets/images/icons/menus/
     - lib/assets/images/icons/social_medias/
+    - lib/assets/images/icons/other/
     - lib/assets/images/illustrations/
     - lib/assets/images/illustrations/onboarding/
 
