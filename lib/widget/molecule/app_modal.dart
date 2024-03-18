@@ -37,27 +37,29 @@ class AppModal {
       isDismissible: isDismissible,
       backgroundColor: AppColors.transparent,
       builder: (context) {
-        return GestureDetector(
-          onTap: () {
-            if (isDismissible) {
-              Navigator.pop(context);
-            }
-          },
-          child: Scaffold(
-            extendBody: false,
-            backgroundColor: AppColors.transparent,
-            body: Align(
-              alignment: Alignment.bottomCenter,
-              child: AppModalWidget(
-                backgroundColor: backgroundColor,
-                borderRadius: borderRadius,
-                iconWidget: iconWidget,
-                padding: padding,
-                subtitle: subtitle,
-                showCloseButton: showCloseButton,
-                title: title,
-                body: body,
-                crossAxisAlignment: crossAxisAlignment,
+        return SafeArea(
+          child: GestureDetector(
+            onTap: () {
+              if (isDismissible) {
+                Navigator.pop(context);
+              }
+            },
+            child: Scaffold(
+              extendBody: false,
+              backgroundColor: AppColors.transparent,
+              body: Align(
+                alignment: Alignment.bottomCenter,
+                child: AppModalWidget(
+                  backgroundColor: backgroundColor,
+                  borderRadius: borderRadius,
+                  iconWidget: iconWidget,
+                  padding: padding,
+                  subtitle: subtitle,
+                  showCloseButton: showCloseButton,
+                  title: title,
+                  body: body,
+                  crossAxisAlignment: crossAxisAlignment,
+                ),
               ),
             ),
           ),
@@ -99,13 +101,15 @@ class AppModal {
       context: context,
       title: title,
       showCloseButton: true,
-      body: PickAttachmentModalBody(
-        title: title,
-        subtitle: subtitle,
-        onTapCamera: onTapCamera,
-        onTapGallery: onTapGallery,
-        onTapDocument: onTapDocument,
-        onTapLocation: onTapLocation,
+      body: SafeArea(
+        child: PickAttachmentModalBody(
+          title: title,
+          subtitle: subtitle,
+          onTapCamera: onTapCamera,
+          onTapGallery: onTapGallery,
+          onTapDocument: onTapDocument,
+          onTapLocation: onTapLocation,
+        ),
       ),
     );
   }
