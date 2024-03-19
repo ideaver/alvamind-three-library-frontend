@@ -75,7 +75,8 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
     if (widget.onChangedTab != null) {
       widget.onChangedTab!(tabController.index);
     }
-    setState(() {});
+
+    if (mounted) setState(() {});
   }
 
   // @override
