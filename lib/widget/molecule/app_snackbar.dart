@@ -8,7 +8,7 @@ import 'app_icon_button.dart';
 
 class AppSnackbar {
   static Future<void> show(
-    BuildContext context, {
+    NavigatorState navigator, {
     IconData? icon,
     Color? backgroundColor,
     Color? textColor,
@@ -24,7 +24,7 @@ class AppSnackbar {
     bool? showCloseButton,
     Duration? displayDuration,
   }) async {
-    final messenger = ScaffoldMessenger.of(context);
+    final messenger = ScaffoldMessenger.of(navigator.context);
     messenger.hideCurrentSnackBar();
     messenger.showSnackBar(
       SnackBar(
