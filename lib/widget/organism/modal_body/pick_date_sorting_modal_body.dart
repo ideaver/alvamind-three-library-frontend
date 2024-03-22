@@ -85,13 +85,29 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
   }
 
   List<DateTime> dateRangeValue(int days) {
-    return List<DateTime>.generate(days, (i) {
+    if (days == 0) {
+      return [];
+    }
+
+    if (days == 1) {
+      return [
+        DateTime.utc(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+        )
+      ];
+    }
+
+    var dates = List<DateTime>.generate(days, (i) {
       return DateTime.utc(
         DateTime.now().year,
         DateTime.now().month,
         DateTime.now().day,
       ).subtract(Duration(days: i));
     }).reversed.toList();
+
+    return [dates.first, dates.last];
   }
 
   String subtitle(int days) {
@@ -144,13 +160,14 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
       return;
     }
 
-    List<DateTime> ranges = dateRangeValue(
-      DateTimeRange(
-        start: (dates.first ?? DateTime.now()).subtract(const Duration(days: 1)),
-        end: dates.last ?? DateTime.now(),
-      ).duration.inDays,
-    );
+    List<DateTime> value = [];
 
-    widget.onTapApply!(ranges);
+    for (var e in dates) {
+      if (e != null) {
+        value.add(e);
+      }
+    }
+
+    widget.onTapApply!(value);
   }
 }
