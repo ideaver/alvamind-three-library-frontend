@@ -38,25 +38,29 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
   }
 
   Widget defaultSnackbar() {
+    var navigator = Navigator.of(context);
+
     return SampleWrapper(
       title: 'Default Snackbar',
       widget: AppButton(
         text: 'Default Snackbar',
         onTap: () {
-          AppSnackbar.show(context, title: 'Snackbar Title');
+          AppSnackbar.show(navigator, title: 'Snackbar Title');
         },
       ),
     );
   }
 
   Widget alertSnackbar() {
+    var navigator = Navigator.of(context);
+
     return SampleWrapper(
       title: 'Alert Snackbar',
       widget: AppButton(
         text: 'Alert Snackbar',
         onTap: () {
           AppSnackbar.show(
-            context,
+            navigator,
             icon: Icons.info_outline,
             title: 'Snackbar Alert',
             backgroundColor: AppColors.redLv1,
@@ -68,13 +72,15 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
   }
 
   Widget customSnackbar() {
+    var navigator = Navigator.of(context);
+
     return SampleWrapper(
       title: 'Custom Snackbar',
       widget: AppButton(
         text: 'Custom Snackbar',
         onTap: () {
           AppSnackbar.show(
-            context,
+            navigator,
             icon: Icons.person_2_rounded,
             iconSize: 32,
             backgroundColor: AppColors.orangeLv1,
