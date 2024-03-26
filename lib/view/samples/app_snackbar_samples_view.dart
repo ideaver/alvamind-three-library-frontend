@@ -51,6 +51,8 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
   }
 
   Widget alertSnackbar() {
+    var navigator = Navigator.of(context);
+
     return SampleWrapper(
       title: 'Alert Snackbar',
       widget: AppButton(
@@ -70,6 +72,8 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
   }
 
   Widget customSnackbar() {
+    var navigator = Navigator.of(context);
+
     return SampleWrapper(
       title: 'Custom Snackbar',
       widget: AppButton(
