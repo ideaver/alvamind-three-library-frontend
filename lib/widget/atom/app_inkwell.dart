@@ -6,7 +6,7 @@ import '../../app/theme/app_sizes.dart';
 class AppInkwell extends StatelessWidget {
   final double? width;
   final double? height;
-  final double borderWidth;
+  final double? borderWidth;
   final BorderRadius? borderRadius;
   final EdgeInsets? margin;
   final EdgeInsets padding;
@@ -21,7 +21,7 @@ class AppInkwell extends StatelessWidget {
     super.key,
     this.width,
     this.height,
-    this.borderWidth = 1,
+    this.borderWidth,
     this.borderRadius,
     this.padding = const EdgeInsets.all(AppSizes.padding),
     this.margin,
@@ -55,7 +55,13 @@ class AppInkwell extends StatelessWidget {
             padding: padding,
             decoration: BoxDecoration(
               color: color,
-              border: customBorder,
+              border: customBorder ??
+                  (borderWidth != null
+                      ? Border.all(
+                          width: borderWidth!,
+                          color: borderColor,
+                        )
+                      : null),
               borderRadius: borderRadius ?? BorderRadius.circular(AppSizes.radius),
             ),
             child: child,

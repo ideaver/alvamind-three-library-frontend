@@ -1,117 +1,19 @@
-/* import 'package:flutter/material.dart';
-import 'package:wheel_picker/wheel_picker.dart';
-
-class AppTimePicker extends StatefulWidget {
-  const AppTimePicker({super.key});
-
-  @override
-  State<AppTimePicker> createState() => _AppTimePickerState();
-}
-
-class _AppTimePickerState extends State<AppTimePicker> {
-  final now = TimeOfDay.now();
-  late final hoursWheel = WheelPickerController(
-    itemCount: 12,
-    initialIndex: now.hour % 12,
-  );
-  late final minutesWheel = WheelPickerController(
-    itemCount: 60,
-    initialIndex: now.minute,
-    mounts: [hoursWheel],
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    const textStyle = TextStyle(fontSize: 26.0, height: 1.5);
-    final wheelStyle = WheelPickerStyle(
-      size: 200,
-      itemExtent: textStyle.fontSize! * textStyle.height!, // Text height
-      squeeze: 1.25,
-      diameterRatio: .8,
-      surroundingOpacity: .25,
-      magnification: 1.2,
-    );
-
-    Widget itemBuilder(BuildContext context, int index) {
-      return Text("$index".padLeft(2, '0'), style: textStyle);
-    }
-
-    return SizedBox(
-      width: 200.0,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          _centerBar(context),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  WheelPicker(
-                    builder: itemBuilder,
-                    controller: hoursWheel,
-                    looping: false,
-                    style: wheelStyle,
-                    selectedIndexColor: Colors.redAccent,
-                  ),
-                  const Text(":", style: textStyle),
-                  WheelPicker(
-                    builder: itemBuilder,
-                    controller: minutesWheel,
-                    style: wheelStyle,
-                    enableTap: true,
-                    selectedIndexColor: Colors.redAccent,
-                  )
-                ],
-              ),
-              WheelPicker(
-                itemCount: 2,
-                builder: (context, index) {
-                  return Text(["AM", "PM"][index], style: textStyle);
-                },
-                initialIndex: (now.period == DayPeriod.am) ? 0 : 1,
-                looping: false,
-                style: wheelStyle.copyWith(
-                    shiftAnimationStyle: const WheelShiftAnimationStyle(
-                  duration: Duration(seconds: 1),
-                  curve: Curves.bounceOut,
-                )),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    hoursWheel.dispose();
-    minutesWheel.dispose();
-    super.dispose();
-  }
-
-  Widget _centerBar(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 38.0,
-        decoration: BoxDecoration(
-          color: const Color(0xFFC3C9FA).withAlpha(26),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-      ),
-    );
-  }
-} */
-
 import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
+import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
+import 'package:alvamind_three_library_frontend/app/utility/console_log.dart';
 import 'package:flutter/material.dart';
 import 'package:wheel_picker/wheel_picker.dart';
 
 class AppTimePicker extends StatefulWidget {
-  const AppTimePicker({super.key});
+  final TimeOfDay? initialValue;
+  final Function(TimeOfDay) onChangeWheel;
+
+  const AppTimePicker({
+    super.key,
+    this.initialValue,
+    required this.onChangeWheel,
+  });
 
   @override
   State<AppTimePicker> createState() => _AppTimePickerState();
@@ -119,135 +21,41 @@ class AppTimePicker extends StatefulWidget {
 
 class _AppTimePickerState extends State<AppTimePicker> {
   late TimeOfDay selectedTime;
-  final now = TimeOfDay.now();
-  late var selecPeriod = 'AM';
 
-  late final hoursWheel = WheelPickerController(
-    itemCount: 12,
-    initialIndex: now.hour % 12,
-  );
-  late final minutesWheel = WheelPickerController(
-    itemCount: 60,
-    initialIndex: now.minute,
-    mounts: [hoursWheel],
+  DayPeriod selectedPeriod = DayPeriod.am;
+
+  late WheelPickerController hoursWheel;
+
+  late WheelPickerController minutesWheel;
+
+  final wheelStyle = const WheelPickerStyle(
+    size: 200,
+    squeeze: 1.25,
+    diameterRatio: .8,
+    surroundingOpacity: .25,
+    magnification: 1,
+    itemExtent: 34,
   );
 
   @override
   void initState() {
+    selectedTime = widget.initialValue ?? TimeOfDay.now();
+    selectedPeriod = widget.initialValue?.period ?? TimeOfDay.now().period;
+
+    hoursWheel = WheelPickerController(
+      itemCount: 12,
+      initialIndex: selectedTime.hour - (selectedPeriod == DayPeriod.pm ? 12 : 0),
+    );
+
+    minutesWheel = WheelPickerController(
+      itemCount: 60,
+      initialIndex: selectedTime.minute,
+      mounts: [hoursWheel],
+    );
+
+    cl("init === $selectedTime ${selectedPeriod.name}");
+
     super.initState();
-    selectedTime = TimeOfDay.now();
-    selectedTime = TimeOfDay(
-      hour: hoursWheel.selected % 12,
-      minute: minutesWheel.selected,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    const wheelStyle = WheelPickerStyle(
-      size: 200,
-      squeeze: 1.25,
-      diameterRatio: .8,
-      surroundingOpacity: .25,
-      magnification: 1.2,
-    );
-
-    Widget itemBuilder(BuildContext context, int index) {
-      return Text(
-        "$index".padLeft(2),
-        style: AppTextStyle.bodyLarge(
-          fontWeight: AppFontWeight.semibold,
-          color: AppColors.darkBlueLv1,
-        ),
-      );
-    }
-
-    return Container(
-      width: 150,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          //Text('${selectedTime.format(context)}$selecPeriod'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  WheelPicker(
-                    builder: itemBuilder,
-                    controller: hoursWheel,
-                    looping: false,
-                    style: wheelStyle,
-                    onIndexChanged: (index) {
-                      //print('$index');
-                      setState(() {
-                        selectedTime = TimeOfDay(
-                          hour: index % 12,
-                          minute: selectedTime.minute,
-                        );
-                      });
-                    },
-                    selectedIndexColor: AppColors.darkBlueLv1,
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  WheelPicker(
-                    builder: itemBuilder,
-                    controller: minutesWheel,
-                    style: wheelStyle,
-                    enableTap: true,
-                    onIndexChanged: (index) {
-                      //print('$index');
-                      setState(() {
-                        selectedTime = TimeOfDay(
-                          hour: selectedTime.hour,
-                          minute: index,
-                        );
-                      });
-                    },
-                    selectedIndexColor: AppColors.darkBlueLv1,
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  WheelPicker(
-                    itemCount: 2,
-                    builder: (context, index) {
-                      return Text(
-                        (["AM", "PM"][index]),
-                        style: AppTextStyle.bodyLarge(
-                          fontWeight: AppFontWeight.semibold,
-                          color: AppColors.darkBlueLv1,
-                        ),
-                      );
-                    },
-                    onIndexChanged: (index) {
-                      //print('$index');
-                      setState(() {
-                        selecPeriod = ["AM", "PM"][index];
-                      });
-                    },
-                    initialIndex: (now.period == DayPeriod.am) ? 0 : 1,
-                    looping: false,
-                    style: wheelStyle.copyWith(
-                      shiftAnimationStyle: const WheelShiftAnimationStyle(
-                        duration: Duration(seconds: 1),
-                        curve: Curves.bounceOut,
-                      ),
-                    ),
-                  ),
-                  //Text('${selectedTime.format(context)}$selectedPeriod'),
-                ],
-              ),
-            ],
-          ),
-          //Text('${selectedTime.format(context)}$selecPeriod'),
-        ],
-      ),
-    );
   }
 
   @override
@@ -255,5 +63,96 @@ class _AppTimePickerState extends State<AppTimePicker> {
     hoursWheel.dispose();
     minutesWheel.dispose();
     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        WheelPicker(
+          builder: itemBuilder,
+          controller: hoursWheel,
+          looping: false,
+          style: wheelStyle,
+          selectedIndexColor: AppColors.darkBlueLv1,
+          onIndexChanged: (index) {
+            selectedTime = TimeOfDay(
+              hour: index + (selectedPeriod == DayPeriod.pm ? 12 : 0),
+              minute: selectedTime.minute,
+            );
+
+            setState(() {});
+
+            widget.onChangeWheel(selectedTime);
+          },
+        ),
+        const SizedBox(width: AppSizes.padding),
+        WheelPicker(
+          builder: itemBuilder,
+          controller: minutesWheel,
+          style: wheelStyle,
+          enableTap: true,
+          selectedIndexColor: AppColors.darkBlueLv1,
+          onIndexChanged: (index) {
+            selectedTime = TimeOfDay(
+              hour: selectedTime.hour,
+              minute: index,
+            );
+
+            setState(() {});
+
+            widget.onChangeWheel(selectedTime);
+          },
+        ),
+        const SizedBox(width: AppSizes.padding),
+        WheelPicker(
+          itemCount: 2,
+          initialIndex: (selectedTime.period == DayPeriod.am) ? 0 : 1,
+          looping: false,
+          style: wheelStyle,
+          builder: (context, index) {
+            return Text(
+              ([DayPeriod.am, DayPeriod.pm][index]).name.toUpperCase(),
+              style: AppTextStyle.bodyLarge(
+                fontWeight: AppFontWeight.semibold,
+                color: AppColors.darkBlueLv1,
+              ),
+            );
+          },
+          onIndexChanged: (index) {
+            selectedPeriod = [DayPeriod.am, DayPeriod.pm][index];
+
+            if (selectedPeriod == DayPeriod.pm) {
+              selectedTime = TimeOfDay(
+                hour: selectedTime.hour < 12 ? selectedTime.hour + 12 : selectedTime.hour,
+                minute: selectedTime.minute,
+              );
+            } else {
+              selectedTime = TimeOfDay(
+                hour: selectedTime.hour > 11 ? selectedTime.hour - 12 : selectedTime.hour,
+                minute: selectedTime.minute,
+              );
+            }
+
+            setState(() {});
+
+            widget.onChangeWheel(selectedTime);
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget itemBuilder(BuildContext context, int index) {
+    return Text(
+      "$index".padLeft(2, '0'),
+      style: AppTextStyle.bodyLarge(
+        fontWeight: AppFontWeight.semibold,
+        color: AppColors.darkBlueLv1,
+        height: 2,
+      ),
+    );
   }
 }

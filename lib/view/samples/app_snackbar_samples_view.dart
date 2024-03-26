@@ -43,7 +43,8 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
       widget: AppButton(
         text: 'Default Snackbar',
         onTap: () {
-          AppSnackbar.show(context, title: 'Snackbar Title');
+          final navigator = Navigator.of(context);
+          AppSnackbar.show(navigator, title: 'Snackbar Title');
         },
       ),
     );
@@ -55,8 +56,9 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
       widget: AppButton(
         text: 'Alert Snackbar',
         onTap: () {
+          final navigator = Navigator.of(context);
           AppSnackbar.show(
-            context,
+            navigator,
             icon: Icons.info_outline,
             title: 'Snackbar Alert',
             backgroundColor: AppColors.redLv1,
@@ -73,8 +75,9 @@ class _AppSnackbarSamplesViewState extends State<AppSnackbarSamplesView> {
       widget: AppButton(
         text: 'Custom Snackbar',
         onTap: () {
+          final navigator = Navigator.of(context);
           AppSnackbar.show(
-            context,
+            navigator,
             icon: Icons.person_2_rounded,
             iconSize: 32,
             backgroundColor: AppColors.orangeLv1,
