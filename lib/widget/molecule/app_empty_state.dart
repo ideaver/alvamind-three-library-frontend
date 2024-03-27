@@ -6,27 +6,32 @@ import 'package:alvamind_three_library_frontend/widget/atom/app_image.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
 import 'package:flutter/widgets.dart';
 
-class AppEmptyState extends StatelessWidget {
-  final bool? showRefreshButton;
+class AppEmptyState extends StatefulWidget {
   final String title;
   final String? subtitle;
   final String? backButtonText;
-  final dynamic Function()? onBackButtonTap;
-  final dynamic Function()? onRefreshButtonTap;
+  final dynamic Function()? onTapBackButton;
+  final Future<void> Function()? onTapRefreshButton;
   final String? refreshButtonText;
   final String? imgPath;
 
   const AppEmptyState({
     super.key,
-    this.showRefreshButton = false,
     required this.title,
     this.subtitle,
     this.backButtonText = "Kembali",
-    this.onBackButtonTap,
-    this.onRefreshButtonTap,
+    this.onTapBackButton,
+    this.onTapRefreshButton,
     this.refreshButtonText = "Refresh",
     this.imgPath = AppAssets.nodataLight,
   });
+
+  @override
+  State<AppEmptyState> createState() => _AppEmptyStateState();
+}
+
+class _AppEmptyStateState extends State<AppEmptyState> {
+  bool isRefreshing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +42,22 @@ class AppEmptyState extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppImage(
-              image: imgPath!,
+              image: widget.imgPath!,
               imgProvider: ImgProvider.assetImage,
               width: 120,
               height: 120,
             ),
             const SizedBox(height: AppSizes.padding),
             Text(
-              title,
+              widget.title,
               textAlign: TextAlign.center,
               style: AppTextStyle.heading4(),
             ),
-            if (subtitle != null)
+            if (widget.subtitle != null)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: AppSizes.padding),
                 child: Text(
-                  subtitle ?? '',
+                  widget.subtitle ?? '',
                   textAlign: TextAlign.center,
                   style: AppTextStyle.bodyMedium(
                     fontWeight: AppFontWeight.regular,
@@ -60,22 +65,42 @@ class AppEmptyState extends StatelessWidget {
                   ),
                 ),
               ),
-            if (showRefreshButton!)
+            if (widget.onTapRefreshButton != null)
               Padding(
                 padding: const EdgeInsets.only(top: AppSizes.padding),
-                child: AppButton(
-                  width: 240,
-                  onTap: onRefreshButtonTap!,
-                  text: refreshButtonText,
+                child: Container(
+                  constraints: const BoxConstraints(minWidth: 100),
+                  child: LayoutBuilder(builder: (context, constraint) {
+                    return AppButton(
+                      // center: false,
+                      width: constraint.minWidth,
+                      onTap: () async {
+                        isRefreshing = true;
+                        setState(() {});
+
+                        await widget.onTapRefreshButton!();
+
+                        isRefreshing = false;
+                        setState(() {});
+                      },
+                      text: widget.refreshButtonText,
+                      fontSize: 14,
+                      padding: const EdgeInsets.all(AppSizes.padding / 1.5),
+                      isLoading: isRefreshing,
+                      loadingIndicatorSize: 19,
+                    );
+                  }),
                 ),
               ),
-            if (onBackButtonTap != null)
+            if (widget.onTapBackButton != null)
               Padding(
                 padding: const EdgeInsets.only(top: AppSizes.padding),
                 child: AppButton(
-                  width: 240,
-                  onTap: onBackButtonTap!,
-                  text: backButtonText,
+                  center: false,
+                  onTap: widget.onTapBackButton!,
+                  text: widget.backButtonText,
+                  fontSize: 14,
+                  padding: const EdgeInsets.all(AppSizes.padding / 1.5),
                 ),
               ),
           ],
