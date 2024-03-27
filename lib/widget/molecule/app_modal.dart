@@ -92,6 +92,7 @@ class AppModal {
     required BuildContext context,
     String? title,
     String? subtitle,
+    int? maxFileSize,
     Function(AttachmentModel)? onTapCamera,
     Function(AttachmentModel)? onTapGallery,
     Function(AttachmentModel)? onTapDocument,
@@ -104,7 +105,8 @@ class AppModal {
       body: SafeArea(
         child: PickAttachmentModalBody(
           title: title,
-          subtitle: subtitle,
+          subtitle: subtitle ?? 'Image/file must be less than 5 MB',
+          maxFileSize: maxFileSize ?? 5000000,
           onTapCamera: onTapCamera,
           onTapGallery: onTapGallery,
           onTapDocument: onTapDocument,

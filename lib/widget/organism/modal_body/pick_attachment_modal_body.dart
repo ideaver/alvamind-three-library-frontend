@@ -4,6 +4,7 @@ import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
+import 'package:alvamind_three_library_frontend/widget/molecule/app_snackbar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,7 +13,8 @@ import '../../../model/attachment_model.dart';
 
 class PickAttachmentModalBody extends StatelessWidget {
   final String? title;
-  final String? subtitle;
+  final String subtitle;
+  final int maxFileSize;
   final Function(AttachmentModel)? onTapCamera;
   final Function(AttachmentModel)? onTapGallery;
   final Function(AttachmentModel)? onTapDocument;
@@ -21,7 +23,8 @@ class PickAttachmentModalBody extends StatelessWidget {
   const PickAttachmentModalBody({
     super.key,
     this.title = 'Attachment',
-    this.subtitle = 'Image/file must be less than 1Mb',
+    this.maxFileSize = 5000000,
+    this.subtitle = 'Image/file must be less than 5 MB',
     this.onTapCamera,
     this.onTapGallery,
     this.onTapDocument,
@@ -47,12 +50,15 @@ class PickAttachmentModalBody extends StatelessWidget {
                 const Icon(
                   Icons.info_outline,
                   color: AppColors.blackLv5,
-                  size: 14,
+                  size: 16,
                 ),
                 const SizedBox(width: AppSizes.padding / 2),
                 Text(
-                  'Image/file must be less than 1Mb',
-                  style: AppTextStyle.bodyMedium(fontWeight: AppFontWeight.regular, color: AppColors.blackLv5),
+                  subtitle,
+                  style: AppTextStyle.bodyMedium(
+                    fontWeight: AppFontWeight.regular,
+                    color: AppColors.blackLv5,
+                  ),
                 ),
               ],
             ),
@@ -117,6 +123,16 @@ class PickAttachmentModalBody extends StatelessWidget {
       return;
     }
 
+    if (await image.length() > maxFileSize) {
+      AppSnackbar.show(
+        navigator,
+        title: subtitle,
+        backgroundColor: AppColors.error,
+        showCloseButton: true,
+      );
+      return;
+    }
+
     AttachmentModel attach = AttachmentModel(
       type: AttachmentType.image,
       value: File(image.path),
@@ -132,6 +148,16 @@ class PickAttachmentModalBody extends StatelessWidget {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image == null) {
+      return;
+    }
+
+    if (await image.length() > maxFileSize) {
+      AppSnackbar.show(
+        navigator,
+        title: subtitle,
+        backgroundColor: AppColors.error,
+        showCloseButton: true,
+      );
       return;
     }
 
@@ -153,8 +179,18 @@ class PickAttachmentModalBody extends StatelessWidget {
       return;
     }
 
+    if (result.files.first.size > maxFileSize) {
+      AppSnackbar.show(
+        navigator,
+        title: subtitle,
+        backgroundColor: AppColors.error,
+        showCloseButton: true,
+      );
+      return;
+    }
+
     AttachmentModel attach = AttachmentModel(
-      type: AttachmentType.image,
+      type: AttachmentType.other,
       value: File(result.files.first.path!),
     );
 
