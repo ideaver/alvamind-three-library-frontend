@@ -9,7 +9,10 @@ import 'package:alvamind_three_library_frontend/widget/atom/app_image.dart';
 import 'package:alvamind_three_library_frontend/widget/atom/app_maps.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:open_filex/open_filex.dart';
+
+import '../../model/location_model.dart';
 
 class AppAttachment extends StatelessWidget {
   final AttachmentModel attachment;
@@ -38,7 +41,7 @@ class AppAttachment extends StatelessWidget {
     }
 
     if (attachment?.type == AttachmentType.location) {
-      return (attachment?.value as String);
+      return (attachment?.value as LocationModel).name;
     }
 
     return '';
@@ -116,24 +119,40 @@ class AppAttachment extends StatelessWidget {
   }
 
   Widget location(AttachmentModel attachment) {
-    return Padding(
-      padding: padding,
-      child: GestureDetector(
-        onTap: () {
-          ExternalLauncher.openMap(
-            double.parse((attachment.value as String).split(',').firstOrNull ?? '0'),
-            double.parse((attachment.value as String).split(',').lastOrNull ?? '0'),
-          );
-        },
-        child: AspectRatio(
-          aspectRatio: aspectRatio,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(borderRadius ?? AppSizes.radius * 2),
-            child: AppMaps(
-              lat: double.parse((attachment.value as String).split(',').firstOrNull ?? '0'),
-              lng: double.parse((attachment.value as String).split(',').lastOrNull ?? '0'),
-              zoomControlsEnabled: false,
-              padding: const EdgeInsets.all(AppSizes.padding / 2),
+    return GestureDetector(
+      onTap: () {
+        ExternalLauncher.openMap(
+          (attachment.value as LocationModel).latitude,
+          (attachment.value as LocationModel).longitude,
+        );
+      },
+      child: Container(
+        padding: padding,
+        color: AppColors.transparent,
+        child: IgnorePointer(
+          ignoring: true,
+          child: AspectRatio(
+            aspectRatio: aspectRatio,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(borderRadius ?? AppSizes.radius * 2),
+              child: AppMaps(
+                lat: (attachment.value as LocationModel).latitude,
+                lng: (attachment.value as LocationModel).longitude,
+                markers: {
+                  Marker(
+                    markerId: const MarkerId("id"),
+                    position: LatLng(
+                      (attachment.value as LocationModel).latitude,
+                      (attachment.value as LocationModel).longitude,
+                    ),
+                  )
+                },
+                zoom: 13,
+                zoomControlsEnabled: false,
+                myLocationButtonEnabled: false,
+                myLocationEnabled: false,
+                padding: const EdgeInsets.all(AppSizes.padding / 2),
+              ),
             ),
           ),
         ),

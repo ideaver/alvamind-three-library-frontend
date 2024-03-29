@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
+import 'package:alvamind_three_library_frontend/model/location_model.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_icon_button.dart';
 import 'package:alvamind_three_library_frontend/widget/molecule/app_snackbar.dart';
+import 'package:alvamind_three_library_frontend/widget/organism/maps/maps_address_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -200,11 +202,16 @@ class PickAttachmentModalBody extends StatelessWidget {
 
   void openMaps(BuildContext context) async {
     final navigator = Navigator.of(context);
-    // TODO LOCATION PICKER
+
+    LocationModel value = await navigator.push(
+      MaterialPageRoute(
+        builder: (context) => const MapsAddressPicker(),
+      ),
+    );
 
     AttachmentModel attach = AttachmentModel(
       type: AttachmentType.location,
-      value: "123, 123",
+      value: value,
     );
 
     onTapLocation!(attach);

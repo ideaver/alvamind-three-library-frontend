@@ -55,7 +55,7 @@ class _AppEmptyStateState extends State<AppEmptyState> {
             ),
             if (widget.subtitle != null)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSizes.padding),
+                padding: const EdgeInsets.only(top: AppSizes.padding),
                 child: Text(
                   widget.subtitle ?? '',
                   textAlign: TextAlign.center,
