@@ -57,6 +57,7 @@ class _BarChartRiwayatState extends State<BarChartRiwayat> {
       //   ),
       // ],
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppLongCard(

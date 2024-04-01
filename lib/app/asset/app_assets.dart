@@ -71,6 +71,7 @@ class AppAssets {
   static const String upgradeMembershipBanner = 'lib/assets/images/illustrations/upgrade_membership_banner.png';
   static const String peopleBanner = 'lib/assets/images/illustrations/peoplebanner.png';
   static const String identification = 'lib/assets/images/illustrations/identification.png';
+  static const String commodityCover = 'lib/assets/images/illustrations/commodity_cover.png';
 
   // Onboarding
   static const String ob1Light = 'lib/assets/images/illustrations/onboarding/light_ob1.png';
