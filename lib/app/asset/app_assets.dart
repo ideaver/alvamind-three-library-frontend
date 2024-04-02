@@ -53,6 +53,7 @@ class AppAssets {
   static const String itpc = 'lib/assets/images/icons/other/itpc.png';
   static const String more = 'lib/assets/images/icons/other/more.png';
   static const String soundwave = 'lib/assets/images/icons/other/soundwave.gif';
+  static const String pdfPlaceholder = 'lib/assets/images/icons/other/pdf_placeholder.png';
 
   // Illustrations
   static const String checklistLight = 'lib/assets/images/illustrations/light_checklist.png';
