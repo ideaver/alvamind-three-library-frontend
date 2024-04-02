@@ -101,6 +101,7 @@ class AppSnackbarWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               icon != null
                   ? Padding(
@@ -112,28 +113,32 @@ class AppSnackbarWidget extends StatelessWidget {
                       ),
                     )
                   : const SizedBox.shrink(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: titleStyle ??
-                        AppTextStyle.bodyMedium(
-                          fontWeight: AppFontWeight.bold,
-                          color: textColor,
-                        ),
-                  ),
-                  subtitle != null
-                      ? Text(
-                          subtitle!,
-                          style: subtitleStyle ??
-                              AppTextStyle.bodySmall(
-                                fontWeight: AppFontWeight.regular,
-                                color: textColor,
-                              ),
-                        )
-                      : const SizedBox.shrink(),
-                ],
+              SizedBox(
+                width: AppSizes.screenSize.width - 100,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: titleStyle ??
+                          AppTextStyle.bodyMedium(
+                            fontWeight: AppFontWeight.bold,
+                            color: textColor,
+                          ),
+                    ),
+                    subtitle != null
+                        ? Text(
+                            subtitle!,
+                            style: subtitleStyle ??
+                                AppTextStyle.bodySmall(
+                                  fontWeight: AppFontWeight.regular,
+                                  color: textColor,
+                                ),
+                          )
+                        : const SizedBox.shrink(),
+                  ],
+                ),
               ),
             ],
           ),
