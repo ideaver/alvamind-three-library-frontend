@@ -4,7 +4,7 @@ import '../../utility/console_log.dart';
 import 'local_notif_service.dart';
 
 // FCM Service
-// v.2.0.1
+// v.2.0.2
 // by Elriz Wiraswara
 
 class FcmService {
@@ -15,8 +15,8 @@ class FcmService {
   static String? fcmToken;
 
   static Future<void> initNotification({
-    required Function(RemoteMessage) onMessageHandler,
-    required Function(RemoteMessage) onBackgroundHandler,
+    Function(RemoteMessage)? onMessageHandler,
+    Function(RemoteMessage)? onBackgroundHandler,
     bool alert = true,
     bool badge = true,
     bool provisional = false,
@@ -36,8 +36,8 @@ class FcmService {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await _notificationHandler(
-        onMessageHandler: onMessageHandler,
-        onBackgroundHandler: onBackgroundHandler,
+        onMessageHandler: onMessageHandler ?? (msg) {},
+        onBackgroundHandler: onBackgroundHandler ?? (msg) {},
       );
 
       await _checkForInitialMessage();
