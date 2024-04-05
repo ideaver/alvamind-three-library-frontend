@@ -50,7 +50,7 @@ class DownloaderService {
         LocalNotifService.showNotification(
           title: 'Download Complete',
           body: fileName,
-          deepLink: file.path,
+          payload: file.path,
         );
       });
     }

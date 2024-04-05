@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../utility/console_log.dart';
 import 'local_notif_service.dart';
 
 // FCM Service
-// v.2.0.1
+// v.2.0.3
 // by Elriz Wiraswara
 
 class FcmService {
@@ -15,12 +17,13 @@ class FcmService {
   static String? fcmToken;
 
   static Future<void> initNotification({
-    required Function(RemoteMessage) onMessageHandler,
-    required Function(RemoteMessage) onBackgroundHandler,
+    Function(RemoteMessage)? onMessageHandler,
+    Function(RemoteMessage)? onBackgroundHandler,
     bool alert = true,
     bool badge = true,
     bool provisional = false,
     bool sound = true,
+    List<String>? topics,
   }) async {
     // Get fcm token
     fcmToken = await FirebaseMessaging.instance.getToken();
@@ -34,10 +37,16 @@ class FcmService {
       sound: sound,
     );
 
+    if (topics != null && topics.isNotEmpty) {
+      for (var topic in topics) {
+        await FirebaseMessaging.instance.subscribeToTopic(topic);
+      }
+    }
+
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await _notificationHandler(
-        onMessageHandler: onMessageHandler,
-        onBackgroundHandler: onBackgroundHandler,
+        onMessageHandler: onMessageHandler ?? (msg) {},
+        onBackgroundHandler: onBackgroundHandler ?? (msg) {},
       );
 
       await _checkForInitialMessage();
@@ -68,7 +77,8 @@ class FcmService {
     await LocalNotifService.showNotification(
       title: message.notification?.title,
       body: message.notification?.body,
-      deepLink: message.data['deep_link'],
+      payload: json.encode(message.data),
+      image: message.data['image'],
     );
 
     onMessageHandler(message);
@@ -83,5 +93,13 @@ class FcmService {
     cl("[FcmService]._checkForInitialMessage.data = ${initialMessage?.data}");
 
     return initialMessage;
+  }
+
+  static Future<void> unsubscribeTopics(List<String> topics) async {
+    if (topics.isNotEmpty) {
+      for (var topic in topics) {
+        await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
+      }
+    }
   }
 }
