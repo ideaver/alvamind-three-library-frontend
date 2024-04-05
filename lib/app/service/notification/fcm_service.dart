@@ -6,7 +6,7 @@ import '../../utility/console_log.dart';
 import 'local_notif_service.dart';
 
 // FCM Service
-// v.2.0.3
+// v.2.0.4
 // by Elriz Wiraswara
 
 class FcmService {
@@ -37,11 +37,7 @@ class FcmService {
       sound: sound,
     );
 
-    if (topics != null && topics.isNotEmpty) {
-      for (var topic in topics) {
-        await FirebaseMessaging.instance.subscribeToTopic(topic);
-      }
-    }
+    await subscribeTopics(topics ?? []);
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await _notificationHandler(
@@ -93,6 +89,14 @@ class FcmService {
     cl("[FcmService]._checkForInitialMessage.data = ${initialMessage?.data}");
 
     return initialMessage;
+  }
+
+  static Future<void> subscribeTopics(List<String> topics) async {
+    if (topics.isNotEmpty) {
+      for (var topic in topics) {
+        await FirebaseMessaging.instance.subscribeToTopic(topic);
+      }
+    }
   }
 
   static Future<void> unsubscribeTopics(List<String> topics) async {
