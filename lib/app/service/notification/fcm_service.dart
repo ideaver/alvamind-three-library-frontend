@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../utility/console_log.dart';
 import 'local_notif_service.dart';
 
 // FCM Service
-// v.2.0.2
+// v.2.0.3
 // by Elriz Wiraswara
 
 class FcmService {
@@ -75,7 +77,7 @@ class FcmService {
     await LocalNotifService.showNotification(
       title: message.notification?.title,
       body: message.notification?.body,
-      payload: message.data['route_name'],
+      payload: jsonEncode(message.data),
     );
 
     onMessageHandler(message);
