@@ -41,6 +41,7 @@ class LocalNotifService {
     String? description,
     Importance importance = Importance.defaultImportance,
     Priority priority = Priority.high,
+    Function(NotificationResponse)? onDidReceiveNotificationResponse,
   }) async {
     androidNotifDetails = androidNotifDetails = AndroidNotificationDetails(
       packageName,
@@ -62,7 +63,7 @@ class LocalNotifService {
     var notifAppLaunchDetails = await localNotifPlugin.getNotificationAppLaunchDetails();
 
     if (notifAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-      onDidReceiveNotif(notifAppLaunchDetails!.notificationResponse!);
+      onDidReceiveNotificationResponse ?? onDidReceiveNotif(notifAppLaunchDetails!.notificationResponse!);
     }
 
     const InitializationSettings initSettings = InitializationSettings(
@@ -72,7 +73,7 @@ class LocalNotifService {
 
     await localNotifPlugin.initialize(
       initSettings,
-      onDidReceiveNotificationResponse: onDidReceiveNotif,
+      onDidReceiveNotificationResponse: onDidReceiveNotificationResponse ?? onDidReceiveNotif,
     );
   }
 
