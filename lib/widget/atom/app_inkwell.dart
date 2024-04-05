@@ -16,6 +16,7 @@ class AppInkwell extends StatelessWidget {
   final Widget? child;
   final BoxBorder? customBorder;
   final Function()? onTap;
+  final Function()? onLongPress;
 
   const AppInkwell({
     super.key,
@@ -31,6 +32,7 @@ class AppInkwell extends StatelessWidget {
     this.child,
     this.customBorder,
     this.onTap,
+    this.onLongPress,
   });
 
   @override
@@ -45,6 +47,7 @@ class AppInkwell extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.circular(AppSizes.radius),
         child: InkWell(
           onTap: onTap,
+          onLongPress: onLongPress,
           splashColor: Colors.black.withOpacity(0.06),
           splashFactory: InkRipple.splashFactory,
           highlightColor: Colors.black12,
