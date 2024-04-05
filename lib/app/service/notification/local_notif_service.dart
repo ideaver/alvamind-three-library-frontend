@@ -1,19 +1,24 @@
 import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
 import 'package:open_filex/open_filex.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../utility/external_launcher.dart';
 import '../navigation/navigation_service.dart';
 
 // Local Notification Service
-// v.2.0.1
+// v.2.0.2
 // by Elriz Wiraswara
 
 class LocalNotifService {
   // This class is not meant to be instatiated or extended; this constructor
   // prevents instantiation and extension.
   LocalNotifService._();
+
+  static late final String defaultPackageName;
+  static late final String defaultChannelName;
 
   // Flutter local notification plugin
   static final localNotifPlugin = FlutterLocalNotificationsPlugin();
@@ -43,19 +48,23 @@ class LocalNotifService {
     Priority priority = Priority.high,
     Function(NotificationResponse)? onDidReceiveNotificationResponse,
   }) async {
-    androidNotifDetails = androidNotifDetails = AndroidNotificationDetails(
+    defaultPackageName = packageName;
+    defaultChannelName = channelName;
+
+    androidNotifDetails = AndroidNotificationDetails(
       packageName,
       channelName,
       channelDescription: description,
       importance: importance,
       priority: priority,
+      icon: '@mipmap/ic_launcher',
     );
 
-    iosNotifDetails = iosNotifDetails = DarwinNotificationDetails(
+    iosNotifDetails = DarwinNotificationDetails(
       categoryIdentifier: categoryIdentifier,
     );
 
-    notificationDetails = notificationDetails = NotificationDetails(
+    notificationDetails = NotificationDetails(
       android: androidNotifDetails,
       iOS: iosNotifDetails,
     );
@@ -96,14 +105,37 @@ class LocalNotifService {
   static Future<void> showNotification({
     required String? title,
     required String? body,
+    String? image,
     String? payload,
   }) async {
     await localNotifPlugin.show(
       body.hashCode,
       title,
       body,
-      notificationDetails,
       payload: payload,
+      image == null
+          ? notificationDetails
+          : NotificationDetails(
+              android: AndroidNotificationDetails(
+                defaultPackageName,
+                defaultChannelName,
+                styleInformation: await _buildBigPictureStyleInformation(image),
+              ),
+              // TODO
+              iOS: const DarwinNotificationDetails(),
+            ),
+    );
+  }
+
+  static Future<BigPictureStyleInformation?> _buildBigPictureStyleInformation(String image) async {
+    final imgPath = await _downloadAndSaveFile(image, "notifImage");
+
+    final FilePathAndroidBitmap filePath = FilePathAndroidBitmap(imgPath);
+
+    return BigPictureStyleInformation(
+      filePath,
+      htmlFormatContentTitle: true,
+      htmlFormatSummaryText: true,
     );
   }
 
@@ -140,5 +172,14 @@ class LocalNotifService {
       platformChannelSpecifics,
       payload: payload,
     );
+  }
+
+  static Future<String> _downloadAndSaveFile(String url, String fileName) async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final String filePath = '${directory.path}/$fileName';
+    final http.Response response = await http.get(Uri.parse(url));
+    final File file = File(filePath);
+    await file.writeAsBytes(response.bodyBytes);
+    return filePath;
   }
 }

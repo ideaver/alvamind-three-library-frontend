@@ -78,6 +78,7 @@ class FcmService {
       title: message.notification?.title,
       body: message.notification?.body,
       payload: json.encode(message.data),
+      image: message.data['image'],
     );
 
     onMessageHandler(message);
