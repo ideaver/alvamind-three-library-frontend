@@ -95,14 +95,14 @@ class LocalNotifService {
   static Future<void> showNotification({
     required String? title,
     required String? body,
-    String? deepLink,
+    String? payload,
   }) async {
     await localNotifPlugin.show(
       body.hashCode,
       title,
       body,
       notificationDetails,
-      payload: deepLink,
+      payload: payload,
     );
   }
 

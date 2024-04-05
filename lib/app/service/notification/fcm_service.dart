@@ -21,6 +21,7 @@ class FcmService {
     bool badge = true,
     bool provisional = false,
     bool sound = true,
+    List<String>? topics,
   }) async {
     // Get fcm token
     fcmToken = await FirebaseMessaging.instance.getToken();
@@ -33,6 +34,12 @@ class FcmService {
       provisional: provisional,
       sound: sound,
     );
+
+    if (topics != null && topics.isNotEmpty) {
+      for (var topic in topics) {
+        await FirebaseMessaging.instance.subscribeToTopic(topic);
+      }
+    }
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await _notificationHandler(
@@ -68,7 +75,7 @@ class FcmService {
     await LocalNotifService.showNotification(
       title: message.notification?.title,
       body: message.notification?.body,
-      deepLink: message.data['deep_link'],
+      payload: message.data['route_name'],
     );
 
     onMessageHandler(message);
@@ -83,5 +90,13 @@ class FcmService {
     cl("[FcmService]._checkForInitialMessage.data = ${initialMessage?.data}");
 
     return initialMessage;
+  }
+
+  static Future<void> unsubscribeTopics(List<String> topics) async {
+    if (topics.isNotEmpty) {
+      for (var topic in topics) {
+        await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
+      }
+    }
   }
 }
