@@ -67,50 +67,53 @@ class PickAttachmentModalBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSizes.padding),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Visibility(
-              visible: onTapCamera != null,
-              child: attachButton(
-                icon: Icons.camera_alt_outlined,
-                name: "Camera",
-                onTap: () async {
-                  openCamera(context);
-                },
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Visibility(
+                visible: onTapCamera != null,
+                child: attachButton(
+                  icon: Icons.camera_alt_outlined,
+                  name: "Camera",
+                  onTap: () async {
+                    openCamera(context);
+                  },
+                ),
               ),
-            ),
-            Visibility(
-              visible: onTapGallery != null,
-              child: attachButton(
-                icon: Icons.image_outlined,
-                name: "Gallery",
-                onTap: () {
-                  openGallery(context);
-                },
+              Visibility(
+                visible: onTapGallery != null,
+                child: attachButton(
+                  icon: Icons.image_outlined,
+                  name: "Gallery",
+                  onTap: () {
+                    openGallery(context);
+                  },
+                ),
               ),
-            ),
-            Visibility(
-              visible: onTapDocument != null,
-              child: attachButton(
-                icon: Icons.description_outlined,
-                name: "Document",
-                onTap: () {
-                  openFiles(context);
-                },
+              Visibility(
+                visible: onTapDocument != null,
+                child: attachButton(
+                  icon: Icons.description_outlined,
+                  name: "Document",
+                  onTap: () {
+                    openFiles(context);
+                  },
+                ),
               ),
-            ),
-            Visibility(
-              visible: onTapLocation != null,
-              child: attachButton(
-                icon: Icons.location_on_outlined,
-                name: "Location",
-                onTap: () {
-                  openMaps(context);
-                },
+              Visibility(
+                visible: onTapLocation != null,
+                child: attachButton(
+                  icon: Icons.location_on_outlined,
+                  name: "Location",
+                  onTap: () {
+                    openMaps(context);
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
