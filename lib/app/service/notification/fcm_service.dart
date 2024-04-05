@@ -77,7 +77,7 @@ class FcmService {
     await LocalNotifService.showNotification(
       title: message.notification?.title,
       body: message.notification?.body,
-      payload: jsonEncode(message.data),
+      payload: json.encode(message.data),
     );
 
     onMessageHandler(message);
