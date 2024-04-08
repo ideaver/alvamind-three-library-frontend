@@ -6,7 +6,7 @@ import '../../utility/console_log.dart';
 import 'local_notif_service.dart';
 
 // FCM Service
-// v.2.0.4
+// v.2.0.5
 // by Elriz Wiraswara
 
 class FcmService {
@@ -19,6 +19,7 @@ class FcmService {
   static Future<void> initNotification({
     Function(RemoteMessage)? onMessageHandler,
     Function(RemoteMessage)? onBackgroundHandler,
+    Function(RemoteMessage?)? checkForInitialMessage,
     bool alert = true,
     bool badge = true,
     bool provisional = false,
@@ -45,7 +46,8 @@ class FcmService {
         onBackgroundHandler: onBackgroundHandler ?? (msg) {},
       );
 
-      await _checkForInitialMessage();
+      var initialMessage = await _checkForInitialMessage();
+      if (checkForInitialMessage != null) checkForInitialMessage(initialMessage);
     } else {
       cl('[FcmService] User declined or has not accepted permission');
     }
