@@ -1,9 +1,14 @@
 import 'dart:io';
 
+import 'package:alvamind_three_library_frontend/app/utility/console_log.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 import '../../utility/external_launcher.dart';
 import '../navigation/navigation_service.dart';
@@ -50,7 +55,11 @@ class LocalNotifService {
   }) async {
     defaultPackageName = packageName;
     defaultChannelName = channelName;
-
+    // Initialize TimeZone
+    final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
+    cl("Current Timezone: $currentTimeZone");
+    tz.initializeTimeZones();
+    tz.setLocalLocation(tz.getLocation(currentTimeZone));
     androidNotifDetails = AndroidNotificationDetails(
       packageName,
       channelName,
@@ -181,5 +190,44 @@ class LocalNotifService {
     final File file = File(filePath);
     await file.writeAsBytes(response.bodyBytes);
     return filePath;
+  }
+
+  static Future<void> scheduleNotification(int id, String title, String body, DateTime eventDate, TimeOfDay eventTime,
+      String payload, String time, int? hours,
+      [DateTimeComponents? dateTimeComponents]) async {
+    eventDate = DateTime(eventDate.year, eventDate.month, eventDate.day);
+
+    final scheduledTime = eventDate.add(Duration(
+      hours: eventTime.hour,
+      minutes: eventTime.minute,
+    ));
+
+    tz.TZDateTime nextInstanceOfTenAM() {
+      final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+      tz.TZDateTime scheduledDate = tz.TZDateTime.from(scheduledTime, tz.local);
+
+      if (time == 'daily') {
+        if (scheduledDate.isBefore(now)) {
+          scheduledDate = scheduledDate.add(const Duration(days: 1));
+        }
+      } else if (time == 'hourly') {
+        if (scheduledDate.isBefore(now)) {
+          scheduledDate = scheduledDate.add(Duration(hours: hours!));
+        }
+      }
+      return scheduledDate;
+    }
+
+    await localNotifPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      nextInstanceOfTenAM(),
+      notificationDetails,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      payload: payload,
+      matchDateTimeComponents: dateTimeComponents,
+    );
   }
 }

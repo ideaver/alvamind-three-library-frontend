@@ -1,7 +1,6 @@
 import 'package:alvamind_three_library_frontend/app/theme/app_colors.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_sizes.dart';
 import 'package:alvamind_three_library_frontend/app/theme/app_text_style.dart';
-import 'package:alvamind_three_library_frontend/app/utility/console_log.dart';
 import 'package:flutter/material.dart';
 import 'package:wheel_picker/wheel_picker.dart';
 
@@ -53,7 +52,7 @@ class _AppTimePickerState extends State<AppTimePicker> {
       mounts: [hoursWheel],
     );
 
-    cl("init === $selectedTime ${selectedPeriod.name}");
+    // cl("init === $selectedTime ${selectedPeriod.name}");
 
     super.initState();
   }
