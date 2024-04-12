@@ -73,15 +73,18 @@ class AppDialog {
                   fontWeight: AppFontWeight.medium,
                 ),
               ),
-              const SizedBox(height: 18),
-              Text(
-                error.toString().length > 35 ? error.toString().substring(0, 15) : error.toString(),
-                textAlign: TextAlign.center,
-                style: AppTextStyle.bodySmall(
-                  fontWeight: AppFontWeight.bold,
-                  color: AppColors.blackLv6,
+              if (error != null)
+                Padding(
+                  padding: EdgeInsets.only(top: AppSizes.padding),
+                  child: Text(
+                    error.toString().length > 35 ? error.toString().substring(0, 35) : error.toString(),
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.bodySmall(
+                      fontWeight: AppFontWeight.bold,
+                      color: AppColors.blackLv6,
+                    ),
+                  ),
                 ),
-              ),
             ],
           ),
         );
