@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 // App Date Formatter
-// v.2.0.1
+// v.2.0.2
 // by Elriz Wiraswara
 
 // For develompment purpose
@@ -98,17 +98,47 @@ class DateFormatter {
       return '(Invalid date format)';
     }
 
-    return DateFormat('d').format(parsedDate);
+    return DateFormat('dd').format(parsedDate);
   }
 
-  static String onlyDateWithZero(String iso8601String) {
+  static String onlyDateAndMonth(String iso8601String) {
     var parsedDate = DateTime.tryParse(iso8601String);
 
     if (parsedDate == null) {
       return '(Invalid date format)';
     }
 
-    return DateFormat('dd').format(parsedDate);
+    return DateFormat('dd/MM').format(parsedDate);
+  }
+
+  static String onlyMonth(String iso8601String) {
+    var parsedDate = DateTime.tryParse(iso8601String);
+
+    if (parsedDate == null) {
+      return '(Invalid date format)';
+    }
+
+    return DateFormat('MM').format(parsedDate);
+  }
+
+  static String onlyMonthAndYear(String iso8601String) {
+    var parsedDate = DateTime.tryParse(iso8601String);
+
+    if (parsedDate == null) {
+      return '(Invalid date format)';
+    }
+
+    return DateFormat('MM/yy').format(parsedDate);
+  }
+
+  static String onlyYear(String iso8601String) {
+    var parsedDate = DateTime.tryParse(iso8601String);
+
+    if (parsedDate == null) {
+      return '(Invalid date format)';
+    }
+
+    return DateFormat('y').format(parsedDate);
   }
 
   static String onlyDayShorted(String iso8601String) {

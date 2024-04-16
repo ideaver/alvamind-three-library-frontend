@@ -9,12 +9,14 @@ import 'package:flutter/material.dart';
 import '../../../model/date_sorting_model.dart';
 
 class PickDateSortingModalBody extends StatefulWidget {
+  final DateSortingModel? initialOption;
   final List<DateSortingModel> specifiedDateRanges;
   final bool enableCustomDateRange;
-  final Function(List<DateTime>)? onTapApply;
+  final Function(List<DateTime>, DateSortingModel?)? onTapApply;
 
   const PickDateSortingModalBody({
     super.key,
+    this.initialOption,
     required this.specifiedDateRanges,
     this.enableCustomDateRange = false,
     this.onTapApply,
@@ -25,7 +27,13 @@ class PickDateSortingModalBody extends StatefulWidget {
 }
 
 class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
-  int selectedOption = -1;
+  DateSortingModel? selectedOption;
+
+  @override
+  void initState() {
+    selectedOption = widget.initialOption;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +57,13 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
       return Padding(
         padding: const EdgeInsets.only(bottom: AppSizes.padding),
         child: AppRadioListTile(
-          value: i,
+          value: widget.specifiedDateRanges[i],
           groupValue: selectedOption,
           title: widget.specifiedDateRanges[i].title,
-          subtitle: subtitle(widget.specifiedDateRanges[i].days),
+          subtitle: subtitle(widget.specifiedDateRanges[i].count),
           subtitleStyle: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
           onChanged: (value) {
-            selectedOption = value as int;
+            selectedOption = value as DateSortingModel?;
             setState(() {});
           },
         ),
@@ -71,13 +79,13 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSizes.padding),
       child: AppRadioListTile(
-        value: widget.specifiedDateRanges.length + 1,
+        value: const DateSortingModel(count: -1, title: 'Custom'),
         groupValue: selectedOption,
         title: 'Pilih Tanggal',
         subtitle: 'Pilih rentang tanggal custom',
         subtitleStyle: AppTextStyle.bodySmall(fontWeight: AppFontWeight.regular),
         onChanged: (value) {
-          selectedOption = value as int;
+          selectedOption = value as DateSortingModel;
           setState(() {});
         },
       ),
@@ -128,12 +136,12 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
           return;
         }
 
-        if (selectedOption == -1) {
+        if (selectedOption == null) {
           return;
         }
 
-        if (selectedOption < widget.specifiedDateRanges.length) {
-          widget.onTapApply!(dateRangeValue(widget.specifiedDateRanges[selectedOption].days));
+        if (selectedOption!.count != -1) {
+          widget.onTapApply!(dateRangeValue(selectedOption!.count), selectedOption);
           Navigator.pop(context);
         } else {
           await customDateRanges();
@@ -168,6 +176,6 @@ class _PickDateSortingModalBodyState extends State<PickDateSortingModalBody> {
       }
     }
 
-    widget.onTapApply!(value);
+    widget.onTapApply!(value, selectedOption);
   }
 }

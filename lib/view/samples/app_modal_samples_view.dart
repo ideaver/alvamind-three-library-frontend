@@ -256,7 +256,7 @@ class _AppModalPopupButtonSamplesViewState extends State<AppModalPopupButtonSamp
           AppModal.pickDateSortingModal(
             context: context,
             enableCustomDateRange: true,
-            onTapApply: (dates) {},
+            onTapApply: (dates, option) {},
           );
         },
       ),

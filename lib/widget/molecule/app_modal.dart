@@ -119,19 +119,21 @@ class AppModal {
   static void pickDateSortingModal({
     required BuildContext context,
     String? title,
+    DateSortingModel? initialOption,
     List<DateSortingModel> specifiedDateRanges = const [
-      DateSortingModel(days: 1, title: 'Hari Ini'),
-      DateSortingModel(days: 7, title: '7  Hari Terakhir'),
-      DateSortingModel(days: 30, title: '30  Hari Terakhir'),
+      DateSortingModel(count: 1, title: 'Hari Ini'),
+      DateSortingModel(count: 7, title: '7  Hari Terakhir'),
+      DateSortingModel(count: 30, title: '30  Hari Terakhir'),
     ],
     bool enableCustomDateRange = false,
-    required Function(List<DateTime>) onTapApply,
+    required Function(List<DateTime>, DateSortingModel?) onTapApply,
   }) {
     AppModal.show(
       context: context,
       title: title,
       showCloseButton: true,
       body: PickDateSortingModalBody(
+        initialOption: initialOption,
         specifiedDateRanges: specifiedDateRanges,
         enableCustomDateRange: enableCustomDateRange,
         onTapApply: onTapApply,

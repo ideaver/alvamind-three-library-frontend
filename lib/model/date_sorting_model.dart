@@ -1,9 +1,9 @@
 class DateSortingModel {
   final String title;
-  final int days;
+  final int count;
 
   const DateSortingModel({
     required this.title,
-    required this.days,
+    required this.count,
   });
 }
