@@ -98,49 +98,49 @@ class AppSnackbarWidget extends StatelessWidget {
         boxShadow: [AppShadows.darkShadow2],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              icon != null
-                  ? Padding(
-                      padding: EdgeInsets.only(right: padding.horizontal / 3),
-                      child: Icon(
-                        icon,
-                        size: iconSize,
-                        color: iconColor,
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                icon != null
+                    ? Padding(
+                        padding: EdgeInsets.only(right: padding.horizontal / 3),
+                        child: Icon(
+                          icon,
+                          size: iconSize,
+                          color: iconColor,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: titleStyle ??
+                            AppTextStyle.bodyMedium(
+                              fontWeight: AppFontWeight.bold,
+                              color: textColor,
+                            ),
                       ),
-                    )
-                  : const SizedBox.shrink(),
-              SizedBox(
-                width: AppSizes.screenSize.width - 100,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: titleStyle ??
-                          AppTextStyle.bodyMedium(
-                            fontWeight: AppFontWeight.bold,
-                            color: textColor,
-                          ),
-                    ),
-                    subtitle != null
-                        ? Text(
-                            subtitle!,
-                            style: subtitleStyle ??
-                                AppTextStyle.bodySmall(
-                                  fontWeight: AppFontWeight.regular,
-                                  color: textColor,
-                                ),
-                          )
-                        : const SizedBox.shrink(),
-                  ],
+                      subtitle != null
+                          ? Text(
+                              subtitle!,
+                              style: subtitleStyle ??
+                                  AppTextStyle.bodySmall(
+                                    fontWeight: AppFontWeight.regular,
+                                    color: textColor,
+                                  ),
+                            )
+                          : const SizedBox.shrink(),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           showCloseButton == true
               ? AppIconButton(

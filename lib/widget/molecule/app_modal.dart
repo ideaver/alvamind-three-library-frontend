@@ -102,16 +102,14 @@ class AppModal {
       context: context,
       title: title,
       showCloseButton: true,
-      body: SafeArea(
-        child: PickAttachmentModalBody(
-          title: title,
-          subtitle: subtitle ?? 'Image/file must be less than 5 MB',
-          maxFileSize: maxFileSize ?? 5000000,
-          onTapCamera: onTapCamera,
-          onTapGallery: onTapGallery,
-          onTapDocument: onTapDocument,
-          onTapLocation: onTapLocation,
-        ),
+      body: PickAttachmentModalBody(
+        title: title,
+        subtitle: subtitle ?? 'Image/file must be less than 5 MB',
+        maxFileSize: maxFileSize ?? 5000000,
+        onTapCamera: onTapCamera,
+        onTapGallery: onTapGallery,
+        onTapDocument: onTapDocument,
+        onTapLocation: onTapLocation,
       ),
     );
   }
