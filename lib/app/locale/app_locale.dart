@@ -13,7 +13,7 @@ class AppLocale {
 
   static const List<Locale> supportedLocales = [
     Locale('id', 'ID'),
-    Locale('en', 'EN'),
+    // Locale('en', 'EN'),
   ];
 
   static const List<LocalizationsDelegate> localizationsDelegates = [
