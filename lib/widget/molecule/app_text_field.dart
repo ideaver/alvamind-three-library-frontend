@@ -887,6 +887,7 @@ class _AppTextFieldState extends State<AppTextField> {
       suffixIcon: Icons.keyboard_arrow_down_rounded,
       iconsSize: 26,
       selectedItem: _country.phoneCode,
+      enabled: widget.enabled,
       items: [
         ...List.generate(
           countries.length,
