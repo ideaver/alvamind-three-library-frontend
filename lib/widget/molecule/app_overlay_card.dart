@@ -120,7 +120,7 @@ class AppOverlayCard extends StatelessWidget {
       borderRadius: borderRadius,
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         child: Ink(
           width: width,
           height: height,
