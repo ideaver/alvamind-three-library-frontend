@@ -128,8 +128,9 @@ class _AppSegmentedTabBarState extends State<AppSegmentedTabBar> with TickerProv
             ? Flexible(
                 child: Text(
                   widget.tabs[i].label ?? '',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  // maxLines: 1,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.clip,
                   style: AppTextStyle.bold(
                     size: widget.labelFontSize,
                     color: tabController.index == i ? widget.activeLabelColor : widget.labelColor,
