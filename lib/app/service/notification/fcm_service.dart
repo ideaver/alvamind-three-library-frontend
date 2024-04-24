@@ -18,7 +18,7 @@ class FcmService {
 
   static Future<void> initNotification({
     Function(RemoteMessage)? onMessageHandler,
-    Function(RemoteMessage)? onBackgroundHandler,
+    Future<void> Function(RemoteMessage)? onBackgroundHandler,
     Function(RemoteMessage?)? checkForInitialMessage,
     bool alert = true,
     bool badge = true,
@@ -38,24 +38,24 @@ class FcmService {
       sound: sound,
     );
 
-    await subscribeTopics(topics ?? []);
-
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await _notificationHandler(
-        onMessageHandler: onMessageHandler ?? (msg) {},
-        onBackgroundHandler: onBackgroundHandler ?? (msg) {},
+        onMessageHandler: onMessageHandler,
+        onBackgroundHandler: onBackgroundHandler,
       );
 
       var initialMessage = await _checkForInitialMessage();
       if (checkForInitialMessage != null) checkForInitialMessage(initialMessage);
+
+      await subscribeTopics(topics ?? []);
     } else {
       cl('[FcmService] User declined or has not accepted permission');
     }
   }
 
   static Future<void> _notificationHandler({
-    required Function(RemoteMessage) onMessageHandler,
-    required Function(RemoteMessage) onBackgroundHandler,
+    void Function(RemoteMessage)? onMessageHandler,
+    Future<void> Function(RemoteMessage)? onBackgroundHandler,
   }) async {
     // Foreground
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -63,14 +63,14 @@ class FcmService {
     });
 
     // Background
-    FirebaseMessaging.onBackgroundMessage((RemoteMessage message) {
-      return onBackgroundHandler(message);
-    });
+    if (onBackgroundHandler != null) {
+      FirebaseMessaging.onBackgroundMessage(onBackgroundHandler);
+    }
   }
 
-  static Future<void> _onMessageHandler({
+  static void _onMessageHandler({
     required RemoteMessage message,
-    required Function(RemoteMessage) onMessageHandler,
+    Function(RemoteMessage)? onMessageHandler,
   }) async {
     await LocalNotifService.showNotification(
       title: message.notification?.title,
@@ -79,7 +79,9 @@ class FcmService {
       image: message.data['image'],
     );
 
-    onMessageHandler(message);
+    if (onMessageHandler != null) {
+      onMessageHandler(message);
+    }
 
     cl("[FcmService]._onMessageHandler.data = ${message.data}");
   }
