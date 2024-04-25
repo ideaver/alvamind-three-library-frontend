@@ -17,7 +17,7 @@ import 'app_drop_down.dart';
 import 'app_icon_button.dart';
 
 // AppTextField
-// v.3.0.0
+// v.3.0.1
 // by Elriz Wiraswara
 
 enum AppTextFieldType {
@@ -346,8 +346,11 @@ class _AppTextFieldState extends State<AppTextField> {
       return const SizedBox.shrink();
     }
 
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(bottom: 8.0),
+      margin: widget.type == AppTextFieldType.otp
+          ? const EdgeInsets.symmetric(horizontal: AppSizes.padding / 4)
+          : EdgeInsets.zero,
       child: Text(
         widget.labelText!,
         style: widget.labelStyle ??
@@ -610,7 +613,7 @@ class _AppTextFieldState extends State<AppTextField> {
           widget.otpDigitLength,
           (i) => Expanded(
             child: Padding(
-              padding: EdgeInsets.only(left: i == 0 ? 0 : AppSizes.padding / 2),
+              padding: const EdgeInsets.symmetric(horizontal: AppSizes.padding / 4),
               child: textField(
                 textFieldIndex: i,
               ),
