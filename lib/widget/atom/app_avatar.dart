@@ -65,6 +65,11 @@ class AppAvatar extends StatelessWidget {
           enableFullScreenView: enabled ? enableFullScreenView : false,
           isFromAppAssets: isFromAppAssets,
           appAssetsPackageName: appAssetsPackageName,
+          errorWidget: Icon(
+            Icons.person,
+            size: size / 2,
+            color: AppColors.blackLv5,
+          ),
         ),
         showIconButton
             ? Positioned(
