@@ -8,33 +8,33 @@ class LocationService {
   LocationService._();
 
   static LocationData? locationData;
-  static Location location = Location();
+  static Location _location = Location();
 
-  static bool _serviceEnabled = false;
-  static PermissionStatus _permissionGranted = PermissionStatus.denied;
+  static bool serviceEnabled = false;
+  static PermissionStatus permissionGranted = PermissionStatus.denied;
 
   static Future<LocationData?> getCurrentPosition({
     required Function onServiceDisabled,
     required Function onPermissionDenied,
   }) async {
     try {
-      _serviceEnabled = await location.serviceEnabled();
-      if (!_serviceEnabled) {
-        _serviceEnabled = await location.requestService();
-        if (!_serviceEnabled) {
+      serviceEnabled = await _location.serviceEnabled();
+      if (!serviceEnabled) {
+        serviceEnabled = await _location.requestService();
+        if (!serviceEnabled) {
           return onServiceDisabled();
         }
       }
 
-      _permissionGranted = await location.hasPermission();
-      if (_permissionGranted == PermissionStatus.denied) {
-        _permissionGranted = await location.requestPermission();
-        if (_permissionGranted != PermissionStatus.granted) {
+      permissionGranted = await _location.hasPermission();
+      if (permissionGranted == PermissionStatus.denied) {
+        permissionGranted = await _location.requestPermission();
+        if (permissionGranted != PermissionStatus.granted) {
           return onPermissionDenied();
         }
       }
 
-      locationData = await location.getLocation();
+      locationData = await _location.getLocation();
       return locationData!;
     } catch (e) {
       cl(e);
