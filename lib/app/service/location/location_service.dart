@@ -8,7 +8,7 @@ class LocationService {
   LocationService._();
 
   static LocationData? locationData;
-  static Location _location = Location();
+  static final Location _location = Location();
 
   static bool serviceEnabled = false;
   static PermissionStatus permissionGranted = PermissionStatus.denied;

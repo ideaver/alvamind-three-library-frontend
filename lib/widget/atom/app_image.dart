@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -11,16 +12,19 @@ import '../../app/theme/app_colors.dart';
 import 'app_progress_indicator.dart';
 
 // App Image Widget
-// v.2.0.2
+// v.2.0.4
 // by Elriz Wiraswara
 
 enum ImgProvider {
   networkImage,
   assetImage,
   fileImage,
+  svgImageAsset,
+  svgImageFile,
+  svgImageNetwork,
 }
 
-// For develompment purpose
+// For development purpose
 const String randomImage = 'https://source.unsplash.com/512x512?food';
 
 class AppImage extends StatefulWidget {
@@ -110,16 +114,38 @@ class _AppImageState extends State<AppImage> {
           borderRadius: BorderRadius.circular(
             (widget.borderRadius ?? 0) - (widget.borderWidth ?? 0),
           ),
-          child: widget.image == ''
-              ? noImage()
-              : widget.imgProvider == ImgProvider.networkImage
-                  ? networkImage()
-                  : widget.imgProvider == ImgProvider.assetImage
-                      ? assetImage()
-                      : fileImage(),
+          child: child(),
         ),
       ),
     );
+  }
+
+  Widget child() {
+    if (widget.image == '') {
+      return noImage();
+    }
+
+    if (widget.imgProvider == ImgProvider.assetImage) {
+      return assetImage();
+    }
+
+    if (widget.imgProvider == ImgProvider.fileImage) {
+      return fileImage();
+    }
+
+    if (widget.imgProvider == ImgProvider.svgImageAsset) {
+      return svgImageAsset();
+    }
+
+    if (widget.imgProvider == ImgProvider.svgImageFile) {
+      return svgImageFile();
+    }
+
+    if (widget.imgProvider == ImgProvider.svgImageNetwork) {
+      return svgImageNetwork();
+    }
+
+    return networkImage();
   }
 
   Widget networkImage() {
@@ -190,6 +216,55 @@ class _AppImageState extends State<AppImage> {
         File(widget.image),
       ),
       imageErrorBuilder: (context, object, stack) {
+        return widget.errorWidget ??
+            const Center(
+              child: Icon(
+                Icons.broken_image_rounded,
+                color: AppColors.blackLv4,
+              ),
+            );
+      },
+    );
+  }
+
+  Widget svgImageAsset() {
+    return SvgPicture.asset(
+      widget.image,
+      package: widget.isFromAppAssets ? widget.appAssetsPackageName : null,
+      fit: widget.fit ?? BoxFit.cover,
+      placeholderBuilder: (_) {
+        return widget.errorWidget ??
+            const Center(
+              child: Icon(
+                Icons.broken_image_rounded,
+                color: AppColors.blackLv4,
+              ),
+            );
+      },
+    );
+  }
+
+  Widget svgImageFile() {
+    return SvgPicture.file(
+      File(widget.image),
+      fit: widget.fit ?? BoxFit.cover,
+      placeholderBuilder: (_) {
+        return widget.errorWidget ??
+            const Center(
+              child: Icon(
+                Icons.broken_image_rounded,
+                color: AppColors.blackLv4,
+              ),
+            );
+      },
+    );
+  }
+
+  Widget svgImageNetwork() {
+    return SvgPicture.network(
+      widget.image,
+      fit: widget.fit ?? BoxFit.cover,
+      placeholderBuilder: (_) {
         return widget.errorWidget ??
             const Center(
               child: Icon(
