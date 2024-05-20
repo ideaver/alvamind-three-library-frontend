@@ -75,7 +75,7 @@ class AppDialog {
               ),
               if (error != null)
                 Padding(
-                  padding: EdgeInsets.only(top: AppSizes.padding),
+                  padding: const EdgeInsets.only(top: AppSizes.padding),
                   child: Text(
                     error.toString().length > 35 ? error.toString().substring(0, 35) : error.toString(),
                     textAlign: TextAlign.center,
