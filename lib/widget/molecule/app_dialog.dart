@@ -163,7 +163,7 @@ class AppDialogWidget extends StatelessWidget {
         child: Container(
           constraints: const BoxConstraints(maxWidth: 512),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[

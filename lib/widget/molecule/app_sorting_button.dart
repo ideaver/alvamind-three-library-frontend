@@ -19,7 +19,8 @@ class AppSortingButton extends StatelessWidget {
   final IconData? secondIcon;
   final EdgeInsets? padding;
   final TextStyle? textStyle;
-  final Color iconColor;
+  final Color firstIconColor;
+  final Color secondIconColor;
 
   const AppSortingButton({
     super.key,
@@ -34,7 +35,8 @@ class AppSortingButton extends StatelessWidget {
     this.secondText,
     required this.firstIcon,
     this.secondIcon,
-    this.iconColor = AppColors.white,
+    this.firstIconColor = AppColors.white,
+    this.secondIconColor = AppColors.white,
     required this.onTapFirst,
     this.onTapSecond,
   });
@@ -64,7 +66,7 @@ class AppSortingButton extends StatelessWidget {
                 children: [
                   Icon(
                     firstIcon,
-                    color: iconColor,
+                    color: firstIconColor,
                     size: 20,
                   ),
                   const SizedBox(width: AppSizes.padding / 2),
@@ -73,7 +75,7 @@ class AppSortingButton extends StatelessWidget {
                     style: textStyle ??
                         AppTextStyle.bodySmall(
                           fontWeight: AppFontWeight.semibold,
-                          color: iconColor,
+                          color: firstIconColor,
                         ),
                   ),
                 ],
@@ -102,7 +104,7 @@ class AppSortingButton extends StatelessWidget {
                   children: [
                     Icon(
                       secondIcon,
-                      color: iconColor,
+                      color: secondIconColor,
                       size: 20,
                     ),
                     const SizedBox(width: AppSizes.padding / 2),
@@ -111,7 +113,7 @@ class AppSortingButton extends StatelessWidget {
                       style: textStyle ??
                           AppTextStyle.bodySmall(
                             fontWeight: AppFontWeight.semibold,
-                            color: iconColor,
+                            color: secondIconColor,
                           ),
                     ),
                   ],

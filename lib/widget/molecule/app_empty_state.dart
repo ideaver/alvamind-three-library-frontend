@@ -47,7 +47,7 @@ class _AppEmptyStateState extends State<AppEmptyState> {
               width: 120,
               height: 120,
             ),
-            const SizedBox(height: AppSizes.padding),
+            const SizedBox(height: AppSizes.padding / 2),
             Text(
               widget.title,
               textAlign: TextAlign.center,

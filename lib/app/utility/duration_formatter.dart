@@ -9,15 +9,18 @@ class DurationFormatter {
   DurationFormatter._();
 
   static String format(DateTime from, DateTime time) {
-    return from.difference(time).inSeconds < 60
-        ? 'Just now'
-        : from.difference(time).inMinutes < 60
-            ? '${time.minute}min'
-            : from.difference(time).inHours < 24
-                ? '${time.hour}h'
-                : from.difference(time).inDays < 365
-                    ? '${time.day}d'
-                    : '${time.year}y';
+    final difference = from.difference(time);
+    if (difference.inSeconds < 60) {
+      return '${difference.inSeconds}s';
+    } else if (difference.inMinutes < 60) {
+      return '${difference.inMinutes}min';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours}h';
+    } else if (difference.inDays < 365) {
+      return '${difference.inDays}d';
+    } else {
+      return '${difference.inDays ~/ 365}y';
+    }
   }
 
   static String formatDetailed(DateTime from, DateTime time) {
@@ -48,8 +51,45 @@ class DurationFormatter {
     if (minutes > 0) {
       formattedDuration += '${minutes}m ';
     }
-    formattedDuration += '${seconds}s';
+    if (seconds > 0) {
+      formattedDuration += '${seconds}s';
+    }
 
     return formattedDuration;
+  }
+
+  static String formatDurationFromDays(int days) {
+    // Convert days to milliseconds
+    int milliseconds = days * 24 * 60 * 60 * 1000;
+
+    Duration duration = Duration(milliseconds: milliseconds);
+
+    // Extract years, months, days, hours, minutes, and seconds from the duration
+    int years = duration.inDays ~/ 365;
+    int months = (duration.inDays % 365) ~/ 30;
+    int extractedDays = (duration.inDays % 365) % 30;
+    int hours = duration.inHours.remainder(24);
+    int minutes = duration.inMinutes.remainder(60);
+    int seconds = duration.inSeconds.remainder(60);
+
+    // Construct the formatted string
+    String formattedDuration = '';
+    if (years > 0) {
+      formattedDuration += '${years} years ';
+    }
+    if (months > 0) {
+      formattedDuration += '${months} months ';
+    }
+    if (extractedDays > 0) {
+      formattedDuration += '${extractedDays} days ';
+    }
+    if (hours > 0) {
+      formattedDuration += '${hours} hours ';
+    }
+    if (minutes > 0) {
+      formattedDuration += '${minutes} minutes ';
+    }
+
+    return formattedDuration.trim();
   }
 }

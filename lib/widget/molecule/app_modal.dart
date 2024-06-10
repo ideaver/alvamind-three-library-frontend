@@ -104,7 +104,7 @@ class AppModal {
       showCloseButton: true,
       body: PickAttachmentModalBody(
         title: title,
-        subtitle: subtitle ?? 'Image/file must be less than 5 MB',
+        subtitle: subtitle ?? '',
         maxFileSize: maxFileSize ?? 5000000,
         onTapCamera: onTapCamera,
         onTapGallery: onTapGallery,

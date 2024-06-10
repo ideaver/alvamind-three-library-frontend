@@ -109,6 +109,7 @@ class AppOverlayCard extends StatelessWidget {
                 appAssetsPackageName: appAssetsPackageName,
                 width: width,
                 height: height,
+                fit: BoxFit.cover,
               ),
             )
           : const SizedBox.shrink(),

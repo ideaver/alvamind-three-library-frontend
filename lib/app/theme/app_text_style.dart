@@ -316,6 +316,7 @@ class AppTextStyle {
       color: color ?? defaultTextColor,
       fontSize: size,
       decoration: textDecoration,
+      decorationThickness: 2.5,
       height: height,
       fontWeight: fontWeightSelector(fontWeight),
     );

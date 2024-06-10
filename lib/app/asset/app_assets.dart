@@ -40,6 +40,7 @@ class AppAssets {
   static const String telegram = 'lib/assets/images/icons/social_medias/telegram.png';
   static const String line = 'lib/assets/images/icons/social_medias/line.png';
   static const String gmail = 'lib/assets/images/icons/social_medias/gmail.png';
+  static const String youtube = 'lib/assets/images/icons/social_medias/youtube.png';
   static const String tiktok = 'lib/assets/images/icons/social_medias/tiktok.png';
   static const String whatsapp = 'lib/assets/images/icons/social_medias/whatsapp.png';
   static const String x = 'lib/assets/images/icons/social_medias/x.png';
