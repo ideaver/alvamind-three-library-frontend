@@ -27,25 +27,29 @@ class AppDialog {
     Color? rightButtonTextColor,
     double? elevation,
   }) async {
-    return showDialog(
+    return await showDialog(
       context: navigator.context,
+      barrierDismissible: dismissible ?? true,
       builder: (context) {
-        return AppDialogWidget(
-          title: title,
-          text: text,
-          padding: padding,
-          rightButtonText: rightButtonText,
-          leftButtonText: leftButtonText,
-          backgroundColor: backgroundColor ?? AppColors.white,
-          onTapLeftButton: onTapLeftButton,
-          onTapRightButton: onTapRightButton,
-          dismissible: dismissible ?? true,
-          enableRightButton: enableRightButton ?? true,
-          enableLeftButton: enableLeftButton ?? true,
-          leftButtonTextColor: leftButtonTextColor ?? AppColors.blackLv1,
-          rightButtonTextColor: rightButtonTextColor ?? AppColors.primary,
-          elevation: elevation,
-          child: child,
+        return PopScope(
+          canPop: dismissible ?? true,
+          child: AppDialogWidget(
+            title: title,
+            text: text,
+            padding: padding,
+            rightButtonText: rightButtonText,
+            leftButtonText: leftButtonText,
+            backgroundColor: backgroundColor ?? AppColors.white,
+            onTapLeftButton: onTapLeftButton,
+            onTapRightButton: onTapRightButton,
+            dismissible: dismissible ?? true,
+            enableRightButton: enableRightButton ?? true,
+            enableLeftButton: enableLeftButton ?? true,
+            leftButtonTextColor: leftButtonTextColor ?? AppColors.blackLv1,
+            rightButtonTextColor: rightButtonTextColor ?? AppColors.primary,
+            elevation: elevation,
+            child: child,
+          ),
         );
       },
     );
@@ -56,36 +60,42 @@ class AppDialog {
     String? title,
     String? message,
     String? error,
+    String buttonText = 'Close',
+    Function()? onTapButton,
   }) async {
-    showDialog(
+    return await showDialog(
       context: navigator.context,
       barrierDismissible: false,
       builder: (context) {
-        return AppDialogWidget(
-          title: title ?? 'Oops!',
-          leftButtonText: 'Close',
-          child: Column(
-            children: [
-              Text(
-                message ?? 'Something went wrong, please contact your system administrator or try restart the app',
-                textAlign: TextAlign.center,
-                style: AppTextStyle.bodyMedium(
-                  fontWeight: AppFontWeight.medium,
-                ),
-              ),
-              if (error != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: AppSizes.padding),
-                  child: Text(
-                    error.toString().length > 35 ? error.toString().substring(0, 35) : error.toString(),
-                    textAlign: TextAlign.center,
-                    style: AppTextStyle.bodySmall(
-                      fontWeight: AppFontWeight.bold,
-                      color: AppColors.blackLv6,
-                    ),
+        return PopScope(
+          canPop: false,
+          child: AppDialogWidget(
+            title: title ?? 'Oops!',
+            leftButtonText: buttonText,
+            onTapLeftButton: onTapButton,
+            child: Column(
+              children: [
+                Text(
+                  message ?? 'Something went wrong, please contact your system administrator or try restart the app',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.bodyMedium(
+                    fontWeight: AppFontWeight.medium,
                   ),
                 ),
-            ],
+                if (error != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: AppSizes.padding),
+                    child: Text(
+                      error.toString().length > 35 ? error.toString().substring(0, 35) : error.toString(),
+                      textAlign: TextAlign.center,
+                      style: AppTextStyle.bodySmall(
+                        fontWeight: AppFontWeight.bold,
+                        color: AppColors.blackLv6,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         );
       },
