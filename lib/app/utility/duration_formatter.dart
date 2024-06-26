@@ -1,5 +1,5 @@
 // App Duration Formatter
-// v.0.0.2
+// v.0.0.4
 // by Elriz Wiraswara
 
 class DurationFormatter {
@@ -58,6 +58,29 @@ class DurationFormatter {
     return formattedDuration;
   }
 
+  static String formatDurationFromMinutes(int value) {
+    Duration duration = Duration(minutes: value);
+
+    // Extract hours, minutes, and seconds from the duration
+    int hours = duration.inHours;
+    int minutes = duration.inMinutes.remainder(60);
+    int seconds = duration.inSeconds.remainder(60);
+
+    // Construct the formatted string
+    String formattedDuration = '';
+    if (hours > 0) {
+      formattedDuration += '${hours}h ';
+    }
+    if (minutes > 0) {
+      formattedDuration += '${minutes}m ';
+    }
+    if (seconds > 0) {
+      formattedDuration += '${seconds}s';
+    }
+
+    return formattedDuration;
+  }
+
   static String formatDurationFromDays(int days) {
     // Convert days to milliseconds
     int milliseconds = days * 24 * 60 * 60 * 1000;
@@ -75,19 +98,19 @@ class DurationFormatter {
     // Construct the formatted string
     String formattedDuration = '';
     if (years > 0) {
-      formattedDuration += '${years} years ';
+      formattedDuration += '$years years ';
     }
     if (months > 0) {
-      formattedDuration += '${months} months ';
+      formattedDuration += '$months months ';
     }
     if (extractedDays > 0) {
-      formattedDuration += '${extractedDays} days ';
+      formattedDuration += '$extractedDays days ';
     }
     if (hours > 0) {
-      formattedDuration += '${hours} hours ';
+      formattedDuration += '$hours hours ';
     }
     if (minutes > 0) {
-      formattedDuration += '${minutes} minutes ';
+      formattedDuration += '$minutes minutes ';
     }
 
     return formattedDuration.trim();
