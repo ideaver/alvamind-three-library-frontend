@@ -36,6 +36,10 @@ class DurationFormatter {
   }
 
   static String formatDurationFromMilliSec(int milliseconds) {
+    if (milliseconds == 0) {
+      return '0';
+    }
+
     Duration duration = Duration(milliseconds: milliseconds);
 
     // Extract hours, minutes, and seconds from the duration
@@ -59,15 +63,23 @@ class DurationFormatter {
   }
 
   static String formatDurationFromMinutes(int value) {
+    if (value == 0) {
+      return '0';
+    }
+
     Duration duration = Duration(minutes: value);
 
-    // Extract hours, minutes, and seconds from the duration
-    int hours = duration.inHours;
+    // Extract days, hours, minutes, and seconds from the duration
+    int days = duration.inDays;
+    int hours = duration.inHours.remainder(24);
     int minutes = duration.inMinutes.remainder(60);
     int seconds = duration.inSeconds.remainder(60);
 
     // Construct the formatted string
     String formattedDuration = '';
+    if (days > 0) {
+      formattedDuration += '${days}d ';
+    }
     if (hours > 0) {
       formattedDuration += '${hours}h ';
     }
@@ -78,7 +90,7 @@ class DurationFormatter {
       formattedDuration += '${seconds}s';
     }
 
-    return formattedDuration;
+    return formattedDuration.trim(); // Trim any trailing space
   }
 
   static String formatDurationFromDays(int days) {
