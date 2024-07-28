@@ -124,6 +124,9 @@ class DurationFormatter {
     if (minutes > 0) {
       formattedDuration += '$minutes minutes ';
     }
+    if (seconds > 0) {
+      formattedDuration += '$seconds seconds ';
+    }
 
     return formattedDuration.trim();
   }
