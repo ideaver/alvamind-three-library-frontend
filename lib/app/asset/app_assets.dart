@@ -9,6 +9,9 @@ class AppAssets {
 
   // Logo
   static const String logo = 'lib/assets/images/logo.png';
+  static const String logoAffiliate = 'lib/assets/images/logo-affiliate.png';
+  static const String logoBackground = 'lib/assets/images/background-logo.png';
+  static const String logoAffiliateBackground = 'lib/assets/images/background-affiliate.png';
 
   // Placeholder
   static const String user = 'lib/assets/images/user.png';
