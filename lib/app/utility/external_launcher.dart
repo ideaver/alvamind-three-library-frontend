@@ -13,7 +13,7 @@ class ExternalLauncher {
   static void openUrl(String url) async {
     Uri uri;
 
-    if (!url.contains("http")) {
+    if (url.contains("http")) {
       uri = Uri.parse("http://$url");
     } else {
       uri = Uri.parse(url);
