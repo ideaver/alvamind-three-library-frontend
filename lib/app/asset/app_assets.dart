@@ -81,6 +81,8 @@ class AppAssets {
 
   // Onboarding
   static const String ob1Light = 'lib/assets/images/illustrations/onboarding/light_ob1.png';
+  static const String ob1LightMember = 'lib/assets/images/illustrations/onboarding/light-ob1-member.png';
+  static const String ob1LightAffiliator = 'lib/assets/images/illustrations/onboarding/light-ob1-affiliator.png';
   static const String ob2Light = 'lib/assets/images/illustrations/onboarding/light_ob2.png';
   static const String ob3Light = 'lib/assets/images/illustrations/onboarding/light_ob3.png';
   static const String ob4Light = 'lib/assets/images/illustrations/onboarding/light_ob4.png';
