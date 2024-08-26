@@ -11,16 +11,10 @@ class ExternalLauncher {
   ExternalLauncher._();
 
   static void openUrl(String url) async {
-    Uri uri;
-
-    if (url.contains("http")) {
-      uri = Uri.parse("http://$url");
-    } else {
-      uri = Uri.parse(url);
-    }
-
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch $uri');
+    try {
+      await launchUrl(Uri.parse(url));
+    } on Exception {
+      throw Exception('Could not launch $url');
     }
   }
 
