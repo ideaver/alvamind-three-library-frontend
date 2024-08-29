@@ -102,7 +102,7 @@ class LocalNotifService {
       }
 
       if (await File(res.payload!).exists()) {
-        OpenFilex.open(res.payload);
+        OpenFilex.open(res.payload!);
       } else if (res.payload!.contains('http')) {
         ExternalLauncher.openUrl(res.payload!);
       } else {
