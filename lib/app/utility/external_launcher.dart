@@ -22,8 +22,8 @@ class ExternalLauncher {
     required String phone,
     required String message,
   }) async {
-    var androidUrl = "whatsapp://send?phone=$phone&text=$message";
-    var iosUrl = "https://wa.me/$phone?text=${Uri.parse(message)}";
+    var androidUrl = "whatsapp://send?phone=$phone&text=${Uri.encodeComponent(message)}";
+    var iosUrl = "https://wa.me/$phone?text=${Uri.encodeComponent(message)}";
 
     try {
       if (Platform.isIOS) {
