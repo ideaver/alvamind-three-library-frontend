@@ -1,4 +1,4 @@
-import 'package:carousel_slider/carousel_slider.dart' as carousel_slider;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
@@ -9,7 +9,7 @@ enum SwipeIndicatorPosition { inside, outside }
 
 class AppCarouselSlider extends StatefulWidget {
   final List<Widget> contentList;
-  final carousel_slider.CarouselController? carouselController;
+  final CarouselSliderController? carouselController;
   final bool autoPlay;
   final bool enableInfiniteScroll;
   final bool enlargeCenterPage;
@@ -85,8 +85,8 @@ class _AppCarouselSliderState extends State<AppCarouselSlider> {
   }
 
   Widget carousel() {
-    return carousel_slider.CarouselSlider(
-      options: carousel_slider.CarouselOptions(
+    return CarouselSlider(
+      options: CarouselOptions(
         height: widget.height,
         autoPlay: widget.autoPlay,
         initialPage: 0,
